@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
-import Login from './pages/login/Login';
 import reportWebVitals from './reportWebVitals';
 import "./styles/Typography.css";
 import "./styles/Colors.css";
@@ -11,7 +10,6 @@ import "./styles/Colors.css";
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <Login />
   </React.StrictMode>,
   document.getElementById('root')
 );

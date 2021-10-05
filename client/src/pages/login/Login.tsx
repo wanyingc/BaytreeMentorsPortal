@@ -1,11 +1,12 @@
 import React from 'react';
+import logo from '../../assets/logo192.png';
 import './Login.css';
 
 function Login() {
   return (
     <div id="bigBox">
         <div>
-          <img src="logo192.png" id="logo"></img>
+          <img src={logo} id="logo" alt="logo"></img>
         </div>
         <div className="inputText">
           <form className="inputTitle" id="inputTitle">Phone Number</form>
