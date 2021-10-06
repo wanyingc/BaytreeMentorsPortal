@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Login from './pages/login/Login';
+import Sidenav from './components/Sidenav';
 // import Dashboard from './pages/dashboard/Dashboard';
 // import Messages from './pages/messages/Messages';
 // import Questionnaire from './pages/questionnaire/Questionnaire';
@@ -10,6 +11,7 @@ import Login from './pages/login/Login';
 function App() {
   return (
     <Router>
+      <Sidenav/>
       <Switch>
         <Route path="/" component={Login}/>
         <Route path="/login" component={Login}/>
