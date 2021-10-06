@@ -22,6 +22,10 @@
     overflow: hidden;
 }
 
+.nav-top-container{
+    background-color: white;
+}
+
 .navbar-brand {
     margin-right: 0;
     background-color: transparent;
@@ -31,4 +35,16 @@
     width: auto;
     height: 60px;
     background-color: white;
+}
+
+.navbar-nav {
+    background-color: white;
+}
+
+.nav-link {
+    background-color: transparent;
+}
+
+.nav-icon {
+    background-color: transparent;
 }
