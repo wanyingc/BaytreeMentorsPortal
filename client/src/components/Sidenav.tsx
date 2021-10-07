@@ -17,7 +17,7 @@ function getScreenSize () {
 }
 
 export default function Sidenav() {
-    const userType = userTypes[1];
+    const userType = userTypes[0];
 
     // cited from: https://stackoverflow.com/questions/44480053/how-to-detect-if-screen-size-has-changed-to-mobile-in-react
     const [isMobile, setIsMobile] = useState(getScreenSize);
@@ -71,8 +71,8 @@ export default function Sidenav() {
         if(userType === userTypes[0]) {
             menus1 = adminItems1.map((item, index) => {
                 return(
-                    <li className="nav-item btn fs-5 border-3" key={index}>
-                        <Link to={item.to} className="nav-link py-0 btn-font-color-secondary" aria-current="page">
+                    <li className="nav-item border-0" key={index}>
+                        <Link to={item.to} className="nav-link btn-lg text-center py-1 btn-font-color-secondary" aria-current="page" type="button">
                             {item.icon}
                         </Link>
                     </li>
@@ -80,8 +80,8 @@ export default function Sidenav() {
             });
             menus2 = adminItems2.map((item, index) => {
                 return(
-                    <li className="nav-item btn fs-5 border-3" key={index}>
-                        <Link to={item.to} className="nav-link py-0 btn-font-color-secondary" aria-current="page">
+                    <li className="nav-item border-0" key={index}>
+                        <Link to={item.to} className="nav-link btn-lg text-center px-3 py-1 btn-font-color-secondary" aria-current="page" type="button">
                             {item.icon}
                         </Link>
                     </li>
@@ -90,8 +90,8 @@ export default function Sidenav() {
         } else {
             menus1 = volunteerItems1.map((item, index) => {
                 return(
-                    <li className="nav-item btn fs-5 border-3" key={index}>
-                        <Link to={item.to} className="nav-link py-0 btn-font-color-secondary" aria-current="page">
+                    <li className="nav-item border-0" key={index}>
+                        <Link to={item.to} className="nav-link btn-lg text-center py-1 btn-font-color-secondary" aria-current="page" type="button">
                             {item.icon}
                         </Link>
                     </li>
@@ -99,8 +99,8 @@ export default function Sidenav() {
             });
             menus2 = volunteerItems2.map((item, index) => {
                 return(
-                    <li className="nav-item btn fs-5 border-3" key={index}>
-                        <Link to={item.to} className="nav-link py-0 btn-font-color-secondary" aria-current="page">
+                    <li className="nav-item border-0" key={index}>
+                        <Link to={item.to} className="nav-link btn-lg text-center px-3 py-1 btn-font-color-secondary" aria-current="page" type="button">
                             {item.icon}
                         </Link>
                     </li>
