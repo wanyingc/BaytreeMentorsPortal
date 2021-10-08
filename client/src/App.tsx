@@ -6,6 +6,7 @@ import Login from './pages/login/Login';
 // import Messages from './pages/messages/Messages';
 // import Questionnaire from './pages/questionnaire/Questionnaire';
 // import Settings from './pages/settings/Settings';
+import TimeCard from './pages/timecard/TimeCard';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         {/* <Route path="/messages" component={Messages}/> */}
         {/* <Route path="/questionnaire" component={Questionnaire}/> */}
         {/* <Route path="/settings" component={Settings}/> */}
+        <Route path="/timecard" component={TimeCard}/>
       </Switch>
     </Router>
   );
