@@ -1,4 +1,5 @@
 import { CgLogOut } from 'react-icons/cg';
+import { IoPersonOutline } from 'react-icons/io5';
 import { FiBarChart2, FiBriefcase } from 'react-icons/fi';
 import * as BsIcons from 'react-icons/bs';
 
@@ -27,11 +28,15 @@ export const volunteerItems1 = [
         to: "/report",
         icon: <FiBarChart2 className="nav-icon"/>
     },
-];
-export const volunteerItems2 = [
     {
         to: "/notifications",
         icon: <BsIcons.BsBell className="nav-icon"/>
+    },
+];
+export const volunteerItems2 = [
+    {
+        to: "/profile",
+        icon: <IoPersonOutline className="nav-icon"/>
     },
     {
         to: "/settings",
@@ -59,12 +64,16 @@ export const adminItems1 = [
         to: "/notifications",
         icon: <BsIcons.BsBell className="nav-icon"/>
     },
+];
+export const adminItems2 = [
+    {
+        to: "/profile",
+        icon: <IoPersonOutline className="nav-icon"/>
+    },
     {
         to: "/settings",
         icon: <BsIcons.BsGear className="nav-icon"/>
     },
-];
-export const adminItems2 = [
     {
         to: "/logout",
         icon: <CgLogOut className="nav-icon"/>

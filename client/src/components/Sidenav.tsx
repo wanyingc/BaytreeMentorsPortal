@@ -17,18 +17,14 @@ function getScreenSize () {
 }
 
 export default function Sidenav() {
-    const userType = userTypes[0];
+    const userType = userTypes[1];
 
     // cited from: https://stackoverflow.com/questions/44480053/how-to-detect-if-screen-size-has-changed-to-mobile-in-react
     const [isMobile, setIsMobile] = useState(getScreenSize);
     const [hamburgerOpen, setHamburgerOpen] = useState(false);
 
     const manageResize = () => {
-        if(window.innerWidth < 768) {
-            setIsMobile(true);
-        } else {
-            setIsMobile(false);
-        }
+        setIsMobile(getScreenSize);
     }
 
     let menus1;    
@@ -41,17 +37,12 @@ export default function Sidenav() {
         }
     }, [isMobile]);
 
-
-    // function handleHamburger (){
-    //     setHamburgerOpen(!hamburgerOpen);
-    // }
-
     function HeaderRender () {
         return(
             <div className={`header fixed-top bg-transparent topnav ${hamburgerOpen ? 'open' : ''} ${isMobile ? '': 'collapse'}`}>
                 <ul className="navbar-nav flex-row bg-transparent">
                     <li className="nav-item p-0 ">
-                        <a className="nav-link py-0" aria-current="page">
+                        <div className="nav-link py-0" aria-current="page">
                             <Hamburger
                                 toggled={hamburgerOpen} 
                                 toggle={setHamburgerOpen}
@@ -60,7 +51,7 @@ export default function Sidenav() {
                                 rounded
                                 color="black"
                             />
-                        </a>
+                        </div>
                     </li>
                 </ul>
             </div>
