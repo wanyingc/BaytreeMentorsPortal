@@ -8,9 +8,7 @@ import "./styles/Typography.css";
 import "./styles/Colors.css";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
 );
 
