@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import Login from './pages/login/Login';
+import Sidenav from './components/Sidenav';
 // import Dashboard from './pages/dashboard/Dashboard';
 // import Messages from './pages/messages/Messages';
 // import Questionnaire from './pages/questionnaire/Questionnaire';
@@ -13,6 +14,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
+        <Sidenav/>
         <Switch>
           <Route exact path="/" component={Login}/>
           <Route exact path="/login" component={Login}/>
