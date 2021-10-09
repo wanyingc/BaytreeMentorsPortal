@@ -1,39 +1,38 @@
 import React, { FC } from 'react';
-import { UserObject } from '../pages/dashboard/Dashboard';
 import '../styles/DashboardListBlock.css';
 
 type Props = {
-    title: string,
-    theaders: string[],
-    childComp?: React.ReactNode;
+    HeaderComp?: React.ReactNode,
+    theaders?: string[],
 };
 
 const DashboardListBlock: FC<Props> = ({
-    title,
+    HeaderComp,
     theaders,
-    childComp
+    children
 }) => {
 
-    const renderHeaders = theaders.map((item) => {
-        return(
-            <th>{item}</th>
-        );
-    });
+    const renderHeaders = theaders ? 
+                            theaders.map((item) => {
+                                return(
+                                    <th>{item}</th>
+                                );
+                            }) 
+                            :
+                            null;
 
     return (
-        <div className="card">
-            <div className="card-header fs-5">
-                {title}
-            </div>
+        <div className="card h-100">
+            {HeaderComp}
             <div className="">
-                <table className="table table-hover">
+                <table className="table table-hover mb-0">
                     <thead>
                         <tr>
                             {renderHeaders}
                         </tr>
                     </thead>
                     <tbody>
-                        {childComp}
+                        {children}
                     </tbody>
                 </table>
             </div>

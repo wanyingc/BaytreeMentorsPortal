@@ -32,4 +32,6 @@ h4 {font-size: 1.777rem;}
 
 h5 {font-size: 1.333rem;}
 
-small, .text_small {font-size: 0.75rem;}
+small, h6, .text_small {font-size: 0.75rem;}
+
+h7 {font-size: 0.66rem;}
