@@ -17,7 +17,7 @@ const DashboardListBlock: FC<Props> = ({
     const renderHeaders = theaders ? 
                             theaders.map((item) => {
                                 return(
-                                    <th>{item}</th>
+                                    <th key={item}>{item}</th>
                                 );
                             }) 
                             :
