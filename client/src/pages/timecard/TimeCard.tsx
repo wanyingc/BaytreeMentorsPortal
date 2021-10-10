@@ -19,23 +19,35 @@ const clockOptions = {
 
 function TimeCard(): JSX.Element {
   return (
-    <div id="container" className="container-xl">
-      <div className="row justify-content-center">
-        <div className="col-xl-9">
+    <div id="container" className="container-lg">
+      <div className="col-xl-3">
+        <div className="row justify-content-center">
+          <div>
             <button type="button" className="btn btn-default light-red-background btn-block">
               Upload Notes
             </button><br/><br/>
             <button type="button" className="btn btn-default dark-red-background btn-block">
               Previous Time Punches
-            </button><br/><br/>
-            <div id="analogClock">
-              <AnalogueClock {...clockOptions} />
-            </div>
-            <div id="ClockInOutButtons">
-              <button type="button" className="btn btn-primary btn-lg" style={{marginRight: '150px', marginLeft:'50px'}}>Clock In</button>
-              <button type="button" className="btn btn-secondary btn-lg">Clock Out</button>
-            </div>
+            </button>
+          </div>
         </div>
+
+        <div className="row justify-content-center">
+          <div id="analogClock">
+            <AnalogueClock {...clockOptions} />
+          </div>
+        </div>
+
+        <div className="row justify-content-center">
+          <div id="ClockInOutButton">
+            <button type="button" className="btn btn-primary btn-block">
+              Clock In</button><br/><br/>
+            <button type="button" className="btn btn-secondary btn-block">
+              Clock Out
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   );
