@@ -1,0 +1,28 @@
+#container{
+    margin: 0 auto;
+    margin-top: 100px;
+  }
+
+#ClockInOutButtons{
+    margin-top: 100px;
+}
+
+#analogClock{
+    margin-top: 100px;
+    margin-left: 80px;
+}
+
+.light-red-background{
+    color: black;
+    background-color: #F5CDC4;
+}
+
+.dark-red-background{
+    color: white;
+    background-color: #BD3E23;
+}
+
+.btn-block{
+    width: 50%;
+}
+  
