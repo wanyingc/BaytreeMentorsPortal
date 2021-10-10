@@ -1,4 +1,4 @@
-import { SessionObject, UserObject } from "./Dashboard";
+import { SessionObject, UserObject } from "../../interfaces/DashboardInterfaces";
 
 export const Users: UserObject[] = [
     {

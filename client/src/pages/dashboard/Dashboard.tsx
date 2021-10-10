@@ -1,26 +1,20 @@
-import React from 'react';
-import DashboardGraph from '../../components/DashboardGraph';
-import DashboardListBlock from '../../components/DashboardListBlock'
-import { Users, RecentSessions } from './DashboardData'
+import React, { useState } from 'react';
+import DashboardLineChart from '../../components/DashboardLineChart';
+import DashboardListBlock from '../../components/DashboardListBlock';
+import { Users, RecentSessions } from './DashboardData';
+import { Dropdown, DropdownButton } from "react-bootstrap/";
+import { Calendar } from '../../components/Calendar';
+import DashboardDoughnut from '../../components/DashboardDoughnut';
 
-export type UserObject = {
-    name: string,
-    lastSession: string,
-    attendence: string
-};
-
-export type SessionObject = {
-    title: string;
-    person: string;
-    date: string;
-};
-
-const tableHeaders = [ "Name", "Last Session", "Attendence"];
-const headersRecentSessions = ["", ""]
+const tableHeaders = [ "Name", "Last Session", "Attendence" ];
+const mentorTypes = [ "Mentors", "Youth Mentors", "Into School Mentors" ]
 
 export default function Dashboard() {
 
-    const chartData: number[] = [5, 3, 9, 12, 2, 3];
+    const [mentorTableTitle, setMentorTableTitle] = useState(mentorTypes[0])
+
+    const chartData1: number[] = [5, 3, 9, 12];
+    const chartData2: number[] = [50, 30, 90, 120];
 
     const renderUserTableDetail = Users.map((row) => {
         return(
@@ -53,21 +47,21 @@ export default function Dashboard() {
                         <div className="col-xl-6">
                             <DashboardListBlock
                                 HeaderComp={<div className="card-header fs-5">
-                                        Unique and Aggregate Session Attendence
+                                        Upcoming Sessions
                                     </div>}
-                                theaders={tableHeaders}
+                                heightCSSClass="h-50"
                             >
-                                {renderUserTableDetail}
+                                <DashboardDoughnut/>
                             </DashboardListBlock>
                         </div>
                         <div className="col-xl-6">
                             <DashboardListBlock
                                 HeaderComp={<div className="card-header fs-5">
-                                        Session Attendence
+                                        Upcoming Sessions
                                     </div>}
-                                theaders={tableHeaders}
+                                heightCSSClass="h-100"
                             >
-                                {renderUserTableDetail}
+                                <DashboardLineChart/>
                             </DashboardListBlock>
                         </div>
                     </div>
@@ -78,40 +72,23 @@ export default function Dashboard() {
                                         Session Schedule
                                     </div>}
                             >
-                                {renderUserTableDetail}
+                                <Calendar/>
                             </DashboardListBlock>
                         </div>
                         <div className="col-xl-6">
                             <DashboardListBlock
                                 HeaderComp={<div className="card-header fs-5 bg-transparent border-0">
-                                        <div className="container d-flex justify-content-between mx-0 px-0">
-                                            <strong>Volunteers</strong>
-                                            <div className="dropdown">
-                                                <button 
-                                                    className="btn btn-secondary dropdown-toggle" 
-                                                    type="button" id="dropdownMenuButton1" 
-                                                    data-bs-toggle="dropdown" 
-                                                    aria-expanded="false"/>
-                                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li>
-                                                        <a className="dropdown-item" href="#">
-                                                            Volunteers (all types)
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="#">
-                                                            Youth Mentors
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="#">
-                                                            Into School Mentors
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>}
+                                                <div className="container d-flex justify-content-between mx-0 px-0">
+                                                    <strong>{mentorTableTitle}</strong>
+                                                    <DropdownButton id="dropdown-basic-button" title="">
+                                                        {mentorTypes.map((mentorType, index) => {
+                                                            return(
+                                                                <Dropdown.Item onClick={()=> setMentorTableTitle(mentorType)} href="#/action-1">{mentorType}</Dropdown.Item>
+                                                            );
+                                                        })}
+                                                    </DropdownButton>
+                                                </div>
+                                            </div>}
                                 theaders={tableHeaders}
                             >
                                 {renderUserTableDetail}

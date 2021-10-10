@@ -2,13 +2,15 @@ import React, { FC } from 'react';
 import '../styles/DashboardListBlock.css';
 
 type Props = {
-    HeaderComp?: React.ReactNode,
-    theaders?: string[],
+    HeaderComp?: React.ReactNode;
+    theaders?: string[];
+    heightCSSClass?: string;
 };
 
 const DashboardListBlock: FC<Props> = ({
     HeaderComp,
     theaders,
+    heightCSSClass,
     children
 }) => {
 
@@ -22,7 +24,7 @@ const DashboardListBlock: FC<Props> = ({
                             null;
 
     return (
-        <div className="card h-100 px-0 d-card">
+        <div className={`card ${heightCSSClass} px-0 d-card`}>
             {HeaderComp}
             <div className="">
                 <table className="table table-hover mb-0">

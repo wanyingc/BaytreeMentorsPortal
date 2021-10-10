@@ -14,7 +14,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Sidenav/>
+        {/* <Sidenav/> */}
         <Switch>
           <Route exact path="/" component={Login}/>
           <Route exact path="/login" component={Login}/>
