@@ -9,7 +9,7 @@ export const volunteerItems1 = [
         icon: <BsIcons.BsSearch className="nav-icon"/>
     },
     {
-        to: "/home",
+        to: "/dashboard",
         icon: <BsIcons.BsHouseDoor className="nav-icon"/>
     },
     {
@@ -53,7 +53,7 @@ export const adminItems1 = [
         icon: <BsIcons.BsSearch className="nav-icon"/>
     },
     {
-        to: "/home",
+        to: "/dashboard",
         icon: <BsIcons.BsHouseDoor className="nav-icon"/>
     },
     {
