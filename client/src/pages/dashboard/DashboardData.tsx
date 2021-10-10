@@ -1,4 +1,4 @@
-import { UserObject } from "./Dashboard";
+import { SessionObject, UserObject } from "./Dashboard";
 
 export const Users: UserObject[] = [
     {
@@ -25,5 +25,23 @@ export const Users: UserObject[] = [
         name: "t",
         lastSession: "07-10-2021",
         attendence: "No"
+    },
+];
+
+export const RecentSessions: SessionObject[] = [
+    {
+        title: "YS Session 1",
+        person: "Saqib",
+        date: "05-10-2021",
+    },
+    {
+        title: "Senior Session 4",
+        person: "Hasib",
+        date: "01-10-2021",
+    },
+    {
+        title: "YS Session 2",
+        person: "Saqib",
+        date: "10-10-2021",
     },
 ];

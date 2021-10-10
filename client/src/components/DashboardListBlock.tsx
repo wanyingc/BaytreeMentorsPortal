@@ -22,7 +22,7 @@ const DashboardListBlock: FC<Props> = ({
                             null;
 
     return (
-        <div className="card h-100">
+        <div className="card h-100 px-0 d-card">
             {HeaderComp}
             <div className="">
                 <table className="table table-hover mb-0">
