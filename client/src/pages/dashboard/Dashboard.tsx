@@ -18,7 +18,7 @@ export default function Dashboard() {
 
     const renderUserTableDetail = Users.map((row) => {
         return(
-            <tr className="d-card-tr-0">
+            <tr key={row.name} className="d-card-tr-0">
                 <td>{row.name}</td>
                 <td>{row.lastSession}</td>
                 <td>{row.attendence}</td>
@@ -28,7 +28,7 @@ export default function Dashboard() {
 
     const renderRecentSessions = RecentSessions.map((session) => {
         return(
-            <tr className="d-card-tr-0">
+            <tr key={session.title} className="d-card-tr-0">
                 <td>{session.title}</td>
                 <td>{session.person}</td>
                 <td>{session.date}</td>
@@ -45,24 +45,10 @@ export default function Dashboard() {
                 <div className="col-xl-9 col-md-9 mb-4">
                     <div className="row justify-content-center mb-4">
                         <div className="col-xl-6">
-                            <DashboardListBlock
-                                HeaderComp={<div className="card-header fs-5">
-                                        Upcoming Sessions
-                                    </div>}
-                                heightCSSClass="h-50"
-                            >
-                                <DashboardDoughnut/>
-                            </DashboardListBlock>
+                            <DashboardDoughnut title="Session Attendence"/>
                         </div>
                         <div className="col-xl-6">
-                            <DashboardListBlock
-                                HeaderComp={<div className="card-header fs-5">
-                                        Upcoming Sessions
-                                    </div>}
-                                heightCSSClass="h-100"
-                            >
-                                <DashboardLineChart/>
-                            </DashboardListBlock>
+                            <DashboardLineChart title="Unique and Aggregate Attendence"/>
                         </div>
                     </div>
                     <div className="row justify-content-center">
@@ -83,7 +69,7 @@ export default function Dashboard() {
                                                     <DropdownButton id="dropdown-basic-button" title="">
                                                         {mentorTypes.map((mentorType, index) => {
                                                             return(
-                                                                <Dropdown.Item onClick={()=> setMentorTableTitle(mentorType)} href="#/action-1">{mentorType}</Dropdown.Item>
+                                                                <Dropdown.Item key={index} onClick={()=> setMentorTableTitle(mentorType)} href="#/action-1">{mentorType}</Dropdown.Item>
                                                             );
                                                         })}
                                                     </DropdownButton>

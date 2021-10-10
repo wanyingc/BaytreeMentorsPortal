@@ -3,7 +3,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 
 type LineChartProps = {
-
+    title: string;
 }
 
 type LineDatasetsProp = {
@@ -22,7 +22,7 @@ type LineChartDataProps = {
 
 
 const DashboardLineChart: FC<LineChartProps> = ({
-    
+    title
 }) => {
     const retrievedData = {
       labels: ["January", "February", "March", "April"],
@@ -57,15 +57,16 @@ const DashboardLineChart: FC<LineChartProps> = ({
     });
 
     useEffect(() => {
-        setData(retrievedData);
+        // setData(retrievedData);
         return () => {
         }
     }, [data])
 
     return(
         <div className="">
+            <h5>{title}</h5>
             <Line 
-                data={data}
+                data={retrievedData}
                 height={150}
             />
         </div>
