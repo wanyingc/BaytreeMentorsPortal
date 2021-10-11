@@ -8,6 +8,7 @@ import Sidenav from './components/Sidenav';
 // import Dashboard from './pages/dashboard/Dashboard';
 // import Messages from './pages/messages/Messages';
 // import Questionnaire from './pages/questionnaire/Questionnaire';
+import QuestionnaireForm from './pages/questionnaire/Questionnaire-form';
 import Profile from './pages/profile/Profile';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/" component={Login}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/profile" component={Profile}/>
+          <Route path="/questionnaire" component={QuestionnaireForm}/>
           {/* <Route path="/dashboard" component={Dashboard}/> */}
           {/* <Route path="/messages" component={Messages}/> */}
           {/* <Route path="/questionnaire" component={Questionnaire}/> */}
