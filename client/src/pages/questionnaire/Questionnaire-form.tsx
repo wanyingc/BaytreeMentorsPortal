@@ -1,38 +1,39 @@
-import { useState } from "react";
-import { reduxForm, Field } from 'redux-form'
+//import { useState } from "react";
+// import { reduxForm, Field } from 'redux-form'
+ import { reduxForm } from 'redux-form'
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
+//import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import './QuestionnaireForm.css';
 
-const ReduxFormInput: any = (field: any) => (
-    <Form.Group className="mb-3">
-        <Form.Label>{field.label}</Form.Label>
-        <Form.Control 
-          {...field.input}
-          type="text" 
-          placeholder={field.placeholder}
-          isInvalid={field.meta.touched && field.meta.error}
-          isValid={field.meta.touched && !field.meta.error} />
-    </Form.Group>
-  );
+// const ReduxFormInput: any = (field: any) => (
+//     <Form.Group className="mb-3">
+//         <Form.Label>{field.label}</Form.Label>
+//         <Form.Control 
+//           {...field.input}
+//           type="text" 
+//           placeholder={field.placeholder}
+//           isInvalid={field.meta.touched && field.meta.error}
+//           isValid={field.meta.touched && !field.meta.error} />
+//     </Form.Group>
+//   );
 
 const QuestionnaireForm = () => {
    // const [checked, setChecked] = useState(false);
-    const [radioValue, setRadioValue] = useState('');
+    //const [radioValue, setRadioValue] = useState('');
 
-    const radios = [
-        { name: '1', value: '1' },
-        { name: '2', value: '2' },
-        { name: '3', value: '3' },
-        { name: '4', value: '4' },
-        { name: '5', value: '5' },
-      ];
+    // const radios = [
+    //     { name: '1', value: '1' },
+    //     { name: '2', value: '2' },
+    //     { name: '3', value: '3' },
+    //     { name: '4', value: '4' },
+    //     { name: '5', value: '5' },
+    //   ];
 
     return (
     <Container>
@@ -41,7 +42,11 @@ const QuestionnaireForm = () => {
     <hr />
     <Form.Group controlId="formBasicEmail">
       <Form.Label>Mentee Name</Form.Label>
-      <Form.Control type="text" placeholder="Ex: Jane Smith" />
+      <Row> 
+          <Col md={8} lg={6}>
+            <Form.Control type="text" placeholder="Ex: Jane Smith" />
+          </Col>
+      </Row>
       {/* <Form.Text className="text-muted">
         We'll never share your email with anyone else.
       </Form.Text> */}
@@ -377,10 +382,118 @@ const QuestionnaireForm = () => {
         </Row>
     </Form.Group>
 
+    <h5> Session 1</h5>
+    <Form.Group>
+        <Form.Label>Session Date</Form.Label>
+        <Row>
+            <Col md={8} lg={6}>
+                <Form.Control type="date" name='sessionDate'/>
+            </Col>
+        </Row>
+        <br />
+        <Form.Label>Session Time (From/To)</Form.Label>
+        <Row>
+            <Col sm={4} md={4} lg={3}> 
+                <Form.Control type="time" name='sessionTimeStart'/>
+            </Col>
+            <Col sm={4} md={4} lg={3}>  
+                <Form.Control type="time" name='sessionTimeEnd'/>
+            </Col>
+        </Row>
+      <br />
+        <Row>
+            <Col md={8} lg={6}>
+                <Form.Label> Summary </Form.Label>
+            </Col>
+        </Row>
+        <Row>
+            <Col md={8} lg={6}>
+                <Form.Control as="textarea" rows={3} />
+                <Form.Text className="text-muted">
+                    Please give a summary of the sessions, what you discussed, 
+                    what goals and plans have been set etc., any concerns.
+                </Form.Text>
+            </Col>
+        </Row>
+    </Form.Group>
 
+    <h5> Session 2</h5>
+    <Form.Group>
+        <Form.Label>Session Date</Form.Label>
+        <Row>
+            <Col md={8} lg={6}>
+                <Form.Control type="date" name='sessionDate'/>
+            </Col>
+        </Row>
+        <br />
+        <Form.Label>Session Time (From/To)</Form.Label>
+        <Row>
+            <Col sm={4} md={4} lg={3}> 
+                <Form.Control type="time" name='sessionTimeStart'/>
+            </Col>
+            <Col sm={4} md={4} lg={3}>  
+                <Form.Control type="time" name='sessionTimeEnd'/>
+            </Col>
+        </Row>
+      <br />
+        <Row>
+            <Col md={8} lg={6}>
+                <Form.Label> Summary </Form.Label>
+            </Col>
+        </Row>
+        <Row>
+            <Col md={8} lg={6}>
+                <Form.Control as="textarea" rows={3} />
+                <Form.Text className="text-muted">
+                    Please give a summary of the sessions, what you discussed, 
+                    what goals and plans have been set etc., any concerns.
+                </Form.Text>
+            </Col>
+        </Row>
+    </Form.Group>
+
+    <h5> Session 3</h5>
+    <Form.Group >
+        <Form.Label>Session Date</Form.Label>
+        <Row>
+            <Col md={8} lg={6}>
+                <Form.Control type="date" name='sessionDate'/>
+            </Col>
+        </Row>
+        <br />
+        <Form.Label>Session Time (From/To)</Form.Label>
+        <Row>
+            <Col sm={4} md={4} lg={3}> 
+                <Form.Control type="time" name='sessionTimeStart'/>
+            </Col>
+            <Col sm={4} md={4} lg={3}>  
+                <Form.Control type="time" name='sessionTimeEnd'/>
+            </Col>
+        </Row>
+      <br />
+        <Row>
+            <Col md={8} lg={6}>
+                <Form.Label> Summary </Form.Label>
+            </Col>
+        </Row>
+        <Row>
+            <Col md={8} lg={6}>
+                <Form.Control as="textarea" rows={3} />
+                <Form.Text className="text-muted">
+                    Please give a summary of the sessions, what you discussed, 
+                    what goals and plans have been set etc., any concerns.
+                </Form.Text>
+            </Col>
+        </Row>
+    </Form.Group>
+
+    <br />
     <Button variant="primary" type="button">
-      Submit
+      Submit Questionnaire
     </Button>
+    <br/>
+    <br/>
+
     
   </Form>
   </Container>
