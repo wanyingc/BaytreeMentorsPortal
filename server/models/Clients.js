@@ -8,8 +8,8 @@ lastName:{
     type:String,
     required:true
 },
-primaryID:{
-    type:Number,
+email:{
+    type:String,
     required:true,
     unique:true
 },
@@ -18,11 +18,28 @@ phoneNumber:{
     required:true,
     unique:true
 },
-password:{
+occupation:{
+    type:String,
+    required:true
+},
+address:{
+    type:String,
+    required:true
+},
+country:{
+    type:String,
+    required:true
+},
+postalCode:{
+    type:String,
+    required:true
+},
+montorType:{
     type:String,
     required:true
 },
 });
-const client= mongoose.model("Client",clientSchema);
+
+const client= mongoose.model("Client_personal",clientSchema);
 
 module.exports=client;

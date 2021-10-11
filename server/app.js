@@ -3,6 +3,7 @@ const  mongoose= require('mongoose');
 const clientmodel= require('./models/Clients');
 // import clientmodel from './models/Clients'
 const app=express();
+app.use(express.json());
 
 mongoose.connect("mongodb+srv://group_Mars:tothemoon@cluster0.bby83.mongodb.net/CMPT373?retryWrites=true&w=majority",{
     useNewUrlParser:true,
@@ -10,11 +11,15 @@ mongoose.connect("mongodb+srv://group_Mars:tothemoon@cluster0.bby83.mongodb.net/
 
 app.get('/',async (req,res)=>{
     const client=new clientmodel({
-        firstName: "Hello",
-        lastName:"abc",
-        primaryID:123,
-        phoneNumber:987,
-        password:"ljads"
+        firstName:"Demo",
+        lastName:"Last",
+        email:"kjds@google.ca",
+        phoneNumber:"234",
+        occupation:"fdeqwe",
+        address:"rfwe",
+        country:"vredc",
+        postalCode:"rfedxs",
+        montorType:"rfweds"
 
     });
     res.send("Hello world");
@@ -28,6 +33,6 @@ app.get('/',async (req,res)=>{
     }
 });
 app.listen(3001,()=>{
-    console.log("App is tunning on localhost 3002")
+    console.log("App is tunning on localhost 3001")
 }
 );
