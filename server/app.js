@@ -19,7 +19,7 @@ app.get('/',async (req,res)=>{
         address:"rfwe",
         country:"vredc",
         postalCode:"rfedxs",
-        montorType:"rfweds"
+        mentorType:"rfweds"
 
     });
     res.send("Hello world");

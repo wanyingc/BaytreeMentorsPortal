@@ -34,7 +34,7 @@ postalCode:{
     type:String,
     required:true
 },
-montorType:{
+mentorType:{
     type:String,
     required:true
 },
