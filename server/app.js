@@ -3,13 +3,10 @@ const  mongoose= require('mongoose');
 const clientmodel= require('./models/Clients');
 // import clientmodel from './models/Clients'
 const app=express();
-app.set("port",3002);
-app.use(express.json);
 
 mongoose.connect("mongodb+srv://group_Mars:tothemoon@cluster0.bby83.mongodb.net/CMPT373?retryWrites=true&w=majority",{
     useNewUrlParser:true,
 });
-
 
 app.get('/',async (req,res)=>{
     const client=new clientmodel({
@@ -30,7 +27,7 @@ app.get('/',async (req,res)=>{
         console.log(err);
     }
 });
-app.listen(app.get("port"),()=>{
+app.listen(3001,()=>{
     console.log("App is tunning on localhost 3002")
 }
 );
