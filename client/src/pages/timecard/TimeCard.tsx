@@ -1,5 +1,7 @@
 import './timecard.css'
 import AnalogueClock from 'react-analogue-clock';
+import DateTime from './DateTime';
+import { brotliCompress } from 'zlib';
 
 const clockOptions = {
   baseColor: '#22345E',
@@ -20,7 +22,7 @@ const clockOptions = {
 function TimeCard(): JSX.Element {
   return (
     <div id="container" className="container-lg">
-      <div className="col-xl-3">
+      <div className="col-xl-6">
         <div className="row justify-content-center">
           <div>
             <button type="button" className="btn btn-default light-red-background btn-block">
@@ -34,12 +36,18 @@ function TimeCard(): JSX.Element {
 
         <div className="row justify-content-center">
           <div id="analogClock">
-            <AnalogueClock {...clockOptions} />
+            <AnalogueClock {...clockOptions}/>
           </div>
         </div>
 
         <div className="row justify-content-center">
-          <div id="ClockInOutButton">
+          <div id="dateTimeDisplay">
+            <DateTime></DateTime>
+          </div>
+        </div>
+
+        <div className="row justify-content-center">
+          <div>
             <button type="button" className="btn btn-primary btn-block">
               Clock In</button><br/><br/>
             <button type="button" className="btn btn-secondary btn-block">

@@ -2,13 +2,17 @@
     margin-top: 100px;
   }
 
-#ClockInOutButtons{
-    margin-top: 100px;
+#analogClock{
+    margin-top: 50px;
+    margin-bottom: 20px;
+    justify-content: center;
+    display: flex;
 }
 
-#analogClock{
-    margin-top: 100px;
-    margin-bottom: 100px;
+#dateTimeDisplay{
+    font-size: 50px;
+    justify-content: center;
+    display: flex;
 }
 
 .light-red-background{
