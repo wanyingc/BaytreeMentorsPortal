@@ -2,6 +2,8 @@ import './timecard.css'
 import AnalogueClock from 'react-analogue-clock';
 import DateTime from './DateTime';
 
+// Analog clock imported from https://www.npmjs.com/package/react-analogue-clock
+
 const clockOptions = {
   baseColor: '#22345E',
   borderColor: '#000000',
