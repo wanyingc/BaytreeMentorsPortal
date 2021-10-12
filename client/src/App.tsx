@@ -10,6 +10,7 @@ import Sidenav from './components/Sidenav';
 // import Questionnaire from './pages/questionnaire/Questionnaire';
 import QuestionnaireForm from './pages/questionnaire/Questionnaire-form';
 import Profile from './pages/profile/Profile';
+import TimeCard from './pages/timecard/TimeCard';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route exact path="/" component={Login}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/profile" component={Profile}/>
-          {/* <Route path="/questionnaire" component={QuestionnaireForm}/> */}
+          <Route exact path="/timecard" component={TimeCard}/>
 
           {/* <Route path="/dashboard" component={Dashboard}/> */}
           {/* <Route path="/messages" component={Messages}/> */}
