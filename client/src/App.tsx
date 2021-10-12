@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Login from './pages/login/Login';
 import Sidenav from './components/Sidenav';
-// import Dashboard from './pages/dashboard/Dashboard';
+import Dashboard from './pages/dashboard/Dashboard';
 import Messages from './pages/messages/Messages';
 import Report from './pages/report/Report';
 import QuestionnaireForm from './pages/questionnaire/Questionnaire-form';
@@ -22,9 +22,8 @@ function App() {
           <Route exact path="/" component={Login}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/profile" component={Profile}/>
-          {/* <Route exact path="/dashboard" component={Dashboard}/> */}
+          <Route exact path="/dashboard" component={Dashboard}/>
           <Route exact path="/dashboard_v" component={DashboardVolunteer}/>
-          {/* <Route path="/messages" component={Messages}/> */}
           <Route exact path="/timecard" component={TimeCard}/>
           <Route path="/messages" component={Messages}/>
           {/* <Route path="/report" component={Report}/> */}
