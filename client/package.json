@@ -13,6 +13,9 @@
     "@types/react-calendar": "^3.4.3",
     "@types/react-dom": "^17.0.9",
     "@zach.codes/react-calendar": "^0.3.1",
+    "@types/react-bootstrap": "^0.32.26",
+    "analog-clock-react": "^1.2.2",
+    "axiom": "^0.1.6",
     "axios": "^0.22.0",
     "bootstrap": "^5.1.1",
     "chart.js": "^3.5.1",
@@ -21,6 +24,7 @@
     "mobx": "^6.3.3",
     "mobx-react": "^7.2.0",
     "react": "^17.0.2",
+    "react-analogue-clock": "^0.3.2",
     "react-bootstrap": "^1.6.4",
     "react-calendar": "^3.4.0",
     "react-chartjs-2": "^3.0.5",
@@ -29,6 +33,7 @@
     "react-redux": "^7.2.5",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "react-timestamp": "^5.1.0",
     "redux-form": "^8.3.7",
     "redux-thunk": "^2.3.0",
     "typescript": "^4.4.3",
@@ -59,6 +64,7 @@
     ]
   },
   "devDependencies": {
+    "@types/bootstrap-select": "^1.13.3",
     "@types/react-router-dom": "^5.3.0",
     "@types/redux-form": "^8.3.2"
   }

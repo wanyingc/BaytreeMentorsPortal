@@ -1,0 +1,53 @@
+#boxes{
+    margin-left: 4%;
+    margin-top: 5%;
+}
+
+#title{
+    font-size: 300%;
+    margin-bottom: 0;
+}
+
+#line{
+    margin-top: 0;
+}
+
+#message-list{
+    text-align: center;
+    margin-left: 10px;
+}
+
+#message{
+    width: 95%;
+    height: 10%;
+    float: left;
+}
+
+#time{
+    font-size: 100%;
+    float: right;
+    margin-top: -100px;
+}
+
+#messageTitle{
+    font-size: 200%;
+    text-align: left;
+    margin-left: 10%;
+}
+
+#messageBody{
+    font-size: 100%;
+    text-align: left;
+    margin-left: 10%;
+}
+
+#name{
+    float: right;
+    
+}
+
+#logo{
+    width: 7%;
+    height: 10%;
+    float: left;
+}
