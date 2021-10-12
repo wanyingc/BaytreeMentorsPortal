@@ -8,7 +8,7 @@ import DashboardDoughnut from '../../components/DashboardDoughnut';
 import './Dashboard.css';
 
 const tableHeaders = [ "Name", "Last Session", "Attendence" ];
-const mentorTypes = [ "Mentors", "Youth Mentors", "Into School Mentors" ]
+const mentorTypes = [ "Mentors", "Youth Mentors", "Into School Mentors", "Women Mentors" ]
 
 function getScreenSize () {
     if(window.innerWidth < 768) {
@@ -60,12 +60,19 @@ export default function DashboardAdmin() {
     });
 
     const renderHeaderMentors = (
-        <div className="ms-2 fs-3 bg-transparent border-0">
-            <div className="container d-flex justify-content-between mx-0 px-0">
-                {mentorTableTitle}
-                <DropdownButton id="dropdown-basic-button" title="">
-                    {renderDropdownMentors}
-                </DropdownButton>
+        <div className="ms-2 bg-transparent border-0">
+            <div className="container d-flex justify-content-between mx-0 px-3 text-light table-header-bg-blue rounded-pill fs-3">
+                <div className="fs-4 align-self-center">
+                    {mentorTableTitle}
+                </div>
+                <Dropdown 
+                    id="dropdown-basic-button me-2" 
+                    className="" title="">
+                    <Dropdown.Toggle className="bg-transparent border-0" split variant="success" id="dropdown-custom-2" />
+                    <Dropdown.Menu className="">
+                        {renderDropdownMentors}
+                    </Dropdown.Menu>
+                </Dropdown>
             </div>
         </div>
     );
@@ -84,12 +91,12 @@ export default function DashboardAdmin() {
     return (
         <div className="container p-2 mt-5">
             <div className="row">
-                <h5>Welcome <strong>Saqib</strong></h5>
+            <h5 className="fs-3">Welcome, <strong>Admin</strong>!</h5>
             </div>
             <div className="row justify-content-center">
                 <div className="col-xl-9 col-lg-8 mb-4">
                     <div className="row">
-                        <div className="col-xl-4 col-md-6 col-sm-6 mb-4 border me-1">
+                        <div className="col-xl-4 col-md-6 col-sm-6 mb-4">
                             <div className="container h-100">
                                 <DashboardDoughnut 
                                     title="Session Attendence"
@@ -97,7 +104,7 @@ export default function DashboardAdmin() {
                                 />
                             </div>                            
                         </div>
-                        <div className="col-xl-8 col-md-6 col-sm-12 mb-4 border">
+                        <div className="col-xl-8 col-md-6 col-sm-12 mb-4">
                             <div className="container h-100 bt-h-300">
                                 <DashboardLineChart 
                                     title="Unique and Aggregate Attendence"
@@ -107,16 +114,16 @@ export default function DashboardAdmin() {
                         </div>
                     </div>
                     <div className="row justify-content-center">
-                        <div className="col-xl-6 border">
+                        <div className="col-xl-6">
                             <DashboardListBlock
-                                HeaderComp={<div className="ms-4 fs-3">
+                                HeaderComp={<div className="ms-4 text-light table-header-bg-blue rounded-pill px-3 fs-4">
                                         Session Schedule
                                     </div>}
                             >
                                 <EventCalendar/>
                             </DashboardListBlock>
                         </div>
-                        <div className="col-xl-6 border">
+                        <div className="col-xl-6">
                             <DashboardListBlock
                                 HeaderComp={renderHeaderMentors}
                                 theaders={tableHeaders}
