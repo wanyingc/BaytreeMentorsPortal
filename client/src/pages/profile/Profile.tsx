@@ -12,7 +12,7 @@ const DEFAULT_USER = {
   fname: 'Cagla',
   lname: 'Ist',
   phone: '14252412222',
-  email: 'a@b.com',
+  email: 'cagla@ist.com',
   occupation: 'Teacher',
   address: 'The Baytree Centre, 300-302 Brixton Rd',
   city: 'London',
@@ -21,6 +21,24 @@ const DEFAULT_USER = {
   mentorType: 'Youth Mentor',
   profileImg: 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'
 };
+const ReduxFormSelect: any = (field: any) => (
+  <Form.Group className="mb-3">
+    <Form.Label>{field.label}</Form.Label>
+    <Form.Control as="select" {...field.input} disabled={field.disabled}>
+      <option value="" disabled={true}>
+        {field.placeHolder}
+      </option>
+      {field.options.map((data: any, i: number) => {
+        return (
+          <option key={i} value={data.value}>
+            {data.label}
+          </option>
+        );
+      })}
+    </Form.Control>
+    {field.meta.touched && <p className="text-danger">{field.meta.error}</p>}
+  </Form.Group>
+);
 
 const ReduxFormInput: any = (field: any) => (
   <Form.Group className="mb-3">
@@ -28,6 +46,7 @@ const ReduxFormInput: any = (field: any) => (
       <Form.Control 
         {...field.input}
         type="text" 
+        readOnly={field.readOnly}
         placeholder={field.placeholder}
         isInvalid={field.meta.touched && field.meta.error}
         isValid={field.meta.touched && !field.meta.error} />
@@ -44,8 +63,6 @@ const validate = (values: any): FormErrors<any> => {
 };
 
 function Profile(props: InjectedFormProps | any) {
-  console.log(props);
-
   const userInfo = props.apiForm && props.apiForm.ProfileForm && props.apiForm.ProfileForm.values;
 
   return (
@@ -67,29 +84,41 @@ function Profile(props: InjectedFormProps | any) {
               </div>
 
               <Col md={6}>
-                <Field name="fname" type="text" component={ReduxFormInput} label="First Name" placeHolder="enter first name" />
+                <Field name="fname" type="text" component={ReduxFormInput} label="First Name" placeHolder="Enter first name" />
               </Col>
               <Col md={6}>
-                <Field name="lname" type="text" component={ReduxFormInput} label="Last Name" placeHolder="enter last name" />
+                <Field name="lname" type="text" component={ReduxFormInput} label="Last Name" placeHolder="Enter last name" />
               </Col>
 
-              <Field name="phone" type="text" component={ReduxFormInput} label="Phone Number" placeHolder="enter phone number" />
-              <Field name="email" type="text" component={ReduxFormInput} label="Email" placeHolder="enter email" />
-              <Field name="occupation" type="text" component={ReduxFormInput} label="Occupation" placeHolder="enter occupation" />
-              <Field name="address" type="text" component={ReduxFormInput} label="Address" placeHolder="enter address" />
+              <Field name="phone" readOnly type="text" component={ReduxFormInput} label="Phone Number" placeHolder="Enter phone number" />
+              <Field name="email" type="text" component={ReduxFormInput} label="Email" placeHolder="Enter email" />
+              <Field name="occupation" type="text" component={ReduxFormInput} label="Occupation" placeHolder="Enter occupation" />
+              <Field name="address" type="text" component={ReduxFormInput} label="Address" placeHolder="Enter address" />
               
-              <Col md={6}>
-                <Field name="country" type="text" component={ReduxFormInput} label="Country" placeHolder="enter country" />
+              <Col sm={6}>
+                <Field name="country" type="text" component={ReduxFormInput} label="Country" placeHolder="Enter country" />
               </Col>
-              <Col md={6}>
-                <Field name="postalCode" type="text" component={ReduxFormInput} label="Postal Code" placeHolder="enter postal code" />
+              <Col sm={6}>
+                <Field name="postalCode" type="text" component={ReduxFormInput} label="Postal Code" placeHolder="Enter postal code" />
               </Col>
 
               <div className="d-flex justify-content-between align-items-center mb-3">
                   <h4 className="text-right">Mentor Settings</h4>
               </div>
 
-              <Field name="mentorType" type="text" component={ReduxFormInput} label="Mentor Type" placeHolder="enter mentor type" />
+              {/* <Field name="mentorType" type="text" component={ReduxFormInput} label="Mentor Type" placeHolder="enter mentor type" /> */}
+              <Field
+                  name="mentorType"
+                  type="text"
+                  options={[
+                    { label: 'Youth Mentor', value: 'Youth Mentor' },
+                    { label: 'Into School Mentor', value: 'Into School Mentor' },
+                    { label: 'Women Mentor', value: 'Women Mentor' },
+                  ]}
+                  component={ReduxFormSelect}
+                  label="Mentor Type"
+                  placeHolder="Select mentor type"
+                />
             </Row>
 
             <Button
