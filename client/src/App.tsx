@@ -6,7 +6,8 @@ import store from "./store";
 import Login from './pages/login/Login';
 import Sidenav from './components/Sidenav';
 // import Dashboard from './pages/dashboard/Dashboard';
- import Messages from './pages/messages/Messages';
+import Messages from './pages/messages/Messages';
+import Report from './pages/report/Report';
 // import Questionnaire from './pages/questionnaire/Questionnaire';
 import Profile from './pages/profile/Profile';
 
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/profile" component={Profile}/>
           {/* <Route path="/dashboard" component={Dashboard}/> */}
           <Route path="/messages" component={Messages}/>
+          <Route path="/report" component={Report}/>
           {/* <Route path="/questionnaire" component={Questionnaire}/> */}
           {/* <Route path="/settings" component={Settings}/> */}
         </Switch>

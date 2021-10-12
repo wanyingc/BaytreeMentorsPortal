@@ -1,0 +1,43 @@
+#title{
+    font-size:3em;
+    text-align: center;
+}
+
+#nameBox{
+    text-align: center;
+    margin-top: 5%;
+    font-size: 1.5em;
+}
+
+#stars{
+    float: right;
+    margin-right: 10%;
+}
+
+#header{
+    font-size: 250%;
+    margin-top: 10%;
+    margin-bottom: 0;
+}
+
+.container{
+    margin-left: 8%;
+    margin-top: 8%;
+    text-align: left;
+    float: left;
+}
+
+.question{
+    font-size: 150%;
+    margin-top: 7%;
+}
+
+#stars label{
+    font-size: 100%;
+    margin: 0 3%;
+    padding-right: 7%;
+}
+
+#submit{
+    margin-left: 15%;
+}
