@@ -3,7 +3,7 @@ const mongoose=require('mongoose');
 // import clientmodel from './models/Clients'
 const app=express();
 app.use(express.json());
-// interface client {
+// var client_inter= {
 //     firstName:String,
 //     lastName:String,
 //     email:String,
