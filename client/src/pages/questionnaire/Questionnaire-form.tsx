@@ -11,29 +11,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import './QuestionnaireForm.css';
 
-// const ReduxFormInput: any = (field: any) => (
-//     <Form.Group className="mb-3">
-//         <Form.Label>{field.label}</Form.Label>
-//         <Form.Control 
-//           {...field.input}
-//           type="text" 
-//           placeholder={field.placeholder}
-//           isInvalid={field.meta.touched && field.meta.error}
-//           isValid={field.meta.touched && !field.meta.error} />
-//     </Form.Group>
-//   );
-
 const QuestionnaireForm = () => {
-   // const [checked, setChecked] = useState(false);
-    //const [radioValue, setRadioValue] = useState('');
-
-    // const radios = [
-    //     { name: '1', value: '1' },
-    //     { name: '2', value: '2' },
-    //     { name: '3', value: '3' },
-    //     { name: '4', value: '4' },
-    //     { name: '5', value: '5' },
-    //   ];
 
     return (
     <Container>
@@ -504,6 +482,17 @@ export default reduxForm({
     form: 'monthly-questionnaire-form',
 })(QuestionnaireForm);
 
+
+// const [checked, setChecked] = useState(false);
+//const [radioValue, setRadioValue] = useState('');
+
+// const radios = [
+//     { name: '1', value: '1' },
+//     { name: '2', value: '2' },
+//     { name: '3', value: '3' },
+//     { name: '4', value: '4' },
+//     { name: '5', value: '5' },
+//   ];
 
 /* <ToggleButtonGroup type="radio" name="radioO" >
     <ToggleButton id="tbg-radio-1" value={1} variant='outline-primary' className="toggle-button" >
