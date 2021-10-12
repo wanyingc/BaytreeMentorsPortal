@@ -7,7 +7,7 @@ import 'react-calendar/dist/Calendar.css';
 
 const tableHeaders_volunteer = [ "Mentee Name", "Latest Session", "Mentee Attendance" ]
 const tableHeaders_session = [ "Session Name", "Mentee Name", "Date"]
-
+const tableHeaders_overdue = [ "Item(s) Overdue", "Mentee Name", "Date"]
 
 function Dashboard_Volunteer() {
 
@@ -91,6 +91,7 @@ function Dashboard_Volunteer() {
                                 HeaderComp={<div className="text-light table-header-bg-blue rounded-pill px-3 fs-3">
                                     Overdues
                                 </div>}
+                                theaders={tableHeaders_overdue}
                             >
                             {renderOverdueSubmissions}
                             </DashboardListBlock>
@@ -113,7 +114,7 @@ function Dashboard_Volunteer() {
 
                         <div className="row mb-4 mx-1">
                             <DashboardListBlock
-                                HeaderComp={<div className="card-header text-light bg-info rounded-pill fs-4 mt-5">
+                                HeaderComp={<div className="card-header text-light bg-info rounded-pill fs-3 mt-5">
                                         Upcoming Sessions
                                 </div>}
                                 theaders={tableHeaders_session}
