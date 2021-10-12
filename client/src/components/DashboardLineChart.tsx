@@ -42,8 +42,8 @@ const DashboardLineChart: FC<LineChartProps> = ({
 
     return(
       <>
-        <div className="row">
-            <h5>{title}</h5>
+        <div className="row fs-3">
+            {title}
         </div>
         <div className="row bt-h-300">
             <Line 

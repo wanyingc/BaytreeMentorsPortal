@@ -31,8 +31,8 @@ const DashboardDoughnut: FC<DoughnutProp> = ({
     height
 }) => (
   <div className="">
-    <div className="row">
-      <h5>{title}</h5>
+    <div className="row fs-3">
+      {title}
     </div>
     <div className="row">
       <div className="container">
