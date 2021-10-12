@@ -20,6 +20,7 @@ const clockOptions = {
   size: 300
 }
 
+
 function TimeCard(): JSX.Element {
   return (
     <div id="container" className="container-lg">
@@ -49,12 +50,18 @@ function TimeCard(): JSX.Element {
         </div>
 
         <div className="row justify-content-center">
-          <button type="button" className="btn btn-primary  w-50 rounded-pill" onClick={() => {console.log(new Date())}}>
+          <button type="button" className="btn btn-primary  w-50 rounded-pill" 
+            onClick={() => {
+              console.log(new Date());
+            }}>
             Clock In</button>
         </div>
 
         <div className="row justify-content-center">
-          <button type="button" className="btn btn-secondary w-50 rounded-pill mb-5 my-3" onClick={() => {console.log(new Date())}}>
+          <button type="button" className="btn btn-secondary w-50 rounded-pill mb-5 my-3" 
+            onClick={() => {
+              console.log(new Date())
+            }}>
             Clock Out
           </button>
         </div>
