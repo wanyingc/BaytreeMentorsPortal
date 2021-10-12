@@ -1,3 +1,4 @@
+import { LineChartDataProps } from "../../components/DashboardLineChart";
 import { SessionObject, UserObject } from "../../interfaces/DashboardInterfaces";
 
 export const Users: UserObject[] = [
@@ -45,3 +46,31 @@ export const RecentSessions: SessionObject[] = [
         date: "10-10-2021",
     },
 ];
+
+export const LineChartData: LineChartDataProps = {
+    labels: ["January", "February", "March", "April"],
+    datasets: [
+      {
+        label: 'Unique Attendence',
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+        ],
+        borderWidth: 1,
+      },
+      {
+        label: 'Aggregate',
+        data: [12, 31, 34, 39, 41, 44],
+        backgroundColor: [
+          'rgba(255, 159, 64, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255, 159, 2, 70)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };

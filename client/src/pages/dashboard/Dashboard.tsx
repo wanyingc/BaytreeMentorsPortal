@@ -1,15 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DashboardLineChart from '../../components/DashboardLineChart';
 import DashboardListBlock from '../../components/DashboardListBlock';
 import { Users, RecentSessions } from './DashboardData';
 import { Dropdown, DropdownButton } from "react-bootstrap/";
-import { Calendar } from '../../components/Calendar';
+import EventCalendar from '../../components/EventCalendar';
 import DashboardDoughnut from '../../components/DashboardDoughnut';
+import './Dashboard.css';
 
 const tableHeaders = [ "Name", "Last Session", "Attendence" ];
 const mentorTypes = [ "Mentors", "Youth Mentors", "Into School Mentors" ]
 
+function getScreenSize () {
+    if(window.innerWidth < 768) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 export default function Dashboard() {
+    const [isMobile, setIsMobile] = useState(getScreenSize);
+
+    const manageResize = () => {
+        setIsMobile(getScreenSize);
+    }
+
+    useEffect(() => {
+        window.addEventListener("resize", manageResize);
+        return () => {
+            window.removeEventListener("resize", manageResize)
+        }
+    }, [isMobile]);
 
     const [mentorTableTitle, setMentorTableTitle] = useState(mentorTypes[0])
 
@@ -42,13 +63,23 @@ export default function Dashboard() {
                 <h5>Welcome <strong>Saqib</strong></h5>
             </div>
             <div className="row justify-content-center">
-                <div className="col-xl-9 col-md-9 mb-4">
-                    <div className="row justify-content-center mb-4">
-                        <div className="col-xl-6">
-                            <DashboardDoughnut title="Session Attendence"/>
+                <div className="col-xl-9 col-lg-8 mb-4">
+                    <div className="row mb-4">
+                        <div className="col-xl-4 col-md-6 col-sm-6">
+                            <div className="container h-100">
+                                <DashboardDoughnut 
+                                    title="Session Attendence"
+                                    height={ undefined }
+                                />
+                            </div>                            
                         </div>
-                        <div className="col-xl-6">
-                            <DashboardLineChart title="Unique and Aggregate Attendence"/>
+                        <div className="col-xl-8 col-md-6 col-sm-12">
+                            <div className="container h-100 bt-h-300">
+                                <DashboardLineChart 
+                                    title="Unique and Aggregate Attendence"
+                                    height={isMobile? 250 :undefined}
+                                />
+                            </div>
                         </div>
                     </div>
                     <div className="row justify-content-center">
@@ -58,7 +89,7 @@ export default function Dashboard() {
                                         Session Schedule
                                     </div>}
                             >
-                                <Calendar/>
+                                <EventCalendar/>
                             </DashboardListBlock>
                         </div>
                         <div className="col-xl-6">
@@ -82,9 +113,9 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className="col-xl-3 col-md-3 mb-4 align-self-center bg-grey ">                    
+                <div className="col-xl-3 col-lg-4 mb-4 mt-3 bg-grey ">                    
                         <div className="row mx-2 mb-2">
-                            <button type="button" className="btn btn-primary w-100 py-2 my-4">
+                            <button type="button" className="btn btn-primary btn-pill w-100 py-2 my-4">
                                 Create Session
                             </button>
                         </div>
