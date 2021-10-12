@@ -1,8 +1,8 @@
 #bigBox{
   float: right;
   margin: 0 auto;
-  margin-top: 300px;
-  margin-right: 300px;
+  margin-top: 15%;
+  margin-right: 3%;
   padding: 20px 50px;
   background-color: rgba(230, 227, 227);
   width: 400px;
@@ -11,8 +11,12 @@
   text-align: left;
 }
 
-#logo {
-  margin-left: 30px;
+.image{
+  text-align: center;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
 #inputBox{
@@ -22,7 +26,7 @@
 }
 
 #bigBox .inputTitle{
-  margin-top: 50px;
+  margin-top: 30%;
 }
 
 #bigBox .inputTitle .inputBox{
@@ -37,21 +41,26 @@
   color: white;
 }
 
-.login {
-  background-color: rgb(78, 78, 253);
-  border: none;
-  color: white;
+.submitButton{
+  text-align: center;
   margin-top: 40px;
-  margin-left: 70px;
+}
+
+#login {
   padding: 15px 32px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
   font-size: 16px;
 }
 
 #signUp {
-  margin-left: 50px;
   color: black;
-  margin-top: 10%;
+}
+
+.inputText{
+  text-align: center;
+}
+
+.test{
+  text-align: center;
+  margin-top: 3%;
 }
