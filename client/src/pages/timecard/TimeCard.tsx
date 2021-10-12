@@ -25,14 +25,15 @@ function TimeCard(): JSX.Element {
     <div id="container" className="container-lg">
       <div className="col-xl-6">
         <div className="row justify-content-center">
-          <div>
-            <button type="button" className="btn btn-default light-red-background btn-block">
+            <button type="button" className="btn btn-default light-red-background w-50 rounded-pill">
               Upload Notes
-            </button><br/><br/>
-            <button type="button" className="btn btn-default dark-red-background btn-block">
+            </button>
+        </div>
+
+        <div className="row justify-content-center">
+            <button type="button" className="btn btn-default dark-red-background w-50 rounded-pill my-3">
               Previous Time Punches
             </button>
-          </div>
         </div>
 
         <div className="row justify-content-center">
@@ -48,13 +49,14 @@ function TimeCard(): JSX.Element {
         </div>
 
         <div className="row justify-content-center">
-          <div>
-            <button type="button" className="btn btn-primary btn-block" onClick={() => {console.log(new Date())}}>
-              Clock In</button><br/><br/>
-            <button type="button" className="btn btn-secondary btn-block" onClick={() => {console.log(new Date())}}>
-              Clock Out
-            </button>
-          </div>
+          <button type="button" className="btn btn-primary  w-50 rounded-pill" onClick={() => {console.log(new Date())}}>
+            Clock In</button>
+        </div>
+
+        <div className="row justify-content-center">
+          <button type="button" className="btn btn-secondary w-50 rounded-pill mb-5 my-3" onClick={() => {console.log(new Date())}}>
+            Clock Out
+          </button>
         </div>
 
       </div>
