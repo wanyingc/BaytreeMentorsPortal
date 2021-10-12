@@ -1,9 +1,11 @@
 const express=require('express');
 const mongoose=require('mongoose');
+const cors = require('cors')
 // import clientmodel from './models/Clients'
 const app=express();
 app.use(express.json());
-// var client_inter= {
+app.use(cors());
+// interface client_inter {
 //     firstName:String,
 //     lastName:String,
 //     email:String,
@@ -27,7 +29,6 @@ const clientSchema= new mongoose.Schema({
     email:{
         type:String,
         required:true,
-        unique:true
     },
     phoneNumber:{
         type:Number,
@@ -58,12 +59,12 @@ const clientSchema= new mongoose.Schema({
     
 const clientmodel= mongoose.model("Client_personal",clientSchema);
 
-app.get('/',async(req,res) => {
+app.post('/insertclient',async(req,res) => {
     const client=new clientmodel({
-        firstName:"Demo",
-        lastName:"Last",
-        email:"kjds@google.ca",
-        phoneNumber:"234",
+        firstName:"Deklnnlmo",
+        lastName:"Laskmn kkjnt",
+        email:"kjknnjknds@google.ca",
+        phoneNumber:"908083",
         occupation:"fdeqwe",
         address:"rfwe",
         country:"vredc",
@@ -71,10 +72,46 @@ app.get('/',async(req,res) => {
         mentorType:"rfweds"
 
     });
-    res.send("Hello world");
+    res.send("Inserted Client");
 
     try{
         await client.save();
+
+    }
+    catch(err){
+        console.log(err);
+    }
+});
+
+const loginSchema= new mongoose.Schema({
+     phoneNumber:{
+        type:Number,
+        required:true,
+        unique:true
+    },
+    password:{
+        type:String,
+        require:true
+    }
+    });
+    
+const loginmodel= mongoose.model("Client_login",loginSchema);
+
+app.post('/login',async(req,res) => {
+    const phoneNumber=req.body.phoneNumber
+    console.log(phoneNumber)
+    const password=req.body.password;
+    console.log(password)
+    const login=new loginmodel({
+        phoneNumber:phoneNumber,
+        password:password
+    });
+
+
+    res.send("Inserted login");
+
+    try{
+        await login.save();
 
     }
     catch(err){
