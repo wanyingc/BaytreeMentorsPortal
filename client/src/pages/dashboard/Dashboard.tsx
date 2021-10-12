@@ -3,7 +3,7 @@ import DashboardLineChart from '../../components/DashboardLineChart';
 import DashboardListBlock from '../../components/DashboardListBlock';
 import { Users, RecentSessions } from './DashboardData';
 import { Dropdown, DropdownButton } from "react-bootstrap/";
-import { Calendar } from '../../components/Calendar';
+import EventCalendar from '../../components/EventCalendar';
 import DashboardDoughnut from '../../components/DashboardDoughnut';
 
 const tableHeaders = [ "Name", "Last Session", "Attendence" ];
@@ -58,7 +58,7 @@ export default function Dashboard() {
                                         Session Schedule
                                     </div>}
                             >
-                                <Calendar/>
+                                <EventCalendar/>
                             </DashboardListBlock>
                         </div>
                         <div className="col-xl-6">
