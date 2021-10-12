@@ -20,7 +20,8 @@ function App() {
           <Route exact path="/" component={Login}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/profile" component={Profile}/>
-          <Route path="/questionnaire" component={QuestionnaireForm}/>
+          {/* <Route path="/questionnaire" component={QuestionnaireForm}/> */}
+
           {/* <Route path="/dashboard" component={Dashboard}/> */}
           {/* <Route path="/messages" component={Messages}/> */}
           {/* <Route path="/questionnaire" component={Questionnaire}/> */}
