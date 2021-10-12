@@ -4,7 +4,8 @@
     "express": "^4.17.1",
     "mongoose": "^6.0.10",
     "node": "^16.10.0",
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.13",
+    "tsc": "^2.0.3"
   },
   "name": "server",
   "version": "1.0.0",
@@ -17,10 +18,11 @@
     "nodemon": "^2.0.13"
   },
   "scripts": {
-    "start":"node app.js",
-    "devStart":"nodemon app.js"
+    "start": "node app.tsx",
+    "devStart": "nodemon app.tsx"
   },
   "author": "",
   "license": "ISC",
   "description": ""
+
 }
