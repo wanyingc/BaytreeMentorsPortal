@@ -13,22 +13,36 @@ import Profile from './pages/profile/Profile';
 import DashboardVolunteer from './pages/dashboard_volunteer/DashboardVolunteer';
 import TimeCard from './pages/timecard/TimeCard';
 
+// cite: https://stackoverflow.com/questions/47281850/how-to-hide-navbar-in-login-page-in-react-router
+const LoginRoute = () => (
+  <div className="container">
+    <Route exact path="/" component={Login}/>
+    <Route exact path="/login" component={Login}/>
+  </div>
+)
+
+const MainRoutes = () => (
+  <div className="container">
+    <Sidenav/> 
+    <Route exact path="/profile" component={Profile}/>
+    <Route exact path="/dashboard" component={Dashboard}/>
+    <Route exact path="/dashboard_v" component={DashboardVolunteer}/>
+    <Route exact path="/timecard" component={TimeCard}/>
+    <Route path="/messages" component={Messages}/>
+    {/* <Route path="/report" component={Report}/> */}
+    <Route path="/questionnaire" component={QuestionnaireForm}/>
+    {/* <Route path="/settings" component={Settings}/> */}
+  </div>
+)
+
 function App() {
   return (
     <Provider store={store}>
       <Router>
-        {/* <Sidenav/> */}
         <Switch>
-          <Route exact path="/" component={Login}/>
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/profile" component={Profile}/>
-          <Route exact path="/dashboard" component={Dashboard}/>
-          <Route exact path="/dashboard_v" component={DashboardVolunteer}/>
-          <Route exact path="/timecard" component={TimeCard}/>
-          <Route path="/messages" component={Messages}/>
-          {/* <Route path="/report" component={Report}/> */}
-          <Route path="/questionnaire" component={QuestionnaireForm}/>
-          {/* <Route path="/settings" component={Settings}/> */}
+          <Route exact path="/" component={LoginRoute}/>
+          <Route exact path="/login" component={LoginRoute}/>
+          <Route component={MainRoutes}/>          
         </Switch>
       </Router>
     </Provider>
