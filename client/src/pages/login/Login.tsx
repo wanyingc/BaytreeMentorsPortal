@@ -16,9 +16,7 @@ function Login() {
   }
   return (
     <div id="bigBox">
-        <div>
-          <img src={logo} id="logo" alt="logo"></img>
-        </div>
+          <img src={logo}  alt="logo" width="100" height="100" className="image"></img>
         <div className="inputText">
           <form className="inputTitle" id="inputTitle">Phone Number</form>
           <input type="text"
@@ -41,7 +39,7 @@ function Login() {
           <button className="btn btn-primary" id="login" 
           onClick={(addLogin)}>Submit</button>
         </div>
-        <div>
+        <div className="test">
           <a href="url" id="signUp">Not a user? Sign up</a>
         </div>
     </div>
