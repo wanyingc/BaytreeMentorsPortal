@@ -37,6 +37,7 @@ export default function Dashboard() {
     const chartData1: number[] = [5, 3, 9, 12];
     const chartData2: number[] = [50, 30, 90, 120];
 
+// ======================== Render Starts =======================
     const renderUserTableDetail = Users.map((row) => {
         return(
             <tr key={row.name} className="d-card-tr-0">
@@ -47,6 +48,28 @@ export default function Dashboard() {
         );
     });
 
+    const renderDropdownMentors = mentorTypes.map((mentorType, index) => {
+        return(
+            <Dropdown.Item 
+                key={index} 
+                onClick={()=> setMentorTableTitle(mentorType)} 
+            >
+                {mentorType}
+            </Dropdown.Item>
+        );
+    });
+
+    const renderHeaderMentors = (
+        <div className="card-header fs-5 bg-transparent border-0">
+            <div className="container d-flex justify-content-between mx-0 px-0">
+                <strong>{mentorTableTitle}</strong>
+                <DropdownButton id="dropdown-basic-button" title="">
+                    {renderDropdownMentors}
+                </DropdownButton>
+            </div>
+        </div>
+    );
+
     const renderRecentSessions = RecentSessions.map((session) => {
         return(
             <tr key={session.title} className="d-card-tr-0">
@@ -56,6 +79,7 @@ export default function Dashboard() {
             </tr>
         );
     });
+// ======================== Render Ends =======================
 
     return (
         <div className="container p-2 mt-5">
@@ -64,16 +88,16 @@ export default function Dashboard() {
             </div>
             <div className="row justify-content-center">
                 <div className="col-xl-9 col-lg-8 mb-4">
-                    <div className="row mb-4">
-                        <div className="col-xl-4 col-md-6 col-sm-6">
+                    <div className="row">
+                        <div className="col-xl-4 col-md-6 col-sm-6 mb-4">
                             <div className="container h-100">
                                 <DashboardDoughnut 
                                     title="Session Attendence"
-                                    height={ undefined }
+                                    height={ isMobile ? 250 : undefined }
                                 />
                             </div>                            
                         </div>
-                        <div className="col-xl-8 col-md-6 col-sm-12">
+                        <div className="col-xl-8 col-md-6 col-sm-12 mb-4">
                             <div className="container h-100 bt-h-300">
                                 <DashboardLineChart 
                                     title="Unique and Aggregate Attendence"
@@ -94,18 +118,7 @@ export default function Dashboard() {
                         </div>
                         <div className="col-xl-6">
                             <DashboardListBlock
-                                HeaderComp={<div className="card-header fs-5 bg-transparent border-0">
-                                                <div className="container d-flex justify-content-between mx-0 px-0">
-                                                    <strong>{mentorTableTitle}</strong>
-                                                    <DropdownButton id="dropdown-basic-button" title="">
-                                                        {mentorTypes.map((mentorType, index) => {
-                                                            return(
-                                                                <Dropdown.Item key={index} onClick={()=> setMentorTableTitle(mentorType)} href="#/action-1">{mentorType}</Dropdown.Item>
-                                                            );
-                                                        })}
-                                                    </DropdownButton>
-                                                </div>
-                                            </div>}
+                                HeaderComp={renderHeaderMentors}
                                 theaders={tableHeaders}
                             >
                                 {renderUserTableDetail}
@@ -113,32 +126,30 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className="col-xl-3 col-lg-4 mb-4 mt-3 bg-grey ">                    
-                        <div className="row mx-2 mb-2">
-                            <button type="button" className="btn btn-primary btn-pill w-100 py-2 my-4">
-                                Create Session
-                            </button>
-                        </div>
-                        <div className="row mb-4 mx-1">
-                            <DashboardListBlock
-                                HeaderComp={<div className="card-header fs-5">
-                                        Upcoming Sessions
-                                    </div>}
-                            >
-                                {renderRecentSessions}
-                            </DashboardListBlock>                            
-                        </div>
-                        <div className="row mb-2 mx-1">
-                            <DashboardListBlock
-                                HeaderComp={<div className="card-header fs-5">
-                                        Recent Sessions
-                                    </div>}
-                            >
-                                {renderRecentSessions}
-                            </DashboardListBlock>
-                        </div>
-                        
-
+                <div className="col-xl-3 col-lg-4 mb-4 mt-0 bg-grey ">                    
+                    <div className="row mx-2 mb-2">
+                        <button type="button" className="btn btn-primary rounded-pill w-100 py-2 my-4">
+                            Create Session
+                        </button>
+                    </div>
+                    <div className="row mb-4 mx-1">
+                        <DashboardListBlock
+                            HeaderComp={<div className="card-header fs-5">
+                                    Upcoming Sessions
+                                </div>}
+                        >
+                            {renderRecentSessions}
+                        </DashboardListBlock>                            
+                    </div>
+                    <div className="row mb-2 mx-1">
+                        <DashboardListBlock
+                            HeaderComp={<div className="card-header fs-5">
+                                    Recent Sessions
+                                </div>}
+                        >
+                            {renderRecentSessions}
+                        </DashboardListBlock>
+                    </div>                      
                 </div>
             </div>            
         </div>

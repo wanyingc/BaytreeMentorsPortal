@@ -1,12 +1,3 @@
-import {
-    startOfMonth,
-    addMonths,
-    addHours,
-    subHours,
-    addDays,
-    subDays,
-  } from 'date-fns';
-
 export type EventType = {
     title: string;
     date: Date;
