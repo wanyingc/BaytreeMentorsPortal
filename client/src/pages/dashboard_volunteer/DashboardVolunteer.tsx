@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import container from 'react-bootstrap/Container'
 import EventCalendar from '../../components/EventCalendar';
 import DashboardListBlock from '../../components/DashboardListBlock'
-import { Mentees, OverdueSubmissions, RecentSessions, UpcomingSessions } from './DashboardData_Volunteer'
+import { Mentees, OverdueSubmissions, RecentSessions, UpcomingSessions } from './DashboardDataVolunteer'
 import 'react-calendar/dist/Calendar.css';
 
 const tableHeaders_volunteer = [ "Mentee Name", "Latest Session", "Mentee Attendance" ]
 const tableHeaders_session = [ "Session Name", "Mentee Name", "Date"]
 const tableHeaders_overdue = [ "Item(s) Overdue", "Mentee Name", "Date"]
 
-function Dashboard_Volunteer() {
+function DashboardVolunteer() {
 
     const renderRecentSessions = RecentSessions.map((session) => {
         return(
@@ -130,4 +130,4 @@ function Dashboard_Volunteer() {
     )
 }
 
-export default Dashboard_Volunteer;
+export default DashboardVolunteer;
