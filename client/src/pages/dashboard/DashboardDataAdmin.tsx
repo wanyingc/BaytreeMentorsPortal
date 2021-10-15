@@ -1,5 +1,7 @@
 import { LineChartDataProps } from "../../components/DashboardLineChart";
-import { SessionObject, UserObject } from "../../interfaces/DashboardInterfaces";
+import { UserObject } from "../../interfaces/DashboardInterfaces";
+
+export const sampleDate = new Date('October 7, 2021 13:24:00');
 
 export const dataUsers: UserObject[] = [
     {
@@ -28,8 +30,6 @@ export const dataUsers: UserObject[] = [
         attendence: "No"
     },
 ];
-
-export const sampleDate = new Date('October 7, 2021 13:24:00');
 
 export const dataRecentSessions = [
     {
@@ -65,36 +65,6 @@ export const dataUpcomingSessions = [
         date: 'October 10, 2021 13:24:00'
     }
 ];
-export const columnsSessions = [
-    {
-        dataField: 'title',
-        text: 'Session'
-    }, 
-    {
-        dataField: 'mentor',
-        text: 'Mentor'
-    }, 
-    {
-        dataField: 'date',
-        text: 'Date'
-    }
-];
-
-export const columnsMentors = [ 
-    {
-        dataField: 'name',
-        text: 'Name'
-    },
-    {
-        dataField: 'lastSession',
-        text: 'Last Session'
-    },
-    {
-        dataField: 'attendence',
-        text: 'Attendence'
-    },
-];
-export const mentorTypes = [ "Mentors", "Youth Mentors", "Into School Mentors", "Women Mentors" ]
 
 export const LineChartData: LineChartDataProps = {
     labels: ["January", "February", "March", "April"],

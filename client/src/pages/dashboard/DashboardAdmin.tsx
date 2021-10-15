@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DashboardLineChart from '../../components/DashboardLineChart';
-import { columnsMentors, columnsSessions, dataRecentSessions, dataUpcomingSessions, dataUsers, mentorTypes, } from './DashboardData';
+import { dataRecentSessions, dataUpcomingSessions, dataUsers } from './DashboardDataAdmin';
+import { columnsMentors, columnsSessionsMentors, mentorTypes} from './DashboardDatatypes';
 import { Dropdown } from "react-bootstrap/";
 import EventCalendar from '../../components/EventCalendar';
 import DashboardDoughnut from '../../components/DashboardDoughnut';
@@ -31,7 +32,7 @@ export default function DashboardAdmin() {
     }, [isMobile]);
 
     const [mentorTableTitle, setMentorTableTitle] = useState(mentorTypes[0])
-    
+
 // ======================== Render Starts =======================
     const renderDropdownMentors = mentorTypes.map((mentorType, index) => {
         return(
@@ -121,7 +122,7 @@ export default function DashboardAdmin() {
                                 Upcoming Sessions
                             </div>
                             <div className="">
-                                <BootstrapTable keyField='id' data={ dataUpcomingSessions } columns={ columnsSessions } bordered={ false }/>            
+                                <BootstrapTable keyField='id' data={ dataUpcomingSessions } columns={ columnsSessionsMentors } bordered={ false }/>            
                             </div>
                         </div>
                     </div>
@@ -131,7 +132,7 @@ export default function DashboardAdmin() {
                                 Recent Sessions
                             </div>
                             <div className="">
-                                <BootstrapTable keyField='id' data={ dataRecentSessions } columns={ columnsSessions } bordered={ false }/>            
+                                <BootstrapTable keyField='id' data={ dataRecentSessions } columns={ columnsSessionsMentors } bordered={ false }/>            
                             </div>
                         </div>
                     </div>                      

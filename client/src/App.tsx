@@ -10,7 +10,7 @@ import Messages from './pages/messages/Messages';
 import Report from './pages/report/Report';
 import QuestionnaireForm from './pages/questionnaire/Questionnaire-form';
 import Profile from './pages/profile/Profile';
-import DashboardVolunteer from './pages/dashboard_volunteer/DashboardVolunteer';
+import DashboardVolunteer from './pages/dashboard/DashboardVolunteer';
 import TimeCard from './pages/timecard/TimeCard';
 
 // cite: https://stackoverflow.com/questions/47281850/how-to-hide-navbar-in-login-page-in-react-router
@@ -26,7 +26,6 @@ const MainRoutes = () => (
     <Sidenav/> 
     <Route exact path="/profile" component={Profile}/>
     <Route exact path="/dashboard" component={Dashboard}/>
-    <Route exact path="/dashboard_v" component={DashboardVolunteer}/>
     <Route exact path="/timecard" component={TimeCard}/>
     <Route path="/messages" component={Messages}/>
     {/* <Route path="/report" component={Report}/> */}
