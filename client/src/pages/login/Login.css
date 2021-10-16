@@ -1,3 +1,16 @@
+.login-image{
+  height:100vh;
+  background-image:url('https://www.baytreecentre.org/wp-content/uploads/2021/05/into-school.jpg');
+  background-size:cover;
+  background-position: center;
+}
+
+.login-card{
+  max-width: 320px;
+  border-radius:4px;
+  position:absolute;
+}
+
 #bigBox{
   float: right;
   margin: 0 auto;

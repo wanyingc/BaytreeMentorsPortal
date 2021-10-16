@@ -6,7 +6,9 @@ import DashboardVolunteer from './DashboardVolunteer';
 const userTypes = ["admin", "volunteer"];
 
 export default function Dashboard() {
-    const userType = userTypes[0];
+    
+    const userType = userTypes[1];
+
     return (
         <div>
             {userType === "admin" ?<DashboardAdmin/> : <DashboardVolunteer/> }
