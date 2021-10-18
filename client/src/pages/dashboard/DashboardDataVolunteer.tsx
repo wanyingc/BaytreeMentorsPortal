@@ -1,6 +1,6 @@
 import { SessionObject, UserObject } from "../../interfaces/DashboardInterfaces";
 
-export const Mentees: UserObject[] = [
+export const dataMentees: UserObject[] = [
     {
         name: "Mentee1",
         lastSession: "01-23-2021",

@@ -1,15 +1,17 @@
 import React from 'react';
 import './Dashboard.css';
 import DashboardAdmin from './DashboardAdmin';
-import Dashboard_Volunteer from '../dashboard_volunteer/Dashboard_Volunteer';
+import DashboardVolunteer from './DashboardVolunteer';
 
 const userTypes = ["admin", "volunteer"];
 
 export default function Dashboard() {
-    const userType = userTypes[0];
+    
+    const userType = userTypes[1];
+
     return (
         <div>
-            {userType === "admin" ?<DashboardAdmin/> : <Dashboard_Volunteer/> }
+            {userType === "admin" ?<DashboardAdmin/> : <DashboardVolunteer/> }
         </div>
     )
 }

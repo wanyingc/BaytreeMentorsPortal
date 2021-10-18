@@ -1,7 +1,9 @@
 import { LineChartDataProps } from "../../components/DashboardLineChart";
-import { SessionObject, UserObject } from "../../interfaces/DashboardInterfaces";
+import { UserObject } from "../../interfaces/DashboardInterfaces";
 
-export const Users: UserObject[] = [
+export const sampleDate = new Date('October 7, 2021 13:24:00');
+
+export const dataUsers: UserObject[] = [
     {
         name: "Saqib",
         lastSession: "02-10-2021",
@@ -29,22 +31,39 @@ export const Users: UserObject[] = [
     },
 ];
 
-export const RecentSessions: SessionObject[] = [
+export const dataRecentSessions = [
     {
         title: "YS Session 1",
-        person: "Saqib",
-        date: "05-10-2021",
+        mentor: "Saqib",
+        date: sampleDate.getDate() + "-" + sampleDate.getMonth() + "-" + sampleDate.getFullYear()
     },
     {
-        title: "Senior Session 4",
-        person: "Hasib",
-        date: "01-10-2021",
+        title: "Into School Session 3",
+        mentor: "Hasib",
+        date: 'October 9, 2021 13:24:00'
     },
     {
         title: "YS Session 2",
-        person: "Saqib",
-        date: "10-10-2021",
+        mentor: "Anon",
+        date: 'October 10, 2021 13:24:00'
+    }
+];
+export const dataUpcomingSessions = [
+    {
+        title: "YS Session 1",
+        mentor: "Saqib",
+        date: sampleDate.getDate() + "-" + sampleDate.getMonth() + "-" + sampleDate.getFullYear()
     },
+    {
+        title: "Into School Session 3",
+        mentor: "Hasib",
+        date: 'October 9, 2021 13:24:00'
+    },
+    {
+        title: "YS Session 2",
+        mentor: "Anon",
+        date: 'October 10, 2021 13:24:00'
+    }
 ];
 
 export const LineChartData: LineChartDataProps = {

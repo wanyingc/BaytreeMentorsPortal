@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import DashboardLineChart from '../../components/DashboardLineChart';
-import DashboardListBlock from '../../components/DashboardListBlock';
-import { Users, RecentSessions } from './DashboardData';
-import { Dropdown, DropdownButton } from "react-bootstrap/";
+import { dataRecentSessions, dataUpcomingSessions, dataUsers } from './DashboardDataAdmin';
+import { columnsMentors, columnsSessionsMentors, mentorTypes} from './DashboardDatatypes';
+import { Dropdown } from "react-bootstrap/";
 import EventCalendar from '../../components/EventCalendar';
 import DashboardDoughnut from '../../components/DashboardDoughnut';
 import './Dashboard.css';
-
-const tableHeaders = [ "Name", "Last Session", "Attendence" ];
-const mentorTypes = [ "Mentors", "Youth Mentors", "Into School Mentors", "Women Mentors" ]
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import BootstrapTable from 'react-bootstrap-table-next';
 
 function getScreenSize () {
     if(window.innerWidth < 768) {
@@ -34,20 +33,7 @@ export default function DashboardAdmin() {
 
     const [mentorTableTitle, setMentorTableTitle] = useState(mentorTypes[0])
 
-    const chartData1: number[] = [5, 3, 9, 12];
-    const chartData2: number[] = [50, 30, 90, 120];
-
 // ======================== Render Starts =======================
-    const renderUserTableDetail = Users.map((row) => {
-        return(
-            <tr key={row.name} className="d-card-tr-0">
-                <td>{row.name}</td>
-                <td>{row.lastSession}</td>
-                <td>{row.attendence}</td>
-            </tr>
-        );
-    });
-
     const renderDropdownMentors = mentorTypes.map((mentorType, index) => {
         return(
             <Dropdown.Item 
@@ -76,16 +62,6 @@ export default function DashboardAdmin() {
             </div>
         </div>
     );
-
-    const renderRecentSessions = RecentSessions.map((session) => {
-        return(
-            <tr key={session.title} className="d-card-tr-0">
-                <td>{session.title}</td>
-                <td>{session.person}</td>
-                <td>{session.date}</td>
-            </tr>
-        );
-    });
 // ======================== Render Ends =======================
 
     return (
@@ -115,47 +91,50 @@ export default function DashboardAdmin() {
                     </div>
                     <div className="row justify-content-center">
                         <div className="col-xl-6">
-                            <DashboardListBlock
-                                HeaderComp={<div className="ms-4 text-light table-header-bg-blue rounded-pill px-3 fs-4">
-                                        Session Schedule
-                                    </div>}
-                            >
-                                <EventCalendar/>
-                            </DashboardListBlock>
+                            <div className={`card h-100 px-0 d-card`}>
+                                <div className="ms-4 text-light table-header-bg-blue rounded-pill px-3 fs-4">
+                                    Session Schedule
+                                </div>
+                                <div className="">
+                                    <EventCalendar/>
+                                </div>
+                            </div>                            
                         </div>
                         <div className="col-xl-6">
-                            <DashboardListBlock
-                                HeaderComp={renderHeaderMentors}
-                                theaders={tableHeaders}
-                            >
-                                {renderUserTableDetail}
-                            </DashboardListBlock>
+                            <div className={`card h-100 px-0 d-card`}>
+                                    {renderHeaderMentors}
+                                <div className="">
+                                    <BootstrapTable keyField='id' data={ dataUsers } columns={ columnsMentors } bordered={ false }/>            
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className="col-xl-3 col-lg-4 mb-4 mt-0 bg-grey ">                    
                     <div className="row mx-2 mb-2">
-                        <button type="button" className="btn btn-primary rounded-pill w-100 py-2 my-4">
+                        <button type="button" className="btn btn-primary rounded-pill w-100 py-2 mb-4">
                             Create Session
                         </button>
                     </div>
                     <div className="row mb-4 mx-1">
-                        <DashboardListBlock
-                            HeaderComp={<div className="card-header fs-5">
-                                    Upcoming Sessions
-                                </div>}
-                        >
-                            {renderRecentSessions}
-                        </DashboardListBlock>                            
+                        <div className={`card h-100 px-0 d-card`}>
+                            <div className="card-header fs-5">
+                                Upcoming Sessions
+                            </div>
+                            <div className="">
+                                <BootstrapTable keyField='id' data={ dataUpcomingSessions } columns={ columnsSessionsMentors } bordered={ false }/>            
+                            </div>
+                        </div>
                     </div>
                     <div className="row mb-2 mx-1">
-                        <DashboardListBlock
-                            HeaderComp={<div className="card-header fs-5">
-                                    Recent Sessions
-                                </div>}
-                        >
-                            {renderRecentSessions}
-                        </DashboardListBlock>
+                        <div className={`card h-100 px-0 d-card`}>
+                            <div className="card-header fs-5">
+                                Recent Sessions
+                            </div>
+                            <div className="">
+                                <BootstrapTable keyField='id' data={ dataRecentSessions } columns={ columnsSessionsMentors } bordered={ false }/>            
+                            </div>
+                        </div>
                     </div>                      
                 </div>
             </div>            
