@@ -6,25 +6,42 @@ notifications for overdues and upcoming events/sessions.
 
 
 ## Project structure: 
-The frontend and backend are separated into "client" and "server" folders. Frontend, built using React and Typescript, are strucutured in components and pages, all in separate folders based on their needs. The reusable components are in components folder, whereas the pages folder contains subfolders, separating pages of the web app.
+The frontend and backend are separated into "client" and "server" folders. The design pattern we followed here is MVC (Model View Controller). Model and Controller are in the backend, whereas frontend is the View.
+### Frontend
+Frontend, built using React and Typescript, is strucutured in components and pages, all in separate folders based on their needs. The reusable components are in components folder, whereas the pages folder contains subfolders, separating pages of the web app.
+### Backend
+Backend server is developed using a NodeJS library named "ExpressJS". For database, we used MongoDB. app.ts is the entry point of the server, rest of the code is in *src* folder. *config* folder has all the configurations (database config, authentication config etc). *api/v1* folder has all the API related files, such as *models*, *controllers*, *routes*, *middlewares*, *services* etc. *models* folder has all the database schemas, *routes* folder has the API endpoint methods. *middlewares* folder has the middlewares that are necessary for each of the routes.
+
+Frontend:
 https://atlas.mindmup.com/2021/10/6edeea3024c611eca389956e86824a39/prj/index.html
+
+Backend:
+https://atlas.mindmup.com/2021/10/81972de0324a11ecb37d5f030c22b9de/server/index.html
 
 
 ## Build Directions
-
-### npm run build
-
-Builds the app for production to the build folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Frontend
+#### npm run build
+### Backend
+#### npm run-script build
+Builds the backend of the project, creates *dist* folder to create .js files after compiling .ts files.
 
 ## Run Instructions
-From the "client" folder in the root directory, run "npm install" followed by "npm start" to run a server locally.
-
+### Frontend:
+#### cd client
+This will change directory to *client* folder, where frontend code is. 
+#### npm install
+Install all the necessary npm packages.
+#### npm start
+Runs the server locally at port 3000.
+### Backend:
+#### cd server
+This will change directory to *server* folder, where backend code is. 
+#### npm install
+Install all the necessary npm packages.
+#### npm start
+Runs the server locally at port 8080.
+Database starts at port 27017. You can connect through MongoDB Compass.
 ### Licence
 
                                  Apache License
@@ -215,7 +232,7 @@ From the "client" folder in the root directory, run "npm install" followed by "n
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright [yyyy] [name of copyright owner]
+   Copyright 2021 CMPT373-Team-Mars
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
