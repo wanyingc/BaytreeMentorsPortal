@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Field, reduxForm, FormErrors, InjectedFormProps } from 'redux-form'
 import { Button } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 const DEFAULT_USER = {
   fname: 'Cagla',
@@ -19,12 +20,12 @@ const DEFAULT_USER = {
   postalCode: 'SW9 6AE',
   country: 'UK',
   mentorType: 'Youth Mentor',
-  profileImg: 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'
+  profileImg: 'https://merodesk.com/wp-content/uploads/2021/05/user-4.png'
 };
 const ReduxFormSelect: any = (field: any) => (
   <Form.Group className="mb-3">
     <Form.Label>{field.label}</Form.Label>
-    <Form.Control as="select" {...field.input} disabled={field.disabled}>
+    <Form.Control as="select" {...field.input} disabled={field.disabled} >
       <option value="" disabled={true}>
         {field.placeHolder}
       </option>
@@ -91,25 +92,14 @@ function Profile(props: InjectedFormProps | any) {
               </Col>
 
               <Field name="phone" readOnly type="text" component={ReduxFormInput} label="Phone Number" placeHolder="Enter phone number" />
-              <Field name="email" type="text" component={ReduxFormInput} label="Email" placeHolder="Enter email" />
+              <Field name="email" readOnly type="text" component={ReduxFormInput} label="Email" placeHolder="Enter email" />
               <Field name="occupation" type="text" component={ReduxFormInput} label="Occupation" placeHolder="Enter occupation" />
-              <Field name="address" type="text" component={ReduxFormInput} label="Address" placeHolder="Enter address" />
-              
-              <Col sm={6}>
-                <Field name="country" type="text" component={ReduxFormInput} label="Country" placeHolder="Enter country" />
-              </Col>
-              <Col sm={6}>
-                <Field name="postalCode" type="text" component={ReduxFormInput} label="Postal Code" placeHolder="Enter postal code" />
-              </Col>
-
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                  <h4 className="text-right">Mentor Settings</h4>
-              </div>
 
               {/* <Field name="mentorType" type="text" component={ReduxFormInput} label="Mentor Type" placeHolder="enter mentor type" /> */}
               <Field
                   name="mentorType"
                   type="text"
+                  disabled
                   options={[
                     { label: 'Youth Mentor', value: 'Youth Mentor' },
                     { label: 'Into School Mentor', value: 'Into School Mentor' },
@@ -119,12 +109,46 @@ function Profile(props: InjectedFormProps | any) {
                   label="Mentor Type"
                   placeHolder="Select mentor type"
                 />
+
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                    <h4 className="text-right">Mentee Information</h4>
+              </div>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Sally</td>
+                    <td>Otto</td>
+                    <td>15</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jass</td>
+                    <td>Thornton</td>
+                    <td>11</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Jen</td>
+                    <td>Thornton</td>
+                    <td>17</td>
+                  </tr>
+                </tbody>
+              </Table>
             </Row>
 
             <Button
               variant="primary"
               type="submit"
-              style={{ marginRight: '20px', float: "right" }}
+              style={{ marginRight: '20px', marginTop:'48px', marginBottom:'48px', float: "right" }}
               disabled={props.pristine || props.submitting}
             >
               Save Profile
