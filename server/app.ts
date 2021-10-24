@@ -1,6 +1,7 @@
 const express=require('express');
 import mongoose from 'mongoose';
 import loginRouter from './src/api/v1/routes/login.route';
+import testRouter from './src/api/v1/routes/test.route';
 
 const bodyParser = require("body-parser");
 const cors = require('cors');
@@ -26,6 +27,9 @@ app.get("/", (req:Request, res:Response) => {
 });
 
 app.use("/", loginRouter);
+
+// This router is only for testing, and demonstrates example for authority based API requests
+app.use("/", testRouter);
 
 const PORT = 8080;
 app.listen(PORT,()=>{

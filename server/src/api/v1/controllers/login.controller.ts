@@ -31,8 +31,8 @@ const loginController = (req:Request, res:Response, next:NextFunction) => {
                     email: user.email,
                     roles: user.roles,
                     accessToken: token
-            });
-        };
+                });
+            };
         })
         .catch(err => {
             res.status(404).json({
