@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express=require('express');
 import mongoose from 'mongoose';
 
@@ -10,7 +11,7 @@ import connectDB from './src/api/v1/models/index';
 const app=express();
 
 let corsOptions = {
-    origin: "http://localhost:8081"
+    origin: process.env.CLIENT_ORIGIN || "http://localhost:8081"
 };
 
 app.use(cors(corsOptions));
@@ -24,7 +25,7 @@ app.get("/", (req:Request, res:Response) => {
     res.json({ message: "default page for the server"});
 });
 
-const PORT = 8080;
+const PORT = process.env.NODE_DOCKER_PORT || 8080;
 app.listen(PORT,()=>{
     console.log(`App is running on localhost ${PORT}.`);
 });

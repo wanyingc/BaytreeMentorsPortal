@@ -8,7 +8,8 @@
     "mongoose": "^6.0.10",
     "node": "^16.10.0",
     "nodemon": "^2.0.13",
-    "tsc": "^2.0.3"
+    "tsc": "^2.0.3",
+    "dotenv": "^10.0.0"
   },
   "name": "server",
   "version": "1.0.0",
