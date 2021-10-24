@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import IUser from "../interfaces/user.interface";
 
 const UserSchema= new mongoose.Schema({
    email: {
@@ -15,10 +16,13 @@ const UserSchema= new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Role" 
        }
-   ]
+   ],
+   accessToken: {
+       type:String,
+   }
 });
 
-const User = mongoose.model(
+const User = mongoose.model<IUser>(
     "User", UserSchema
 );
 

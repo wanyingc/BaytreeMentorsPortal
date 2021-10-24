@@ -1,5 +1,6 @@
 const express=require('express');
 import mongoose from 'mongoose';
+import loginRouter from './src/api/v1/routes/login.route';
 
 const bodyParser = require("body-parser");
 const cors = require('cors');
@@ -23,6 +24,8 @@ connectDB(); // Connects to database at the port # mentioned in db.config.ts
 app.get("/", (req:Request, res:Response) => {
     res.json({ message: "default page for the server"});
 });
+
+app.use("/", loginRouter);
 
 const PORT = 8080;
 app.listen(PORT,()=>{
