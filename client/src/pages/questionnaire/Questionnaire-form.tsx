@@ -1,4 +1,4 @@
-//import { useState } from "react";
+import { useState } from "react";
 // import { reduxForm, Field } from 'redux-form'
  import { reduxForm } from 'redux-form'
 import Container from "react-bootstrap/Container";
@@ -6,6 +6,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 //import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
@@ -13,19 +15,43 @@ import './QuestionnaireForm.css';
 
 const QuestionnaireForm = () => {
 
+    const [dropdownTitle, setTitle] = useState("Mentee Select")
+
+    //todo: retrieve the mentors mentee list from views
+    const [tasks] = useState([
+        {
+            id: 1,
+            mentee: 'Jane Smith',
+        },
+        {
+            id: 2,
+            mentee: 'Bob Saget',
+        },
+        {
+            id: 3,
+            mentee: 'Jolyne Kujo',
+        },
+
+    ])
+
+    const changeValue = (clickEvent: any) => {
+        console.log(clickEvent.target.text)
+        setTitle(clickEvent.target.text);
+    }
+
     return (
     <Container>
     <Form>
-    <h3>Mentoring Monthly Contact Form </h3>
+    <h3>Monthly Progress Update</h3>
     <hr />
-    <Form.Group controlId="formBasicEmail">
-      <Form.Label>Mentee Name</Form.Label>
-      <Row> 
-          <Col md={8} lg={6}>
-            <Form.Control type="text" placeholder="Ex: Jane Smith" />
-          </Col>
-      </Row>
-    </Form.Group>
+    <DropdownButton id="mentee-select" title={dropdownTitle} >
+        {tasks.map(task => (
+    <Dropdown.Item key={task.id} onClick={changeValue}> {task.mentee} </Dropdown.Item>
+        ))}
+    {/* <Dropdown.Item href="#/action-1">Jane Smith</Dropdown.Item>
+    <Dropdown.Item href="#/action-2">Jolyne</Dropdown.Item>
+    <Dropdown.Item href="#/action-3">Bob Saget</Dropdown.Item> */}
+    </DropdownButton>
     
     <h5>Practical Support</ h5>
     <Form.Group controlId="formPracticalSupport">
@@ -357,111 +383,6 @@ const QuestionnaireForm = () => {
         </Row>
     </Form.Group>
 
-    <h5> Session 1</h5>
-    <Form.Group>
-        <Form.Label>Session Date</Form.Label>
-        <Row>
-            <Col md={8} lg={6}>
-                <Form.Control type="date" name='sessionDate'/>
-            </Col>
-        </Row>
-        <br />
-        <Form.Label>Session Time (From/To)</Form.Label>
-        <Row>
-            <Col sm={4} md={4} lg={3}> 
-                <Form.Control type="time" name='sessionTimeStart'/>
-            </Col>
-            <Col sm={4} md={4} lg={3}>  
-                <Form.Control type="time" name='sessionTimeEnd'/>
-            </Col>
-        </Row>
-      <br />
-        <Row>
-            <Col md={8} lg={6}>
-                <Form.Label> Summary </Form.Label>
-            </Col>
-        </Row>
-        <Row>
-            <Col md={8} lg={6}>
-                <Form.Control as="textarea" rows={3} />
-                <Form.Text className="text-muted">
-                    Please give a summary of the sessions, what you discussed, 
-                    what goals and plans have been set etc., any concerns.
-                </Form.Text>
-            </Col>
-        </Row>
-    </Form.Group>
-
-    <h5> Session 2</h5>
-    <Form.Group>
-        <Form.Label>Session Date</Form.Label>
-        <Row>
-            <Col md={8} lg={6}>
-                <Form.Control type="date" name='sessionDate'/>
-            </Col>
-        </Row>
-        <br />
-        <Form.Label>Session Time (From/To)</Form.Label>
-        <Row>
-            <Col sm={4} md={4} lg={3}> 
-                <Form.Control type="time" name='sessionTimeStart'/>
-            </Col>
-            <Col sm={4} md={4} lg={3}>  
-                <Form.Control type="time" name='sessionTimeEnd'/>
-            </Col>
-        </Row>
-      <br />
-        <Row>
-            <Col md={8} lg={6}>
-                <Form.Label> Summary </Form.Label>
-            </Col>
-        </Row>
-        <Row>
-            <Col md={8} lg={6}>
-                <Form.Control as="textarea" rows={3} />
-                <Form.Text className="text-muted">
-                    Please give a summary of the sessions, what you discussed, 
-                    what goals and plans have been set etc., any concerns.
-                </Form.Text>
-            </Col>
-        </Row>
-    </Form.Group>
-
-    <h5> Session 3</h5>
-    <Form.Group >
-        <Form.Label>Session Date</Form.Label>
-        <Row>
-            <Col md={8} lg={6}>
-                <Form.Control type="date" name='sessionDate'/>
-            </Col>
-        </Row>
-        <br />
-        <Form.Label>Session Time (From/To)</Form.Label>
-        <Row>
-            <Col sm={4} md={4} lg={3}> 
-                <Form.Control type="time" name='sessionTimeStart'/>
-            </Col>
-            <Col sm={4} md={4} lg={3}>  
-                <Form.Control type="time" name='sessionTimeEnd'/>
-            </Col>
-        </Row>
-      <br />
-        <Row>
-            <Col md={8} lg={6}>
-                <Form.Label> Summary </Form.Label>
-            </Col>
-        </Row>
-        <Row>
-            <Col md={8} lg={6}>
-                <Form.Control as="textarea" rows={3} />
-                <Form.Text className="text-muted">
-                    Please give a summary of the sessions, what you discussed, 
-                    what goals and plans have been set etc., any concerns.
-                </Form.Text>
-            </Col>
-        </Row>
-    </Form.Group>
-
     <br />
     <Button variant="primary" type="button">
       Submit Questionnaire
@@ -478,3 +399,5 @@ const QuestionnaireForm = () => {
 export default reduxForm({
     form: 'monthly-questionnaire-form',
 })(QuestionnaireForm);
+
+
