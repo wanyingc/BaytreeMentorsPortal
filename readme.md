@@ -1,8 +1,9 @@
 ## Project Introduction
 
-Web application developed for the Baytree Centre. Allows Administrator and mentors more convenient engagement with the program.
-For mentors, the web application will simplify clock-in/out and session report processes, quicker access to resources, and receive
-notifications for overdues and upcoming events/sessions. 
+Web application developed for the Baytree Centre by Team Mars. Allows Administrator and mentors more convenient engagement with the program.
+For mentors, the web application will simplify session report processes, quicker access to resources, and receive
+notifications for overdues and upcoming events/sessions.
+Admins can create and manage mentors, and see statistics of mentors to get an overview of how they are performing.
 
 
 ## Project structure: 
@@ -10,7 +11,7 @@ The frontend and backend are separated into "client" and "server" folders. The d
 ### Frontend
 Frontend, built using React and Typescript, is strucutured in components and pages, all in separate folders based on their needs. The reusable components are in components folder, whereas the pages folder contains subfolders, separating pages of the web app.
 ### Backend
-Backend server is developed using a NodeJS library named "ExpressJS". For database, we used MongoDB. app.ts is the entry point of the server, rest of the code is in *src* folder. *config* folder has all the configurations (database config, authentication config etc). *api/v1* folder has all the API related files, such as *models*, *controllers*, *routes*, *middlewares*, *services* etc. *models* folder has all the database schemas, *routes* folder has the API endpoint methods. *middlewares* folder has the middlewares that are necessary for each of the routes.
+Backend server is developed using a NodeJS library named "ExpressJS". For database, we used MongoDB. app.ts is the entry point of the server, rest of the code is in *src* folder. *config* folder has all the configurations (database config, authentication config etc). *api/v1* folder has all the API related files, such as *models*, *controllers*, *routes*, *middlewares*, *services* etc. *models* folder has all the database schemas, *routes* folder has the API endpoint methods. *middlewares* folder has the middlewares that are necessary for each of the routes. *controllers* processes response in JSON and return to the frontend.
 
 Frontend:
 https://atlas.mindmup.com/2021/10/6edeea3024c611eca389956e86824a39/prj/index.html
@@ -22,6 +23,7 @@ https://atlas.mindmup.com/2021/10/81972de0324a11ecb37d5f030c22b9de/server/index.
 ## Build Directions
 ### Frontend
 #### npm run build
+Builds the frontend part of the project.
 ### Backend
 #### npm run-script build
 Builds the backend of the project, creates *dist* folder to create .js files after compiling .ts files.
@@ -42,6 +44,15 @@ Install all the necessary npm packages.
 #### npm start
 Runs the server locally at port 8080.
 Database starts at port 27017. You can connect through MongoDB Compass.
+#### API Documentation:
+- Login:
+   - POST "/auth/login" : 
+      - Request body (type: raw) is JSON: {"email": "< email-address >", "password": "< password >"} 
+- Authenticate and Authorize:
+   - GET "/test/admin"
+   - GET "/test/mentor"
+   - GET "/test/mod"
+   - Headers: Key= x-access-token, Value= < token-from-login >
 ### Licence
 
                                  Apache License

@@ -17,9 +17,6 @@ const UserSchema= new mongoose.Schema({
             ref: "Role" 
        }
    ],
-   accessToken: {
-       type:String,
-   }
 });
 
 const User = mongoose.model<IUser>(

@@ -6,7 +6,6 @@ import User from "../models/user.model";
 const logTitle = "Login Controller";
 
 const loginController = (req:Request, res:Response, next:NextFunction) => {
-    console.log(logTitle + " - req body : " + req.body);
     User.find({
             email: req.body.email
         })
@@ -18,7 +17,6 @@ const loginController = (req:Request, res:Response, next:NextFunction) => {
                 });
             };
             let user = users[0];      
-            console.log(logTitle + " before isPWValid. " + user.password + ", " + req.body.password);
             let isPWSame = user.password.localeCompare(req.body.password);
             if(isPWSame !== 0) {
                 return res.status(401).send({
