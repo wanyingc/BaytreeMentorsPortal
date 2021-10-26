@@ -1,66 +1,81 @@
 import { useState } from "react";
-// import { reduxForm, Field } from 'redux-form'
- import { reduxForm } from 'redux-form'
-import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-//import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import ToggleButton from 'react-bootstrap/ToggleButton';
-import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import { reduxForm } from 'redux-form'
+import Form from 'react-bootstrap/Form'
+import { Container, Col, Row, Button, Dropdown, DropdownButton, ToggleButton, ToggleButtonGroup} from "react-bootstrap/"
 import './QuestionnaireForm.css';
 
 const QuestionnaireForm = () => {
-
     const [dropdownTitle, setTitle] = useState("Mentee Select")
 
+    const onFormSubmit = (e : any) => {
+        e.preventDefault()
+        const formData = new FormData(e.target),
+              formDataObj = Object.fromEntries(formData.entries())
+            console.log(formDataObj)
+            console.log(e)
+      }
+
     //todo: retrieve the mentors mentee list from views
-    const [tasks] = useState([
+    const [mentees] = useState([
         {
             id: 1,
-            mentee: 'Jane Smith',
+            name: 'Jane Smith',
         },
         {
             id: 2,
-            mentee: 'Bob Saget',
+            name: 'Bob Saget',
         },
         {
             id: 3,
-            mentee: 'Jolyne Kujo',
+            name: 'Jolyne Kujo',
         },
 
     ])
 
-    const changeValue = (clickEvent: any) => {
-        console.log(clickEvent.target.text)
+    const changeTitleValue = (clickEvent: any) => {
+       // console.log(clickEvent.target.text)
         setTitle(clickEvent.target.text);
     }
 
+    const handleSelect=(e : any)=>{
+        console.log(e);
+      }
+
     return (
     <Container>
-    <Form>
+    <Form onSubmit={onFormSubmit}>
     <h3>Monthly Progress Update</h3>
     <hr />
-    <DropdownButton id="mentee-select" title={dropdownTitle} >
-        {tasks.map(task => (
-    <Dropdown.Item key={task.id} onClick={changeValue}> {task.mentee} </Dropdown.Item>
-        ))}
-    {/* <Dropdown.Item href="#/action-1">Jane Smith</Dropdown.Item>
-    <Dropdown.Item href="#/action-2">Jolyne</Dropdown.Item>
-    <Dropdown.Item href="#/action-3">Bob Saget</Dropdown.Item> */}
-    </DropdownButton>
-    
+
+    {/* <Form.Group controlId="mentee-name">
+        <DropdownButton id="mentee-select" title={dropdownTitle} onSelect={handleSelect} >
+            {mentees.map(mentee => (
+        <Dropdown.Item eventKey={mentee.name} value={mentee.name} onClick={changeTitleValue}> {mentee.name} </Dropdown.Item>
+            ))}
+        </DropdownButton>
+    </Form.Group> */}
+
+    <Form.Group controlId="mentee-name"> 
+        <Row>
+            <Col md={5} lg={3}>
+                <Form.Control as="select" name="names">
+                    <option>Select a mentee</option>
+                    {mentees.map(mentee => (
+                    <option value={mentee.name}> {mentee.name} </option>
+                        ))}
+                </Form.Control>
+            </Col>
+        </Row>
+    </Form.Group>
+
     <h5>Practical Support</ h5>
-    <Form.Group controlId="formPracticalSupport">
+    <Form.Group controlId="practical-support">
         <Row>
             <Col md={8} lg={6}>
                 <Form.Label>My mentee is engaging well with mentory sessions</Form.Label>
             </Col>
             <Col md={3} lg={6}>
-            <ToggleButtonGroup type="radio" name="sessionEngagement" >
+            <ToggleButtonGroup type="radio" name="session-engagement" >
                     <ToggleButton id="tbg-radio-1" value={1} variant='outline-primary'>
                        1 
                     </ToggleButton>
@@ -108,7 +123,7 @@ const QuestionnaireForm = () => {
                 <Form.Label>My mentee is willing to engage in activities</Form.Label>
             </Col>
             <Col md={3} lg={6}>
-                <ToggleButtonGroup type="radio" name="activityEngagement" >
+                <ToggleButtonGroup type="radio" name="activity-engagement" >
                     <ToggleButton id="tbg-radio-1" value={1} variant='outline-primary'>
                        1 
                     </ToggleButton>
@@ -131,13 +146,13 @@ const QuestionnaireForm = () => {
     </Form.Group>
 
     <h5>Social & Emotional Wellbeing</ h5>
-    <Form.Group controlId="formWellbeing">
+    <Form.Group controlId="well-being">
         <Row>
             <Col md={8} lg={6}>
                 <Form.Label>My mentee feels positive about herself</Form.Label>
             </Col>
             <Col md={3} lg={6}>
-            <ToggleButtonGroup type="radio" name="menteePositvity" >
+            <ToggleButtonGroup type="radio" name="mentee-positvity" >
                     <ToggleButton id="tbg-radio-1" value={1} variant='outline-primary'>
                        1 
                     </ToggleButton>
@@ -161,7 +176,7 @@ const QuestionnaireForm = () => {
                 <Form.Label>My mentee conveys optimism about the future</Form.Label>
             </Col>
             <Col md={3} lg={6}>
-            <ToggleButtonGroup type="radio" name="menteeOptimism" >
+            <ToggleButtonGroup type="radio" name="mentee-optimism" >
                     <ToggleButton id="tbg-radio-1" value={1} variant='outline-primary'>
                        1 
                     </ToggleButton>
@@ -185,7 +200,7 @@ const QuestionnaireForm = () => {
                 <Form.Label>My mentee demonstrates independent thinking</Form.Label>
             </Col>
             <Col md={3} lg={6}>
-                <ToggleButtonGroup type="radio" name="menteeThinking" >
+                <ToggleButtonGroup type="radio" name="mentee-thinking" >
                     <ToggleButton id="tbg-radio-1" value={1} variant='outline-primary'>
                        1 
                     </ToggleButton>
@@ -230,13 +245,13 @@ const QuestionnaireForm = () => {
     </Form.Group>
  
     <h5>Relationships, Friends and Family</ h5>
-    <Form.Group controlId="formWellbeing">
+    <Form.Group controlId="relationships">
         <Row>
             <Col md={8} lg={6}>
                 <Form.Label>My mentee speaks positively about friends</Form.Label>
             </Col>
             <Col md={3} lg={6}>
-            <ToggleButtonGroup type="radio" name="menteeFriendPositivity" >
+            <ToggleButtonGroup type="radio" name="friend-positivity" >
                     <ToggleButton id="tbg-radio-1" value={1} variant='outline-primary'>
                        1 
                     </ToggleButton>
@@ -260,7 +275,7 @@ const QuestionnaireForm = () => {
                 <Form.Label>My mentee sees friends regularly</Form.Label>
             </Col>
             <Col md={3} lg={6}>
-            <ToggleButtonGroup type="radio" name="menteeOptimism" >
+            <ToggleButtonGroup type="radio" name="friend-frequency" >
                     <ToggleButton id="tbg-radio-1" value={1} variant='outline-primary'>
                        1 
                     </ToggleButton>
@@ -284,7 +299,7 @@ const QuestionnaireForm = () => {
                 <Form.Label>My mentee has positive interations with family members</Form.Label>
             </Col>
             <Col md={3} lg={6}>
-                <ToggleButtonGroup type="radio" name="menteeThinking" >
+                <ToggleButtonGroup type="radio" name="family-positivity" >
                     <ToggleButton id="tbg-radio-1" value={1} variant='outline-primary'>
                        1 
                     </ToggleButton>
@@ -306,14 +321,14 @@ const QuestionnaireForm = () => {
         </Row>
     </Form.Group>
 
-    <h5>Acedmic Progress</ h5>
-    <Form.Group controlId="formWellbeing">
+    <h5>Academic Progress</ h5>
+    <Form.Group controlId="academics">
         <Row>
             <Col md={8} lg={6}>
                 <Form.Label>My mentee enjoys learning</Form.Label>
             </Col>
             <Col md={3} lg={6}>
-            <ToggleButtonGroup type="radio" name="menteeFriendPositivity" >
+            <ToggleButtonGroup type="radio" name="learning-enjoyment" >
                     <ToggleButton id="tbg-radio-1" value={1} variant='outline-primary'>
                        1 
                     </ToggleButton>
@@ -337,7 +352,7 @@ const QuestionnaireForm = () => {
                 <Form.Label>My mentee makes an effort to complete her work</Form.Label>
             </Col>
             <Col md={3} lg={6}>
-            <ToggleButtonGroup type="radio" name="menteeOptimism" >
+            <ToggleButtonGroup type="radio" name="work-effort" >
                     <ToggleButton id="tbg-radio-1" value={1} variant='outline-primary'>
                        1 
                     </ToggleButton>
@@ -361,7 +376,7 @@ const QuestionnaireForm = () => {
                 <Form.Label>My mentee has positive attitude towards education</Form.Label>
             </Col>
             <Col md={3} lg={6}>
-                <ToggleButtonGroup type="radio" name="menteeThinking" >
+                <ToggleButtonGroup type="radio" name="education-attiude" >
                     <ToggleButton id="tbg-radio-1" value={1} variant='outline-primary'>
                        1 
                     </ToggleButton>
@@ -384,13 +399,12 @@ const QuestionnaireForm = () => {
     </Form.Group>
 
     <br />
-    <Button variant="primary" type="button">
+    <Button variant="primary" type="submit">
       Submit Questionnaire
     </Button>
     <br/>
     <br/>
 
-    
   </Form>
   </Container>
     )
