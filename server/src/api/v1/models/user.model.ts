@@ -18,6 +18,18 @@ const UserSchema= new mongoose.Schema({
             enum: ["mentor", "youth_mentor", "into_school_mentor", "women_mentor", "admin", "moderator"]
         }
     ],
+    created_at: {
+        type: Date,
+        default: new Date()
+    },
+    updated_at: {
+        type: Date,
+    }
+});
+
+UserSchema.pre('save', function(next) {
+    this.updated_at = Date.now();
+    next();
 });
 
 const User = mongoose.model<IUser>(
