@@ -1,10 +1,7 @@
 import { ErrorRequestHandler } from "express";
 import mongoose, { ConnectOptions, Error, Number } from "mongoose";
 import DBConfig from "../../../config/db.config";
-import Role from "./role.model";
 const User = require("./user.model");
-
-
 
 const connectDB = async () => {
     await mongoose
