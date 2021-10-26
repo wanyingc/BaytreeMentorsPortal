@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { reduxForm } from 'redux-form'
 import Form from 'react-bootstrap/Form'
-import { Container, Col, Row, Button, Dropdown, DropdownButton, ToggleButton, ToggleButtonGroup} from "react-bootstrap/"
+import { Container, Col, Row, Button, ToggleButton, ToggleButtonGroup} from "react-bootstrap/"
 import './QuestionnaireForm.css';
 
 const QuestionnaireForm = () => {
-    const [dropdownTitle, setTitle] = useState("Mentee Select")
 
     const onFormSubmit = (e : any) => {
         e.preventDefault()
         const formData = new FormData(e.target),
               formDataObj = Object.fromEntries(formData.entries())
+
+        // todo: pass inputs to backend
             console.log(formDataObj)
-            console.log(e)
       }
 
     //todo: retrieve the mentors mentee list from views
@@ -32,36 +32,19 @@ const QuestionnaireForm = () => {
 
     ])
 
-    const changeTitleValue = (clickEvent: any) => {
-       // console.log(clickEvent.target.text)
-        setTitle(clickEvent.target.text);
-    }
-
-    const handleSelect=(e : any)=>{
-        console.log(e);
-      }
-
     return (
     <Container>
     <Form onSubmit={onFormSubmit}>
     <h3>Monthly Progress Update</h3>
     <hr />
 
-    {/* <Form.Group controlId="mentee-name">
-        <DropdownButton id="mentee-select" title={dropdownTitle} onSelect={handleSelect} >
-            {mentees.map(mentee => (
-        <Dropdown.Item eventKey={mentee.name} value={mentee.name} onClick={changeTitleValue}> {mentee.name} </Dropdown.Item>
-            ))}
-        </DropdownButton>
-    </Form.Group> */}
-
     <Form.Group controlId="mentee-name"> 
         <Row>
-            <Col md={5} lg={3}>
-                <Form.Control as="select" name="names">
+            <Col sm={5} md={4} lg={3}>
+                <Form.Control as="select" name="names" placeholder="Stuff">
                     <option>Select a mentee</option>
                     {mentees.map(mentee => (
-                    <option value={mentee.name}> {mentee.name} </option>
+                    <option key={mentee.id} value={mentee.name}> {mentee.name} </option>
                         ))}
                 </Form.Control>
             </Col>
