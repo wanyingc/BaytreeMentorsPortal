@@ -20,7 +20,7 @@ const signupController = async (req:Request, res:Response, next:NextFunction) =>
             message: error.details[0].message
         });
     }
-
+    
     // Check if the mentor is already registered
     let user = await User.findOne({email: req.body.email});
     if (user) {
