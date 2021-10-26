@@ -20,7 +20,7 @@ const signupController = async (req:Request, res:Response, next:NextFunction) =>
             message: error.details[0].message
         });
     }
-    
+
     // Check if the mentor is already registered
     let user = await User.findOne({email: req.body.email});
     if (user) {
@@ -39,11 +39,9 @@ const signupController = async (req:Request, res:Response, next:NextFunction) =>
     newUser = await newUser.save();
 
     // Return inserted mentor to the client
-    let token = jsonwebtoken.sign({ email: newUser.email}, authConfig.secret, {expiresIn: 3600});
     return res.status(200).json({
         email: newUser.email,
         roles: newUser.roles,
-        accessToken: token
     });
 
 };
