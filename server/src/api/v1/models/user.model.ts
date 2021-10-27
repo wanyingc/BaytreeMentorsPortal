@@ -15,7 +15,7 @@ const UserSchema= new mongoose.Schema({
         {
             type: String,
             default: "mentor",
-            enum: ["mentor", "youth_mentor", "into_school_mentor", "women_mentor", "admin", "moderator"]
+            enum: ["user", "mentor", "youth_mentor", "into_school_mentor", "women_mentor", "admin", "moderator"]
         }
     ],
     created_at: {

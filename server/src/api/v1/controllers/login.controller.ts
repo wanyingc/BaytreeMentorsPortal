@@ -12,8 +12,8 @@ const loginController = (req:Request, res:Response, next:NextFunction) => {
         .exec()
         .then((users) => {      
             if(users.length !== 1){
-                return res.status(500).send({
-                    message: "Unauthorized!",
+                return res.status(404).send({
+                    message: "User does not exist!",
                 });
             };
             let user = users[0];      

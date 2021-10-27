@@ -15,6 +15,11 @@ loginRouter.use((req:Request, res:Response, next:NextFunction) => {
 
 loginRouter.post('/auth/login', loginController);
 
-loginRouter.post('/auth/signup', authmw.verifyJWT, authmw.isAdmin, signupController);
+loginRouter.post(
+    '/auth/signup', 
+    [
+        authmw.verifyJWT, authmw.isUser, authmw.isAdmin
+    ], 
+    signupController);
 
 export default loginRouter;
