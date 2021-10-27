@@ -1,6 +1,6 @@
 const DBConfig = {
     HOST: "localhost",
-    PORT: "27017",
+    PORT: "9001",
     DB: "BaytreeTeamMarsDatabase"
 };
 
