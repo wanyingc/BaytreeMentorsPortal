@@ -1,3 +1,5 @@
+import { number } from "joi";
+
 const mongoose=require('mongoose');
 
 const user_info= new mongoose.Schema({
@@ -11,11 +13,14 @@ const user_info= new mongoose.Schema({
     },
     email:{
         type:String,
-        required:true
+        required:true,
+        unique:true,
+        
     },
     phone:{
         type:Number,
-        required:true
+        required:true,
+        unique:true
     }
 
 });
