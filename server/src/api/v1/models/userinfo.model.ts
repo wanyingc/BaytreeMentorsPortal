@@ -1,8 +1,7 @@
-import { number } from "joi";
+import mongoose from 'mongoose';
+import IUserInfo from '../interfaces/userinfo.interface';
 
-const mongoose=require('mongoose');
-
-const user_info= new mongoose.Schema({
+const UserInfoSchema= new mongoose.Schema({
     fistName:{
         type:String,
         required:true
@@ -15,14 +14,16 @@ const user_info= new mongoose.Schema({
         type:String,
         required:true,
         unique:true,
-        
     },
     phone:{
         type:Number,
         required:true,
         unique:true
     }
-
 });
-const user= mongoose.model("mentor_list", user_info);
-module.exports= user;
+
+const UserInfo= mongoose.model<IUserInfo>(
+    "UserInfo", UserInfoSchema
+);
+
+export default UserInfo;
