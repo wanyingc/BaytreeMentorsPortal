@@ -7,7 +7,11 @@ const UserSchema= new mongoose.Schema({
         required: true,
         unique: true
     },
-    password:{
+    personID: {
+        type: Number,
+        required: true
+    },
+    password: {
         type: String,
         required: true
     },
@@ -15,7 +19,7 @@ const UserSchema= new mongoose.Schema({
         {
             type: String,
             default: "mentor",
-            enum: ["mentor", "youth_mentor", "into_school_mentor", "women_mentor", "admin", "moderator"]
+            enum: ["user", "mentor", "youth_mentor", "into_school_mentor", "women_mentor", "admin", "moderator"]
         }
     ],
     created_at: {

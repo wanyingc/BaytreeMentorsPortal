@@ -2,7 +2,11 @@ import mongoose from 'mongoose';
 import IUserInfo from '../interfaces/userinfo.interface';
 
 const UserInfoSchema= new mongoose.Schema({
-    fistName:{
+    personID: {
+        type: Number,
+        required: true
+    },
+    firstName:{
         type:String,
         required:true
     },
@@ -19,6 +23,9 @@ const UserInfoSchema= new mongoose.Schema({
         type:Number,
         required:true,
         unique:true
+    },
+    startDate: {
+        type: Date,
     }
 });
 
