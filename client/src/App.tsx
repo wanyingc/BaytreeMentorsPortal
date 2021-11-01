@@ -11,6 +11,7 @@ import Report from './pages/report/Report';
 import QuestionnaireForm from './pages/questionnaire/Questionnaire-form';
 import Profile from './pages/profile/Profile';
 import TimeCard from './pages/timecard/TimeCard';
+import SignUp from './pages/signup/SignUp';
 
 // cite: https://stackoverflow.com/questions/47281850/how-to-hide-navbar-in-login-page-in-react-router
 const LoginRoute = () => (
@@ -27,6 +28,7 @@ const MainRoutes = () => (
     <Route exact path="/dashboard" component={Dashboard}/>
     <Route exact path="/timecard" component={TimeCard}/>
     <Route path="/messages" component={Messages}/>
+    <Route exact path ="/signup" component={SignUp}/>
     {/* <Route path="/report" component={Report}/> */}
     <Route path="/questionnaire" component={QuestionnaireForm}/>
     {/* <Route path="/settings" component={Settings}/> */}
