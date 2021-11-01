@@ -1,6 +1,5 @@
 import React from 'react'
-import { Col, Row, Form } from 'react-bootstrap'
-import { Container } from 'react-bootstrap'
+import { Col, Row, Form, Container,  } from 'react-bootstrap'
 
 
 // const DEFAULT_USER = {
@@ -80,6 +79,16 @@ export default function signup() {
                         </Col>
                     </Row>
                 </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <label className="form-label">Mentor Type</label>
+                    <select className="form-select" aria-label="Default select example">
+                        <option>Youth Mentor</option>
+                        <option>Into School Mentor</option>
+                        <option>Women Mentor</option>
+                        </select>
+                </Form.Group>
+                
             </Form>
         </Container>
     )
