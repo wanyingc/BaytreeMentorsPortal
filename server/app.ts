@@ -15,7 +15,7 @@ let corsOptions = {
     origin: "http://localhost:8081"
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(bodyParser.json()); // content-type - application/json
 app.use(bodyParser.urlencoded({ extended: true })); // content-type - application/x-www-form-urlencoded
