@@ -1,14 +1,13 @@
-const checkRoles = (role: string) => {
-    role = role.toLowerCase();
-    if(role.includes("women mentor")){
-        return "women_mentor";
-    }
-    if(role.includes("youth mentor")){
-        return "youth_mentor";
-    }
-    if(role.includes("into school mentor")){
-        return "into_school_mentor";
-    }
+// processes roles derived from Views into our format
+const getRoles = (roles: string) => {
+    let rolesArray: string[] = roles.split("|");
+    let processedRoles: string[] = [];
+    rolesArray.forEach(role => {
+        role = role.toLocaleLowerCase();
+        role = role.replace(/ /g, "_"); // replaces " " with "_" to allow working with roles enum
+        processedRoles.push(role);
+    });
+    return processedRoles;
 }
 
-export default checkRoles;
+export default getRoles;

@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express';
 import loginController from '../controllers/login.controller';
 import signupController from '../controllers/signup.controller';
 import authmw from '../middlewares/auth.middleware';
+import signupMW from '../middlewares/signup.middleware';
 
 const loginRouter = Router();
 
@@ -17,6 +18,9 @@ loginRouter.use((req:Request, res:Response, next:NextFunction) => {
 
 loginRouter.post('/auth/login', loginController);
 
-loginRouter.post('/auth/signup', authmw.verifyJWT, authmw.isAdmin, signupController);
+loginRouter.post(
+    '/auth/signup', 
+    [ authmw.verifyJWT, authmw.isAdmin, signupMW.gatherDataFromViewsAPIMW ], 
+    signupController);
 
 export default loginRouter;

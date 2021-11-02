@@ -8,11 +8,9 @@ const UserInfoSchema= new mongoose.Schema({
     },
     firstName:{
         type:String,
-        required:true
     },
     lastName:{
         type:String,
-        required:true
     },
     email:{
         type:String,
@@ -20,13 +18,12 @@ const UserInfoSchema= new mongoose.Schema({
         unique:true,
     },
     phone:{
-        type:Number,
-        required:true,
+        type: mongoose.Schema.Types.Mixed,
         unique:true
     },
     startDate: {
-        type: Date,
-    }
+        type: mongoose.Schema.Types.Mixed,
+    },
 });
 
 const UserInfo= mongoose.model<IUserInfo>(
