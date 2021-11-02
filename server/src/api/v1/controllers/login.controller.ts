@@ -5,8 +5,8 @@ import User from "../models/user.model";
 
 const logTitle = "Login Controller";
 
-const loginController = (req:Request, res:Response, next:NextFunction) => {
-    User.find({
+const loginController = async (req:Request, res:Response, next:NextFunction) => {
+    await User.find({
             email: req.body.email
         })
         .exec()

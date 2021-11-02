@@ -1,7 +1,10 @@
+import axios from 'axios';
 import { Request, Response, NextFunction } from 'express';
 import jsonwebtoken from 'jsonwebtoken';
 import authConfig from '../../../config/auth.config';
 import User from "../models/user.model";
+import UserInfo from '../models/userinfo.model';
+import getRoles from '../services/roles.service';
 const Joi = require('joi');
 
 const logTitle = "Login Controller";
@@ -11,7 +14,7 @@ const signupController = async (req:Request, res:Response, next:NextFunction) =>
     const schema = Joi.object({
         email: Joi.string().required().email(),
         password: Joi.string().required(),
-        roles: Joi.array().items(Joi.string().valid("mentor", "youth_mentor", "into_school_mentor", "women_mentor", "admin", "moderator"))
+        roles: Joi.array().items(Joi.string().valid("user", "mentor", "youth_mentor", "into_school_mentor", "women_mentor", "admin", "moderator"))
     });
 
     const { error } = schema.validate(req.body);  
@@ -32,15 +35,29 @@ const signupController = async (req:Request, res:Response, next:NextFunction) =>
     // Insert the new mentor to the database
     let newUser = new User({
         email: req.body.email,
+        personID: res.locals.personID,
         password: req.body.password,
-        roles: req.body.roles
+        roles: res.locals.roles,
+    });
+
+    // Insert the new mentor to the database
+    let newUserInfo = new UserInfo({
+        personID: res.locals.personID,
+        firstName: res.locals.firstName,
+        lastName: res.locals.lastName,
+        email: req.body.email,
+        phone: res.locals.phone,
+        startDate: res.locals.startDate,
+
     });
 
     newUser = await newUser.save();
+    newUserInfo = await newUserInfo.save();
 
     // Return inserted mentor to the client
     return res.status(200).json({
         email: newUser.email,
+        personID: newUser.personID,
         roles: newUser.roles,
     });
 
