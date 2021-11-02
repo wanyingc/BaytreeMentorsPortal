@@ -32,59 +32,6 @@ const signupController = async (req:Request, res:Response, next:NextFunction) =>
         }); 
     } 
 
-    // // Check Views API if the user exists there, if does, then store PersonID in "users", 
-    // //      and insert names and phone to the userinfos collection
-    // let firstName, lastName, phone, rolesFromViews, personID, startDate;
-    // try {
-    //     const resp = await axios.get(`https://app.viewsapp.net/api/restful/contacts/volunteers/search?Email=${req.body.email}`, 
-    //     {
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         auth: {
-    //             username: 'group.mars',
-    //             password: 'RDhQ2kJ#v&8u'
-    //         }
-    //     });
-    //     let keysVolCount = Object.keys(resp.data);
-    //     let keysVolId = Object.keys(resp.data[keysVolCount[0]]);
-    //     if(keysVolId.length === 0){
-    //         return res.status(404).json({
-    //             error: "User not found on Views"
-    //         });
-    //     } else if (keysVolId.length > 1) {
-    //         return res.status(400).json({
-    //             error: "More than one user with same email on Views"
-    //         });
-    //     }
-    //     personID = resp.data[keysVolCount[0]][keysVolId[0]].PersonID;
-    //     firstName = resp.data[keysVolCount[0]][keysVolId[0]].Forename;
-    //     lastName = resp.data[keysVolCount[0]][keysVolId[0]].Surname;
-    //     const startDateRetrieved = resp.data[keysVolCount[0]][keysVolId[0]]['Startdate_V_37'];
-    //     startDate = new Date(startDateRetrieved);
-    //     rolesFromViews = resp.data[keysVolCount[0]][keysVolId[0]]['Volunteerrole_V_34'];
-    //     phone = resp.data[keysVolCount[0]][keysVolId[0]]['Mobile'];
-    //     if(phone.length === 0){
-    //         phone = resp.data[keysVolCount[0]][keysVolId[0]]['Telephone'];
-    //     }
-    //     if(!phone) {
-    //         return res.status(404).send({
-    //             error: "No phone number on Views",
-    //         });
-    //     }
-    //     let rolesToAdd: string[] = getRoles(rolesFromViews);
-    //     console.log(personID + ", "+ firstName + ", "+ lastName + ", " + startDate + ", " + rolesFromViews + ", "+ phone);
-
-    //     const roles = ["user", "mentor"];
-    //     roles.concat(rolesToAdd);
-
-        
-    // } catch (err) {
-    //     return res.status(400).json({
-    //         error: err
-    //     });
-    // }
-
     // Insert the new mentor to the database
     let newUser = new User({
         email: req.body.email,
