@@ -7,7 +7,7 @@ const userTypes = ["admin", "volunteer"];
 
 export default function Dashboard() {
     
-    const userType = userTypes[1];
+    const userType = userTypes[0];
 
     return (
         <div>
