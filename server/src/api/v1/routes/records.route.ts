@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import testController from '../controllers/test.controller';
+import recordController from '../controllers/record.controller';
 import authMW from '../middlewares/auth.middleware';
 
 const recordRouter = Router();
@@ -19,6 +19,6 @@ recordRouter.get(
         authMW.verifyJWT,
         authMW.isUser
     ],  
-    testController.testAuthMentorController);
+    recordController.recordSessionsController);
 
 export default recordRouter;
