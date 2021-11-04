@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import axios from 'axios';
+import { getResponseArray } from '../services/records.service';
 
 const logTitle = "Records Controller";
 
@@ -28,11 +29,14 @@ const recordsController = async (req:Request, res:Response) => {
             }
         )
     ]).then(axios.spread((responseSessions, responseQuestionnaires) => {
-        // console.log(logTitle + ": Response:\n" + responseSessions.data["sessions"]);
+
+        let resSessionArray = getResponseArray(responseSessions.data['sessions']);
+        let resQuestionnaireArray = getResponseArray(responseQuestionnaires.data);
+        
         res.status(200).send({
             message: "session and questionnaire lists",
-            "sessions": responseSessions.data["sessions"],
-            "questionnaires": responseQuestionnaires.data,
+            "sessions": resSessionArray,
+            "questionnaires": resQuestionnaireArray,
         });
     })).catch(err => {
         // console.log(logTitle + ": Error:\n" + err);
