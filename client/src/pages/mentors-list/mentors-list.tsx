@@ -4,69 +4,14 @@ import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
-import React from 'react';
+import React, { useEffect } from 'react';
+import getMentorList from './mentor-list-data';
 
-const mentors = [
-    {
-        mentorName: "John Smith",
-        email: "abc@example.com",
-        phoneNumber: "0123456789"
-    }, 
-    {
-        mentorName: "James Walsh",
-        email: "cde@example.com",
-        phoneNumber: "3337375466"
-    },
-    {
-        mentorName: "ABCDE AAA",
-        email: "ace@example.com",
-        phoneNumber: "6663255412"
-    },
-    {
-        mentorName: "A B",
-        email: "ace@example.com",
-        phoneNumber: "6663255412"
-    },
-    {
-        mentorName: "C D",
-        email: "ace@example.com",
-        phoneNumber: "6663255412"
-    },
-    {
-        mentorName: "E F",
-        email: "ace@example.com",
-        phoneNumber: "6663255412"
-    },
-    {
-        mentorName: "G H",
-        email: "ace@example.com",
-        phoneNumber: "6663255412"
-    },
-    {
-        mentorName: "I J",
-        email: "ace@example.com",
-        phoneNumber: "6663255412"
-    },
-    {
-        mentorName: "K L",
-        email: "ace@example.com",
-        phoneNumber: "6663255412"
-    },
-    {
-        mentorName: "X Y",
-        email: "ace@example.com",
-        phoneNumber: "6663255412"
-    },
-    {
-        mentorName: "T U",
-        email: "ace@example.com",
-        phoneNumber: "6663255412"
-    }
-];
+let mentors: any;
 
 const columns = [{
-    dataField: 'mentorName',
-    text: 'Mentor Name',
+    dataField: 'firstName',
+    text: 'First Name',
     sort: true
 }, {
     dataField: 'email',
@@ -95,11 +40,14 @@ const paginationOptions = {
 
 
 export default function MentorsList() {
+    useEffect(() => {
+        mentors = getMentorList();
+    }, []);
     return (
       <div>
           <h2>Mentors List</h2>
           <ToolkitProvider
-            keyField="mentorName"
+            keyField="firstName"
             data={mentors}
             columns={columns}
             search 
