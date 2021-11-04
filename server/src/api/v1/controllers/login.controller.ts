@@ -28,6 +28,7 @@ const loginController = async (req:Request, res:Response, next:NextFunction) => 
                 res.status(200).send({
                     email: user.email,
                     roles: user.roles,
+                    personID: user.personID,
                     accessToken: token
                 });
             };

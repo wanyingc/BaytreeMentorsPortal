@@ -1,24 +1,25 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import recordController from '../controllers/record.controller';
+import recordsController from '../controllers/records.controller';
 import authMW from '../middlewares/auth.middleware';
 
-const recordRouter = Router();
-let personID = 5;
+const recordsRouter = Router();
 
-recordRouter.use((req:Request, res:Response, next:NextFunction) => {
+recordsRouter.use((req:Request, res:Response, next:NextFunction) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.header(
-        "Access-Control-Allow-Headers",
-        "x-access-token, Origin, Content-Type, Accept"
+        "Access-Control-Allow-Headers", 
+        "x-access-token, Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization"
     );
     next();
 });
 
-recordRouter.get(
-    `/auth/record/sessions/`, 
+recordsRouter.get(
+    `/auth/records/`, 
     [
         authMW.verifyJWT,
         authMW.isUser
     ],  
-    recordController.recordSessionsController);
+    recordsController);
 
-export default recordRouter;
+export default recordsRouter;

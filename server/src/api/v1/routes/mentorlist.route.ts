@@ -17,6 +17,7 @@ mentorListRouter.get(
     '/auth/admin/mentorlist', 
     [
         authMW.verifyJWT,
+        authMW.isUser,
         authMW.isAdmin
     ],  
     mentorListController);

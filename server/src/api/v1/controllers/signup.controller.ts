@@ -60,7 +60,6 @@ const signupController = async (req:Request, res:Response, next:NextFunction) =>
         personID: newUser.personID,
         roles: newUser.roles,
     });
-
 };
 
 export default signupController;
