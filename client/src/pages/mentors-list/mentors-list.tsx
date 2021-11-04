@@ -2,7 +2,9 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-
+import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+import React from 'react';
 
 const mentors = [
     {
@@ -73,7 +75,10 @@ const columns = [{
 }, {
     dataField: 'phoneNumber',
     text: 'Phone No.',
+    sort: true
 }];
+
+const {SearchBar} = Search;
 
 const paginationOptions = {
     onSizePerPageChange: (sizePerPage: any, page: any) => {
@@ -92,7 +97,29 @@ const paginationOptions = {
 export default function MentorsList() {
     return (
       <div>
-          <BootstrapTable keyField='mentorName' data={mentors} columns={columns} pagination={paginationFactory(paginationOptions)}/>
+          <h2>Mentors List</h2>
+          <ToolkitProvider
+            keyField="mentorName"
+            data={mentors}
+            columns={columns}
+            search 
+        >
+            {
+                props => (
+                    <React.Fragment>
+                    <div>
+                        <SearchBar { ...props.searchProps } />
+                        <hr />
+                        <BootstrapTable
+                            bootstrap4
+                            pagination={paginationFactory(paginationOptions)}
+                            { ...props.baseProps }
+                        />
+                    </div>
+                    </React.Fragment>
+                )
+            }
+        </ToolkitProvider>
       </div>
     );
 }
