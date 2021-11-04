@@ -7,9 +7,13 @@ const UserSchema= new mongoose.Schema({
         required: true,
         unique: true
     },
-    password:{
+    personID: {
+        type: Number,
+        required: true
+    },
+    password: {
         type: String,
-        require: true
+        required: true
     },
     roles: [
         {

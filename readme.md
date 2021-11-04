@@ -47,12 +47,24 @@ Database starts at port 27017. You can connect through MongoDB Compass.
 #### API Documentation:
 - Login:
    - POST "/auth/login" : 
+      - MongoDB collection name: "users"
       - Request body (type: raw) is JSON: {"email": "< email-address >", "password": "< password >"} 
+      - Response: {email, roles, accessToken, PersonID(add later)}
+- Sign up:
+   - POST "/auth/signup" :
+      - MongoDB collection name: "users"
+      - Headers: Key= x-access-token, Value= < admin-token-from-login >
+      - Response: {email, personID, roles}
 - Authenticate and Authorize:
    - GET "/test/admin"
    - GET "/test/mentor"
    - GET "/test/mod"
-   - Headers: Key= x-access-token, Value= < token-from-login >
+   - for all above: Headers: Key= x-access-token, Value= < token-from-login >
+- Mentors list:
+   - GET "/auth/admin/mentorlist" :
+      - MongoDB collection name: "userinfos"
+      - Headers: Key= x-access-token, Value= < admin-token-from-login >
+      - Response: {result[]}
 ### Licence
 
                                  Apache License

@@ -1,7 +1,7 @@
 const express=require('express');
-import mongoose from 'mongoose';
 import loginRouter from './src/api/v1/routes/login.route';
 import testRouter from './src/api/v1/routes/test.route';
+import mentorListRouter from './src/api/v1/routes/mentorlist.route';
 
 const bodyParser = require("body-parser");
 const cors = require('cors');
@@ -11,12 +11,11 @@ import connectDB from './src/api/v1/models/index';
 import recordRouter from './src/api/v1/routes/records.route';
 
 const app=express();
-
 let corsOptions = {
     origin: "http://localhost:8081"
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(bodyParser.json()); // content-type - application/json
 app.use(bodyParser.urlencoded({ extended: true })); // content-type - application/x-www-form-urlencoded
@@ -28,6 +27,7 @@ app.get("/", (req:Request, res:Response) => {
 });
 
 app.use("/", loginRouter);
+app.use("/",mentorListRouter);
 
 app.use("/", recordRouter);
 
