@@ -73,6 +73,7 @@ let sampleMentors: mentorListObjectType[] = [
         startDate: ""
     }
 ];
+
 const MentorsList = () => {
     const [mentorData, setMentorData] = useState<mentorDataType>({ result: sampleMentors});
     const [mentors, setMentors] = useState<Object[]>([]);
@@ -88,6 +89,13 @@ const MentorsList = () => {
 
         return () => { setLoading(false)};
     });
+
+    var options ={
+        onClick: function(e: any, row: any, rowIndex: any){
+            console.log(e, row, rowIndex)
+        }
+    }
+
     return (
       <div className="container">
           <h2>Mentors List</h2>
@@ -106,6 +114,7 @@ const MentorsList = () => {
                         <BootstrapTable
                             bootstrap4
                             pagination={paginationFactory(paginationOptions)}
+                            rowEvents = {options}
                             { ...props.baseProps }
                         />
                     </div>

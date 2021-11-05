@@ -17,7 +17,7 @@ function getScreenSize () {
 }
 
 export default function Sidenav() {
-    const userType = userTypes[0];
+    const userType = userTypes[1];
 
     // cited from: https://stackoverflow.com/questions/44480053/how-to-detect-if-screen-size-has-changed-to-mobile-in-react
     const [isMobile, setIsMobile] = useState(getScreenSize);
