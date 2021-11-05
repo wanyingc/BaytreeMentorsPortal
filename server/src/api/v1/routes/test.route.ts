@@ -16,6 +16,7 @@ testRouter.get(
     '/test/admin', 
     [
         authMW.verifyJWT,
+        authMW.isUser,
         authMW.isAdmin
     ],  
     testController.testAuthAdminController);
@@ -24,6 +25,7 @@ testRouter.get(
     '/test/mentor', 
     [
         authMW.verifyJWT,
+        authMW.isUser,
         authMW.isMentor
     ], 
     testController.testAuthMentorController);
@@ -32,6 +34,7 @@ testRouter.get(
     '/test/mod', 
     [
         authMW.verifyJWT,
+        authMW.isUser,
         authMW.isModerator
     ], 
     testController.testAuthModeratorController);

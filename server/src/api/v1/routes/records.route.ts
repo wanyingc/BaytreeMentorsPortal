@@ -1,10 +1,10 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import mentorListController from '../controllers/mentorlist.controller';
+import recordsController from '../controllers/records.controller';
 import authMW from '../middlewares/auth.middleware';
 
-const mentorListRouter = Router();
+const recordsRouter = Router();
 
-mentorListRouter.use((req:Request, res:Response, next:NextFunction) => {
+recordsRouter.use((req:Request, res:Response, next:NextFunction) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.header(
@@ -13,13 +13,13 @@ mentorListRouter.use((req:Request, res:Response, next:NextFunction) => {
     );
     next();
 });
-mentorListRouter.get(
-    '/auth/admin/mentorlist', 
+
+recordsRouter.get(
+    `/auth/records/`, 
     [
         authMW.verifyJWT,
-        authMW.isUser,
-        authMW.isAdmin
+        authMW.isUser
     ],  
-    mentorListController);
+    recordsController);
 
-    export default mentorListRouter;
+export default recordsRouter;
