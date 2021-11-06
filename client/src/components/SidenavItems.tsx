@@ -64,6 +64,10 @@ export const adminItems1 = [
         to: "/notifications",
         icon: <BsIcons.BsBell className="nav-icon"/>
     },
+    {
+        to:"/mentors-list",
+        icon: <BsIcons.BsPeople className="nav-icon"/>
+    },
 ];
 export const adminItems2 = [
     {
