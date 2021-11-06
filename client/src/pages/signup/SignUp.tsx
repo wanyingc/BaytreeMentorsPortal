@@ -3,27 +3,46 @@ import { Col, Row, Form, Container, Button } from 'react-bootstrap'
 import Axios from 'axios';
 
 
-export default function Signup() {
+const Signup = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    const getSignUpResponse = async() => {
+        const response = await Axios.post("http://localhost:8080/auth/signup",{
+            "email": email,
+            "password": password},{
+            headers: {
+                "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJ0LmNvbSIsImlhdCI6MTYzNjE3NzU5OSwiZXhwIjoxNjM2MTgxMTk5fQ.gVd-akTRi0x3wYhIxocEXbDVzyOw1M8hk7EuIKwaLEI"
+            }
+        })
+        .then(response => {
+            // console.log("success");
+            return response;
+        })
+        .catch(err => {
+            // console.log("Error!!!");
+            // alert("Error.")
+            return err;
+        });
+        console.log("success111");
+        return response;    
+    }
+
+
     // https://stackoverflow.com/questions/51143800/how-to-set-match-password-in-react-js/51153497
-    const addMentor=async()=>{
-        if(password !== confirmPassword){
+    const addMentor = () => {
+        if (password !== confirmPassword) {
             alert("Passwords do not match!");
-        }else{
-            let response = await Axios.post("http://localhost:8080/auth/signup",{
-                "email": email,
-                "password": password},{
-                headers: {
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJ0LmNvbSIsImlhdCI6MTYzNTg0NTk4NSwiZXhwIjoxNjM1ODQ5NTg1fQ.zKfIIg4OrmESVHcbmaSNY7gLLdEWLLPGLbyTSHBnABc"
-                }
-            });
-            console.log(response.data);
         }
-      }
+        else {
+            getSignUpResponse()
+                .then(response => {
+                    console.log(response.data);
+                });
+        }
+    }
 
     return (
         <Container>
@@ -70,3 +89,4 @@ export default function Signup() {
         </Container>
     )
 }
+export default Signup;
