@@ -20,7 +20,16 @@ const mentees = [
   },
 ];
 
-const sessionHistory = [
+type SessionObject = {
+  id: number;
+  mentee: string;
+  date: string;
+  start: string;
+  end: string;
+  notes: string;
+};
+
+const sessionHistory: SessionObject[] = [
   {
     id: 1,
     mentee: 'Mentee 1',
@@ -48,9 +57,27 @@ const sessionHistory = [
 ];
 
 
-function TimeCard(): JSX.Element {
 
-  const dateValue: Date = new Date();
+function CreateSession(){
+
+  const [mentee, setMentee] = useState("");
+  const [date, setDate] = useState("");
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [note, setNote] = useState("");
+  
+  const CreateSession = () => {
+    console.log(mentee)
+    console.log(date)
+    console.log(start)
+    console.log(end)
+    console.log(note)
+  }
+
+  const selectMentee = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
+    setMentee(value);
+  }
   return (
     <Container>
 
@@ -66,7 +93,10 @@ function TimeCard(): JSX.Element {
                 <label>Mentee:</label>
               </Col>
               <Col md={8}>
-                <select id="selectMentee" className="form-select" aria-label="Default select example">
+                <select id="selectMentee" 
+                  className="form-select" 
+                  aria-label="Default select example"
+                  onChange={selectMentee}>
                   {mentees.map(mentee => (
                     <option key={mentee.id} value={mentee.name}> {mentee.name} </option>
                   ))}
@@ -79,7 +109,7 @@ function TimeCard(): JSX.Element {
                 Date:
               </Form.Label>
               <Col sm="8"> 
-                <Form.Control type="date" />
+                <Form.Control type="date" onChange={(event) => setDate(event.target.value)}/>
               </Col>
             </Form.Group>
             
@@ -88,7 +118,7 @@ function TimeCard(): JSX.Element {
               Start Time:
               </Form.Label>
               <Col sm="8"> 
-                <Form.Control type="time" />
+                <Form.Control type="time" onChange={(event) => setStart(event.target.value)}/>
               </Col>
             </Form.Group>
 
@@ -97,18 +127,20 @@ function TimeCard(): JSX.Element {
                 End Time:
               </Form.Label>
               <Col sm="8"> 
-                <Form.Control type="time" />
+                <Form.Control type="time" onChange={(event) => setEnd(event.target.value)}/>
               </Col>
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>
                 Notes:
               </Form.Label>
-              <Form.Control as="textarea" rows={5} />
+              <Form.Control as="textarea" rows={5} onChange={(event) => setNote(event.target.value)}/>
             </Form.Group>
 
-            <Button>
+            <Button
+              onClick={CreateSession}
+            >
               Add Session
             </Button>
         </Col>
@@ -132,4 +164,4 @@ function TimeCard(): JSX.Element {
   );
 }
 
-export default TimeCard;
+export default CreateSession;
