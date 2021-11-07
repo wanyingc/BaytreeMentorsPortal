@@ -3,18 +3,64 @@ import logo from '../../assets/logo.svg';
 import './Login.css';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { User } from '../../store/reducers/types'
+import { setState } from '../../store/reducers/action';
+import { post } from 'jquery';
+import store from '../../store/reducers/store'
+import { getAccessToken, isAdmin } from '../../auth/Authenticator';
+
 
 const LoginComponent = () => {
 
-  const [phoneNumber,setLogin] = useState("");
-  const [password,setPass] = useState("");
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+  const [roles, setRoles] = useState([]);
+  const [accessToken, setAccessToken] = useState('');
 
-  const addLogin= ()=>{
-    Axios.post("http://localhost:3001/login",{
-      phoneNumber:phoneNumber,
-      password:password
-    });
+  type loginDataType = {
+    email: string;
+    roles: string[];
+    accessToken: string;
   }
+
+  const getLoginResponse= async() => {
+    const response = await Axios.post("http://localhost:8080/auth/login",{
+      email: email,
+      password:password
+    })
+    .then(response => {
+      return response;
+    })
+    .catch(err => {
+      console.log(err)
+      alert('Error retrieving data!');
+      return err;
+    });
+    return response;
+  }
+
+  const newUser = useSelector((state: User) => state.newUser);
+  const dispatch = useDispatch();
+
+
+  const userLogin= ()=>{
+      getLoginResponse().then(response => {
+      // let email = response.data.email;
+      // let roles = response.data.roles;
+      // let accessToken = response.data.accessToken;
+      // setEmail(email);
+      // setRoles(roles);
+      // setAccessToken(accessToken);
+      dispatch(setState(response.data.email, response.data.roles, response.data.accessToken));
+      //console.log(store.getState().email);
+      console.log(response.data.email);
+      console.log(response.data.roles);
+      console.log(response.data.accessToken);
+      console.log(isAdmin());
+    })
+  }
+
   
   return (    
     <div className="container ">
@@ -24,12 +70,12 @@ const LoginComponent = () => {
           <h4 className="text-center pt-3">Sign in</h4>
           <form >
             <div className="form-group mb-3">
-              <label>Phone number or Email</label>
+              <label>Email</label>
               <input 
                   type="email" 
                   className="form-control"
                   onChange={(event)=>{
-                    setLogin(event.target.value);
+                    setEmail(event.target.value);
                   }}
                 placeholder="Enter email"
               />
@@ -41,7 +87,7 @@ const LoginComponent = () => {
                   placeholder="Enter password"
                   type="password"
                   onChange={(event)=>{
-                    setPass(event.target.value);
+                    setPassword(event.target.value);
                   }}
                 />
               </div>
@@ -49,7 +95,7 @@ const LoginComponent = () => {
                 <button
                   type="submit"
                   className="btn btn-primary btn-block" id="login" 
-                  onClick={(addLogin)}
+                  onClick={(userLogin)}
                 >
                   Sign in
                 </button>

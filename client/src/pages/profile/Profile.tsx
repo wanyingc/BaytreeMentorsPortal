@@ -8,6 +8,7 @@ import { bindActionCreators } from "redux";
 import { Field, reduxForm, FormErrors, InjectedFormProps } from 'redux-form'
 import { Button } from "react-bootstrap";
 import { Table } from "react-bootstrap";
+import { getAccessToken, isAdmin } from "../../auth/Authenticator";
 
 const DEFAULT_USER = {
   fname: 'Cagla',
@@ -65,6 +66,9 @@ const validate = (values: any): FormErrors<any> => {
 
 function Profile(props: InjectedFormProps | any) {
   const userInfo = props.apiForm && props.apiForm.ProfileForm && props.apiForm.ProfileForm.values;
+  console.log(getAccessToken());
+  console.log(isAdmin());
+  
 
   return (
     <Form>

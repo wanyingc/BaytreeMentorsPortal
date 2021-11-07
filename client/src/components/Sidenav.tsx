@@ -4,9 +4,8 @@ import '../styles/Sidenav.css';
 import { volunteerItems1, volunteerItems2, adminItems1, adminItems2 } from './SidenavItems';
 import { Link } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
+import { isAdmin } from '../auth/Authenticator';
 
-
-const userTypes = [ "admin", "volunteer" ];
 
 function getScreenSize () {
     if(window.innerWidth < 768) {
@@ -17,7 +16,6 @@ function getScreenSize () {
 }
 
 export default function Sidenav() {
-    const userType = userTypes[1];
 
     // cited from: https://stackoverflow.com/questions/44480053/how-to-detect-if-screen-size-has-changed-to-mobile-in-react
     const [isMobile, setIsMobile] = useState(getScreenSize);
@@ -59,7 +57,7 @@ export default function Sidenav() {
     }
 
     const renderMenus = () => {
-        if(userType === userTypes[0]) {
+        if(isAdmin()) {
             menus1 = adminItems1.map((item, index) => {
                 return(
                     <li className="nav-item border-0" key={index}>
