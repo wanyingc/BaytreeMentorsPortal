@@ -45,6 +45,7 @@ Install all the necessary npm packages.
 Runs the server locally at port 8080.
 Database starts at port 27017. You can connect through MongoDB Compass.
 #### API Documentation:
+- Root URI: `http://localhost:8080/`
 - Login:
    - POST "/auth/login" : 
       - MongoDB collection name: "users"
@@ -53,7 +54,7 @@ Database starts at port 27017. You can connect through MongoDB Compass.
 - Sign up:
    - POST "/auth/signup" :
       - MongoDB collection name: "users"
-      - Headers: Key= x-access-token, Value= < admin-token-from-login >
+      - Headers: Key= x-access-token, Value= < **admin**-token-from-login >
       - Response: {email, personID, roles}
 - Authenticate and Authorize:
    - GET "/test/admin"
@@ -63,8 +64,13 @@ Database starts at port 27017. You can connect through MongoDB Compass.
 - Mentors list:
    - GET "/auth/admin/mentorlist" :
       - MongoDB collection name: "userinfos"
-      - Headers: Key= x-access-token, Value= < admin-token-from-login >
-      - Response: {result[]}
+      - Headers: Key= x-access-token, Value= < **admin**-token-from-login >
+      - Response: {result: []}
+- My Records:
+   - GET "/auth/records/" :
+      - Headers: Key= x-access-token, Value= < **user**-token-from-login >
+      - Body: { personID }
+      - Response: {message, sessions: [], questionnaires: []}
 ### Licence
 
                                  Apache License
