@@ -9,6 +9,7 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
 
     const getSignUpResponse = async() => {
+        // To do: Fix post request to return correct response.
         const response = await Axios.post("http://localhost:8080/auth/signup",{
             "email": email,
             "password": password},{

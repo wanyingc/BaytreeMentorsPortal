@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./store";
+import { useState} from "react";
+import store from "./store/reducers/store";
 import Login from './pages/login/Login';
 import Sidenav from './components/Sidenav';
 import Dashboard from './pages/dashboard/Dashboard';
@@ -12,7 +13,12 @@ import QuestionnaireForm from './pages/questionnaire/Questionnaire-form';
 import Profile from './pages/profile/Profile';
 import TimeCard from './pages/timecard/TimeCard';
 import SignUp from './pages/signup/SignUp';
+import ProtectedRoute from './pages/login/ProtectedRoute';
+import { isAdmin, isUser } from './auth/Authenticator';
 import MentorsList from './pages/mentors-list/MentorsList';
+
+import DashboardAdmin from './pages/dashboard/DashboardAdmin';
+import DashboardVolunteer from './pages/dashboard/DashboardVolunteer';
 
 // cite: https://stackoverflow.com/questions/47281850/how-to-hide-navbar-in-login-page-in-react-router
 const LoginRoute = () => (
@@ -26,7 +32,8 @@ const MainRoutes = () => (
   <div className="container">
     <Sidenav/> 
     <Route exact path="/profile" component={Profile}/>
-    <Route exact path="/dashboard" component={Dashboard}/>
+    {/* <Route path="/dashboard" component={Dashboard}/> */}
+    <ProtectedRoute isUser={isUser()} path="/dashboard" component={Dashboard} />
     <Route exact path="/timecard" component={TimeCard}/>
     <Route path="/messages" component={Messages}/>
     <Route exact path ="/signup" component={SignUp}/>
@@ -37,14 +44,16 @@ const MainRoutes = () => (
   </div>
 )
 
+
 function App() {
+
   return (
     <Provider store={store}>
       <Router>
         <Switch>
           <Route exact path="/" component={LoginRoute}/>
           <Route exact path="/login" component={LoginRoute}/>
-          <Route component={MainRoutes}/>          
+          <Route component={MainRoutes}/>      
         </Switch>
       </Router>
     </Provider>

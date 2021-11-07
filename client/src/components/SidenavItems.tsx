@@ -42,10 +42,6 @@ export const volunteerItems2 = [
         to: "/settings",
         icon: <BsIcons.BsGear className="nav-icon"/>
     },
-    {
-        to: "/logout",
-        icon: <CgLogOut className="nav-icon"/>
-    },
 ];
 export const adminItems1 = [
     {
@@ -77,9 +73,5 @@ export const adminItems2 = [
     {
         to: "/settings",
         icon: <BsIcons.BsGear className="nav-icon"/>
-    },
-    {
-        to: "/logout",
-        icon: <CgLogOut className="nav-icon"/>
     },
 ];
