@@ -12,6 +12,7 @@ import Report from './pages/report/Report';
 import QuestionnaireForm from './pages/questionnaire/Questionnaire-form';
 import Profile from './pages/profile/Profile';
 import CreateSession from './pages/create-session/CreateSession';
+import SignUp from './pages/signup/SignUp';
 import ProtectedRoute from './pages/login/ProtectedRoute';
 import { isAdmin, isUser } from './auth/Authenticator';
 import MentorsList from './pages/mentors-list/MentorsList';
@@ -36,6 +37,7 @@ const MainRoutes = () => (
     {/* <Route path="/dashboard" component={Dashboard}/> */}
     <ProtectedRoute isUser={isUser()} path="/dashboard" component={Dashboard} />
     <Route path="/messages" component={Messages}/>
+    <Route exact path ="/signup" component={SignUp}/>
     {/* <Route path="/report" component={Report}/> */}
     <Route path="/questionnaire" component={QuestionnaireForm}/>
     {/* <Route path="/settings" component={Settings}/> */}
