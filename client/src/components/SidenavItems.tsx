@@ -45,10 +45,6 @@ export const volunteerItems2 = [
 ];
 export const adminItems1 = [
     {
-        to: "/search",
-        icon: <BsIcons.BsSearch className="nav-icon"/>
-    },
-    {
         to: "/dashboard",
         icon: <BsIcons.BsHouseDoor className="nav-icon"/>
     },
@@ -63,6 +59,10 @@ export const adminItems1 = [
     {
         to:"/mentors-list",
         icon: <BsIcons.BsPeople className="nav-icon"/>
+    },
+    {
+        to: "/signup",
+        icon: <BsIcons.BsPersonPlus className="nav-icon"/>
     },
 ];
 export const adminItems2 = [
