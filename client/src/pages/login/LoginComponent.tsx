@@ -56,7 +56,7 @@ const LoginComponent = () => {
       //console.log(store.getState().email);
       console.log(response.data.email);
       console.log(response.data.roles);
-      console.log(response.data.accessToken);
+      // console.log(response.data.accessToken);
       console.log(isAdmin());
     })
   }
