@@ -10,3 +10,7 @@
 .d-card-tr-0 {
     border-style: hidden;
 }
+
+.react-bootstrap-table table{
+    table-layout: auto;
+}

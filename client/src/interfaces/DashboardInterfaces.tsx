@@ -9,3 +9,11 @@ export type SessionObject = {
     person: string;
     date: string;
 };
+
+export type MenteesObject ={
+    name: string;
+    dateOfBirth: Date|string;
+    age: number|string;
+    dateStart: Date|string;
+    dateEnd: Date|string;
+}
