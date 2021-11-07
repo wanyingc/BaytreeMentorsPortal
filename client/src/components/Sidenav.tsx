@@ -4,9 +4,9 @@ import '../styles/Sidenav.css';
 import { volunteerItems1, volunteerItems2, adminItems1, adminItems2 } from './SidenavItems';
 import { Link } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
+import { isAdmin } from '../auth/Authenticator';
+import { CgLogOut } from 'react-icons/cg';
 
-
-const userTypes = [ "admin", "volunteer" ];
 
 function getScreenSize () {
     if(window.innerWidth < 768) {
@@ -16,8 +16,11 @@ function getScreenSize () {
     }
 }
 
+function reMoveData() {
+    localStorage.clear();
+}
+
 export default function Sidenav() {
-    const userType = userTypes[1];
 
     // cited from: https://stackoverflow.com/questions/44480053/how-to-detect-if-screen-size-has-changed-to-mobile-in-react
     const [isMobile, setIsMobile] = useState(getScreenSize);
@@ -59,7 +62,7 @@ export default function Sidenav() {
     }
 
     const renderMenus = () => {
-        if(userType === userTypes[0]) {
+        if(isAdmin()) {
             menus1 = adminItems1.map((item, index) => {
                 return(
                     <li className="nav-item border-0" key={index}>
@@ -120,6 +123,11 @@ export default function Sidenav() {
                     <div className="mb-3">
                         <ul className='navbar-nav flex-column'>
                             {menus2}
+                            <li className="nav-item border-0" >
+                                <Link to="/login" className="nav-link btn-lg text-center px-3 py-1 btn-font-color-secondary" aria-current="page" type="button" onClick={reMoveData}>
+                                    <CgLogOut className="nav-icon"/>
+                                </Link>
+                            </li>
                         </ul>
                     </div>                 
                 </div>               
