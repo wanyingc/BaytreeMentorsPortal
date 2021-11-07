@@ -5,6 +5,7 @@ import { volunteerItems1, volunteerItems2, adminItems1, adminItems2 } from './Si
 import { Link } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
 import { isAdmin } from '../auth/Authenticator';
+import { CgLogOut } from 'react-icons/cg';
 
 
 function getScreenSize () {
@@ -13,6 +14,10 @@ function getScreenSize () {
     } else {
         return false;
     }
+}
+
+function reMoveData() {
+    localStorage.clear();
 }
 
 export default function Sidenav() {
@@ -118,6 +123,11 @@ export default function Sidenav() {
                     <div className="mb-3">
                         <ul className='navbar-nav flex-column'>
                             {menus2}
+                            <li className="nav-item border-0" >
+                                <Link to="/login" className="nav-link btn-lg text-center px-3 py-1 btn-font-color-secondary" aria-current="page" type="button" onClick={reMoveData}>
+                                    <CgLogOut className="nav-icon"/>
+                                </Link>
+                            </li>
                         </ul>
                     </div>                 
                 </div>               

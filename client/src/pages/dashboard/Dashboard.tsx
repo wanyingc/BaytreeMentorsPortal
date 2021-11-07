@@ -4,14 +4,14 @@ import DashboardAdmin from './DashboardAdmin';
 import DashboardVolunteer from './DashboardVolunteer';
 import store from "../../store/reducers/store";
 import { useState } from 'react';
-import {isAdmin} from '../../auth/Authenticator'
+import {isAdmin, isUser} from '../../auth/Authenticator'
 
 
 export default function Dashboard() {
 
     return (
         <div>
-            { isAdmin() ? <DashboardAdmin/> : <DashboardVolunteer/> }
+            {isAdmin() ? <DashboardAdmin/> : <DashboardVolunteer/> }
         </div>
     )
 }

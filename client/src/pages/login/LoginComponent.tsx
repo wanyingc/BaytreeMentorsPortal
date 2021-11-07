@@ -54,9 +54,20 @@ const LoginComponent = () => {
       // setAccessToken(accessToken);
       dispatch(setState(response.data.email, response.data.roles, response.data.accessToken));
       //console.log(store.getState().email);
-      console.log(response.data.email);
-      console.log(response.data.roles);
+      // console.log(response.data.email);
+      // console.log(response.data.roles);
       // console.log(response.data.accessToken);
+
+      localStorage.setItem('email',response.data.email);
+      localStorage.setItem('accessToken',response.data.accessToken);
+
+      for(var roleIndex in response.data.roles){
+        if(response.data.roles[roleIndex] === "admin")
+          localStorage.setItem("admin", "admin");
+        else if (response.data.roles[roleIndex] === "user")
+          localStorage.setItem("user", "user");
+      }
+
       console.log(isAdmin());
     })
   }

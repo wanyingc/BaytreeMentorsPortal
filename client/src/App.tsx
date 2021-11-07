@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import { useState} from "react";
 import store from "./store/reducers/store";
@@ -16,6 +16,9 @@ import ProtectedRoute from './pages/login/ProtectedRoute';
 import { isAdmin, isUser } from './auth/Authenticator';
 import MentorsList from './pages/mentors-list/MentorsList';
 
+import DashboardAdmin from './pages/dashboard/DashboardAdmin';
+import DashboardVolunteer from './pages/dashboard/DashboardVolunteer';
+
 // cite: https://stackoverflow.com/questions/47281850/how-to-hide-navbar-in-login-page-in-react-router
 const LoginRoute = () => (
   <div className="">
@@ -28,7 +31,8 @@ const MainRoutes = () => (
   <div className="container">
     <Sidenav/> 
     <Route exact path="/profile" component={Profile}/>
-    <Route exact path="/dashboard" component={Dashboard}/>
+    {/* <Route path="/dashboard" component={Dashboard}/> */}
+    <ProtectedRoute isUser={isUser()} path="/dashboard" component={Dashboard} />
     <Route exact path="/timecard" component={TimeCard}/>
     <Route path="/messages" component={Messages}/>
     {/* <Route path="/report" component={Report}/> */}
@@ -39,7 +43,6 @@ const MainRoutes = () => (
 )
 
 
-
 function App() {
 
   return (
@@ -47,15 +50,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={LoginRoute}/>
-          <ProtectedRoute isUser={true} path="/login" component={LoginRoute} />
-          {/* <Route exact path="/login" component={LoginRoute}/> */}
-          <ProtectedRoute isUser={isUser()} path="/sidenav" component={Sidenav} />
-          <ProtectedRoute isUser={isUser()} path="/dashboard" component={Dashboard} />
-          <ProtectedRoute isUser={isUser()} path="/profile" component={Profile} />
-          <ProtectedRoute isUser={isUser()} path="/timecard" component={TimeCard} />
-          <ProtectedRoute isUser={isUser()} path="/messages" component={Messages} />
-          <ProtectedRoute isUser={isUser()} path="/quesionnaire" component={QuestionnaireForm} />
-          {/* <Route component={MainRoutes}/>           */}
+          <Route exact path="/login" component={LoginRoute}/>
+          <Route component={MainRoutes}/>      
         </Switch>
       </Router>
     </Provider>

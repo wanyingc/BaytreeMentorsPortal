@@ -66,8 +66,8 @@ const validate = (values: any): FormErrors<any> => {
 
 function Profile(props: InjectedFormProps | any) {
   const userInfo = props.apiForm && props.apiForm.ProfileForm && props.apiForm.ProfileForm.values;
-  console.log(getAccessToken());
   console.log(isAdmin());
+  console.log(localStorage.getItem('accessToken'));
   
 
   return (
