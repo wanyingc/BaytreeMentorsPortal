@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import './timecard.css'
-import DateTime from './DateTime';
-import EventCalendar from '../../components/EventCalendar';
-import { Container, Col, Row, ListGroup, Form } from "react-bootstrap/";
-import BootstrapTable from 'react-bootstrap-table-next';
+import { Container, Col, Row, ListGroup, Form, Button } from "react-bootstrap/";
 
 // Event Calendar imported from https://www.npmjs.com/package/react-big-calendar
 
@@ -53,20 +50,10 @@ const sessionHistory = [
 
 function TimeCard(): JSX.Element {
 
-  // const renderSessionHistory = sessionHistory.map((mentorType, index) => {
-  //   return(
-  //       <ListGroup.Item 
-  //           key={index} 
-  //       >
-  //           {mentorType}
-  //       </ListGroup.Item>
-  //   );
-  // });
-
-
   const dateValue: Date = new Date();
   return (
     <Container>
+
       <h3>Create Session</h3>
       <hr />
 
@@ -121,15 +108,14 @@ function TimeCard(): JSX.Element {
               <Form.Control as="textarea" rows={5} />
             </Form.Group>
 
+            <Button>
+              Add Session
+            </Button>
         </Col>
 
         <Col sm={7} md={7} lg={7}>
-        <h1 className="display-5 text-center">Session History</h1>
-
-          {/* Map some stuff out*/}
-          <div className="mb-3">
-          <ListGroup>
-            
+          <h1 className="display-5 text-center">Session History</h1>
+          <ListGroup className="mb-3">
             {sessionHistory.map(session => (
                     <ListGroup.Item key={session.id}> 
                       <p className="lead">{session.mentee}</p>
@@ -139,7 +125,6 @@ function TimeCard(): JSX.Element {
                     </ListGroup.Item>
               ))}
           </ListGroup>
-          </div>
         </Col>
 
       </Row>
