@@ -8,6 +8,7 @@ const cors = require('cors');
 
 import { Request, Response } from 'express';
 import connectDB from './src/api/v1/models/index';
+import recordsRouter from './src/api/v1/routes/records.route';
 
 const app=express();
 let corsOptions = {
@@ -27,6 +28,7 @@ app.get("/", (req:Request, res:Response) => {
 
 app.use("/", loginRouter);
 app.use("/",mentorListRouter);
+app.use("/", recordsRouter);
 
 // This router is only for testing, and demonstrates example for authority based API requests
 app.use("/", testRouter);
