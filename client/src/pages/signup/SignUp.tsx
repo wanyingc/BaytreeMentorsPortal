@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Col, Row, Form, Container, Button } from 'react-bootstrap'
 import Axios from 'axios';
 
-
 const Signup = () => {
 
     const [email, setEmail] = useState("");
@@ -26,7 +25,7 @@ const Signup = () => {
             // alert("Error.")
             return err;
         });
-        console.log("success111");
+        console.log("success!");
         return response;    
     }
 
@@ -54,7 +53,7 @@ const Signup = () => {
                 
                 <Form.Group className="mb-3">
                     <Row className="justify-content-center">
-                        <Col md={10}>
+                        <Col md={12}>
                             <label className="form-label">Email</label>
                             <input className="form-control" type="email" placeholder="example@email.com" onChange={(event)=>{setEmail(event.target.value);}}></input>
                         </Col>
@@ -63,11 +62,11 @@ const Signup = () => {
 
                 <Form.Group className="mb-3">
                     <Row className="justify-content-center">
-                        <Col md={5}>
+                        <Col md={6}>
                             <label className="form-label">Password</label>
                             <input className="form-control" type="password" placeholder="" onChange={(event)=>{setPassword(event.target.value);}}></input>
                         </Col>
-                        <Col md={5}>
+                        <Col md={6}>
                             <label className="form-label">Confirm Password</label>
                             <input className="form-control" type="password" placeholder="" onChange={(event)=>{setConfirmPassword(event.target.value);}}></input>
                         </Col>
@@ -76,7 +75,7 @@ const Signup = () => {
                 
                 <Form.Group>
                     <Row className="justify-content-center">
-                        <Col md={10}>
+                        <Col md={12}>
                             <Button className="mt-3" type="submit" variant="primary" onClick={addMentor}>
                                 Create Account
                             </Button>
