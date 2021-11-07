@@ -26,6 +26,34 @@ const verifyJWT = (req:Request, res:Response, next:NextFunction) => {
     });
 };
 
+const isUser = (req:Request, res:Response, next:NextFunction) => {
+    User.find({email: res.locals.jwt.email})
+        .exec()
+        .then((users) => {
+            if(users.length !== 1) {
+                res.status(404).send({
+                    message: "User does not exist!"
+                });
+                return;
+            }
+            let user = users[0];
+            if(user.roles.indexOf('user') === -1){
+                return res.status(403).send({
+                    message: "Forbidden! No user access!"
+                });
+            } else {
+                next();
+            }
+        })
+        .catch(error => {
+            res.status(404).send({
+                message: "User does not exist!",
+                error
+            });
+            return;
+        });
+}
+
 const isMentor = (req:Request, res:Response, next:NextFunction) => {
     User.find({email: res.locals.jwt.email})
         .exec()
@@ -110,4 +138,4 @@ const isModerator = (req:Request, res:Response, next:NextFunction) => {
         });
 }
 
-export default { verifyJWT, isMentor, isAdmin, isModerator };
+export default { verifyJWT, isUser, isMentor, isAdmin, isModerator };

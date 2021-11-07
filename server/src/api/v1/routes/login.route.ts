@@ -20,7 +20,7 @@ loginRouter.post('/auth/login', loginController);
 
 loginRouter.post(
     '/auth/signup', 
-    [ authmw.verifyJWT, authmw.isAdmin, signupMW.gatherDataFromViewsAPIMW ], 
+    [ authmw.verifyJWT, authmw.isUser, authmw.isAdmin, signupMW.gatherDataFromViewsAPIMW ], 
     signupController);
 
 export default loginRouter;
