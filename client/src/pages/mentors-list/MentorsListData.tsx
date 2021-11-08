@@ -1,8 +1,10 @@
 import axios from "axios";
+import { getAccessToken } from "../../auth/Authenticator";
 
-let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJ0LmNvbSIsImlhdCI6MTYzNjA4Nzk4MCwiZXhwIjoxNjM2MDkxNTgwfQ.yGkgfWh--S-gjiyns7Y8yn3hLNHhWVht29YlTfWDobU";
-
-const getMentorList = async() => {
+    let accessToken = getAccessToken();
+    
+    const getMentorList = async() => {
+    
     const resp = await axios.get(`http://localhost:8080/auth/admin/mentorlist`,
     {
         headers: {
