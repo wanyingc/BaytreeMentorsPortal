@@ -35,7 +35,7 @@ const LoginComponent = () => {
       return response;
     })
     .catch(err => {
-      console.log(err)
+      console.log(err);
       alert('Error retrieving data!');
       return err;
     });
