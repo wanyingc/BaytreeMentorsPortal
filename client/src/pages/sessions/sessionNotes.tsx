@@ -71,9 +71,9 @@ const secondNov = {
               </div>
                 <div className="SessionNotes">
             <text>Volunteer Session held on November 2</text>
-           <div className="session_text">
+           <div>
            <Field name="notes"  type="text" component={ReduxFormInput} label="Notes" placeHolder="Enter Notes" ></Field></div>
-           <Link to="/sessions" className="btn btn-primary_notes" style={{width: '500px', margin:"10px", alignItems:"center"}} >Save Notes</Link>
+           <Link to="/sessions" className="btn btn-primary" style={{width: '500px', margin:"10px", alignItems:"center"}} >Save Notes</Link>
           </div>
           </Container>
           </Form>

@@ -59,10 +59,10 @@ const secondNov = {
           <div className="sessionsText_all_sessions">
               <text className="HeaderText_all_sessions">All Sessions</text>
               </div>
+              </div>
                 <div className="App_sessions">
             <BootstrapTable keyField='id' data={ sessionList } columns={ columns }  />  </div>
          
-          </div>
           </Container>
           </Form>
   );

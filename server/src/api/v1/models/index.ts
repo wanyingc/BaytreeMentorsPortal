@@ -3,7 +3,7 @@ import DBConfig from "../../../config/db.config";
 
 const connectDB = async () => {
     await mongoose
-        .connect(`mongodb://${DBConfig.HOST}:${DBConfig.PORT}/${DBConfig.DB}`, { useNewUrlParser: true, useUnifiedTopology: true } as ConnectOptions)
+        .connect(DBConfig)
         .then(() => {
             initial();
             console.log("Successfully connected to MongoDB.");

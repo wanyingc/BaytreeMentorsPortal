@@ -41,7 +41,7 @@ const secondNov = {
   const sessionList=[secondNov,thirdNov,fourthNov];
   
   const ReduxFormInput: any = (field: any) => (
-    <Form.Group className="mb-3">
+    <Form.Group>
         <Form.Label>{field.label}</Form.Label>
         <Form.Control 
           {...field.input}
@@ -80,7 +80,7 @@ const secondNov = {
               <Field name="Activity" readOnly type="text" component={ReduxFormInput} label="Acitvity" placeHolder="Enter activity" />
               <Field name="Staff" readOnly type="text" component={ReduxFormInput} label="Staff Incharge" placeHolder="Enter occupation" />
               <Link to="/editSessions" className="btn btn-primary" style={{width: '500px', margin:"10px", alignItems:"center"}} >Edit Sessions</Link>
-              <Link to="/notes" className="btn btn-primary-2" style={{width: '500px', margin:"10px", alignItems:"end"}} >View Sessions Notes</Link>
+              <Link to="/notes" className="btn btn-primary" style={{width: '500px', margin:"10px", alignItems:"end"}} >View Sessions Notes</Link>
     
   
     </Form.Group>

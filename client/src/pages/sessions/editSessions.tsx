@@ -119,10 +119,10 @@ const ReduxFormSelect: any = (field: any) => (
           <Container>
           <div className="Header_edit_session">
           <div className="sessionsText_edit">
-              <text className="HeaderText_edit_session">Edit Sessions</text>
+              <text className="HeaderText_edit">Edit Sessions</text>
           </div>
           </div>
-          <Form.Group controlId="session-name_edit"> 
+          <Form.Group> 
        
               <div>
                   <h4 >Session Information</h4>
@@ -197,7 +197,7 @@ const ReduxFormSelect: any = (field: any) => (
                   placeHolder="Select Activity"
                 />
               <Field name="Staff" type="text" component={ReduxFormInput} label="Staff Incharge" placeHolder="Enter occupation" />
-              <Link to="/allSessions" className="btn btn-primary_edit" style={{width: '500px', margin:"10px", alignItems:"center"}} >View All Sessions</Link>
+              <Link to="/allSessions" className="btn btn-primary" style={{width: '500px', margin:"10px", alignItems:"center"}} >View All Sessions</Link>
              
              
     </Form.Group>
