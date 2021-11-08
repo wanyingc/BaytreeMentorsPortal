@@ -1,6 +1,6 @@
 import { CgLogOut } from 'react-icons/cg';
 import { IoPersonOutline } from 'react-icons/io5';
-import { FiBarChart2, FiBriefcase } from 'react-icons/fi';
+import { FiBarChart2, FiBriefcase, FiGrid } from 'react-icons/fi';
 import * as BsIcons from 'react-icons/bs';
 
 export const volunteerItems1 = [
@@ -27,6 +27,10 @@ export const volunteerItems1 = [
     {
         to: "/report",
         icon: <FiBarChart2 className="nav-icon"/>
+    },
+    {
+        to: "/records",
+        icon: <FiGrid className="nav-icon"/>
     },
     {
         to: "/notifications",
