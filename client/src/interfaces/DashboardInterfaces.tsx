@@ -9,3 +9,12 @@ export type SessionObject = {
     person: string;
     date: string;
 };
+
+export type StackedChartDataType = {
+    labels: string[];
+    datasets: {
+        label: string;
+        data: number[];
+        backgroundColor: string;
+    }[];
+};

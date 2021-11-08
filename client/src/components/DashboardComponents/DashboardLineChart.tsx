@@ -1,8 +1,8 @@
 // cite: based on examples from 'react-chartjs-2'
 import React, { FC, useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
-import { LineChartData } from '../pages/dashboard/DashboardDataAdmin';
-import '../styles/DashboardLineChart.css';
+import { LineChartData } from '../../pages/dashboard/DashboardDataAdmin';
+import '../../styles/DashboardLineChart.css';
 
 type LineChartProps = {
     title: string;

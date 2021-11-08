@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import DashboardLineChart from '../../components/DashboardLineChart';
-import { dataRecentSessions, dataUpcomingSessions, dataUsers } from './DashboardDataAdmin';
+import DashboardLineChart from '../../components/DashboardComponents/DashboardLineChart';
+import { dataRecentSessions, dataUpcomingSessions, dataUsers, SessionsDoneStackedData, SessionsLeftStackedData } from './DashboardDataAdmin';
 import { columnsMentors, columnsSessionsMentors, mentorTypes} from './DashboardDatatypes';
 import { Dropdown } from "react-bootstrap/";
 import EventCalendar from '../../components/EventCalendar';
-import DashboardDoughnut from '../../components/DashboardDoughnut';
 import './Dashboard.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
+import { DashboardStackedBar } from '../../components/DashboardComponents/DashboardStackedBar';
 
 function getScreenSize () {
     if(window.innerWidth < 768) {
@@ -72,33 +72,27 @@ export default function DashboardAdmin() {
             <div className="row justify-content-center">
                 <div className="col-xl-9 col-lg-8 mb-4">
                     <div className="row">
-                        <div className="col-xl-4 col-md-6 col-sm-6 mb-4">
-                            <div className="container h-100">
-                                <DashboardDoughnut 
-                                    title="Session Attendence"
-                                    height={ isMobile ? 250 : undefined }
-                                />
-                            </div>                            
-                        </div>
                         <div className="col-xl-8 col-md-6 col-sm-12 mb-4">
                             <div className="container h-100 bt-h-300">
-                                <DashboardLineChart 
-                                    title="Unique and Aggregate Attendence"
-                                    height={isMobile? 250 :undefined}
+                                <DashboardStackedBar
+                                    title="Sessions Completed" data={SessionsDoneStackedData}
                                 />
                             </div>
+                        </div>
+                        <div className="col-xl-4 col-md-6 col-sm-6 mb-4">
+                            <div className="container h-100">
+                                
+                            </div>                            
                         </div>
                     </div>
                     <div className="row justify-content-center">
                         <div className="col-xl-6">
                             <div className={`card h-100 px-0 d-card`}>
-                                <div className="ms-4 text-light table-header-bg-blue rounded-pill px-3 fs-4">
-                                    Session Schedule
-                                </div>
+                                    {renderHeaderMentors}
                                 <div className="">
-                                    <EventCalendar/>
+                                    <BootstrapTable keyField='id' data={ dataUsers } columns={ columnsMentors } bordered={ false }/>            
                                 </div>
-                            </div>                            
+                            </div>                           
                         </div>
                         <div className="col-xl-6">
                             <div className={`card h-100 px-0 d-card`}>
@@ -111,11 +105,6 @@ export default function DashboardAdmin() {
                     </div>
                 </div>
                 <div className="col-xl-3 col-lg-4 mb-4 mt-0 bg-grey ">                    
-                    <div className="row mx-2 mb-2">
-                        <button type="button" className="btn btn-primary rounded-pill w-100 py-2 mb-4">
-                            Create Session
-                        </button>
-                    </div>
                     <div className="row mb-4 mx-1">
                         <div className={`card h-100 px-0 d-card`}>
                             <div className="card-header fs-5">

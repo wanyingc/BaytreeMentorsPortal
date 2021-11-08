@@ -1,7 +1,51 @@
-import { LineChartDataProps } from "../../components/DashboardLineChart";
-import { UserObject } from "../../interfaces/DashboardInterfaces";
+import { LineChartDataProps } from "../../components/DashboardComponents/DashboardLineChart";
+import { StackedChartDataType, UserObject } from "../../interfaces/DashboardInterfaces";
 
 export const sampleDate = new Date('October 7, 2021 13:24:00');
+
+//---------------------------- New Data -----------------------------------//
+export const SessionsDoneStackedData: StackedChartDataType = {
+  labels: ['July', 'August', 'September', 'October', 'November'],
+  datasets: [
+      {
+          label: 'Youth Mentors',
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: 'rgb(255, 99, 132)',
+      },
+      {
+          label: 'Into School Mentors',
+          data: [2, 3, 20, 5, 1, 4],
+          backgroundColor: 'rgb(54, 162, 235)',
+      },
+      {
+          label: 'Women Mentors',
+          data: [3, 10, 13, 15, 22, 30],
+          backgroundColor: 'rgb(75, 192, 192)',
+      },
+  ],
+};
+export const SessionsLeftStackedData: StackedChartDataType = {
+  labels: ['July', 'August', 'September', 'October', 'November'],
+  datasets: [
+      {
+          label: 'Youth Mentors',
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: 'rgb(255, 99, 132)',
+      },
+      {
+          label: 'Into School Mentors',
+          data: [2, 3, 20, 5, 1, 4],
+          backgroundColor: 'rgb(54, 162, 235)',
+      },
+      {
+          label: 'Women Mentors',
+          data: [3, 10, 13, 15, 22, 30],
+          backgroundColor: 'rgb(75, 192, 192)',
+      },
+  ],
+};
+
+//------------------------------------------------------------------------//
 
 export const dataUsers: UserObject[] = [
     {
