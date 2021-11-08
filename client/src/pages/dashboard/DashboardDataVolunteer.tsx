@@ -1,99 +1,61 @@
-import { SessionObject, UserObject } from "../../interfaces/DashboardInterfaces";
+import { MenteesObject, goalsObject, notificationObject } from "../../interfaces/DashboardInterfaces";
 
-export const dataMentees: UserObject[] = [
+export const MyMentees: MenteesObject[] = [
     {
-        name: "Mentee1",
-        lastSession: "01-23-2021",
-        attendence: "Yes"
+        name: "Mira Jane",
+        dateOfBirth: "26-11-2000",
+        age: "13+",
+        dateStart: "4-9-2021",
+        dateEnd: "30-8-2022"
     },
     {
-        name: "Mentee2",
-        lastSession: "02-04-2021",
-        attendence: "no"
+        name: "Oliva Lane",
+        dateOfBirth: "3-4-2015",
+        age: "under 9",
+        dateStart: "4-9-2021",
+        dateEnd: "30-8-2022"
     },
     {
-        name: "Mentee3",
-        lastSession: "03-25-2021",
-        attendence: "no"
+        name: "Tina Hudson",
+        dateOfBirth: "25-6-2010",
+        age: "10 to 12",
+        dateStart: "4-9-2021",
+        dateEnd: "30-8-2022"
     }
-];
-
-export const RecentSessions: SessionObject[] = [
-    {
-        title: "Session 1",
-        person: "Mentee1",
-        date: "01-23-2021"
-    },
-    {
-        title: "Session 2",
-        person: "Mentee1",
-        date: "02-04-2021"
-    },
-    {
-        title: "Session 1",
-        person: "Mentee3",
-        date: "03-25-2021"
-    },
-    {
-        title: "Session 1",
-        person: "Mentee2",
-        date: "04-05-2021"
-    },
-    {
-        title: "Session 2",
-        person: "Mentee3",
-        date: "05-30-2021"
-    },
-
-];
-
-export const UpcomingSessions: SessionObject[] = [
-    {
-        title: "Session 3",
-        person: "Mentee1",
-        date: "01-23-2021"
-    },
-    {
-        title: "Session 2",
-        person: "Mentee2",
-        date: "02-04-2021"
-    },
-    {
-        title: "Session 4",
-        person: "Mentee1",
-        date: "03-25-2021"
-    },
-    {
-        title: "Session 3",
-        person: "Mentee2",
-        date: "04-05-2021"
-    },
-    {
-        title: "Session 3",
-        person: "Mentee3",
-        date: "05-30-2021"
-    },
 ]
 
-export const OverdueSubmissions: SessionObject[] = [
+export const goalsList: goalsObject[] = [
     {
-        title: "Session 1: Session Report",
-        person: "Mentee3",
-        date: "03-25-2021"
+      id: 1,
+      mentee: 'Mira Jane',
+      date: '2021-11-06',
+      notes: 'Learn writing skills.'
     },
     {
-        title: "Session 1: Session Report",
-        person: "Mentee1",
-        date: "01-23-2021"
+      id: 2,
+      mentee: 'Oliva Lane',
+      date: '2021-11-05',
+      notes: 'Learn addition and subtraction.'
     },
     {
-        title: "Session 2: Monthly Questionaire",
-        person: "Mentee3",
-        date: "05-30-2021"
+      id: 3,
+      mentee: 'Tina Hudson',
+      date: '2021-11-04',
+      notes: 'Improve grammar.'
+    },  
+  ]
+
+  export const notificationsList: notificationObject[] = [
+    {
+      title:  'Monthly Questionaire',
+      date: '8-9-2021',
+      time: '09:13 AM',
+      message: 'Hi Mentors, this is a reminder that the monthly questionaire is available.'
     },
     {
-        title: "Session 3: Session Report",
-        person: "MenteeX",
-        date: "11-30-2020"
+        title:  'Report Attendance',
+        date: '8-9-2021',
+        time: '12:00 PM',
+        message: 'Hello, could you report attendance from last week session please.'
     },
-]
+  ];

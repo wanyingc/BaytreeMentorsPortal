@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { User } from '../../store/reducers/types'
 import { setState } from '../../store/reducers/action';
 import { post } from 'jquery';
-import store from '../../store/reducers/store'
 import { getAccessToken, isAdmin } from '../../auth/Authenticator';
 import { useHistory } from "react-router-dom";
 import { Redirect } from 'react-router';

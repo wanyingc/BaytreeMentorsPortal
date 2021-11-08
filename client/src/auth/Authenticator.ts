@@ -1,4 +1,3 @@
-import store from "../store/reducers/store";
 
 // export const isAdmin = () => {
 //     const rolesList = store.getState().roles;

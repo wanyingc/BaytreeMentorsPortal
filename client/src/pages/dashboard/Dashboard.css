@@ -10,3 +10,12 @@
 .d-card-tr-0 {
     border-style: hidden;
 }
+
+.react-bootstrap-table table{
+    table-layout: auto;
+}
+
+#create-goal-form{
+    background-color: #FF1E89;
+    color: white
+}

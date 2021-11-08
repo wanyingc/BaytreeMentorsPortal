@@ -4,8 +4,50 @@ export type UserObject = {
     attendence: string
 };
 
-export type SessionObject = {
-    title: string;
-    person: string;
+export type MenteesObject ={
+    name: string;
+    dateOfBirth: string;
+    age: number|string;
+    dateStart: Date|string;
+    dateEnd: Date|string;
+}
+
+export type goalsObject = {
+    id: number;
+    mentee: string;
     date: string;
+    notes: string;
 };
+
+export type tableDataType = {
+    mentorName: string,
+    sessionDate: string,
+    mentorRole: string
+};
+
+export type StackedChartDataType = {
+    labels: string[];
+    datasets: {
+        label: string;
+        data: number[];
+        backgroundColor: string;
+    }[];
+};
+
+export type DoughnutDataType = {
+    labels: string[];
+    datasets: {
+      label: string;
+      data: number[];
+      backgroundColor: string[];
+      borderColor: string[];
+      borderWidth: number;
+    }[];
+};
+
+export type notificationObject = {
+    title: string;
+    date: Date|string;
+    time: string;
+    message: string;
+}
