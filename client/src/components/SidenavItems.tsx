@@ -29,7 +29,7 @@ export const volunteerItems1 = [
         icon: <FiBarChart2 className="nav-icon"/>
     },
     {
-        to: "/notifications",
+        to: "/resources",
         icon: <BsIcons.BsBell className="nav-icon"/>
     },
 ];
