@@ -10,6 +10,7 @@ import { post } from 'jquery';
 import store from '../../store/reducers/store'
 import { getAccessToken, isAdmin } from '../../auth/Authenticator';
 import { useHistory } from "react-router-dom";
+import { Redirect } from 'react-router';
 
 const LoginComponent = () => {
 

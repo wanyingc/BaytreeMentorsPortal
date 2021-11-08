@@ -5,10 +5,6 @@ import * as BsIcons from 'react-icons/bs';
 
 export const volunteerItems1 = [
     {
-        to: "/search",
-        icon: <BsIcons.BsSearch className="nav-icon"/>
-    },
-    {
         to: "/dashboard",
         icon: <BsIcons.BsHouseDoor className="nav-icon"/>
     },
@@ -32,19 +28,11 @@ export const volunteerItems1 = [
         to: "/records",
         icon: <FiGrid className="nav-icon"/>
     },
-    {
-        to: "/notifications",
-        icon: <BsIcons.BsBell className="nav-icon"/>
-    },
 ];
 export const volunteerItems2 = [
     {
         to: "/profile",
         icon: <IoPersonOutline className="nav-icon"/>
-    },
-    {
-        to: "/settings",
-        icon: <BsIcons.BsGear className="nav-icon"/>
     },
 ];
 export const adminItems1 = [
@@ -55,10 +43,6 @@ export const adminItems1 = [
     {
         to: "/messages",
         icon: <BsIcons.BsChatLeft className="nav-icon"/>
-    },
-    {
-        to: "/notifications",
-        icon: <BsIcons.BsBell className="nav-icon"/>
     },
     {
         to:"/mentors-list",
@@ -73,9 +57,5 @@ export const adminItems2 = [
     {
         to: "/profile",
         icon: <IoPersonOutline className="nav-icon"/>
-    },
-    {
-        to: "/settings",
-        icon: <BsIcons.BsGear className="nav-icon"/>
     },
 ];

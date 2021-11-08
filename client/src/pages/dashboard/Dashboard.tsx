@@ -9,6 +9,7 @@ import {isAdmin, isUser} from '../../auth/Authenticator'
 
 export default function Dashboard() {
 
+    console.log(isAdmin());
     return (
         <div>
             {isAdmin() ? <DashboardAdmin/> : <DashboardVolunteer/> }
