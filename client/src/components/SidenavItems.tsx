@@ -73,6 +73,10 @@ export const adminItems1 = [
         to: "/signup",
         icon: <BsIcons.BsPersonPlus className="nav-icon"/>
     },
+    {
+        to: "/resources",
+        icon: <AiOutlineFolderView className="nav-icon"/>
+    },
 ];
 export const adminItems2 = [
     {
