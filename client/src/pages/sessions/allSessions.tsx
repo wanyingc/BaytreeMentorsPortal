@@ -1,11 +1,12 @@
 import React,{useState, useEffect} from 'react';
-import './sessions.css'
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import BootstrapTable from 'react-bootstrap-table-next';
 import { render } from 'react-dom';
+import './allSessions.css'
+
 
 
 const secondNov = {
@@ -57,9 +58,10 @@ const secondNov = {
           <div className="Header">
           <div className="sessionsText">
               <text className="HeaderText">All Sessions</text>
+              </div>
                 <div className="App">
-            <BootstrapTable keyField='id' data={ sessionList } columns={ columns } />  </div>
-          </div>
+            <BootstrapTable keyField='id' data={ sessionList } columns={ columns }  />  </div>
+         
           </div>
           </Container>
           </Form>

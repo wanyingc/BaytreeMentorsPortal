@@ -19,6 +19,7 @@ import MentorsList from './pages/mentors-list/MentorsList';
 import sessions from './pages/sessions/sessions';
 import editSessions from './pages/sessions/editSessions';
 import allSession from './pages/sessions/allSessions';
+import sessionNotes from './pages/sessions/sessionNotes';
 
 import DashboardAdmin from './pages/dashboard/DashboardAdmin';
 import DashboardVolunteer from './pages/dashboard/DashboardVolunteer';
@@ -44,6 +45,7 @@ const MainRoutes = () => (
     <Route path="/sessions" component={sessions}/>
     <Route path="/editSessions" component={editSessions}/>
     <Route path="/allSessions" component={allSession}/>
+    <Route path="/notes" component={sessionNotes}/>
     {/* <Route path="/report" component={Report}/> */}
     <Route path="/questionnaire" component={QuestionnaireForm}/>
     {/* <Route path="/settings" component={Settings}/> */}

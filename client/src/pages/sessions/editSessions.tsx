@@ -123,18 +123,16 @@ const ReduxFormSelect: any = (field: any) => (
           </div>
           </div>
           <Form.Group controlId="session-name"> 
-        <Row>
-            <Row>
+       
               <div className="d-flex justify-content-between align-items-center mb-3">
                   <h4 className="text-right">Session Information</h4>
               </div>
 
-              <Col md={6}>
+         
                 <Field name="Date" type="Date" component={ReduxFormInputDate} label="Date of session" placeHolder="Enter Date" />
-              </Col>
-              <Col md={6}>
+              
                 <Field name="Time" type="Time" component={ReduxFormInputTime} label="Time" placeHolder="Enter Time" />
-              </Col>
+             
               <Field name="Duration" type="Hours" component={ReduxFormInputDuration} label="Duration" placeHolder="Enter Duration" />
               <Field name="Cancelled"  type="text" component={ReduxFormInput} label="Cancelled" placeHolder="Cancelled?" />
               <Field
@@ -201,8 +199,7 @@ const ReduxFormSelect: any = (field: any) => (
               <Field name="Staff" type="text" component={ReduxFormInput} label="Staff Incharge" placeHolder="Enter occupation" />
               <Link to="/allSessions" className="btn btn-primary" style={{width: '500px', margin:"10px", alignItems:"center"}} >View All Sessions</Link>
              
-              </Row>
-        </Row>
+             
     </Form.Group>
 
           </Container>
