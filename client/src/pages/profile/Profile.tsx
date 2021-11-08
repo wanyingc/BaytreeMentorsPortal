@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -6,23 +6,16 @@ import Form from "react-bootstrap/Form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Field, reduxForm, FormErrors, InjectedFormProps } from 'redux-form'
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { Table } from "react-bootstrap";
-import { getAccessToken, isAdmin } from "../../auth/Authenticator";
+import { getAccessToken, isAdmin, getPersonID} from "../../auth/Authenticator";
+import Axios from "axios";
+import'../records/Records.css';
 
 const DEFAULT_USER = {
-  fname: 'Cagla',
-  lname: 'Ist',
-  phone: '14252412222',
-  email: 'cagla@ist.com',
-  occupation: 'Teacher',
-  address: 'The Baytree Centre, 300-302 Brixton Rd',
-  city: 'London',
-  postalCode: 'SW9 6AE',
-  country: 'UK',
-  mentorType: 'Youth Mentor',
   profileImg: 'https://merodesk.com/wp-content/uploads/2021/05/user-4.png'
 };
+
 const ReduxFormSelect: any = (field: any) => (
   <Form.Group className="mb-3">
     <Form.Label>{field.label}</Form.Label>
@@ -65,18 +58,49 @@ const validate = (values: any): FormErrors<any> => {
 };
 
 function Profile(props: InjectedFormProps | any) {
+  const [dataLoaded, setDataLoaded] = useState<any>(undefined);
   const userInfo = props.apiForm && props.apiForm.ProfileForm && props.apiForm.ProfileForm.values;
-  console.log(isAdmin());
-  console.log(localStorage.getItem('accessToken'));
-  
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  const getProfile= ()=>{
+    let accessToken = getAccessToken();
+    let personID = getPersonID();
+    Axios.post(
+      "http://localhost:8080/auth/profile", 
+      {
+        personID: personID,
+      },
+      {
+        headers: {
+          "X-access-token": accessToken
+        }
+      }).then((d:any) => {
+        props.change('fname',d.data.name);
+        props.change('lname',d.data.surname);
+        props.change('phone',d.data.phone);
+        props.change('occupation',d.data.occupation);
+        props.change('mentorType',d.data.type);
+        setDataLoaded(true);
+    });
+  }
 
   return (
     <Form>
     <Container>
       <Row>
+      {!dataLoaded &&
+            <div className = "loading">
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            </div>
+          } 
         <Col md={3}>
             <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img className="rounded-circle mt-5" width="150px" src={userInfo && userInfo.profileImg}/>
+                <img className="rounded-circle mt-5" width="150px" src={DEFAULT_USER.profileImg}/>
                 <span className="font-weight-bold">{userInfo && userInfo.fname}</span>
                 <span className="text-black-50">{userInfo && userInfo.email}</span>
                 <span> </span>
@@ -153,7 +177,8 @@ function Profile(props: InjectedFormProps | any) {
               variant="primary"
               type="submit"
               style={{ marginRight: '20px', marginTop:'48px', marginBottom:'48px', float: "right" }}
-              disabled={props.pristine || props.submitting}
+              //will be changed after confirming saving options(Views app) or will make all the fieds readonly
+              disabled= {true}//props.pristine || props.submitting}
             >
               Save Profile
             </Button>
