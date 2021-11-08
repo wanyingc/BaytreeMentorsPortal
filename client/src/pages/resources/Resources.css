@@ -1,0 +1,49 @@
+#boxes{
+    margin-left: 4%;
+    margin-top: 5%;
+}
+
+#title{
+    font-size: 300%;
+    margin-bottom: 0;
+}
+
+#line{
+    margin-top: 0;
+}
+
+#message{
+    width: 95%;
+    height: 10%;
+    float: left;
+}
+
+#messageTitle{
+    text-align: left;
+}
+
+#messageBody{
+    text-align: left;
+}
+
+#time{
+    font-size: 100%;
+    float: right;
+    margin-top: -100px;
+}
+
+#button{
+    float: right;
+    
+}
+
+#modalDiv{
+        display: table;
+        margin: 0 auto;
+}
+
+#outer {
+    border: 1px solid red;
+    width:100%
+  }
+

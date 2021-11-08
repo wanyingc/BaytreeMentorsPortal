@@ -51,6 +51,7 @@ const MainRoutes = () => (
     {/* <Route path="/report" component={Report}/> */}
     <Route exact path="/questionnaire" component={QuestionnaireForm}/>
     {/* <Route path="/settings" component={Settings}/> */}
+    <Route exact path="/resources" component={Resources}/>
     <Route exact path="/mentors-list" component={MentorsList}/>
     <Route exact path="/records" component={Records}/>
   </div>
