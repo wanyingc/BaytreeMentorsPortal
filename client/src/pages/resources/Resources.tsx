@@ -70,7 +70,7 @@ function MyApp() {
  
             <Modal show={m1Show} size="xl" centered onHide={() => setM1Show(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Resource Title 1</Modal.Title>
+                    <Modal.Title>Resource1.pdf</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div id="modalDiv">
@@ -82,7 +82,7 @@ function MyApp() {
             </Modal>
             <Modal show={m2Show} size="lg" centered onHide={() => setM2Show(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Resource Title 2</Modal.Title>
+                    <Modal.Title>Training Document 1.pdf </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                 <div id="modalDiv">
@@ -94,7 +94,7 @@ function MyApp() {
             </Modal>
             <Modal show={m3Show} size="lg" centered onHide={() => setM3Show(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Resource Title 3</Modal.Title>
+                    <Modal.Title>Mentoring Information #2.pdf </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                 <div id="modalDiv">
@@ -105,40 +105,9 @@ function MyApp() {
                 </Modal.Body>
             </Modal>
 
-
         </div>
 
-    // <div>
-    //   <Document
-    //     file={file}
-    //     //option={{workerSrc: "pdf.worker.js"}}
-    //     onLoadSuccess={onDocumentLoadSuccess}
-    //   >
-    //     <Page pageNumber={pageNumber} />
-    //   </Document>
-    //   <p>Page {pageNumber} of {numPages}</p>
-    // </div>
   );
 }
 
 export default MyApp;
-
-// import React from 'react';
-// import { Document, Page } from 'react-pdf';
-// import FileViewer from 'react-file-viewer'
-
-// import samplePDF from '../../assets/SFU.pdf'
-
-// const type = 'pdf'
-// const file = 'SFU.pdf'
-
-// export default function Test() {
-//     return (
-//       <Document file={samplePDF} options={{workerSrc: "pdf.worker.js"}}>
-//         <Page pageNumber={1} />
-        
-//       </Document>
-//     );
-//   }
-
-//export default Resources;

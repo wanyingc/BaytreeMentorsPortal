@@ -1,6 +1,7 @@
 import { CgLogOut } from 'react-icons/cg';
 import { IoPersonOutline } from 'react-icons/io5';
 import { FiBarChart2, FiBriefcase } from 'react-icons/fi';
+import { AiOutlineFolderView } from "react-icons/ai";
 import * as BsIcons from 'react-icons/bs';
 
 export const volunteerItems1 = [
@@ -29,8 +30,12 @@ export const volunteerItems1 = [
         icon: <FiBarChart2 className="nav-icon"/>
     },
     {
-        to: "/resources",
+        to: "/notifications",
         icon: <BsIcons.BsBell className="nav-icon"/>
+    },
+    {
+        to: "/resources",
+        icon: <AiOutlineFolderView className="nav-icon"/>
     },
 ];
 export const volunteerItems2 = [
