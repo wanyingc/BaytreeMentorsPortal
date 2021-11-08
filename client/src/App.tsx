@@ -11,7 +11,7 @@ import Messages from './pages/messages/Messages';
 import Report from './pages/report/Report';
 import QuestionnaireForm from './pages/questionnaire/Questionnaire-form';
 import Profile from './pages/profile/Profile';
-import TimeCard from './pages/timecard/TimeCard';
+import CreateSession from './pages/create-session/CreateSession';
 import SignUp from './pages/signup/SignUp';
 import ProtectedRoute from './pages/login/ProtectedRoute';
 import { isAdmin, isUser } from './auth/Authenticator';
@@ -32,9 +32,10 @@ const MainRoutes = () => (
   <div className="container">
     <Sidenav/> 
     <Route exact path="/profile" component={Profile}/>
+    <Route exact path="/dashboard" component={Dashboard}/>
+    <Route exact path="/create-session" component={CreateSession}/>
     {/* <Route path="/dashboard" component={Dashboard}/> */}
     <ProtectedRoute isUser={isUser()} path="/dashboard" component={Dashboard} />
-    <Route exact path="/timecard" component={TimeCard}/>
     <Route path="/messages" component={Messages}/>
     <Route exact path ="/signup" component={SignUp}/>
     {/* <Route path="/report" component={Report}/> */}

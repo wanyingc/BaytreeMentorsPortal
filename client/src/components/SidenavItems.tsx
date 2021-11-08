@@ -13,7 +13,7 @@ export const volunteerItems1 = [
         icon: <BsIcons.BsHouseDoor className="nav-icon"/>
     },
     {
-        to: "/timecard",
+        to: "/create-session",
         icon: <BsIcons.BsCalendar2Check className="nav-icon"/>
     },
     {
