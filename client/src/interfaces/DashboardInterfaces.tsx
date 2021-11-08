@@ -4,16 +4,24 @@ export type UserObject = {
     attendence: string
 };
 
-export type SessionObject = {
-    title: string;
-    person: string;
-    date: string;
-};
-
 export type MenteesObject ={
     name: string;
-    dateOfBirth: Date|string;
+    dateOfBirth: string;
     age: number|string;
     dateStart: Date|string;
     dateEnd: Date|string;
+}
+
+export type goalsObject = {
+    id: number;
+    mentee: string;
+    date: string;
+    notes: string;
+}
+
+export type notificationObject = {
+    title: string;
+    date: Date|string;
+    time: string;
+    message: string;
 }

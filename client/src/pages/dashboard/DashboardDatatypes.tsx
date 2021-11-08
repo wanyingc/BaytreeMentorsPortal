@@ -56,20 +56,7 @@ export const columnsSessionsMentees = [
       text: 'Date'
   }
 ];
-export const columnsOverdueMentees = [
-  {
-      dataField: 'title',
-      text: 'Item(s) Overdue'
-  }, 
-  {
-      dataField: 'person',
-      text: 'Mentee Name'
-  }, 
-  {
-      dataField: 'date',
-      text: 'Date'
-  }
-];
+
 
 export const columnsMyMentees = [
     {
