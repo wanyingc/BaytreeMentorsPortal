@@ -1,7 +1,5 @@
 import { ActionTypes, DELETE_STATE, SET_STATE } from './action';
 import {State, User} from './types'
-import { createStore} from 'redux'
-
 
 //redux implementation
 function StateReducer(state: State ={
@@ -24,6 +22,4 @@ function StateReducer(state: State ={
     }
 }
 
-const store = createStore(StateReducer);
-
-export default store;
+export default StateReducer;

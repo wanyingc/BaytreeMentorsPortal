@@ -3,7 +3,7 @@ import './App.css';
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import { useState} from "react";
-import store from "./store/reducers/store";
+import store from "./store";
 import Login from './pages/login/Login';
 import Sidenav from './components/Sidenav';
 import Dashboard from './pages/dashboard/Dashboard';
@@ -33,7 +33,6 @@ const MainRoutes = () => (
   <div className="container">
     <Sidenav/> 
     <Route exact path="/profile" component={Profile}/>
-    <Route exact path="/dashboard" component={Dashboard}/>
     <Route exact path="/create-session" component={CreateSession}/>
     {/* <Route path="/dashboard" component={Dashboard}/> */}
     <ProtectedRoute isUser={isUser()} path="/dashboard" component={Dashboard} />
