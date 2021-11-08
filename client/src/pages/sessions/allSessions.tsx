@@ -7,8 +7,6 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import { render } from 'react-dom';
 import './allSessions.css'
 
-
-
 const secondNov = {
     Date: '02 / 11 / 2021',
     Time: '12:00',
