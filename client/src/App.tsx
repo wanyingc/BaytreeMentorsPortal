@@ -16,15 +16,16 @@ import SignUp from './pages/signup/SignUp';
 import ProtectedRoute from './pages/login/ProtectedRoute';
 import { isAdmin, isUser } from './auth/Authenticator';
 import MentorsList from './pages/mentors-list/MentorsList';
-import sessions from './pages/sessions/sessions';
-import editSessions from './pages/sessions/editSessions';
-import allSession from './pages/sessions/allSessions';
-import sessionNotes from './pages/sessions/sessionNotes';
+import sessions from './pages/sessions/Sessions';
+import editSessions from './pages/sessions/EditSessions';
+import allSession from './pages/sessions/AllSessions';
+import sessionNotes from './pages/sessions/SessionNotes';
 
 
 import Records from './pages/records/Records';
 import DashboardAdmin from './pages/dashboard/DashboardAdmin';
 import DashboardVolunteer from './pages/dashboard/DashboardVolunteer';
+import Resources from './pages/resources/Resources';
 
 // cite: https://stackoverflow.com/questions/47281850/how-to-hide-navbar-in-login-page-in-react-router
 const LoginRoute = () => (

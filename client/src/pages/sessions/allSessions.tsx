@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import BootstrapTable from 'react-bootstrap-table-next';
 import { render } from 'react-dom';
-import './allSessions.css'
+import './AllSessions.css'
 
 const secondNov = {
     Date: '02 / 11 / 2021',

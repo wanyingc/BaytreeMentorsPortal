@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import BootstrapTable from 'react-bootstrap-table-next';
 import { render } from 'react-dom';
 import { bindActionCreators } from "redux";
-import './allSessions.css'
+import './AllSessions.css'
 import { Field, reduxForm, FormErrors, InjectedFormProps } from 'redux-form'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';

@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import './sessions.css'
+import './Sessions.css'
 import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
