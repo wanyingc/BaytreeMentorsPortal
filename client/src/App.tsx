@@ -16,8 +16,8 @@ import SignUp from './pages/signup/SignUp';
 import ProtectedRoute from './pages/login/ProtectedRoute';
 import { isAdmin, isUser } from './auth/Authenticator';
 import MentorsList from './pages/mentors-list/MentorsList';
+import Resources from './pages/resources/Resources';
 import Records from './pages/records/Records';
-
 import DashboardAdmin from './pages/dashboard/DashboardAdmin';
 import DashboardVolunteer from './pages/dashboard/DashboardVolunteer';
 
@@ -42,6 +42,7 @@ const MainRoutes = () => (
     {/* <Route path="/report" component={Report}/> */}
     <Route exact path="/questionnaire" component={QuestionnaireForm}/>
     {/* <Route path="/settings" component={Settings}/> */}
+    <Route exact path="/resources" component={Resources}/>
     <Route exact path="/mentors-list" component={MentorsList}/>
     <Route exact path="/records" component={Records}/>
   </div>

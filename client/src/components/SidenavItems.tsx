@@ -1,5 +1,6 @@
 import { CgLogOut } from 'react-icons/cg';
 import { IoPersonOutline } from 'react-icons/io5';
+import { AiOutlineFolderView } from "react-icons/ai";
 import { FiBarChart2, FiBriefcase, FiGrid } from 'react-icons/fi';
 import * as BsIcons from 'react-icons/bs';
 
@@ -28,6 +29,17 @@ export const volunteerItems1 = [
         to: "/records",
         icon: <FiGrid className="nav-icon"/>
     },
+<<<<<<< HEAD
+=======
+    {
+        to: "/notifications",
+        icon: <BsIcons.BsBell className="nav-icon"/>
+    },
+    {
+        to: "/resources",
+        icon: <AiOutlineFolderView className="nav-icon"/>
+    },
+>>>>>>> master
 ];
 export const volunteerItems2 = [
     {
@@ -51,6 +63,10 @@ export const adminItems1 = [
     {
         to: "/signup",
         icon: <BsIcons.BsPersonPlus className="nav-icon"/>
+    },
+    {
+        to: "/resources",
+        icon: <AiOutlineFolderView className="nav-icon"/>
     },
 ];
 export const adminItems2 = [
