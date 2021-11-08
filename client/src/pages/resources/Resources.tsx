@@ -11,6 +11,8 @@ import { Document, Page } from 'react-pdf/dist/umd/entry.webpack';
 
 import { pdfjs } from 'react-pdf';
 
+// PDF files must be imported like this to work.
+//todo: figure out how to import them dynamically
 import file1 from './Test.pdf';
 
 pdfjs.GlobalWorkerOptions.workerSrc = 'pdf.worker.min.js';
@@ -20,20 +22,6 @@ function MyApp() {
     const [m1Show, setM1Show] = useState(false)
     const [m2Show, setM2Show] = useState(false)
     const [m3Show, setM3Show] = useState(false)
-    // const [files, setShow] = useState([
-    //     {
-    //         id: 1,
-    //         title: 'Test Document 1',
-    //         file: file1,
-    //         show: false
-    //     },
-    //     {
-    //         id: 2,
-    //         title: 'Test Document 2',
-    //         file: file2,
-    //         show: false
-    //     },
-    // ])
 
   return (
       
@@ -51,54 +39,35 @@ function MyApp() {
                     <Button variant="success">Download</Button>
                 </Card.Body>
             </Card>
+            <br/>
             <Card>
                 <Card.Header>
                     Last updated: {new Date().toLocaleDateString()}
                 </Card.Header>
                 <Card.Body>
                     <Card.Title>Training Document 1.pdf </Card.Title>
-                    <Card.Subtitle>Optional description of documents contents</Card.Subtitle><br />
-                    <Button variant="primary" onClick={() => setM1Show(true)} >View</Button>{' '}
+                    <Card.Subtitle>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut tortor nec ante aliquam cursus.</Card.Subtitle><br />
+                    <Button variant="primary" onClick={() => setM2Show(true)} >View</Button>{' '}
                     <Button variant="success">Download</Button>
                 </Card.Body>
             </Card>
+            <br />
             <Card>
                 <Card.Header>
                     Last updated: {new Date().toLocaleDateString()}
                 </Card.Header>
                 <Card.Body>
                     <Card.Title>Mentoring Information #2.pdf </Card.Title>
-                    <Card.Subtitle>Optional description of documents contents</Card.Subtitle><br />
-                    <Button variant="primary" onClick={() => setM1Show(true)} >View</Button>{' '}
+                    <Card.Subtitle>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut tortor nec ante aliquam cursus. 
+                        Nullam eget orci a felis sollicitudin auctor. Suspendisse eu tempor erat. 
+                        Nam accumsan, lacus ut blandit accumsan, erat nunc malesuada turpis, pellentesque facilisis sapien leo id eros. 
+                        Vivamus dolor libero, imperdiet eget nibh at, volutpat faucibus risus.
+                    </Card.Subtitle><br />
+                    <Button variant="primary" onClick={() => setM3Show(true)} >View</Button>{' '}
                     <Button variant="success">Download</Button>
                 </Card.Body>
             </Card>
-                <div id="message">
-                    <div>
-                        <h4 id="messageTitle"> Resource1.pdf</h4>
-                        <p id="messageBody"> Optional description of documents contents</p>
-                        </div>
-                    <div>
-                        <h5 id="time">Last updated: {new Date().toLocaleDateString()}</h5>
-                        <Button id="button" variant="primary" onClick={() => setM1Show(true)}>
-                            View
-                        </Button>
-                    </div>
-                </div>
-            
-            <div>
-                <h4> Training Document 1.pdf </h4>
-                <Button variant="primary" onClick={() => setM2Show(true)}>
-                    View
-                </Button>
-            </div>
-            <div>
-                <h4> Mentoring Information #2.pdf </h4>
-                <Button variant="primary" onClick={() => setM3Show(true)}>
-                    View
-                </Button>
-            </div>
-
+ 
             <Modal show={m1Show} size="xl" centered onHide={() => setM1Show(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Resource Title 1</Modal.Title>
