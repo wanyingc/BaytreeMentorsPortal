@@ -1,3 +1,4 @@
+// cite: based on examples from 'react-chartjs-2'
 import { FC } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { StackedChartDataType } from '../../interfaces/DashboardInterfaces';
