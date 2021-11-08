@@ -22,10 +22,6 @@ export const volunteerItems1 = [
         icon: <FiBriefcase className="nav-icon"/>
     },
     {
-        to: "/report",
-        icon: <FiBarChart2 className="nav-icon"/>
-    },
-    {
         to: "/records",
         icon: <FiGrid className="nav-icon"/>
     },
