@@ -20,6 +20,7 @@ import sessions from './pages/sessions/sessions';
 import editSessions from './pages/sessions/editSessions';
 import allSession from './pages/sessions/allSessions';
 import sessionNotes from './pages/sessions/sessionNotes';
+import Records from './pages/records/Records';
 
 import DashboardAdmin from './pages/dashboard/DashboardAdmin';
 import DashboardVolunteer from './pages/dashboard/DashboardVolunteer';
@@ -40,19 +41,19 @@ const MainRoutes = () => (
     <Route exact path="/create-session" component={CreateSession}/>
     {/* <Route path="/dashboard" component={Dashboard}/> */}
     <ProtectedRoute isUser={isUser()} path="/dashboard" component={Dashboard} />
-    <Route path="/messages" component={Messages}/>
+    <Route exact path="/messages" component={Messages}/>
     <Route exact path ="/signup" component={SignUp}/>
     <Route path="/sessions" component={sessions}/>
     <Route path="/editSessions" component={editSessions}/>
     <Route path="/allSessions" component={allSession}/>
     <Route path="/notes" component={sessionNotes}/>
     {/* <Route path="/report" component={Report}/> */}
-    <Route path="/questionnaire" component={QuestionnaireForm}/>
+    <Route exact path="/questionnaire" component={QuestionnaireForm}/>
     {/* <Route path="/settings" component={Settings}/> */}
-    <Route path="/mentors-list" component={MentorsList}/>
+    <Route exact path="/mentors-list" component={MentorsList}/>
+    <Route exact path="/records" component={Records}/>
   </div>
 )
-
 
 function App() {
 

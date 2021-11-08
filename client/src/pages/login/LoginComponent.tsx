@@ -9,10 +9,11 @@ import { setState } from '../../store/reducers/action';
 import { post } from 'jquery';
 import store from '../../store/reducers/store'
 import { getAccessToken, isAdmin } from '../../auth/Authenticator';
-
+import { useHistory } from "react-router-dom";
 
 const LoginComponent = () => {
 
+  const history = useHistory(); 
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [roles, setRoles] = useState([]);
@@ -52,7 +53,7 @@ const LoginComponent = () => {
       // setEmail(email);
       // setRoles(roles);
       // setAccessToken(accessToken);
-      dispatch(setState(response.data.email, response.data.roles, response.data.accessToken));
+      dispatch(setState(response.data.email, response.data.roles, response.data.accessToken, response.data.personID));
       //console.log(store.getState().email);
       // console.log(response.data.email);
       // console.log(response.data.roles);
@@ -60,6 +61,7 @@ const LoginComponent = () => {
 
       localStorage.setItem('email',response.data.email);
       localStorage.setItem('accessToken',response.data.accessToken);
+      localStorage.setItem('personID',response.data.personID);
 
       for(var roleIndex in response.data.roles){
         if(response.data.roles[roleIndex] === "admin")
@@ -68,11 +70,12 @@ const LoginComponent = () => {
           localStorage.setItem("user", "user");
       }
 
+      history.push("/dashboard");
+
       console.log(isAdmin());
     })
   }
 
-  
   return (    
     <div className="container ">
       <div className="row border-0 d-flex align-items-center ">
