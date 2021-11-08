@@ -47,10 +47,14 @@ export const isUser = () => {
     }
     return false;
 }
-//isMentor
+
 export const getAccessToken = () =>{
     // let accessToken = JSON.parse(localStorage.getItem('accessToken') || '{}');
     let accessToken = localStorage.getItem('accessToken');
     return accessToken == null ? "" : accessToken.toString();
 }
-//getRoles
+
+export const getPersonID = () =>{
+    let personID = localStorage.getItem('personID');
+    return personID == null ? "" : personID.toString();
+}
