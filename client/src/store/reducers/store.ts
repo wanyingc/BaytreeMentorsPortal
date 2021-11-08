@@ -7,7 +7,8 @@ import { createStore} from 'redux'
 function StateReducer(state: State ={
     email: '',
     roles: [],
-    accessToken: ''
+    accessToken: '',
+    personID: ''
 }, action: ActionTypes){
     switch(action.type){
         case SET_STATE:
@@ -16,6 +17,7 @@ function StateReducer(state: State ={
                 email: action.payload.email,
                 roles: action.payload.roles,
                 accessToken: action.payload.accessToken,
+                personID: action.payload.personID,
             };
         default:
             return state;

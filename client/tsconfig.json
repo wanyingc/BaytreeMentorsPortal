@@ -19,6 +19,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "noImplicitAny": false, // I don't know what this does but I couldnt import react-file-viewer without it.
     "typeRoots": ["./types","./node_modules/@types"]
   },
   "exclude": [
