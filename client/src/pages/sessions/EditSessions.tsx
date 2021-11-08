@@ -6,8 +6,7 @@ import Row from "react-bootstrap/Row";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Form from "react-bootstrap/Form";
-import { Field, reduxForm, FormErrors, InjectedFormProps } from 'redux-form'
-import Headerimg from './images/image-header.jpg'
+import { Field, reduxForm, FormErrors, InjectedFormProps } from 'redux-form';
 import { Button } from "react-bootstrap";
 import { Table } from "react-bootstrap";
 import { Link } from 'react-router-dom';
