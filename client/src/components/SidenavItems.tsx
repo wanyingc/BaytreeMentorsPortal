@@ -29,17 +29,12 @@ export const volunteerItems1 = [
         to: "/records",
         icon: <FiGrid className="nav-icon"/>
     },
-<<<<<<< HEAD
-=======
-    {
-        to: "/notifications",
-        icon: <BsIcons.BsBell className="nav-icon"/>
-    },
+
     {
         to: "/resources",
         icon: <AiOutlineFolderView className="nav-icon"/>
     },
->>>>>>> master
+    
 ];
 export const volunteerItems2 = [
     {
