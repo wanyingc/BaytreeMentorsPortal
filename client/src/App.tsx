@@ -33,10 +33,9 @@ const MainRoutes = () => (
   <div className="container">
     <Sidenav/> 
     <Route exact path="/profile" component={Profile}/>
-<<<<<<< HEAD
+
     {/* <Route exact path="/dashboard" component={Dashboard}/> */}
-=======
->>>>>>> master
+
     <Route exact path="/create-session" component={CreateSession}/>
     <ProtectedRoute isUser={isUser()} path="/dashboard" component={Dashboard} />
     <Route exact path="/messages" component={Messages}/>
