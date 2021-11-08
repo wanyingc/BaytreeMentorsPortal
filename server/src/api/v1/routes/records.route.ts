@@ -14,7 +14,7 @@ recordsRouter.use((req:Request, res:Response, next:NextFunction) => {
     next();
 });
 
-recordsRouter.get(
+recordsRouter.post(
     `/auth/records/`, 
     [
         authMW.verifyJWT,
