@@ -16,6 +16,9 @@ import SignUp from './pages/signup/SignUp';
 import ProtectedRoute from './pages/login/ProtectedRoute';
 import { isAdmin, isUser } from './auth/Authenticator';
 import MentorsList from './pages/mentors-list/MentorsList';
+import sessions from './pages/sessions/sessions';
+import editSessions from './pages/sessions/editSessions';
+import allSession from './pages/sessions/allSessions';
 
 import DashboardAdmin from './pages/dashboard/DashboardAdmin';
 import DashboardVolunteer from './pages/dashboard/DashboardVolunteer';
@@ -37,6 +40,9 @@ const MainRoutes = () => (
     <Route exact path="/timecard" component={TimeCard}/>
     <Route path="/messages" component={Messages}/>
     <Route exact path ="/signup" component={SignUp}/>
+    <Route path="/sessions" component={sessions}/>
+    <Route path="/editSessions" component={editSessions}/>
+    <Route path="/allSessions" component={allSession}/>
     {/* <Route path="/report" component={Report}/> */}
     <Route path="/questionnaire" component={QuestionnaireForm}/>
     {/* <Route path="/settings" component={Settings}/> */}

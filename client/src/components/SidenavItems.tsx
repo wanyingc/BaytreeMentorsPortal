@@ -25,7 +25,7 @@ export const volunteerItems1 = [
         icon: <FiBriefcase className="nav-icon"/>
     },
     {
-        to: "/report",
+        to: "/sessions",
         icon: <FiBarChart2 className="nav-icon"/>
     },
     {
