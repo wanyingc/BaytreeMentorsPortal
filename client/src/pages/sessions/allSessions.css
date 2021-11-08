@@ -1,10 +1,10 @@
-.App{
+.App_sessions{
     align-items: center;
     text-align: center;
     font-size: small;
 }
 
-.Header{ 
+/* .Header_sessions{ 
     width: auto;
     margin-bottom: 10px;
     font-size:40px;
@@ -24,4 +24,4 @@ font-size:xx-large;
 .session_text{
 height: 70%;
 width: 50%;
-}
+} */

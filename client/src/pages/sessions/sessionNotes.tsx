@@ -64,16 +64,16 @@ const secondNov = {
              return(
           <Form>
           <Container>
-          <div className="Header">
-          <div className="sessionsText">
-              <text className="HeaderText">Session Notes</text>
+          <div className="Header_notes_session">
+          <div className="sessionsText_notes">
+              <text className="HeaderText_session_notes">Session Notes</text>
               </div>
               </div>
                 <div className="SessionNotes">
             <text>Volunteer Session held on November 2</text>
            <div className="session_text">
            <Field name="notes"  type="text" component={ReduxFormInput} label="Notes" placeHolder="Enter Notes" ></Field></div>
-           <Link to="/sessions" className="btn btn-primary" style={{width: '500px', margin:"10px", alignItems:"center"}} >Save Notes</Link>
+           <Link to="/sessions" className="btn btn-primary_notes" style={{width: '500px', margin:"10px", alignItems:"center"}} >Save Notes</Link>
           </div>
           </Container>
           </Form>
@@ -97,7 +97,7 @@ const secondNov = {
               };
               
               const form = reduxForm<{}, any>({
-                form: 'SessionForm',
+                form: 'SessionNotesForm',
               })(sessionNotes);
               
               export default connect(

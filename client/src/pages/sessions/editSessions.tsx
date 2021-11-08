@@ -46,7 +46,7 @@ const secondNov = {
   
   
 const ReduxFormSelect: any = (field: any) => (
-    <Form.Group className="mb-3">
+    <Form.Group >
       <Form.Label>{field.label}</Form.Label>
       <Form.Control as="select" {...field.input} disabled={field.disabled} >
         <option value="" disabled={true}>
@@ -60,12 +60,12 @@ const ReduxFormSelect: any = (field: any) => (
           );
         })}
       </Form.Control>
-      {field.meta.touched && <p className="text-danger">{field.meta.error}</p>}
+      {field.meta.touched && <p>{field.meta.error}</p>}
     </Form.Group>
   );
   
   const ReduxFormInput: any = (field: any) => (
-    <Form.Group className="mb-3">
+    <Form.Group >
         <Form.Label>{field.label}</Form.Label>
         <Form.Control 
           {...field.input}
@@ -77,7 +77,7 @@ const ReduxFormSelect: any = (field: any) => (
     </Form.Group>
   );
   const ReduxFormInputDate: any = (field: any) => (
-    <Form.Group className="mb-3">
+    <Form.Group>
         <Form.Label>{field.label}</Form.Label>
         <Form.Control 
           {...field.input}
@@ -89,7 +89,7 @@ const ReduxFormSelect: any = (field: any) => (
     </Form.Group>
   );
   const ReduxFormInputTime: any = (field: any) => (
-    <Form.Group className="mb-3">
+    <Form.Group >
         <Form.Label>{field.label}</Form.Label>
         <Form.Control 
           {...field.input}
@@ -101,7 +101,7 @@ const ReduxFormSelect: any = (field: any) => (
     </Form.Group>
   );
   const ReduxFormInputDuration: any = (field: any) => (
-    <Form.Group className="mb-3">
+    <Form.Group>
         <Form.Label>{field.label}</Form.Label>
         <Form.Control 
           {...field.input}
@@ -117,15 +117,15 @@ const ReduxFormSelect: any = (field: any) => (
   return(
           <Form>
           <Container>
-          <div className="Header">
-          <div className="sessionsText">
-              <text className="HeaderText">Edit Sessions</text>
+          <div className="Header_edit_session">
+          <div className="sessionsText_edit">
+              <text className="HeaderText_edit_session">Edit Sessions</text>
           </div>
           </div>
-          <Form.Group controlId="session-name"> 
+          <Form.Group controlId="session-name_edit"> 
        
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                  <h4 className="text-right">Session Information</h4>
+              <div>
+                  <h4 >Session Information</h4>
               </div>
 
          
@@ -197,7 +197,7 @@ const ReduxFormSelect: any = (field: any) => (
                   placeHolder="Select Activity"
                 />
               <Field name="Staff" type="text" component={ReduxFormInput} label="Staff Incharge" placeHolder="Enter occupation" />
-              <Link to="/allSessions" className="btn btn-primary" style={{width: '500px', margin:"10px", alignItems:"center"}} >View All Sessions</Link>
+              <Link to="/allSessions" className="btn btn-primary_edit" style={{width: '500px', margin:"10px", alignItems:"center"}} >View All Sessions</Link>
              
              
     </Form.Group>
@@ -224,7 +224,7 @@ const mapStateToProps = (state: { form: any, profile: any; }) => {
   };
   
   const form = reduxForm<{}, any>({
-    form: 'SessionForm',
+    form: 'editSessionForm',
   })(editSession);
   
   export default connect(

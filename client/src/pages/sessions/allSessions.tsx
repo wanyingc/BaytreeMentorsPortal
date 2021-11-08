@@ -55,11 +55,11 @@ const secondNov = {
              return(
           <Form>
           <Container>
-          <div className="Header">
-          <div className="sessionsText">
-              <text className="HeaderText">All Sessions</text>
+          <div className="Header_all_sessions">
+          <div className="sessionsText_all_sessions">
+              <text className="HeaderText_all_sessions">All Sessions</text>
               </div>
-                <div className="App">
+                <div className="App_sessions">
             <BootstrapTable keyField='id' data={ sessionList } columns={ columns }  />  </div>
          
           </div>
