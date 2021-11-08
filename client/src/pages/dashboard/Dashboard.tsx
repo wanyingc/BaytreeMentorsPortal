@@ -2,16 +2,16 @@ import React from 'react';
 import './Dashboard.css';
 import DashboardAdmin from './DashboardAdmin';
 import DashboardVolunteer from './DashboardVolunteer';
+import store from "../../store/reducers/store";
+import { useState } from 'react';
+import {isAdmin, isUser} from '../../auth/Authenticator'
 
-const userTypes = ["admin", "volunteer"];
 
 export default function Dashboard() {
-    
-    const userType = userTypes[1];
 
     return (
         <div>
-            {userType === "admin" ?<DashboardAdmin/> : <DashboardVolunteer/> }
+            {isAdmin() ? <DashboardAdmin/> : <DashboardVolunteer/> }
         </div>
     )
 }

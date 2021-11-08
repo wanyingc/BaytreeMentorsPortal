@@ -1,7 +1,7 @@
 import { CgLogOut } from 'react-icons/cg';
 import { IoPersonOutline } from 'react-icons/io5';
-import { FiBarChart2, FiBriefcase } from 'react-icons/fi';
 import { AiOutlineFolderView } from "react-icons/ai";
+import { FiBarChart2, FiBriefcase, FiGrid } from 'react-icons/fi';
 import * as BsIcons from 'react-icons/bs';
 
 export const volunteerItems1 = [
@@ -14,7 +14,7 @@ export const volunteerItems1 = [
         icon: <BsIcons.BsHouseDoor className="nav-icon"/>
     },
     {
-        to: "/timecard",
+        to: "/create-session",
         icon: <BsIcons.BsCalendar2Check className="nav-icon"/>
     },
     {
@@ -28,6 +28,10 @@ export const volunteerItems1 = [
     {
         to: "/report",
         icon: <FiBarChart2 className="nav-icon"/>
+    },
+    {
+        to: "/records",
+        icon: <FiGrid className="nav-icon"/>
     },
     {
         to: "/notifications",
@@ -47,16 +51,8 @@ export const volunteerItems2 = [
         to: "/settings",
         icon: <BsIcons.BsGear className="nav-icon"/>
     },
-    {
-        to: "/logout",
-        icon: <CgLogOut className="nav-icon"/>
-    },
 ];
 export const adminItems1 = [
-    {
-        to: "/search",
-        icon: <BsIcons.BsSearch className="nav-icon"/>
-    },
     {
         to: "/dashboard",
         icon: <BsIcons.BsHouseDoor className="nav-icon"/>
@@ -73,6 +69,10 @@ export const adminItems1 = [
         to:"/mentors-list",
         icon: <BsIcons.BsPeople className="nav-icon"/>
     },
+    {
+        to: "/signup",
+        icon: <BsIcons.BsPersonPlus className="nav-icon"/>
+    },
 ];
 export const adminItems2 = [
     {
@@ -82,9 +82,5 @@ export const adminItems2 = [
     {
         to: "/settings",
         icon: <BsIcons.BsGear className="nav-icon"/>
-    },
-    {
-        to: "/logout",
-        icon: <CgLogOut className="nav-icon"/>
     },
 ];
