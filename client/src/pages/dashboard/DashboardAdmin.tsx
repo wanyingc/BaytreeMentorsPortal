@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import DashboardLineChart from '../../components/DashboardLineChart';
-import { dataRecentSessions, dataUpcomingSessions, dataUsers } from './DashboardDataAdmin';
-import { columnsMentors, columnsSessionsMentors, mentorTypes} from './DashboardDatatypes';
-import { Dropdown } from "react-bootstrap/";
-import EventCalendar from '../../components/EventCalendar';
-import DashboardDoughnut from '../../components/DashboardDoughnut';
+import { NonDeliveredTableData, PendingTableData, SessionsDoneStackedData, SessionsLeftStackedData } from './DashboardDataAdmin';
+import { columnsDashboardTable, mentorTypes} from './DashboardDatatypes';
 import './Dashboard.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
+import { DashboardStackedBar } from '../../components/DashboardComponents/DashboardStackedBar';
+import DashboardDoughnut from '../../components/DashboardComponents/DashboardDoughnut';
+import DataTable from '../../components/DashboardComponents/DataTable';
 
 function getScreenSize () {
     if(window.innerWidth < 768) {
@@ -31,113 +30,51 @@ export default function DashboardAdmin() {
         }
     }, [isMobile]);
 
-    const [mentorTableTitle, setMentorTableTitle] = useState(mentorTypes[0])
-
-// ======================== Render Starts =======================
-    const renderDropdownMentors = mentorTypes.map((mentorType, index) => {
-        return(
-            <Dropdown.Item 
-                key={index} 
-                onClick={()=> setMentorTableTitle(mentorType)} 
-            >
-                {mentorType}
-            </Dropdown.Item>
-        );
-    });
-
-    const renderHeaderMentors = (
-        <div className="ms-2 bg-transparent border-0">
-            <div className="container d-flex justify-content-between mx-0 px-3 text-light table-header-bg-blue rounded-pill fs-3">
-                <div className="fs-4 align-self-center">
-                    {mentorTableTitle}
-                </div>
-                <Dropdown 
-                    id="dropdown-basic-button me-2" 
-                    className="" title="">
-                    <Dropdown.Toggle className="bg-transparent border-0" split variant="success" id="dropdown-custom-2" />
-                    <Dropdown.Menu className="">
-                        {renderDropdownMentors}
-                    </Dropdown.Menu>
-                </Dropdown>
-            </div>
-        </div>
-    );
-// ======================== Render Ends =======================
-
     return (
         <div className="container p-2 mt-5">
             <div className="row">
-            <h5 className="fs-3">Welcome, <strong>Admin</strong>!</h5>
+                <h5 className="fs-3">Welcome, <strong>Admin</strong>!</h5>
             </div>
             <div className="row justify-content-center">
-                <div className="col-xl-9 col-lg-8 mb-4">
-                    <div className="row">
-                        <div className="col-xl-4 col-md-6 col-sm-6 mb-4">
-                            <div className="container h-100">
-                                <DashboardDoughnut 
-                                    title="Session Attendence"
-                                    height={ isMobile ? 250 : undefined }
-                                />
-                            </div>                            
-                        </div>
-                        <div className="col-xl-8 col-md-6 col-sm-12 mb-4">
-                            <div className="container h-100 bt-h-300">
-                                <DashboardLineChart 
-                                    title="Unique and Aggregate Attendence"
-                                    height={isMobile? 250 :undefined}
-                                />
-                            </div>
-                        </div>
+                <div className="col-md-8 col-sm-12 mb-4">
+                    <div className="container h-100 bt-h-300">
+                        <DashboardStackedBar
+                            title="Sessions Completed" data={SessionsDoneStackedData}
+                        />
                     </div>
-                    <div className="row justify-content-center">
-                        <div className="col-xl-6">
-                            <div className={`card h-100 px-0 d-card`}>
-                                <div className="ms-4 text-light table-header-bg-blue rounded-pill px-3 fs-4">
-                                    Session Schedule
-                                </div>
-                                <div className="">
-                                    <EventCalendar/>
-                                </div>
-                            </div>                            
+                </div>
+                <div className="col-md-4 col-sm-6 mb-4">
+                    <div className="container h-100">
+                        <DashboardDoughnut 
+                            title="Sessions Left: 38"
+                            height={isMobile? 250 :350}
+                            data={SessionsLeftStackedData}
+                        />
+                    </div>                            
+                </div>
+            </div>
+            <div className="row justify-content-center">
+                <div className="col-md-6 mb-4">
+                    <div className={`px-3`}>
+                        <div className="row text-light table-header-bg-blue rounded-pill px-3 fs-4">
+                            Pending Session Reports: 6
                         </div>
-                        <div className="col-xl-6">
-                            <div className={`card h-100 px-0 d-card`}>
-                                    {renderHeaderMentors}
-                                <div className="">
-                                    <BootstrapTable keyField='id' data={ dataUsers } columns={ columnsMentors } bordered={ false }/>            
-                                </div>
-                            </div>
+                        <div className=""> 
+                            <DataTable data={PendingTableData} columns={columnsDashboardTable} />
+                        </div>
+                    </div>                           
+                </div>
+                <div className="col-md-6">
+                    <div className={`px-3`}>
+                        <div className="row text-light table-header-bg-blue rounded-pill px-3 fs-4">
+                            Non-delivered Sessions: 3
+                        </div>
+                        <div className="">
+                            <DataTable data={NonDeliveredTableData} columns={columnsDashboardTable} />           
                         </div>
                     </div>
                 </div>
-                <div className="col-xl-3 col-lg-4 mb-4 mt-0 bg-grey ">                    
-                    <div className="row mx-2 mb-2">
-                        <button type="button" className="btn btn-primary rounded-pill w-100 py-2 mb-4">
-                            Create Session
-                        </button>
-                    </div>
-                    <div className="row mb-4 mx-1">
-                        <div className={`card h-100 px-0 d-card`}>
-                            <div className="card-header fs-5">
-                                Upcoming Sessions
-                            </div>
-                            <div className="">
-                                <BootstrapTable keyField='id' data={ dataUpcomingSessions } columns={ columnsSessionsMentors } bordered={ false }/>            
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row mb-2 mx-1">
-                        <div className={`card h-100 px-0 d-card`}>
-                            <div className="card-header fs-5">
-                                Recent Sessions
-                            </div>
-                            <div className="">
-                                <BootstrapTable keyField='id' data={ dataRecentSessions } columns={ columnsSessionsMentors } bordered={ false }/>            
-                            </div>
-                        </div>
-                    </div>                      
-                </div>
-            </div>            
+            </div>           
         </div>
     )
 }

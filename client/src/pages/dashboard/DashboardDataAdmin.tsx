@@ -1,70 +1,103 @@
-import { LineChartDataProps } from "../../components/DashboardLineChart";
-import { UserObject } from "../../interfaces/DashboardInterfaces";
+import { LineChartDataProps } from "../../components/DashboardComponents/DashboardLineChart";
+import { DoughnutDataType, StackedChartDataType, tableDataType } from "../../interfaces/DashboardInterfaces";
 
 export const sampleDate = new Date('October 7, 2021 13:24:00');
 
-export const dataUsers: UserObject[] = [
+//---------------------------- New Data -----------------------------------//
+export const SessionsDoneStackedData: StackedChartDataType = {
+  labels: ['June', 'July', 'August', 'September', 'October', 'November'],
+  datasets: [
+      {
+          label: 'Youth Mentors',
+          data: [10, 12, 19, 3, 5, 2, 3],
+          backgroundColor: 'rgb(255, 99, 132)',
+      },
+      {
+          label: 'Into School Mentors',
+          data: [11, 2, 3, 20, 5, 1, 4],
+          backgroundColor: 'rgb(54, 162, 235)',
+      },
+      {
+          label: 'Women Mentors',
+          data: [4, 3, 10, 13, 15, 22, 30],
+          backgroundColor: 'rgb(75, 192, 192)',
+      },
+  ],
+};
+
+export const SessionsLeftStackedData: DoughnutDataType = {
+  labels: ["Youth Mentor", "Into School Mentor", "Women Mentor"],
+  datasets: [
     {
-        name: "Saqib",
-        lastSession: "02-10-2021",
-        attendence: "Yes"
+      label: 'Sessions Left',
+      data: [11, 15, 12],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(209, 214, 159, 0.5)',
+        'rgba(54, 162, 205, 0.5)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(54, 162, 205, 1)',
+      ],
+      borderWidth: 0,
     },
-    {
-        name: "q",
-        lastSession: "02-10-2021",
-        attendence: "Yes"
-    },
-    {
-        name: "b",
-        lastSession: "01-10-2021",
-        attendence: "Yes"
-    },
-    {
-        name: "r",
-        lastSession: "06-10-2021",
-        attendence: "Yes"
-    },
-    {
-        name: "t",
-        lastSession: "07-10-2021",
-        attendence: "No"
-    },
+  ],
+};
+
+export const PendingTableData: tableDataType[] = [
+  {
+    mentorName: "Natasha", 
+    sessionDate: "10-12-2021", 
+    mentorRole: "Youth Mentor",
+  },
+  {
+    mentorName: "Jane", 
+    sessionDate: "10-12-2021", 
+    mentorRole: "Women Mentor",
+  },
+  {
+    mentorName: "Maria", 
+    sessionDate: "10-12-2021", 
+    mentorRole: "Youth Mentor",
+  },
+  {
+    mentorName: "Lily", 
+    sessionDate: "10-12-2021", 
+    mentorRole: "Into School Mentor",
+  },
+  {
+    mentorName: "Joanna", 
+    sessionDate: "10-12-2021", 
+    mentorRole: "Women Mentor",
+  },
+  {
+    mentorName: "Janet", 
+    sessionDate: "10-12-2021", 
+    mentorRole: "Youth Mentor",
+  },
 ];
 
-export const dataRecentSessions = [
-    {
-        title: "YS Session 1",
-        mentor: "Saqib",
-        date: sampleDate.getDate() + "-" + sampleDate.getMonth() + "-" + sampleDate.getFullYear()
-    },
-    {
-        title: "Into School Session 3",
-        mentor: "Hasib",
-        date: 'October 9, 2021 13:24:00'
-    },
-    {
-        title: "YS Session 2",
-        mentor: "Anon",
-        date: 'October 10, 2021 13:24:00'
-    }
+export const NonDeliveredTableData: tableDataType[] = [
+  {
+    mentorName: "Joanna", 
+    sessionDate: "10-12-2021", 
+    mentorRole: "Women Mentor",
+  },
+  {
+    mentorName: "Janet", 
+    sessionDate: "10-12-2021", 
+    mentorRole: "Youth Mentor",
+  },
+  {
+    mentorName: "Natasha", 
+    sessionDate: "10-12-2021", 
+    mentorRole: "Youth Mentor",
+  },
 ];
-export const dataUpcomingSessions = [
-    {
-        title: "YS Session 1",
-        mentor: "Saqib",
-        date: sampleDate.getDate() + "-" + sampleDate.getMonth() + "-" + sampleDate.getFullYear()
-    },
-    {
-        title: "Into School Session 3",
-        mentor: "Hasib",
-        date: 'October 9, 2021 13:24:00'
-    },
-    {
-        title: "YS Session 2",
-        mentor: "Anon",
-        date: 'October 10, 2021 13:24:00'
-    }
-];
+
+//------------------------------------------------------------------------//
 
 export const LineChartData: LineChartDataProps = {
     labels: ["January", "February", "March", "April"],
