@@ -48,7 +48,6 @@ export const isUser = () => {
 }
 
 export const getAccessToken = () =>{
-    // let accessToken = JSON.parse(localStorage.getItem('accessToken') || '{}');
     let accessToken = localStorage.getItem('accessToken');
     return accessToken == null ? "" : accessToken.toString();
 }

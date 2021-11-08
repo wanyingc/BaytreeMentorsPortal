@@ -9,6 +9,7 @@ import { setState } from '../../store/reducers/action';
 import { post } from 'jquery';
 import { getAccessToken, isAdmin } from '../../auth/Authenticator';
 import { useHistory } from "react-router-dom";
+import { Redirect } from 'react-router';
 
 const LoginComponent = () => {
 
@@ -33,7 +34,7 @@ const LoginComponent = () => {
       return response;
     })
     .catch(err => {
-      console.log(err)
+      console.log(err);
       alert('Error retrieving data!');
       return err;
     });
