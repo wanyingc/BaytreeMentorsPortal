@@ -1,0 +1,43 @@
+.App_sessions{
+    align-items: center;
+    text-align: center;
+    font-size: small;
+}
+
+.Header_all_sessions{ 
+    width: auto;
+    margin-bottom: 10px;
+    font-size:40px;
+    font-style: bold;
+    font-family:'Times New Roman', Times, serif; 
+    text-align:left;
+    border-bottom:1px solid black;
+    border-radius: 11px;
+}
+.HeaderText_all_sessions{
+    width: 100%;
+    color: rgb(0, 0, 0);
+}
+.SessionNotes{
+font-size:xx-large;
+}
+.session_text{
+height: 70%;
+width: 50%;
+}
+.Header_notes_session{
+    width: auto;
+    margin-bottom: 10px;
+    font-size:40px;
+    font-style: bold;
+    font-family:'Times New Roman', Times, serif; 
+    text-align:left;
+    border-bottom:1px solid black;
+    border-radius: 10px;
+
+}
+.HeaderText_session_notes{
+    width: 100%;
+    color: rgb(0, 0, 0);
+
+}

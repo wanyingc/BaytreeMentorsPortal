@@ -1,0 +1,30 @@
+.Header_main_session_page{ 
+    width: auto;
+    margin-bottom: 10px;
+    font-size:40px;
+    font-style: bold;
+    font-family:'Times New Roman', Times, serif; 
+    text-align:left;
+    border-bottom:1px solid black;
+    border-radius: 10px;
+}
+.HeaderText_main_session_page{
+    width: 100%;
+    color: rgb(0, 0, 0);
+}
+.Header_edit_session{
+    width: auto;
+    margin-bottom: 10px;
+    font-size:40px;
+    font-style: bold;
+    font-family:'Times New Roman', Times, serif; 
+    text-align:left;
+    border-bottom:1px solid black;
+    border-radius: 11px;
+    
+}
+.HeaderText_edit{
+    width: 100%;
+    color: rgb(0, 0, 0);
+
+}

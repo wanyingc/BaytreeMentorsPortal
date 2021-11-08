@@ -46,11 +46,11 @@ const DashboardLineChart: FC<LineChartProps> = ({
             {title}
         </div>
         <div className="row bt-h-300">
-            <Line 
+            {/* <Line 
                 data={retrievedData}
                 height={height}
                 options={{ maintainAspectRatio: false }}
-            />
+            /> */}
         </div>
       </>
     );
