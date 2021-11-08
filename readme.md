@@ -32,7 +32,7 @@ Builds the backend of the project, creates *dist* folder to create .js files aft
 ### Frontend:
 #### cd client
 This will change directory to *client* folder, where frontend code is. 
-#### npm install
+#### npm install or npm install --legacy-peer-deps
 Install all the necessary npm packages.
 #### npm start
 Runs the server locally at port 3000.
