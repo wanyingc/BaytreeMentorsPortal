@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Col, Row, Form, Container, Button } from 'react-bootstrap'
 import Axios from 'axios';
+import { getAccessToken } from '../../auth/Authenticator';
 
 const Signup = () => {
 
@@ -10,20 +11,18 @@ const Signup = () => {
 
     const getSignUpResponse = async() => {
         // To do: Fix post request to return correct response.
+        let accessToken = getAccessToken();
         const response = await Axios.post("http://localhost:8080/auth/signup",{
             "email": email,
             "password": password},{
             headers: {
-                "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJ0LmNvbSIsImlhdCI6MTYzNjE3NzU5OSwiZXhwIjoxNjM2MTgxMTk5fQ.gVd-akTRi0x3wYhIxocEXbDVzyOw1M8hk7EuIKwaLEI"
+                "x-access-token": accessToken
             }
         })
         .then(response => {
-            // console.log("success");
             return response;
         })
         .catch(err => {
-            // console.log("Error!!!");
-            // alert("Error.")
             return err;
         });
         console.log("success!");
@@ -77,7 +76,7 @@ const Signup = () => {
                 <Form.Group>
                     <Row className="justify-content-center">
                         <Col md={12}>
-                            <Button className="mt-3" type="submit" variant="primary" onClick={addMentor}>
+                            <Button className="mt-3" variant="primary" onClick={addMentor}>
                                 Create Account
                             </Button>
                         </Col>

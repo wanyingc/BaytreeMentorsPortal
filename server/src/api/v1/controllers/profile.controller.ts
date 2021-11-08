@@ -18,7 +18,7 @@ const profileController = async (req:Request, res:Response) => {
     ]).then(axios.spread((responseProfile) => {
 
         res.status(200).send({
-            name: responseProfile.data.Forname || '',
+            name: responseProfile.data.Forename || '',
             surname: responseProfile.data.Surname || '',
             phone: responseProfile.data.Mobile || '',
             email: responseProfile.data.Email || '',

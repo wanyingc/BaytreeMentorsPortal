@@ -81,6 +81,7 @@ function Profile(props: InjectedFormProps | any) {
         props.change('fname',d.data.name);
         props.change('lname',d.data.surname);
         props.change('phone',d.data.phone);
+        props.change('email',d.data.email);
         props.change('occupation',d.data.occupation);
         props.change('mentorType',d.data.type);
         setDataLoaded(true);
