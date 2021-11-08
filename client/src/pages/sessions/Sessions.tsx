@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Form from "react-bootstrap/Form";
 import { Field, reduxForm, FormErrors, InjectedFormProps } from 'redux-form'
-import Headerimg from './images/image-header.jpg'
 import { Link } from 'react-router-dom';
 
 const secondNov = {
@@ -57,9 +56,9 @@ const secondNov = {
   return(
           <Form>
           <Container>
-          <div className="Header">
+          <div className="Header_main_session_page">
           <div className="sessionsText">
-              <text className="HeaderText">Sessions Report</text>
+              <text className="HeaderText_main_session_page">Sessions Report</text>
           </div>
           </div>
           <Form.Group controlId="session-name"> 

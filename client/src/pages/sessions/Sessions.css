@@ -1,4 +1,4 @@
-.Header{ 
+.Header_main_session_page{ 
     width: auto;
     margin-bottom: 10px;
     font-size:40px;
@@ -8,7 +8,7 @@
     border-bottom:1px solid black;
     border-radius: 10px;
 }
-.HeaderText{
+.HeaderText_main_session_page{
     width: 100%;
     color: rgb(0, 0, 0);
 }
