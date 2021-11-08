@@ -17,7 +17,33 @@ export type goalsObject = {
     mentee: string;
     date: string;
     notes: string;
-}
+};
+
+export type tableDataType = {
+    mentorName: string,
+    sessionDate: string,
+    mentorRole: string
+};
+
+export type StackedChartDataType = {
+    labels: string[];
+    datasets: {
+        label: string;
+        data: number[];
+        backgroundColor: string;
+    }[];
+};
+
+export type DoughnutDataType = {
+    labels: string[];
+    datasets: {
+      label: string;
+      data: number[];
+      backgroundColor: string[];
+      borderColor: string[];
+      borderWidth: number;
+    }[];
+};
 
 export type notificationObject = {
     title: string;
