@@ -26,7 +26,7 @@ const LoginComponent = () => {
   }
 
   const getLoginResponse= async() => {
-    const response = await Axios.post("http://localhost:8080/auth/login",{
+    const response = await Axios.post("http://cmpt373-1217-04.cmpt.sfu.ca:8080/auth/login",{
       email: email,
       password:password
     })
