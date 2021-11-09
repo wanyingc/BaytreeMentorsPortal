@@ -69,7 +69,7 @@ function Profile(props: InjectedFormProps | any) {
     let accessToken = getAccessToken();
     let personID = getPersonID();
     Axios.post(
-      "http://cmpt373-1217-04.cmpt.sfu.ca/auth/profile", 
+      "http://cmpt373-1217-04.cmpt.sfu.ca:8080/auth/profile", 
       {
         personID: personID,
       },
