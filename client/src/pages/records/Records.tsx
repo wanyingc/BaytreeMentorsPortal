@@ -16,7 +16,7 @@ const RecordsComponent = () => {
     let accessToken = getAccessToken();
     let personID = getPersonID();
     Axios.post(
-      "http://localhost:8080/auth/records", 
+      "http://cmpt373-1217-04.cmpt.sfu.ca:8080/auth/records", 
       {
         personID: personID,
       },

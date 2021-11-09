@@ -12,7 +12,7 @@ const Signup = () => {
     const getSignUpResponse = async() => {
         // To do: Fix post request to return correct response.
         let accessToken = getAccessToken();
-        const response = await Axios.post("http://localhost:8080/auth/signup",{
+        const response = await Axios.post("http://cmpt373-1217-04.cmpt.sfu.ca:8080/auth/signup",{
             "email": email,
             "password": password},{
             headers: {
