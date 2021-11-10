@@ -8,6 +8,7 @@ import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.c
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import React, { useEffect, useState } from 'react';
 import getMentorList from './MentorsListData';
+import { useHistory } from "react-router-dom";
 
 const columns = [
     {
@@ -80,6 +81,8 @@ const MentorsList = () => {
     const [mentorData, setMentorData] = useState<mentorDataType>({ result: sampleMentors});
     const [mentors, setMentors] = useState<Object[]>([]);
     const [loading, setLoading] = useState(true);
+    const history = useHistory();
+
 
     useEffect(() => {
         if(loading) {
@@ -94,7 +97,7 @@ const MentorsList = () => {
 
     var options ={
         onClick: function(e: any, row: any, rowIndex: any){
-            console.log(e, row, rowIndex)
+            history.push("/records/"+row.personID);
         }
     }
 

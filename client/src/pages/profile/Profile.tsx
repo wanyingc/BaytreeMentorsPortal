@@ -11,6 +11,7 @@ import { Table } from "react-bootstrap";
 import { getAccessToken, isAdmin, getPersonID} from "../../auth/Authenticator";
 import Axios from "axios";
 import'../records/Records.css';
+import { BASE_API_URL } from "../../config";
 
 const DEFAULT_USER = {
   profileImg: 'https://merodesk.com/wp-content/uploads/2021/05/user-4.png'
@@ -69,7 +70,7 @@ function Profile(props: InjectedFormProps | any) {
     let accessToken = getAccessToken();
     let personID = getPersonID();
     Axios.post(
-      "http://cmpt373-1217-04.cmpt.sfu.ca:8080/auth/profile", 
+      `${BASE_API_URL}/auth/profile`, 
       {
         personID: personID,
       },

@@ -1,11 +1,12 @@
 import axios from "axios";
+import { BASE_API_URL } from "../../config";
 import { getAccessToken } from "../../auth/Authenticator";
 
     
 const getMentorList = async() => {
     
     let accessToken = getAccessToken();
-    const resp = await axios.get(`http://cmpt373-1217-04.cmpt.sfu.ca:8080/auth/admin/mentorlist`,
+    const resp = await axios.get(`${BASE_API_URL}/auth/admin/mentorlist`,
     {
         headers: {
             "X-access-token": accessToken

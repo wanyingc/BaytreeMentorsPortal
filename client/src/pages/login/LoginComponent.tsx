@@ -10,6 +10,7 @@ import { post } from 'jquery';
 import { getAccessToken, isAdmin } from '../../auth/Authenticator';
 import { useHistory } from "react-router-dom";
 import { Redirect } from 'react-router';
+import {BASE_API_URL} from '../../config'; 
 
 const LoginComponent = () => {
 
@@ -26,7 +27,7 @@ const LoginComponent = () => {
   }
 
   const getLoginResponse= async() => {
-    const response = await Axios.post("http://cmpt373-1217-04.cmpt.sfu.ca:8080/auth/login",{
+    const response = await Axios.post(`${BASE_API_URL}/auth/login`,{
       email: email,
       password:password
     })

@@ -10,6 +10,7 @@ import { Request, Response } from 'express';
 import connectDB from './src/api/v1/models/index';
 import recordsRouter from './src/api/v1/routes/records.route';
 import profileRouter from './src/api/v1/routes/profile.route';
+import { PORT } from './config';
 
 const app=express();
 let corsOptions = {
@@ -35,7 +36,6 @@ app.use("/", profileRouter);
 // This router is only for testing, and demonstrates example for authority based API requests
 app.use("/", testRouter);
 
-const PORT = 5001;
 app.listen(PORT,()=>{
     console.log(`App is running on localhost ${PORT}.`);
 });

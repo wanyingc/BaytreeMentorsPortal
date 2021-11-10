@@ -1,6 +1,8 @@
+import {DB_URL, DB_PORT} from "../../config";
+
 const DBConfig = {
-    HOST: "localhost",
-    PORT: "27017",
+    HOST: DB_URL,
+    PORT: DB_PORT,
     DB: "BaytreeTeamMarsDatabase"
 };
 
