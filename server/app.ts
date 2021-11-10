@@ -35,7 +35,7 @@ app.use("/", profileRouter);
 // This router is only for testing, and demonstrates example for authority based API requests
 app.use("/", testRouter);
 
-const PORT = 8080;
+const PORT = 5001;
 app.listen(PORT,()=>{
     console.log(`App is running on localhost ${PORT}.`);
 });
