@@ -13,9 +13,6 @@ import profileRouter from './src/api/v1/routes/profile.route';
 import { PORT } from './config';
 
 const app=express();
-let corsOptions = {
-    origin: "http://localhost:8081"
-};
 
 app.use(cors());
 
@@ -24,17 +21,17 @@ app.use(bodyParser.urlencoded({ extended: true })); // content-type - applicatio
 
 connectDB(); // Connects to database at the port # mentioned in db.config.ts
 
-app.get("/", (req:Request, res:Response) => {
+app.get("/api", (req:Request, res:Response) => {
     res.json({ message: "default page for the server"});
 });
 
-app.use("/", loginRouter);
-app.use("/",mentorListRouter);
-app.use("/", recordsRouter);
-app.use("/", profileRouter);
+app.use("/api", loginRouter);
+app.use("/api",mentorListRouter);
+app.use("/api", recordsRouter);
+app.use("/api", profileRouter);
 
 // This router is only for testing, and demonstrates example for authority based API requests
-app.use("/", testRouter);
+app.use("/api", testRouter);
 
 app.listen(PORT,()=>{
     console.log(`App is running on localhost ${PORT}.`);
