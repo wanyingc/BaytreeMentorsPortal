@@ -6,6 +6,7 @@ import { getAccessToken} from "../../auth/Authenticator";
 import {
   useParams
 } from "react-router-dom";
+import { BASE_API_URL } from '../../config';
 const RecordsComponent = (props:any) => {
 
   const [mentorRecords, setMentorRecords] = useState<any>(undefined);
@@ -17,7 +18,7 @@ const RecordsComponent = (props:any) => {
   const getMentorRecords= ()=>{
     let accessToken = getAccessToken();
     Axios.post(
-      "http://localhost:8080/auth/records", 
+      `${BASE_API_URL}/auth/records`, 
       {
         personID: props.personID,
       },

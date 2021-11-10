@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Col, Row, Form, Container, Button } from 'react-bootstrap'
 import Axios from 'axios';
 import { getAccessToken } from '../../auth/Authenticator';
+import { BASE_API_URL } from '../../config';
 
 const Signup = () => {
 
@@ -12,7 +13,7 @@ const Signup = () => {
     const getSignUpResponse = async() => {
         // To do: Fix post request to return correct response.
         let accessToken = getAccessToken();
-        const response = await Axios.post("http://localhost:8080/auth/signup",{
+        const response = await Axios.post(`${BASE_API_URL}/auth/signup`,{
             "email": email,
             "password": password},{
             headers: {

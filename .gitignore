@@ -1,5 +1,9 @@
 **/node_modules
 
+/server/config.ts
+
+/client/src/config.ts
+
 **/dist
 
 **/.vscode
