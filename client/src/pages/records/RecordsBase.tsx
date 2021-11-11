@@ -6,7 +6,7 @@ import { getAccessToken} from "../../auth/Authenticator";
 import {
   useParams
 } from "react-router-dom";
-import { BASE_API_URL } from '../../config';
+import { BASE_API_URL } from '../../config/config';
 const RecordsComponent = (props:any) => {
 
   const [mentorRecords, setMentorRecords] = useState<any>(undefined);

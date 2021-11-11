@@ -1,5 +1,7 @@
+import { AUTH_CONFIG } from "./config";
+
 const authConfig = {
-    secret: "cmpt373-team-mars-2021"
+    secret: AUTH_CONFIG.secret
 };
 
 export default authConfig;

@@ -10,7 +10,7 @@ import { Request, Response } from 'express';
 import connectDB from './src/api/v1/models/index';
 import recordsRouter from './src/api/v1/routes/records.route';
 import profileRouter from './src/api/v1/routes/profile.route';
-import { PORT } from './config';
+import { PORT } from './src/config/config';
 
 const app=express();
 

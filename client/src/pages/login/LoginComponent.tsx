@@ -10,7 +10,7 @@ import { post } from 'jquery';
 import { getAccessToken, isAdmin } from '../../auth/Authenticator';
 import { useHistory } from "react-router-dom";
 import { Redirect } from 'react-router';
-import {BASE_API_URL} from '../../config'; 
+import {BASE_API_URL} from '../../config/config'; 
 
 const LoginComponent = () => {
 

@@ -11,7 +11,7 @@ import { Table } from "react-bootstrap";
 import { getAccessToken, isAdmin, getPersonID} from "../../auth/Authenticator";
 import Axios from "axios";
 import'../records/Records.css';
-import { BASE_API_URL } from "../../config";
+import { BASE_API_URL } from "../../config/config";
 
 const DEFAULT_USER = {
   profileImg: 'https://merodesk.com/wp-content/uploads/2021/05/user-4.png'

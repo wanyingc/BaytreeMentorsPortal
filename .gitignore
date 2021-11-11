@@ -1,8 +1,8 @@
 **/node_modules
 
-/server/config.ts
+server/src/config/config.ts
 
-/client/src/config.ts
+/client/src/config/config.ts
 
 **/dist
 

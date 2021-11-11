@@ -1,10 +1,6 @@
-import axios from 'axios';
 import { Request, Response, NextFunction } from 'express';
-import jsonwebtoken from 'jsonwebtoken';
-import authConfig from '../../../config/auth.config';
 import User from "../models/user.model";
 import UserInfo from '../models/userinfo.model';
-import getRoles from '../services/roles.service';
 const Joi = require('joi');
 
 const logTitle = "Login Controller";

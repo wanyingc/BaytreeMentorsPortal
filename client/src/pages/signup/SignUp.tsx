@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Col, Row, Form, Container, Button } from 'react-bootstrap'
 import Axios from 'axios';
 import { getAccessToken } from '../../auth/Authenticator';
-import { BASE_API_URL } from '../../config';
+import { BASE_API_URL } from '../../config/config';
 
 const Signup = () => {
 

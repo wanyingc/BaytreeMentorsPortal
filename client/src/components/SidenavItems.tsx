@@ -64,9 +64,3 @@ export const adminItems1 = [
         icon: <AiOutlineFolderView className="nav-icon"/>
     },
 ];
-export const adminItems2 = [
-    {
-        to: "/profile",
-        icon: <IoPersonOutline className="nav-icon"/>
-    },
-];

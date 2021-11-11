@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jsonwebtoken from 'jsonwebtoken';
-import authConfig from '../../../config/auth.config';
+import {AUTH_CONFIG, TOKEN_EXPIRE_DURATION} from '../../../config/config';
 import User from "../models/user.model";
 
 const logTitle = "Login Controller";
@@ -24,7 +24,7 @@ const loginController = async (req:Request, res:Response, next:NextFunction) => 
                 message: "Invalid Password!"
             });
             } else {
-                let token = jsonwebtoken.sign({ email: user.email}, authConfig.secret, {expiresIn: 3600});
+                let token = jsonwebtoken.sign({ email: user.email}, AUTH_CONFIG.secret, {expiresIn: TOKEN_EXPIRE_DURATION});
                 res.status(200).send({
                     email: user.email,
                     roles: user.roles,
