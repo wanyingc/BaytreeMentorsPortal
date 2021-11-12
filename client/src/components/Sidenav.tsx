@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../assets/logo.svg';
 import '../styles/Sidenav.css';
-import { volunteerItems1, volunteerItems2, adminItems1, adminItems2 } from './SidenavItems';
+import { volunteerItems1, volunteerItems2, adminItems1 } from './SidenavItems';
 import { Link } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
 import { isAdmin } from '../auth/Authenticator';
@@ -72,15 +72,7 @@ export default function Sidenav() {
                     </li>
                 );
             });
-            menus2 = adminItems2.map((item, index) => {
-                return(
-                    <li className="nav-item border-0" key={index}>
-                        <Link to={item.to} className="nav-link btn-lg text-center px-3 py-1 btn-font-color-secondary" aria-current="page" type="button">
-                            {item.icon}
-                        </Link>
-                    </li>
-                );
-            });
+            menus2 = <></>;
         } else {
             menus1 = volunteerItems1.map((item, index) => {
                 return(

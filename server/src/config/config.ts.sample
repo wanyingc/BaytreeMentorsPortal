@@ -1,0 +1,14 @@
+// main config
+export const PORT = 5001;
+// Database config
+export const DB_PORT = 27017
+export const DB_URL = "localhost";
+export const DB = "BaytreeTeamMarsDatabase";
+// Views config
+export const VIEWS_USERNAME = "";
+export const VIEWS_PASSWORD = "";
+// Auth config
+export const AUTH_CONFIG = {
+    secret: "cmpt373-team-mars-2021"
+};
+export const TOKEN_EXPIRE_DURATION = 3600;

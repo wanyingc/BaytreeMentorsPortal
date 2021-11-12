@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Request, Response, NextFunction } from 'express';
+import { VIEWS_PASSWORD, VIEWS_USERNAME } from '../../../config/config';
 import getRoles from '../services/roles.service';
 
 const logTitle = "Signup MW";
@@ -13,8 +14,8 @@ const gatherDataFromViewsAPIMW = async (req:Request, res:Response, next:NextFunc
                 "Content-Type": "application/json"
             },
             auth: {
-                username: 'group.mars',
-                password: 'RDhQ2kJ#v&8u'
+                username: VIEWS_USERNAME,
+                password: VIEWS_PASSWORD
             }
         });
 

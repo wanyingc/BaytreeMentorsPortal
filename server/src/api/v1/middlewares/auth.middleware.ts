@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jsonwebtoken from 'jsonwebtoken';
-import authConfig from '../../../config/auth.config';
+import {AUTH_CONFIG} from '../../../config/config';
 import User from '../models/user.model';
 
 const logTitle = "Login MW";
@@ -14,7 +14,7 @@ const verifyJWT = (req:Request, res:Response, next:NextFunction) => {
         });
     }
 
-    jsonwebtoken.verify(accessToken, authConfig.secret, (error, decodedToken) => {
+    jsonwebtoken.verify(accessToken, AUTH_CONFIG.secret, (error, decodedToken) => {
         if(error){
             return res.status(401).send({
                 message: "Invalid token!"

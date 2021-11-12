@@ -10,11 +10,9 @@ import { Request, Response } from 'express';
 import connectDB from './src/api/v1/models/index';
 import recordsRouter from './src/api/v1/routes/records.route';
 import profileRouter from './src/api/v1/routes/profile.route';
+import { PORT } from './src/config/config';
 
 const app=express();
-let corsOptions = {
-    origin: "http://localhost:8081"
-};
 
 app.use(cors());
 
@@ -23,19 +21,18 @@ app.use(bodyParser.urlencoded({ extended: true })); // content-type - applicatio
 
 connectDB(); // Connects to database at the port # mentioned in db.config.ts
 
-app.get("/", (req:Request, res:Response) => {
+app.get("/api", (req:Request, res:Response) => {
     res.json({ message: "default page for the server"});
 });
 
-app.use("/", loginRouter);
-app.use("/",mentorListRouter);
-app.use("/", recordsRouter);
-app.use("/", profileRouter);
+app.use("/api", loginRouter);
+app.use("/api",mentorListRouter);
+app.use("/api", recordsRouter);
+app.use("/api", profileRouter);
 
 // This router is only for testing, and demonstrates example for authority based API requests
-app.use("/", testRouter);
+app.use("/api", testRouter);
 
-const PORT = 8080;
 app.listen(PORT,()=>{
     console.log(`App is running on localhost ${PORT}.`);
 });

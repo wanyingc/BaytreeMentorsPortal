@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import axios from 'axios';
 import { getResponseArray } from '../services/records.service';
+import { VIEWS_PASSWORD, VIEWS_USERNAME } from '../../../config/config';
 
 const logTitle = "Records Controller";
 
@@ -12,8 +13,8 @@ const recordsController = async (req:Request, res:Response) => {
                     "Content-Type": "application/json"
                 },
                 auth: {
-                    username: 'group.mars',
-                    password: 'RDhQ2kJ#v&8u'
+                    username: VIEWS_USERNAME,
+                    password: VIEWS_PASSWORD
                 }
             }
         ),
@@ -23,8 +24,8 @@ const recordsController = async (req:Request, res:Response) => {
                     "Content-Type": "application/json"
                 },
                 auth: {
-                    username: 'group.mars',
-                    password: 'RDhQ2kJ#v&8u'
+                    username: VIEWS_USERNAME,
+                    password: VIEWS_PASSWORD
                 }
             }
         )

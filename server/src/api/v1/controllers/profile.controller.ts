@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import axios from 'axios';
+import { VIEWS_PASSWORD, VIEWS_USERNAME } from '../../../config/config';
 
 const profileController = async (req:Request, res:Response) => {
     await axios.all([
@@ -9,8 +10,8 @@ const profileController = async (req:Request, res:Response) => {
                     "Content-Type": "application/json"
                 },
                 auth: {
-                    username: 'group.mars',
-                    password: 'RDhQ2kJ#v&8u'
+                    username: VIEWS_USERNAME,
+                    password: VIEWS_PASSWORD
                 }
             }
         ),

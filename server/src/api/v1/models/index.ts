@@ -1,10 +1,10 @@
 import mongoose, { ConnectOptions, Error, Mongoose, Number } from "mongoose";
-import DBConfig from "../../../config/db.config";
+import { DB, DB_PORT, DB_URL } from "../../../config/config";
 import User from "./user.model";
 
 const connectDB = async () => {
     await mongoose
-        .connect(`mongodb://${DBConfig.HOST}:${DBConfig.PORT}/${DBConfig.DB}`, { useNewUrlParser: true, useUnifiedTopology: true } as ConnectOptions)
+        .connect(`mongodb://${DB_URL}:${DB_PORT}/${DB}`, { useNewUrlParser: true, useUnifiedTopology: true } as ConnectOptions)
         .then(() => {
             initial();
             console.log("Successfully connected to MongoDB.");

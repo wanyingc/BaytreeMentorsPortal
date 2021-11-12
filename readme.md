@@ -10,8 +10,10 @@ Admins can create and manage mentors, and see statistics of mentors to get an ov
 The frontend and backend are separated into "client" and "server" folders. The design pattern we followed here is MVC (Model View Controller). Model and Controller are in the backend, whereas frontend is the View.
 ### Frontend
 Frontend, built using React and Typescript, is strucutured in components and pages, all in separate folders based on their needs. The reusable components are in components folder, whereas the pages folder contains subfolders, separating pages of the web app.
+<br>**/client/src/config/config.ts**: Copy of the `config.ts.sample` file with the name `config.ts` is required in the */client/src/config/* folder to run the project. It is added to git ignore, so it is meant to be maintained locally.
 ### Backend
 Backend server is developed using a NodeJS library named "ExpressJS". For database, we used MongoDB. app.ts is the entry point of the server, rest of the code is in *src* folder. *config* folder has all the configurations (database config, authentication config etc). *api/v1* folder has all the API related files, such as *models*, *controllers*, *routes*, *middlewares*, *services* etc. *models* folder has all the database schemas, *routes* folder has the API endpoint methods. *middlewares* folder has the middlewares that are necessary for each of the routes. *controllers* processes response in JSON and return to the frontend.
+<br>**server/src/api/v1/config/config.ts**: Copy of the `config.ts.sample` file with the name `config.ts` is required in the *server/src/api/v1/config/* folder to run the project. It is added to git ignore, so it is meant to be maintained locally. Username and password of the Views account need to filled in in that file to be able to access most part of the application.
 
 Frontend:
 https://atlas.mindmup.com/2021/10/6edeea3024c611eca389956e86824a39/prj/index.html
@@ -19,6 +21,24 @@ https://atlas.mindmup.com/2021/10/6edeea3024c611eca389956e86824a39/prj/index.htm
 Backend:
 https://atlas.mindmup.com/2021/10/81972de0324a11ecb37d5f030c22b9de/server/index.html
 
+## Run Instructions
+### Frontend:
+#### cd client
+This will change directory to *client* folder, where frontend code is. 
+#### npm install or npm install --legacy-peer-deps
+Install all the necessary npm packages.
+#### npm start
+Runs the frontend server locally at port 3000.
+### Backend:
+#### cd server
+This will change directory to *server* folder, where backend code is. 
+#### npm install
+Install all the necessary npm packages.
+#### npm start
+Runs the server locally at port 5001.
+Database starts at port 27017. You can connect through MongoDB Compass.
+### Deployment
+The app is deployed using Nginx for server and PM2 for running `npm start` for both frontend and backend in the background. "production" branch has the final tested version that is deployed. For testing purposes, we created an admin with email "admin@bt.com" and multiple users that can found on mentors list from admin account. All of them have the same password: 1234.
 
 ## Build Directions
 ### Frontend
@@ -28,24 +48,8 @@ Builds the frontend part of the project.
 #### npm run-script build
 Builds the backend of the project, creates *dist* folder to create .js files after compiling .ts files.
 
-## Run Instructions
-### Frontend:
-#### cd client
-This will change directory to *client* folder, where frontend code is. 
-#### npm install or npm install --legacy-peer-deps
-Install all the necessary npm packages.
-#### npm start
-Runs the server locally at port 3000.
-### Backend:
-#### cd server
-This will change directory to *server* folder, where backend code is. 
-#### npm install
-Install all the necessary npm packages.
-#### npm start
-Runs the server locally at port 8080.
-Database starts at port 27017. You can connect through MongoDB Compass.
 #### API Documentation:
-- Root URI: `http://localhost:8080/`
+- Root URI: `http://localhost:5001/api`
 - Login:
    - POST "/auth/login" : 
       - MongoDB collection name: "users"
