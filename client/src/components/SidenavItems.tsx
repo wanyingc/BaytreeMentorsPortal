@@ -60,7 +60,7 @@ export const adminItems1 = [
         icon: <BsIcons.BsPersonPlus className="nav-icon"/>
     },
     {
-        to: "/resources",
+        to: "/questionnaires",
         icon: <AiOutlineFolderView className="nav-icon"/>
     },
 ];
