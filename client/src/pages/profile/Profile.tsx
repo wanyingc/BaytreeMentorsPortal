@@ -13,8 +13,12 @@ import Axios from "axios";
 import'../records/Records.css';
 import { BASE_API_URL } from "../../config/config";
 
+// Img Source: https://pixabay.com/illustrations/profile-profile-pic-human-face-2398783/
+import defaultProfilePic from './default_profile_picture.webp';
+
 const DEFAULT_USER = {
-  profileImg: 'https://merodesk.com/wp-content/uploads/2021/05/user-4.png'
+  // profileImg: 'https://merodesk.com/wp-content/uploads/2021/05/user-4.png'
+  profileImg: defaultProfilePic
 };
 
 const ReduxFormSelect: any = (field: any) => (
