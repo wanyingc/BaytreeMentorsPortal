@@ -11,6 +11,7 @@ import connectDB from './src/api/v1/models/index';
 import recordsRouter from './src/api/v1/routes/records.route';
 import profileRouter from './src/api/v1/routes/profile.route';
 import { PORT } from './src/config/config';
+import questionnairelistRouter from './src/api/v1/routes/questionnairelist.route';
 
 const app=express();
 
@@ -29,6 +30,7 @@ app.use("/api", loginRouter);
 app.use("/api",mentorListRouter);
 app.use("/api", recordsRouter);
 app.use("/api", profileRouter);
+app.use("/api", questionnairelistRouter)
 
 // This router is only for testing, and demonstrates example for authority based API requests
 app.use("/api", testRouter);

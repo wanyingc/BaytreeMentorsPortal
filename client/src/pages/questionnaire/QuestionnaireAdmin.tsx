@@ -1,34 +1,67 @@
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
+import {Button, Row, Col, Spinner} from 'react-bootstrap/'
+import './QuestionnaireForm.css';
+import Axios from "axios";
+import { BASE_API_URL } from "../../config/config";
+import React, { useState, useEffect  } from 'react';
+import { getAccessToken} from "../../auth/Authenticator";
 
-const QuestionnaireAdmin = () => {
+const QuestionnaireAdmin = (props:any) => {
+    const [questionnaireList, setQuestionnaireList] = useState<any>(undefined);
+
+    useEffect(() => {
+      getQuestionnaires();
+    }, []);
+  
+    const getQuestionnaires= ()=>{
+      let accessToken = getAccessToken();
+      Axios.get( `${BASE_API_URL}/auth/questionnairelist`, 
+        {
+          headers: {
+            "X-access-token": accessToken
+          }
+        }).then((d:any) => {
+          setQuestionnaireList(d.data);
+      });
+    }
 
     return (
-        <div id="boxes">
-            <h5>Questionnaires</h5>
+        <div id="main_questionnaire">
+            <Row>
+            {!questionnaireList &&
+                <div className = "loading">
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+                </div>
+            } 
+            <h5>Questionnaire Forms</h5>
             <hr/>
             <Table responsive hover>
                 <tbody>
-                    <tr>
-                    <td>Questionnaire Template #1</td>
-                    <td><Button variant="primary" >View</Button></td>
-                    <td><Button variant="success" >Send</Button></td>
-
-                    </tr>
-                    <tr>
-                    <td>Volunteer Questionnaire 5</td>
-                    <td><Button variant="primary" >View</Button></td>
-                    <td><Button variant="success" >Send</Button></td>
-
-                    </tr>
-                    <tr>
-                    <td>Demo Questionnaire 2</td>
-                    <td><Button variant="primary" >View</Button></td>
-                    <td><Button variant="success" >Send</Button></td>
-
-                    </tr>
+                    { 
+                    questionnaireList?.questionnaireList.map((qInfo: any) => {
+                        console.log(qInfo["QuestionnaireID"])
+                          return (
+                            <tr key={qInfo["QuestionnaireID"]} >
+                              <td>{qInfo["Title"]}</td>
+                              <td><Button variant="primary" >View</Button></td>
+                              <td><Button variant="success" >Send</Button></td>
+                            </tr>
+                          )
+                        })
+                    }
                 </tbody>
             </Table>
+            </Row>
+            <Row>
+                <Col>
+                    <h6>Pending Questionnaires</h6>
+                </Col>
+                <Col>
+                    <h6>Completed Questionnaires</h6>
+                </Col>
+            </Row>
         </div>
     )
 
