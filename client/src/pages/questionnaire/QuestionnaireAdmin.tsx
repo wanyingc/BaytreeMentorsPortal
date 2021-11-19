@@ -41,7 +41,6 @@ const QuestionnaireAdmin = (props:any) => {
                 <tbody>
                     { 
                     questionnaireList?.questionnaireList.map((qInfo: any) => {
-                        console.log(qInfo["QuestionnaireID"])
                           return (
                             <tr key={qInfo["QuestionnaireID"]} >
                               <td>{qInfo["Title"]}</td>
