@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Col, Row, Form, Container, Button } from 'react-bootstrap'
+import { Col, Row, Form, Container, Button, Spinner } from 'react-bootstrap'
 import Axios from 'axios';
 import { getAccessToken } from '../../auth/Authenticator';
 import { BASE_API_URL } from '../../config/config';
@@ -9,9 +9,10 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [signupResponse, setSignupResponse] = useState<any>(undefined);
+    const [submit, setSubmit] = useState(false);
 
     const getSignUpResponse = async() => {
-        // To do: Fix post request to return correct response.
         let accessToken = getAccessToken();
         const response = await Axios.post(`${BASE_API_URL}/auth/signup`,{
             "email": email,
@@ -23,10 +24,10 @@ const Signup = () => {
         .then(response => {
             return response;
         })
-        .catch(err => {
+        .catch((err) => {
+            alert(err.response.data.error);
             return err;
         });
-        console.log("success!");
         return response;    
     }
 
@@ -37,19 +38,25 @@ const Signup = () => {
             alert("Passwords do not match!");
         }
         else {
+            setSubmit(true);
             getSignUpResponse()
                 .then(response => {
-                    console.log(response.data);
+                    setSignupResponse(response.data);
+                    setSubmit(false);
                 });
         }
     }
 
     return (
         <Container>
-
-            <h3>Mentor Sign Up Form</h3>
-            <hr />
-
+            {
+                !signupResponse && submit &&
+                <div className = "loading">
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                </div>
+            }
             <Form className="justify-content-center align-items-center">
                 
                 <Form.Group className="mb-3">
