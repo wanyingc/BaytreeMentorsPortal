@@ -102,7 +102,7 @@ function Profile(props: InjectedFormProps | any) {
           } 
         <Col md={3}>
             <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img className="rounded-circle mt-5" width="150px" src={DEFAULT_USER.profileImg}/>
+                <img className="rounded-circle mt-5" width="150px" src={DEFAULT_USER.profileImg} alt="Profile"/>
                 <span className="font-weight-bold">{userInfo && userInfo.fname}</span>
                 <span className="text-black-50">{userInfo && userInfo.email}</span>
                 <span> </span>
