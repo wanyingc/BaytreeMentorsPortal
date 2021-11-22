@@ -26,9 +26,17 @@ const barChartData = {
         {
             label: '',
             data: [10, 2, 8],
-            backgroundColor: ['#317821', '#4EB836', '#D5DF7C'],
-            borderColor: ['#317821', '#4EB836', '#D5DF7C'],
-            borderWidth: 1,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)', 
+                'rgba(209, 214, 159, 0.5)', 
+                'rgba(54, 162, 205, 0.5)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)', 
+                'rgba(54, 162, 205, 1)'
+            ],
+            borderWidth: 0,
         },
     ],
 };
@@ -37,11 +45,17 @@ const doughnutChartData = {
    label: ['Completed', 'Incomplete'],
    datasets: [
        {
-            label: 'Monthly Form Progress',
+            label: 'Questionnaires',
             data: [10,2],
-            backgroundColor: ['#48B030', '#FF1E89'],
-            borderColor: ['#48B030', '#FF1E89'],
-            borderWidth:1,
+            backgroundColor: [
+                'rgba(54, 162, 205, 0.5)',
+                'rgba(255, 99, 132, 0.5)', 
+            ],
+            borderColor: [
+                'rgba(54, 162, 205, 1)',
+                'rgba(255, 99, 132, 1)', 
+            ],
+            borderWidth:0,
        },
    ],
 }
@@ -61,7 +75,7 @@ function DashboardVolunteer() {
                 </div>
 
                 <div className="col-lg-3 col-md-3 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Monthly Progress Update</h2>
+                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Questionnaires</h2>
                     <Doughnut data={doughnutChartData}/>
                 </div>
 
