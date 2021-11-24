@@ -1,77 +1,61 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './timecard.css'
-import { Container, Col, Row, ListGroup, Form, Button } from "react-bootstrap/";
+import { Container, Col, Row, ListGroup, Form, Button, ToggleButton, Spinner } from "react-bootstrap/";
+import { mentees, radiosAttended } from './CreateSessionData';
+import Axios from 'axios';
+import { getAccessToken, getPersonID } from '../../auth/Authenticator';
+import { BASE_API_URL } from '../../config/config';
 
 // Event Calendar imported from https://www.npmjs.com/package/react-big-calendar
+// Cite: useRef from https://stackoverflow.com/questions/55075604/react-hooks-useeffect-only-on-update?rq=1
 
+const topLeftColNum = 4;
+const toprightColNum = 12 - topLeftColNum;
 
-const mentees = [
-  {
-      id: 1,
-      name: 'Mentee 1',
-  },
-  {
-      id: 2,
-      name: 'Mentee 2',
-  },
-  {
-      id: 3,
-      name: 'Mentee 3',
-  },
-];
+const CreateSession = () => {
 
-type SessionObject = {
-  id: number;
-  mentee: string;
-  date: string;
-  start: string;
-  end: string;
-  notes: string;
-};
-
-const sessionHistory: SessionObject[] = [
-  {
-    id: 1,
-    mentee: 'Mentee 1',
-    date: '2021-11-06',
-    start: '3:00PM',
-    end: '4:00PM',
-    notes: 'Worked hard on math'
-  },
-  {
-    id: 2,
-    mentee: 'Mentee 2',
-    date: '2021-11-05',
-    start: '2:00PM',
-    end: '3:00PM',
-    notes: 'Worked hard on english'
-  },
-  {
-    id: 3,
-    mentee: 'Mentee 3',
-    date: '2021-11-04',
-    start: '1:00PM',
-    end: '2:00PM',
-    notes: 'Worked hard on cooking'
-  },  
-];
-
-
-
-function CreateSession(){
-
-  const [mentee, setMentee] = useState("");
+  const [mentee, setMentee] = useState(mentees[0].name);
+  const [radioAttended, setRadioAttended] = useState("1");
   const [date, setDate] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [note, setNote] = useState("");
-  
-  const CreateSession = () => {
-    console.log(mentee)
-    console.log(date)
-    console.log(start)
-    console.log(end)
-    console.log(note)
+  const [sessionResponse, setSessionResponse] = useState<any>(undefined);
+  const [submit, setSubmit] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmit(true);
+    getSessionConfirmation();
+  }
+
+  const getSessionConfirmation = () =>{
+    let accessToken = getAccessToken();
+    let personID = getPersonID();
+    Axios.post(
+      `${BASE_API_URL}/auth/create-session`, // TODO: change to appropriate endpoint -----------------------------------
+      {
+        personID: personID,
+        mentee: mentee,
+        date: date,
+        start: start,
+        end: end,
+        note: note,
+        attended: radioAttended === "1" ? true : false
+      },
+      {
+        headers: {
+          "X-access-token": accessToken
+        }
+      }
+    ).then((d:any) => {
+        console.log(d.data);
+        setSessionResponse(d.data);
+        setSubmit(false);
+      }).catch(err => {
+      setSubmit(false);
+      window.alert("Session couldn't be create, please try again");
+    });
   }
 
   const selectMentee = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -79,88 +63,102 @@ function CreateSession(){
     setMentee(value);
   }
   return (
-    <Container>
+    <div className="container-lg mt-5">
 
-      <h3>Create Session</h3>
-      <hr />
-
-      <Row>
-
-        <Col sm={5} md={5} lg={5}>
+      <Row className="justify-content-md-center">
+        <Col md={8}>
+          {submit &&
+            <div className = "loading">
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            </div>
+          }
         
-            <Row as={Row} className="mb-3">
-              <Col md={4}>
-                <label>Mentee:</label>
+          <Row as={Row} className="mb-3">
+            <Col md={topLeftColNum}>
+              <label>Mentee:</label>
+            </Col>
+            <Col md={toprightColNum}>
+              <select id="selectMentee" 
+                className="form-select" 
+                aria-label="Default select example"
+                onChange={selectMentee}>
+                {mentees.map(mentee => (
+                  <option key={mentee.id} value={mentee.name}> {mentee.name} </option>
+                ))}
+              </select>
+            </Col>
+          </Row>
+          <form onSubmit={handleSubmit}>
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={`${topLeftColNum}`}>
+                Session:
+              </Form.Label>
+              <Col sm={toprightColNum}> 
+                {radiosAttended.map((radio, index) => (
+                  <ToggleButton
+                    key={index}
+                    id={`radio-${index}`}
+                    type="radio"
+                    variant={index % 2 ? 'outline-warning' : 'outline-success'}
+                    name="radio"
+                    value={radio.value}
+                    checked={radioAttended === radio.value}
+                    onChange={(e) => {
+                      setRadioAttended(e.currentTarget.value);
+                      console.log(radioAttended);
+                    }}
+                  >
+                    {radio.name}
+                  </ToggleButton>
+                ))}
               </Col>
-              <Col md={8}>
-                <select id="selectMentee" 
-                  className="form-select" 
-                  aria-label="Default select example"
-                  onChange={selectMentee}>
-                  {mentees.map(mentee => (
-                    <option key={mentee.id} value={mentee.name}> {mentee.name} </option>
-                  ))}
-                </select>
-              </Col>
-            </Row>
+            </Form.Group>
             
             <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="4">
+              <Form.Label column sm={`${topLeftColNum}`}>
                 Date:
               </Form.Label>
-              <Col sm="8"> 
+              <Col sm={toprightColNum}> 
                 <Form.Control type="date" onChange={(event) => setDate(event.target.value)}/>
               </Col>
             </Form.Group>
             
-            <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="4">
+            <Form.Group as={Row} className="mb-3" disabled={radioAttended === "1" ? false : true} style={radioAttended === "1" ? {} : { pointerEvents: 'none' }}>
+              <Form.Label column sm={`${topLeftColNum}`}>
               Start Time:
               </Form.Label>
-              <Col sm="8"> 
+              <Col sm={toprightColNum}> 
                 <Form.Control type="time" onChange={(event) => setStart(event.target.value)}/>
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="4">
+            <Form.Group as={Row} className="mb-3" disabled={radioAttended === "1" ? false : true} style={radioAttended === "1" ? {} : { pointerEvents: 'none' }}>
+              <Form.Label column sm={`${topLeftColNum}`}>
                 End Time:
               </Form.Label>
-              <Col sm="8"> 
+              <Col sm={toprightColNum}> 
                 <Form.Control type="time" onChange={(event) => setEnd(event.target.value)}/>
               </Col>
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>
-                Notes:
-              </Form.Label>
-              <Form.Control as="textarea" rows={5} onChange={(event) => setNote(event.target.value)}/>
+              {radioAttended === "1" ? <Form.Label>Session Notes</Form.Label> : <Form.Label>Reason why session did not occur</Form.Label>}
+              <Form.Control as="textarea" rows={12} onChange={(event) => setNote(event.target.value)}/>
             </Form.Group>
 
             <Button
-              onClick={CreateSession}
+              className="mb-3"
+              type="submit"
             >
               Add Session
             </Button>
-        </Col>
-
-        <Col sm={7} md={7} lg={7}>
-          <h1 className="display-5 text-center">Session History</h1>
-          <ListGroup className="mb-3">
-            {sessionHistory.map(session => (
-                    <ListGroup.Item key={session.id}> 
-                      <p className="lead">{session.mentee}</p>
-                      {session.date}<br/>
-                      {session.start}-{session.end}
-                      <p><strong>{session.notes}</strong></p>
-                    </ListGroup.Item>
-              ))}
-          </ListGroup>
+          </form>
         </Col>
 
       </Row>
-    </Container>
+    </div>
   );
 }
 
