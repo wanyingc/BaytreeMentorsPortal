@@ -1,14 +1,19 @@
 // https://stackoverflow.com/questions/51143800/how-to-set-match-password-in-react-js/51153497
 // https://stackoverflow.com/questions/16377163/password-uppercase-characters-javascript
 
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Col, Row, Form, Container, Button, Spinner } from 'react-bootstrap'
 import Axios from 'axios';
 import { getAccessToken } from '../../auth/Authenticator';
 import { BASE_API_URL } from '../../config/config';
+import './SignUp.css';
 
 const Signup = () => {
+    // Alert
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMsg, setAlertMsg] = useState("");
 
+    // Form hooks
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -16,9 +21,21 @@ const Signup = () => {
     const [submit, setSubmit] = useState(false);
 
     // Validation messages hooks
-    const [passwordValMsg, setPasswordValMsg] = useState("");
+    const [emailValMsg, setEmailValMsg] = useState("");
     const [confirmPassValMsg, setConfirmPassValMsg] = useState("");
-    const [emailValMsg, setEmailValMsg] = useState("")
+    
+    // Validation boolean hooks
+    const [lowerValidate, setlowerValidate] = useState(false);
+    const [upperValidate, setUpperValidate] = useState(false);
+    const [lenValidate, setLenValidate] = useState(false);
+    const [numValidate, setNumValidate] = useState(false);
+    const [confirmPwValidate, setConfirmPwValidate] = useState(false);
+
+    // Password validation message parts
+    const passwordValMsgLength = "8 or more characters";
+    const passwordValMsgNum = "numbers";
+    const passwordValMsgUpper = "uppercase";
+    const passwordValMsgLower = "lowercase letters";    
 
     const getSignUpResponse = () => {
         let accessToken = getAccessToken();
@@ -35,44 +52,94 @@ const Signup = () => {
         .then(response => {
             setSignupResponse(response.data);
             setSubmit(false);
-            alert("Signup successful!");
+            setShowAlert(true); // this and the next line do the same thing in 2 forms, 
+            setAlertMsg("Signup successful!");
+            window.location.reload();
+            
         })
         .catch((err) => {
             setSubmit(false);
-            alert(err.response.data.error);
+            setShowAlert(true); // this and the next line do the same thing in 2 forms, 
+            setAlertMsg(err.response.data.error);
+            setEmailValMsg("Please provide correct email address");
         });   
     }
 
-    const passwordValidate = (): boolean => {
-        var validate: boolean = true;
-        if (password.length < 8) { // new passwords will need to be of length 8 at least
-            validate = false;
-            setPasswordValMsg("Password length should be at least 8!");
+    // Password Validation begins ----------------------------------------------------------
+    // password validation functions begin -------
+    const validateLowercase = () => {
+        if (password.search(/[a-z]/) >= 0){
+            setlowerValidate(true);
         }
-        else if (password.search(/[a-z]/) < 0){
-            validate = false;
-            setPasswordValMsg("Password needs at least 1 lowercase letter!");            
+        else {
+            setlowerValidate(false);           
         }
-        else if (password.search(/[A-Z]/) < 0){
-            validate = false;
-            setPasswordValMsg("Password needs at least 1 uppercase letter!");            
+    }
+    const validateUppercase = () => {
+        if (password.search(/[A-Z]/) >= 0){
+            setUpperValidate(true);
         }
-        else if (password.search(/[0-9]/) < 0){
-            validate = false;
-            setPasswordValMsg("Password needs at least 1 number!");
+        else {
+            setUpperValidate(false);           
         }
-        else if ((password.length !== confirmPassword.length) || (password !== confirmPassword)){
-            validate = false;
-            setPasswordValMsg("");
-            setConfirmPassValMsg("Passwords do not match!");
+    }
+    const validateNum = () => {
+        if (password.search(/[0-9]/) >= 0){
+            setNumValidate(true);
         }
-        return validate;
+        else {
+            setNumValidate(false);           
+        }
+    }
+    const validateLen = () => {
+        if (password.length >= 8){
+            setLenValidate(true);
+        }
+        else {
+            setLenValidate(false);           
+        }
+    }
+    const validateConfirmPassword = () => {
+        if(password.localeCompare(confirmPassword) === 0){
+            setConfirmPwValidate(true);            
+        }
+        else {
+            setConfirmPwValidate(false);
+        }
+    }
+    // password validation functions end ---------
+
+    const passwordValidate = (): boolean => { // checks for all the validations
+        if(lenValidate && numValidate && lowerValidate && upperValidate && confirmPwValidate){
+            return true;
+        }
+        else {
+            return false;
+        }        
     }
 
+    useEffect(() => { // if the values of "password" or "confirmPassword" change, this block will call all types of password validation functions
+        validateLowercase();
+        validateLen();
+        validateNum();
+        validateUppercase();
+        validateConfirmPassword();
+    }, [password, confirmPassword])
+    
+    // Password Validation ends ------------------------------------------------------------
+
     const addMentor = () => {
-        if (passwordValidate()) {
+        if (passwordValidate() && email.length > 0) { // email validation is not that important for now, length check is more of a placeholder for future
             setSubmit(true);
             getSignUpResponse();
+        }
+        else {            
+            if(email.length === 0){ // email empty error message
+                setEmailValMsg("Please provide correct email address");
+            }            
+            if(!confirmPwValidate){ // if confirmPassword doesn't match password
+                setConfirmPassValMsg("Passwords do not match");
+            }
         }
     }
 
@@ -87,21 +154,27 @@ const Signup = () => {
                         </Spinner>
                     </div>
                 }
-                <Col md={8}>
+                <Col md={9}>
+                    {   showAlert ?
+                        <div className={`alert ${signupResponse ? 'alert-success' : 'alert-danger'}  alert-dismissible fade show`} role="alert">
+                            {alertMsg}
+                            <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={()=>setShowAlert(false)}></button>
+                        </div>
+                        : <></>
+                    }
                     <Form>
                         
                         <Form.Group className="mb-3">
                             <Row className="justify-content-center">
                                 <Col md={12}>
-                                    <label className="form-label">Email</label>
+                                    <label className="form-label">Email</label>                                    
                                     <input className="form-control" type="email" placeholder="example@email.com" 
                                         onChange={(event)=>{
                                                 setEmail(event.target.value);
-                                                setPasswordValMsg("");
                                                 setConfirmPassValMsg("");
                                             }}>                
-                                    </input>
-                                    <div className="text-danger">{emailValMsg}</div>
+                                    </input>                                    
+                                    <div className="warnText text-danger">{emailValMsg}</div>
                                 </Col>
                             </Row>
                         </Form.Group>
@@ -111,18 +184,29 @@ const Signup = () => {
                                 <Col md={6} className="mb-3">
                                     <label className="form-label">Password</label>
                                     <input className="form-control" type="password" placeholder="" 
+                                        autoComplete="new-password"
                                         onChange={(event)=>{
                                                 setPassword(event.target.value);
                                                 setConfirmPassValMsg("");
                                             }}></input>
-                                    <div className="text-danger">{passwordValMsg}</div>
                                 </Col>
                                 <Col md={6} className="mb-3">
                                     <label className="form-label">Confirm Password</label>
-                                    <input className="form-control" type="password" placeholder="" onChange={(event)=>{setConfirmPassword(event.target.value);}}></input>
-                                    <div className="text-danger">{confirmPassValMsg}</div>
+                                    <input className="form-control" 
+                                        type="password" placeholder="" 
+                                        onChange={(event)=>{
+                                                setConfirmPassword(event.target.value);
+                                                setConfirmPassValMsg("");
+                                            }}></input>
                                 </Col>
                             </Row>
+                            <div className="warnTextGreen">
+                                <span className={`${lenValidate ? '' : 'text-danger'}`}>{passwordValMsgLength}</span>, including
+                                <span className={`${numValidate ? '' : 'text-danger'}`}> {passwordValMsgNum}</span>,
+                                <span className={`${upperValidate ? '' : 'text-danger'}`}> {passwordValMsgUpper}</span> and
+                                <span className={`${lowerValidate ? '' : 'text-danger'}`}> {passwordValMsgLower}</span>
+                            </div>
+                            <div className="warnText text-danger">{confirmPassValMsg}</div>
                         </Form.Group>
                         
                         <Form.Group>
