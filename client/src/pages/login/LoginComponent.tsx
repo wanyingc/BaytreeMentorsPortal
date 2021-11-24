@@ -82,6 +82,7 @@ const LoginComponent = () => {
       <div className="row border-0 d-flex align-items-center ">
         <div className="col mx-auto ">            
           <img src={logo}  alt="logo" width="auto" height="175" className="image mt-3"/>
+          <div className="portal-name text-center">MENTOR PORTAL</div>
           <h4 className="text-center pt-3">Sign in</h4>
           <form >
             <div className="form-group mb-3">
