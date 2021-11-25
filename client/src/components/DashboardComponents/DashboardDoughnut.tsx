@@ -4,7 +4,7 @@ import { Doughnut } from 'react-chartjs-2';
 import { DoughnutDataType } from '../../interfaces/DashboardInterfaces';
 
 type DoughnutProp = {
-    title: string;
+    title?: string;
     height?: number;
     data: DoughnutDataType;
 }

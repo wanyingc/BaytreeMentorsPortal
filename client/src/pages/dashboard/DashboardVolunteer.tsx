@@ -7,6 +7,9 @@ import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { Form, Button, Row, Col, ListGroup }from 'react-bootstrap/';
+import Dashboard from './Dashboard';
+import DashboardDoughnut from '../../components/DashboardComponents/DashboardDoughnut';
+import { DoughnutDataType } from '../../interfaces/DashboardInterfaces';
 
 const tableOptions = {
     sizePerPageList: [
@@ -24,25 +27,18 @@ const barChartData = {
     labels: ['Sessions Completed', 'Sessions Missed', 'Upcoming Sessions'],
     datasets: [
         {
-            label: '',
+            label: 'Number of Sessions',
             data: [10, 2, 8],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.5)', 
-                'rgba(209, 214, 159, 0.5)', 
-                'rgba(54, 162, 205, 0.5)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)', 
-                'rgba(54, 162, 205, 1)'
-            ],
+            backgroundColor: 'rgba(255, 99, 132, 1)',
+            borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 0,
         },
     ],
+    maintainAspectRatio:false
 };
 
-const doughnutChartData = {
-   label: ['Completed', 'Incomplete'],
+const doughnutChartData: DoughnutDataType = {
+   labels: ['Completed', 'Incomplete'],
    datasets: [
        {
             label: 'Questionnaires',
@@ -76,7 +72,7 @@ function DashboardVolunteer() {
 
                 <div className="col-lg-3 col-md-3 mb-4">
                     <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Questionnaires</h2>
-                    <Doughnut data={doughnutChartData}/>
+                    <DashboardDoughnut data={doughnutChartData}/>
                 </div>
 
                 <div className="col-lg-3 col-md-3 mb-4">
