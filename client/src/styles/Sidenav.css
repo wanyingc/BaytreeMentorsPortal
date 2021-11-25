@@ -10,7 +10,7 @@
     padding: 0;
     background-color: white;
     z-index: 99;
-    transition: .5s;
+    transition: .5s
 }
 
 .header.topnav{
@@ -18,7 +18,7 @@
 }
 
 .header.topnav.open {
-    left: 160px;
+    left: 70px;
 }
 
 @media screen and (min-width: 768px){
@@ -30,11 +30,11 @@
 .l-navbar {
     position: fixed;
     top: 0;
-    left: -160px;
+    left: -70px;
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
-    width: 160px;
+    width: 70px;
     height: 100vh;
     transition-duration: .5s;
     transition-timing-function: ease-in-out;
@@ -54,7 +54,7 @@
         padding-top: 0;
         padding-right: 0;
         padding-bottom: 0;
-        width: 180px;
+        width: 70px;
         height: 100vh;
         transition-duration: .5s;
         z-index: 100;
@@ -83,8 +83,9 @@
 }
 
 .navbar-brand img {
+    width: auto;
+    height: 60px;
     background-color: white;
-    object-fit:cover;
 }
 
 .navbar-nav {
@@ -92,25 +93,20 @@
 }
 
 .nav-link {
-    color: #d63384;
     background-color: transparent;
-    margin-top: 25px;
+    
 }
+
 
 .nav-link:hover {
     color: white;
-    background-color: #d63384;
+    background-color: #307FE2;
 }
 
 .nav-icon {
     background-color: transparent;
-    margin-right: 15px;
 }
 
 .collapse {
     transition: .5s;
-}
-
-.portal-name{
-    color: #d63384;
 }
