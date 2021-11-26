@@ -3,15 +3,21 @@ import React, { FC } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { DoughnutDataType } from '../../interfaces/DashboardInterfaces';
 
+const options = {
+  maintainAspectRatio:false
+};
+
 type DoughnutProp = {
     title?: string;
     height?: number;
+    width?: number;
     data: DoughnutDataType;
 }
 
 const DashboardDoughnut: FC<DoughnutProp> = ({
     title,
     height,
+    width,
     data
 }) => (
   <div className="">
@@ -22,7 +28,9 @@ const DashboardDoughnut: FC<DoughnutProp> = ({
       <div className="container justify-content-center">
         <Doughnut 
           data={data}
+          options={options}
           height={height}
+          width={width}
         />
       </div>
     </div>

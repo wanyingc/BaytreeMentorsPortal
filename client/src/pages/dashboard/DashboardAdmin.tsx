@@ -47,7 +47,7 @@ export default function DashboardAdmin() {
                     <div className="container h-100">
                         <DashboardDoughnut 
                             title="Sessions Left: 38"
-                            height={isMobile? 250 :350}
+                            height={350}
                             data={SessionsLeftStackedData}
                         />
                     </div>                            
