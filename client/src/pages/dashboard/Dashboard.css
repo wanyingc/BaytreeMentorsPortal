@@ -19,3 +19,14 @@
     background-color: #FF1E89;
     color: white
 }
+
+.reviewDate{
+    color: black;
+    opacity: 0.7;
+    font-size: 15px;
+}
+
+.fw-bold{
+    color:#48B030;
+    font-size: large;
+}

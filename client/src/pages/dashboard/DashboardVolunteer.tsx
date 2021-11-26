@@ -40,7 +40,7 @@ function DashboardVolunteer() {
                     <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Questionnaires</h2>
                     <DashboardDoughnut
                         data={doughnutChartData}
-                        height={350}
+                        height={330}
                         width={400}
                     />
                 </div>
@@ -49,19 +49,23 @@ function DashboardVolunteer() {
 
             <div className="row">
                 <div className="col-lg-4 col-md-4 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Goals</h2>
+                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Active Goals</h2>
                     <ListGroup data-spy="scroll">
                         {goalsList.map(goals => (
                             <ListGroup.Item key={goals.id}>
-                                <p className="lead"><strong>{goals.mentee}, {goals.date}</strong></p>
-                                <p>{goals.notes}</p>
+                                <div className="ms-2 me-auto">
+                                    <div className="fw-bold">{goals.mentee}, {goals.date}</div>
+                                    <div className="reviewDate">Review on {goals.reviewDate}</div>
+                                    {goals.notes}
+                                </div>
+                                
                             </ListGroup.Item>
                         ))}
                     </ListGroup>
                 </div>
 
                 <div className="col-lg-4 col-md-4 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>My Mentees</h2>
+                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Active Mentees</h2>
                     <BootstrapTable
                         keyField='name'
                         data={MyMentees}
@@ -70,7 +74,7 @@ function DashboardVolunteer() {
                 </div>
 
                 <div className="col-lg-4 col-md-4 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Notifications</h2>
+                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Latest Notifications</h2>
                     <ListGroup data-spy="scroll">
                             {notificationsList.map(notifs => (
                                 <ListGroup.Item key={notifs.title}>

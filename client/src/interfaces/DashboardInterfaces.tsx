@@ -15,8 +15,10 @@ export type MenteesObject ={
 export type goalsObject = {
     id: number;
     mentee: string;
-    date: string;
+    date: Date|string;
+    reviewDate: Date|string;
     notes: string;
+    status: string;
 };
 
 export type tableDataType = {
