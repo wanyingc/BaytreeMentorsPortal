@@ -21,23 +21,22 @@ const tableOptions = {
 };
 
 
-
 function DashboardVolunteer() {
 
     return (
         <div className="container p-2 mt-5">
-            <div className="row">
+            <div className="row" id='dashboard-title'>
                 <h5 style={{fontSize: 65, color:'#FF1E89'}}>Welcome, <strong>User</strong>!</h5>
             </div>
 
             <div className="row justify-content-center">
                 <div className="col-lg-6 col-md-4 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Sessions Statistics</h2>
+                    <h2 className="dashboard-title">Sessions Statistics</h2>
                     <DashboardBarChart data={barChartData} />
                 </div>
-
-                <div className="col-lg-6 col-md-6 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Questionnaires</h2>
+                
+                <div className="col-lg-6 col-md-4 mb-4">
+                    <h2 className="dashboard-title">Questionnaires</h2>
                     <DashboardDoughnut
                         data={doughnutChartData}
                         height={330}
@@ -49,14 +48,32 @@ function DashboardVolunteer() {
 
             <div className="row">
                 <div className="col-lg-4 col-md-4 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Active Goals</h2>
+                    <h2 className="dashboard-title">Active Goals</h2>
                     <ListGroup data-spy="scroll">
                         {goalsList.map(goals => (
                             <ListGroup.Item key={goals.id}>
                                 <div className="ms-2 me-auto">
                                     <div className="fw-bold">{goals.mentee}, {goals.date}</div>
                                     <div className="reviewDate">Review on {goals.reviewDate}</div>
-                                    {goals.notes}
+                                    <div className="listgroup-info">{goals.notes}</div>
+                                </div>
+                                
+                            </ListGroup.Item>
+                        ))}
+                    </ListGroup>
+                </div>
+                
+                <div className="col-lg-4 col-md-4 mb-4">
+                    <h2 className="dashboard-title"> Active Mentees</h2>
+                    <ListGroup data-spy="scroll">
+                        {MyMentees.map(mentee => (
+                            <ListGroup.Item key={mentee.name}>
+                                <div className="ms-2 me-auto">
+                                    <div className="item-listgroup">{mentee.name}</div>
+                                    <div className="listgroup-info">D.O.B.: {mentee.dateOfBirth}</div>
+                                    <div className="listgroup-info">Age: {mentee.age}</div>
+                                    <div className="listgroup-info">Start Date: {mentee.dateStart}</div>
+                                    <div className="listgroup-info">Mentor Role: {mentee.mentorRole}</div>
                                 </div>
                                 
                             </ListGroup.Item>
@@ -65,22 +82,13 @@ function DashboardVolunteer() {
                 </div>
 
                 <div className="col-lg-4 col-md-4 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Active Mentees</h2>
-                    <BootstrapTable
-                        keyField='name'
-                        data={MyMentees}
-                        columns={columnsMyMentees}
-                        pagination={paginationFactory(tableOptions)} />
-                </div>
-
-                <div className="col-lg-4 col-md-4 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Latest Notifications</h2>
+                    <h2 className="dashboard-title">Latest Notifications</h2>
                     <ListGroup data-spy="scroll">
                             {notificationsList.map(notifs => (
                                 <ListGroup.Item key={notifs.title}>
-                                    <text style={{fontSize: 17, fontWeight: 'bold'}}>{notifs.title}</text><br/>
-                                    <text style={{fontSize: 14}}> {notifs.date}, {notifs.time}</text><br/>
-                                    <text style={{fontSize: 14}}>{notifs.message}</text>
+                                    <div className="item-listgroup">{notifs.title}</div>
+                                    <div className="listgroup-info">{notifs.date}, {notifs.time}</div>
+                                    <div className="listgroup-info">{notifs.message}</div>
                                 </ListGroup.Item>
                             ))}
                         </ListGroup>
@@ -88,12 +96,7 @@ function DashboardVolunteer() {
 
             </div>
         </div>
-                
-
-
-
-
-        
+            
     )
 }
 

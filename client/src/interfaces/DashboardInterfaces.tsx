@@ -10,6 +10,7 @@ export type MenteesObject ={
     age: number|string;
     dateStart: Date|string;
     dateEnd: Date|string;
+    mentorRole: string;
 }
 
 export type goalsObject = {

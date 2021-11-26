@@ -30,3 +30,21 @@
     color:#48B030;
     font-size: large;
 }
+
+.item-listgroup{
+    color:#48B030;
+    font-weight: bold;
+    font-size: large;
+}
+
+.listgroup-info{
+    font-size: 14px;
+}
+
+.dashboard-title{
+    font-size: 37px;
+    font-weight: bold;
+    color: white;
+    background-color: #48B030;
+
+}

@@ -6,21 +6,24 @@ export const MyMentees: MenteesObject[] = [
         dateOfBirth: "26-11-2000",
         age: "13+",
         dateStart: "4-9-2021",
-        dateEnd: "30-8-2022"
+        dateEnd: "30-8-2022",
+        mentorRole: 'Women'
     },
     {
         name: "Oliva Lane",
         dateOfBirth: "3-4-2015",
         age: "under 9",
         dateStart: "4-9-2021",
-        dateEnd: "30-8-2022"
+        dateEnd: "30-8-2022",
+        mentorRole: 'Youth'
     },
     {
         name: "Tina Hudson",
         dateOfBirth: "25-6-2010",
         age: "10 to 12",
         dateStart: "4-9-2021",
-        dateEnd: "30-8-2022"
+        dateEnd: "30-8-2022",
+        mentorRole: 'Into School'
     }
 ]
 
