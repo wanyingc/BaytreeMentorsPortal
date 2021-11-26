@@ -54,9 +54,8 @@
   color: white;
 }
 
-.submitButton{
-  text-align: center;
-  margin-top: 40px;
+.sign-button{
+  background-color: #d63384;
 }
 
 #login {
