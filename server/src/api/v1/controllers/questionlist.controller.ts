@@ -3,9 +3,9 @@ import axios from 'axios';
 import { getResponseArray } from '../services/responseToArray.service';
 import { VIEWS_PASSWORD, VIEWS_USERNAME } from '../../../config/config';
 
-const questionnairelist = async (req:Request, res:Response) => {
+const questionlist = async (req:Request, res:Response) => {
     await axios.all([
-        axios.get(`https://app.viewsapp.net/api/restful/evidence/questionnaires/search?`, 
+        axios.get(`https://app.viewsapp.net/api/restful/evidence/questionnaires/27/questions`, 
             {
                 headers: {
                     "Content-Type": "application/json"
@@ -17,18 +17,19 @@ const questionnairelist = async (req:Request, res:Response) => {
             }
         ),
        
-    ]).then(axios.spread((responseQuestionnaireList) => {
+    ]).then(axios.spread((responseQuestionsList) => {
 
         // Retrieves first layer of Key from the JSON: key: evidence...
         //keyVolCount[0] = "questionnaires count=x"
-        let keyVolCount = Object.keys(responseQuestionnaireList.data);
+        let keyVolCount = Object.keys(responseQuestionsList.data);
 
-        let resQuestionnaireArray = getResponseArray(responseQuestionnaireList.data[keyVolCount[0]]);
-        console.log(resQuestionnaireArray)
-
+        console.log("keyVolCount = ",keyVolCount)
+        console.log("keyVolCOunt[0] = ", [keyVolCount[0]])
+        let resQuestionsArray = getResponseArray(responseQuestionsList.data);
+        console.log("THE ARRAY", resQuestionsArray)
 
         res.status(200).send({
-            "questionnaireList": resQuestionnaireArray,
+            "questionnaireList": resQuestionsArray,
         });
     })).catch(err => {
         console.log(err)
@@ -39,4 +40,4 @@ const questionnairelist = async (req:Request, res:Response) => {
     });
 };
 
-export default  questionnairelist ;
+export default  questionlist ;

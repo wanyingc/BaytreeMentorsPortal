@@ -13,6 +13,7 @@ import profileRouter from './src/api/v1/routes/profile.route';
 import { PORT } from './src/config/config';
 import questionnairelistRouter from './src/api/v1/routes/questionnairelist.route';
 import createSessionRouter from './src/api/v1/routes/createsession.route';
+import questionsListRouter from './src/api/v1/routes/questionslist.route'
 
 const app=express();
 
@@ -33,6 +34,8 @@ app.use("/api", recordsRouter);
 app.use("/api", profileRouter);
 app.use("/api", questionnairelistRouter)
 app.use("/api", createSessionRouter);
+app.use("/api", questionsListRouter);
+
 
 // This router is only for testing, and demonstrates example for authority based API requests
 app.use("/api", testRouter);

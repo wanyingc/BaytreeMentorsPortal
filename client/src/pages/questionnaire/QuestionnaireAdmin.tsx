@@ -44,7 +44,7 @@ const QuestionnaireAdmin = (props:any) => {
                           return (
                             <tr key={qInfo["QuestionnaireID"]} >
                               <td>{qInfo["Title"]}</td>
-                              <td><Button variant="primary" >View</Button></td>
+                              <td><Button variant="primary" onClick={() => console.log(questionnaireList)} >View</Button></td>
                               <td><Button variant="success" >Send</Button></td>
                             </tr>
                           )

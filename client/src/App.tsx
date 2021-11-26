@@ -21,6 +21,8 @@ import editSessions from './pages/sessions/EditSessions';
 import allSession from './pages/sessions/AllSessions';
 import sessionNotes from './pages/sessions/SessionNotes';
 import QuestionnaireAdmin from './pages/questionnaire/QuestionnaireAdmin'
+import QuestionList from './pages/questionnaire/QuestionnaireAdminShow'
+
 
 import Records from './pages/records/Records';
 import DashboardAdmin from './pages/dashboard/DashboardAdmin';
@@ -45,7 +47,7 @@ const MainRoutes = () => (
 
     <Route exact path="/create-session" component={CreateSession}/>
     <ProtectedRoute isUser={isUser()} path="/dashboard" component={Dashboard} />
-    <Route exact path="/messages" component={Messages}/>
+    <Route exact path="/messages" component={QuestionnaireAdmin}/>
     <Route exact path ="/signup" component={SignUp}/>
     <Route path="/sessions" component={sessions}/>
     <Route path="/editSessions" component={editSessions}/>
@@ -59,7 +61,7 @@ const MainRoutes = () => (
     <Route exact path="/mentors-list" component={MentorsList}/>
     <Route exact path="/records" component={Records}/>
     <Route exact path="/records/:personID" component={AdminRecords}/>
-    <Route exact path="/questionnaires" component={QuestionnaireAdmin}/>
+    <Route exact path="/questionnaires" component={QuestionList}/>
   </div>
 )
 
