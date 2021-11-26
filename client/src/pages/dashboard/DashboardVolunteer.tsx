@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
 import { MyMentees, goalsList, notificationsList, doughnutChartData, barChartData } from './DashboardDataVolunteer'
 import { columnsMyMentees } from './DashboardDatatypes';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import { Bar } from 'react-chartjs-2';
 import { Form, Button, Row, Col, ListGroup }from 'react-bootstrap/';
 import DashboardDoughnut from '../../components/DashboardComponents/DashboardDoughnut';
+import { DashboardBarChart } from '../../components/DashboardComponents/DashboardBarChart';
 
 const tableOptions = {
     sizePerPageList: [
@@ -34,7 +33,7 @@ function DashboardVolunteer() {
             <div className="row justify-content-center">
                 <div className="col-lg-6 col-md-4 mb-4">
                     <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Sessions Statistics</h2>
-                    <Bar data={barChartData} />
+                    <DashboardBarChart data={barChartData} />
                 </div>
 
                 <div className="col-lg-3 col-md-3 mb-4">
