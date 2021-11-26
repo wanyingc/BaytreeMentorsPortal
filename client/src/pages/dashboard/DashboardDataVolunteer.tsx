@@ -1,4 +1,4 @@
-import { MenteesObject, goalsObject, notificationObject } from "../../interfaces/DashboardInterfaces";
+import { MenteesObject, goalsObject, notificationObject, DoughnutDataType, BarChartDataType } from "../../interfaces/DashboardInterfaces";
 
 export const MyMentees: MenteesObject[] = [
     {
@@ -59,3 +59,36 @@ export const goalsList: goalsObject[] = [
         message: 'Hello, could you report attendance from last week session please.'
     },
   ];
+
+  export const doughnutChartData: DoughnutDataType = {
+   labels: ['Completed', 'Incomplete'],
+   datasets: [
+       {
+            label: 'Questionnaires',
+            data: [10,2],
+            backgroundColor: [
+                'rgba(54, 162, 205, 0.5)',
+                'rgba(255, 99, 132, 0.5)', 
+            ],
+            borderColor: [
+                'rgba(54, 162, 205, 1)',
+                'rgba(255, 99, 132, 1)', 
+            ],
+            borderWidth:0,
+       },
+   ],
+}
+
+export const barChartData: BarChartDataType = {
+  labels: ['Sessions Completed', 'Sessions Missed', 'Upcoming Sessions'],
+  datasets: [
+      {
+          label: 'Number of Sessions',
+          data: [10, 2, 8],
+          backgroundColor: ['rgba(255, 99, 132, 0.5)'],
+          borderColor: ['rgba(255, 99, 132, 1)'],
+          borderWidth: 0,
+      },
+  ],
+  maintainAspectRatio:false
+};

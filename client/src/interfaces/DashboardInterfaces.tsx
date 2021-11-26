@@ -50,4 +50,16 @@ export type notificationObject = {
     date: Date|string;
     time: string;
     message: string;
-}
+};
+
+export type BarChartDataType = {
+    labels: string[];
+    datasets: {
+        label: string;
+        data: number[];
+        backgroundColor: string[];
+        borderColor: string[];
+        borderWidth: number;
+    }[];
+    maintainAspectRatio: boolean;
+};

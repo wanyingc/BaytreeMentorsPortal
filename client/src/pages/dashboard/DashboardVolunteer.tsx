@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
-import { MyMentees, goalsList, notificationsList } from './DashboardDataVolunteer'
+import { MyMentees, goalsList, notificationsList, doughnutChartData, barChartData } from './DashboardDataVolunteer'
 import { columnsMyMentees } from './DashboardDatatypes';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import { Bar, Doughnut } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { Form, Button, Row, Col, ListGroup }from 'react-bootstrap/';
-import Dashboard from './Dashboard';
 import DashboardDoughnut from '../../components/DashboardComponents/DashboardDoughnut';
-import { DoughnutDataType } from '../../interfaces/DashboardInterfaces';
 
 const tableOptions = {
     sizePerPageList: [
@@ -23,38 +21,7 @@ const tableOptions = {
     
 };
 
-const barChartData = {
-    labels: ['Sessions Completed', 'Sessions Missed', 'Upcoming Sessions'],
-    datasets: [
-        {
-            label: 'Number of Sessions',
-            data: [10, 2, 8],
-            backgroundColor: 'rgba(255, 99, 132, 1)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 0,
-        },
-    ],
-    maintainAspectRatio:false
-};
 
-const doughnutChartData: DoughnutDataType = {
-   labels: ['Completed', 'Incomplete'],
-   datasets: [
-       {
-            label: 'Questionnaires',
-            data: [10,2],
-            backgroundColor: [
-                'rgba(54, 162, 205, 0.5)',
-                'rgba(255, 99, 132, 0.5)', 
-            ],
-            borderColor: [
-                'rgba(54, 162, 205, 1)',
-                'rgba(255, 99, 132, 1)', 
-            ],
-            borderWidth:0,
-       },
-   ],
-}
 
 function DashboardVolunteer() {
 
