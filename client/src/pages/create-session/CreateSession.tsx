@@ -49,7 +49,6 @@ const CreateSession = () => {
         }
       }
     ).then((d:any) => {
-        console.log(d.data);
         setSessionResponse(d.data);
         setSubmit(false);
       }).catch(err => {
