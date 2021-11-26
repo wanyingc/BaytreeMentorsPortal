@@ -4,6 +4,8 @@ import UserInfo from '../models/userinfo.model';
 const Joi = require('joi');
 
 const logTitle = "Login Controller";
+const bcrypt = require ('bcrypt');
+const saltRounds = 10;
 
 const signupController = async (req:Request, res:Response, next:NextFunction) => {
     // Validate the request
@@ -16,45 +18,46 @@ const signupController = async (req:Request, res:Response, next:NextFunction) =>
     const { error } = schema.validate(req.body);  
     if (error) {
         return res.status(400).json({
-            message: error.details[0].message
+            error: error.details[0].message
         });
     }
 
     // Check if the mentor is already registered
     let user = await User.findOne({email: req.body.email});
     if (user) {
-        return res.status(400).json({
-            message: "That user already exisits!"
-        }); 
+        return res.status(401).send({error:"That user already exisits!"}); 
     } 
 
-    // Insert the new mentor to the database
-    let newUser = new User({
-        email: req.body.email,
-        personID: res.locals.personID,
-        password: req.body.password,
-        roles: res.locals.roles,
-    });
+    bcrypt.hash(req.body.password, saltRounds, async (err: any, hash: string) => {
 
-    // Insert the new mentor to the database
-    let newUserInfo = new UserInfo({
-        personID: res.locals.personID,
-        firstName: res.locals.firstName,
-        lastName: res.locals.lastName,
-        email: req.body.email,
-        phone: res.locals.phone,
-        startDate: res.locals.startDate,
+        // Insert the new mentor to the database
+        let newUser = new User({
+            email: req.body.email,
+            personID: res.locals.personID,
+            password: hash,
+            roles: res.locals.roles,
+        });
 
-    });
+        // Insert the new mentor to the database
+        let newUserInfo = new UserInfo({
+            personID: res.locals.personID,
+            firstName: res.locals.firstName,
+            lastName: res.locals.lastName,
+            email: req.body.email,
+            phone: res.locals.phone,
+            startDate: res.locals.startDate,
 
-    newUser = await newUser.save();
-    newUserInfo = await newUserInfo.save();
+        });
 
-    // Return inserted mentor to the client
-    return res.status(200).json({
-        email: newUser.email,
-        personID: newUser.personID,
-        roles: newUser.roles,
+        newUser = await newUser.save();
+        newUserInfo = await newUserInfo.save();
+
+        // Return inserted mentor to the client
+        return res.status(200).json({
+            email: newUser.email,
+            personID: newUser.personID,
+            roles: newUser.roles,
+        });
     });
 };
 

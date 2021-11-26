@@ -72,8 +72,6 @@ const gatherDataFromViewsAPIMW = async (req:Request, res:Response, next:NextFunc
         let roles:string[] = ["user", "mentor"]; // 2 default roles
         roles = roles.concat(rolesToAdd); // adding roles derived from Views
 
-        // return res.status(200).send(roles);
-
         res.locals.roles = roles;
         res.locals.firstName = firstName;
         res.locals.lastName = lastName;
