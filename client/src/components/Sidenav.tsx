@@ -79,7 +79,7 @@ export default function Sidenav() {
             menus1 = volunteerItems1.map((item, index) => {
                 return(
                     <li className="nav-item border-0" key={index}>
-                        <Link to={item.to} className="nav-link btn-lg text-center py-1 " aria-current="page" type="button">
+                        <Link to={item.to} className="nav-link btn-lg text-left py-1 " aria-current="page" type="button">
                             {item.icon}
                             {item.title}
                         </Link>
@@ -89,7 +89,7 @@ export default function Sidenav() {
             menus2 = volunteerItems2.map((item, index) => {
                 return(
                     <li className="nav-item border-0" key={index}>
-                        <Link to={item.to} className="nav-link btn-lg text-center px-3 py-1 " aria-current="page" type="button">
+                        <Link to={item.to} className="nav-link btn-lg text-left px-3 py-1 " aria-current="page" type="button">
                             {item.icon}
                             {item.title}
                         </Link>

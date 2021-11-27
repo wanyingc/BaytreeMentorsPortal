@@ -94,7 +94,8 @@
 .nav-link {
     color: #d63384;
     background-color: transparent;
-    margin-top: 25px;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .nav-link:hover {
