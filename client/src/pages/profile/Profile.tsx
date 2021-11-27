@@ -144,39 +144,6 @@ function Profile(props: InjectedFormProps | any) {
                   placeHolder="Select mentor type"
                 />
 
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                    <h4 className="text-right">Mentee Information</h4>
-              </div>
-              <Table striped bordered hover>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Age</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Sally</td>
-                    <td>Otto</td>
-                    <td>15</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jass</td>
-                    <td>Thornton</td>
-                    <td>11</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Jen</td>
-                    <td>Thornton</td>
-                    <td>17</td>
-                  </tr>
-                </tbody>
-              </Table>
             </Row>
 
             <Button
