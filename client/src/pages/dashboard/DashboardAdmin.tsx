@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { NonDeliveredTableData, PendingTableData, SessionsDoneStackedData, UpcomingSessionsStackedData } from './DashboardDataAdmin';
+import { NonDeliveredPiChart, NonDeliveredTableData, PendingQuestionnairesPiChart, PendingTableData, SessionsDoneStackedData, UpcomingSessionsStackedData } from './DashboardDataAdmin';
 import { columnsDashboardTable, mentorTypes} from './DashboardDatatypes';
 import './Dashboard.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { DashboardStackedBar } from '../../components/DashboardComponents/DashboardStackedBar';
 import DashboardDoughnut from '../../components/DashboardComponents/DashboardDoughnut';
+import DashboardPieChart from '../../components/DashboardComponents/DashboardPieChart';
 import DataTable from '../../components/DashboardComponents/DataTable';
 import { ButtonGroup, Dropdown, DropdownButton } from 'react-bootstrap';
 
@@ -20,10 +21,31 @@ function getScreenSize () {
 export default function DashboardAdmin() {
     const [isMobile, setIsMobile] = useState(getScreenSize);
     const [monthCount, setMonthCount] = useState(6);
+    const [sessionMentorType, setSessionMentorType] = useState(undefined);
+    const [questionnairesMentorType, setQuestionnairesMentorType] = useState(undefined);
+    
     const handleSelect=(e)=>{
         setMonthCount(e);
     }
 
+    const handleOnElementClick = (type)  => {
+        if (sessionMentorType == type) {
+            //brings all data to inital state
+            setSessionMentorType(undefined);
+        } else {
+            setSessionMentorType(type);
+        }
+    }
+
+    const handleOnElementClick2 = (type)  => {
+        if (questionnairesMentorType == type) {
+            //brings all data to inital state
+            setQuestionnairesMentorType(undefined);
+
+        } else {
+        setQuestionnairesMentorType(type);
+        }
+    }
     const manageResize = () => {
         setIsMobile(getScreenSize);
     }
@@ -74,23 +96,43 @@ export default function DashboardAdmin() {
                 </div>
             </div>
             <div className="row justify-content-center">
+                <div className="col-md-6 col-sm-6 mb-4">
+                    <div className="container h-100">
+                        <DashboardPieChart
+                            title="Pending Questionnaires"
+                            height={isMobile? 250 :350}
+                            data={PendingQuestionnairesPiChart}
+                            onElementClick={handleOnElementClick2}
+                        />
+                    </div>  
+                </div>
+                <div className="col-md-6 col-sm-6 mb-4">
+                    <div className="container h-100">
+                        <DashboardPieChart
+                            title="Non-delivered sessions"
+                            height={isMobile? 250 :350}
+                            data={NonDeliveredPiChart}
+                            onElementClick={handleOnElementClick}
+                        />
+                    </div>                            
+                </div>
+            </div>
+            <div className="row justify-content-center">
                 <div className="col-md-6 mb-4">
                     <div className={`px-3`}>
-                        <div className="row text-light table-header-bg-blue rounded-pill px-3 fs-4">
-                            Pending Questionnaires: 6
-                        </div>
                         <div className=""> 
-                            <DataTable data={PendingTableData} columns={columnsDashboardTable} />
+                            <DataTable 
+                            data={PendingTableData.filter(item => questionnairesMentorType == undefined ? true : item.mentorRole == questionnairesMentorType)}
+                            columns={columnsDashboardTable} />
                         </div>
                     </div>                           
                 </div>
                 <div className="col-md-6">
                     <div className={`px-3`}>
-                        <div className="row text-light table-header-bg-blue rounded-pill px-3 fs-4">
-                            Non-delivered Sessions: 3
-                        </div>
                         <div className="">
-                            <DataTable data={NonDeliveredTableData} columns={columnsDashboardTable} />           
+                            <DataTable 
+                                data={NonDeliveredTableData.filter(item => sessionMentorType == undefined ? true : item.mentorRole == sessionMentorType) } 
+                                columns={columnsDashboardTable} />           
                         </div>
                     </div>
                 </div>

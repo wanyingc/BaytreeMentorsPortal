@@ -1,5 +1,5 @@
 import { LineChartDataProps } from "../../components/DashboardComponents/DashboardLineChart";
-import { DoughnutDataType, StackedChartDataType, tableDataType } from "../../interfaces/DashboardInterfaces";
+import { DoughnutDataType, PiChartDataType, StackedChartDataType, tableDataType } from "../../interfaces/DashboardInterfaces";
 
 export const sampleDate = new Date('October 7, 2021 13:24:00');
 
@@ -35,14 +35,14 @@ export const UpcomingSessionsStackedData: DoughnutDataType = {
       label: 'Upcoming Sessions',
       data: [11, 15, 12],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(209, 214, 159, 0.5)',
-        'rgba(54, 162, 205, 0.5)',
+        'rgba(255, 99, 132, 0.8)',
+        'rgba(255, 241, 201, 0.8)',
+        'rgba(54, 162, 205, 0.8)',
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(54, 162, 205, 1)',
+        'rgba(255, 99, 132, 0.8)',
+        'rgba(255, 241, 201, 0.8)',
+        'rgba(54, 162, 205, 0.8)',
       ],
       borderWidth: 0,
     },
@@ -99,6 +99,48 @@ export const NonDeliveredTableData: tableDataType[] = [
     mentorRole: "Youth Mentor",
   },
 ];
+
+export const PendingQuestionnairesPiChart: PiChartDataType = {
+  labels: ["Youth Mentor", "Into School Mentor", "Women Mentor"],
+  datasets: [
+    {
+      label: 'NonDeliveredTableData',
+      data: [3, 5, 7],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.8)',
+        'rgba(255, 241, 201, 0.8)',
+        'rgba(54, 162, 205, 0.8)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 0.8)',
+        'rgba(255, 241, 201, 0.8)',
+        'rgba(54, 162, 205, 0.8)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
+
+export const NonDeliveredPiChart: PiChartDataType = {
+  labels: ["Youth Mentor", "Into School Mentor", "Women Mentor"],
+  datasets: [
+    {
+      label: 'NonDeliveredTableData',
+      data: [4, 5, 6],
+      backgroundColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(54, 162, 235, 1)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(54, 162, 235, 1)',
+      ],
+      borderWidth: 0,
+    },
+  ],
+};
 
 //------------------------------------------------------------------------//
 
