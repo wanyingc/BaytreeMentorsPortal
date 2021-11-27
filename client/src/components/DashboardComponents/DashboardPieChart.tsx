@@ -42,8 +42,13 @@ const DashboardDoughnut: FC<DoughnutProp> = ({
     }
   
     const dataSet = getElementAtEvent(chart, event);
-    const { datasetIndex, index } = dataSet[0];
+    if (dataSet == undefined || dataSet.length == 0){
+      // chartjs doesn't return valid element
+      return;
+    }
 
+    const { datasetIndex, index } = dataSet[0];
+    
     if(onElementClick){
       onElementClick(data.labels[index])
     }

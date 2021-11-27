@@ -88,7 +88,7 @@ export default function DashboardAdmin() {
                 <div className="col-md-4 col-sm-6 mb-4">
                     <div className="container h-100">
                         <DashboardDoughnut 
-                            title="Upcoming Sessions: 38"
+                            title="Upcoming Sessions"
                             height={isMobile? 250 :350}
                             data={UpcomingSessionsStackedData}
                         />
