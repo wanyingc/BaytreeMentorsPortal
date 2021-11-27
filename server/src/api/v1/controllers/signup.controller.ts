@@ -18,16 +18,14 @@ const signupController = async (req:Request, res:Response, next:NextFunction) =>
     const { error } = schema.validate(req.body);  
     if (error) {
         return res.status(400).json({
-            message: error.details[0].message
+            error: error.details[0].message
         });
     }
 
     // Check if the mentor is already registered
     let user = await User.findOne({email: req.body.email});
     if (user) {
-        return res.status(400).json({
-            message: "That user already exisits!"
-        }); 
+        return res.status(401).send({error:"That user already exisits!"}); 
     } 
 
     bcrypt.hash(req.body.password, saltRounds, async (err: any, hash: string) => {
