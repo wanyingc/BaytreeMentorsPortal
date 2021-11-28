@@ -118,7 +118,7 @@ const LoginComponent = () => {
           </form>          
           <div className="">
             <p className="text-center">
-              <a href="/signup" id="signUp">Forgot password</a>
+              <a href="/forgot-password" id="forgot">Forgot Password</a>
             </p>
           </div>
         </div>

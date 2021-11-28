@@ -27,6 +27,8 @@ import DashboardAdmin from './pages/dashboard/DashboardAdmin';
 import DashboardVolunteer from './pages/dashboard/DashboardVolunteer';
 import Resources from './pages/resources/Resources';
 import AdminRecords from './pages/records/AdminRecords';
+import Forgot from './pages/forgot-password/ForgotPassword';
+import Reset from './pages/reset-password/ResetPassword';
 
 // cite: https://stackoverflow.com/questions/47281850/how-to-hide-navbar-in-login-page-in-react-router
 const LoginRoute = () => (
@@ -70,6 +72,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={LoginRoute}/>
           <Route exact path="/login" component={LoginRoute}/>
+          <Route exact path="/forgot-password" component={Forgot}/>
+          <Route exact path="/reset-password" component={Reset}/>
           <Route component={MainRoutes}/>      
         </Switch>
       </Router>
