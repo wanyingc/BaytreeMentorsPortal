@@ -18,14 +18,14 @@ ChartJS.register(ArcElement,
   Legend,
   Tooltip, CategoryScale, BarElement, LineController, LineElement, PointElement, LinearScale, Title);
 
-type DoughnutProp = {
+type PieChartProp = {
     title: string;
     height?: number;
     data: DoughnutDataType;
     onElementClick?: any;
 }
 
-const DashboardDoughnut: FC<DoughnutProp> = ({
+const DashboardPieChart: FC<PieChartProp> = ({
     title,
     height,
     data,
@@ -73,4 +73,4 @@ const DashboardDoughnut: FC<DoughnutProp> = ({
     </div>
   )};
 
-export default DashboardDoughnut;
+export default DashboardPieChart;
