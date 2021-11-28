@@ -5,10 +5,11 @@ function Forgot() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="d-none d-md-flex col-xl-9 col-md-7 login-image"/>
-        <div className="col-xl-3 col-md-5 align-items-center d-flex justify-content-center">
+      <div className="login-image align-items-center">
+        <div className=" col-md-6 offset-md-3 align-self-center d-flex justify-content-center background-color-light p-3 mb-2 bg-white rounded mt-4 opacity- 15">
           <ForgotComponent/>
         </div>
+      </div>
       </div>
     </div>
   );
