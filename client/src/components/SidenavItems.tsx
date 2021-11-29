@@ -41,15 +41,13 @@ export const volunteerItems1 = [
         to: "/resources",
         icon: <AiOutlineFolderView className="nav-icon"/>
     },
-    
-];
-export const volunteerItems2 = [
     {
         title: 'Profile',
         to: "/profile",
         icon: <IoPersonOutline className="nav-icon"/>
-    },
+    },    
 ];
+
 export const adminItems1 = [
     {
         title: 'Dashboard',

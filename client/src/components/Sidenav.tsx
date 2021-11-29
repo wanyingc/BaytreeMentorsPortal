@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../assets/logo.svg';
 import '../styles/Sidenav.css';
-import { volunteerItems1, volunteerItems2, adminItems1 } from './SidenavItems';
+import { volunteerItems1, adminItems1 } from './SidenavItems';
 import { Link } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
 import { isAdmin } from '../auth/Authenticator';
@@ -9,7 +9,7 @@ import { CgLogOut } from 'react-icons/cg';
 
 
 function getScreenSize () {
-    if(window.innerWidth < 768) {
+    if(window.innerWidth < 1680) {
         return true;
     } else {
         return false;
@@ -67,7 +67,7 @@ export default function Sidenav() {
             menus1 = adminItems1.map((item, index) => {
                 return(
                     <li className="nav-item border-0" key={index}>
-                        <Link to={item.to} className="nav-link btn-lg text-left py-1 " aria-current="page" type="button">
+                        <Link to={item.to} className="nav-link btn-lg text-left px-3 py-1 fs-6" aria-current="page" type="button">
                             {item.icon}
                             {item.title}
                         </Link>
@@ -79,17 +79,7 @@ export default function Sidenav() {
             menus1 = volunteerItems1.map((item, index) => {
                 return(
                     <li className="nav-item border-0" key={index}>
-                        <Link to={item.to} className="nav-link btn-lg text-left py-1 " aria-current="page" type="button">
-                            {item.icon}
-                            {item.title}
-                        </Link>
-                    </li>
-                );
-            });
-            menus2 = volunteerItems2.map((item, index) => {
-                return(
-                    <li className="nav-item border-0" key={index}>
-                        <Link to={item.to} className="nav-link btn-lg text-left px-3 py-1 " aria-current="page" type="button">
+                        <Link to={item.to} className="nav-link btn-lg text-left px-3 py-1 fs-6" aria-current="page" type="button">
                             {item.icon}
                             {item.title}
                         </Link>
@@ -121,9 +111,8 @@ export default function Sidenav() {
                     </div>
                     <div className="mb-3">
                         <ul className='navbar-nav flex-column'>
-                            {menus2}
                             <li className="nav-item border-0" >
-                                <Link to="/login" className="nav-link btn-lg text-center px-3 py-1 " aria-current="page" type="button" onClick={reMoveData}>
+                                <Link to="/login" className="nav-link btn-lg text-left px-3 py-1 fs-6" aria-current="page" type="button" onClick={reMoveData}>
                                     <CgLogOut className="nav-icon"/>
                                     <span>Sign Out</span>
                                 </Link>
