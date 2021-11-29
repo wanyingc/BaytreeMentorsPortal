@@ -27,12 +27,12 @@ function DashboardVolunteer() {
             </div>
 
             <div className="row justify-content-center">
-                <div className="col-lg-6 col-md-4 mb-4">
+                <div className="col-lg-6 mb-4">
                     <h2 className="dashboard-title">Sessions Statistics</h2>
                     <DashboardBarChart data={barChartData} />
                 </div>
                 
-                <div className="col-lg-6 col-md-4 mb-4">
+                <div className="col-lg-6 mb-4">
                     <h2 className="dashboard-title">Questionnaires</h2>
                     <DashboardDoughnut
                         data={doughnutChartData}
@@ -44,7 +44,7 @@ function DashboardVolunteer() {
             </div>
 
             <div className="row">
-                <div className="col-lg-4 col-md-4 mb-4">
+                <div className="col-lg-4 mb-4">
                     <h2 className="dashboard-title">Active Goals</h2>
                     <ListGroup data-spy="scroll">
                         {goalsList.map(goals => (
@@ -60,7 +60,7 @@ function DashboardVolunteer() {
                     </ListGroup>
                 </div>
                 
-                <div className="col-lg-4 col-md-4 mb-4">
+                <div className="col-lg-4 mb-4">
                     <h2 className="dashboard-title"> Active Mentees</h2>
                     <ListGroup data-spy="scroll">
                         {MyMentees.map(mentee => (
@@ -78,7 +78,7 @@ function DashboardVolunteer() {
                     </ListGroup>
                 </div>
 
-                <div className="col-lg-4 col-md-4 mb-4">
+                <div className="col-lg-4 mb-4">
                     <h2 className="dashboard-title">Latest Notifications</h2>
                     <ListGroup data-spy="scroll">
                         {notificationsList.map(notifs => (
