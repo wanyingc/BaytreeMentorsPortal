@@ -1,8 +1,10 @@
 **/node_modules
 
 server/src/config/config.ts
+server/package-lock.json
 
 /client/src/config/config.ts
+client/package-lock.json
 
 **/dist
 
