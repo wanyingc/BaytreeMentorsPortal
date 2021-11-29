@@ -52,3 +52,9 @@
 .list-group{
     background-color: #FAFAFA;
 }
+
+#date-dropdown{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

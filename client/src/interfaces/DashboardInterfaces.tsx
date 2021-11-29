@@ -47,6 +47,16 @@ export type DoughnutDataType = {
       borderWidth: number;
     }[];
 };
+export type PiChartDataType = {
+    labels: string[];
+    datasets: {
+      label: string;
+      data: number[];
+      backgroundColor: string[];
+      borderColor: string[];
+      borderWidth: number;
+    }[];
+};
 
 export type notificationObject = {
     title: string;

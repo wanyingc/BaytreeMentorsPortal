@@ -1,45 +1,48 @@
 import { LineChartDataProps } from "../../components/DashboardComponents/DashboardLineChart";
-import { DoughnutDataType, StackedChartDataType, tableDataType } from "../../interfaces/DashboardInterfaces";
+import { DoughnutDataType, PiChartDataType, StackedChartDataType, tableDataType } from "../../interfaces/DashboardInterfaces";
 
 export const sampleDate = new Date('October 7, 2021 13:24:00');
 
 //---------------------------- New Data -----------------------------------//
-export const SessionsDoneStackedData: StackedChartDataType = {
-  labels: ['June', 'July', 'August', 'September', 'October', 'November'],
-  datasets: [
-      {
-          label: 'Youth Mentors',
-          data: [10, 12, 19, 3, 5, 2, 3],
-          backgroundColor: 'rgb(255, 99, 132)',
-      },
-      {
-          label: 'Into School Mentors',
-          data: [11, 2, 3, 20, 5, 1, 4],
-          backgroundColor: 'rgb(54, 162, 235)',
-      },
-      {
-          label: 'Women Mentors',
-          data: [4, 3, 10, 13, 15, 22, 30],
-          backgroundColor: 'rgb(75, 192, 192)',
-      },
-  ],
+export function SessionsDoneStackedData(dataCount:number): StackedChartDataType {
+  let months=['January', 'February', 'March', 'April', 'May','June', 'July', 'August', 'September', 'October', 'November', 'December']
+  return {
+    labels: months.slice(-dataCount, undefined),
+    datasets: [
+        {
+            label: 'Youth Mentors',
+            data: [10, 12, 19, 3, 5, 2, 3, 22, 11, 4, 8, 9].slice(-dataCount, undefined),
+            backgroundColor: 'rgb(255, 99, 132)',
+        },
+        {
+            label: 'Into School Mentors',
+            data: [11, 2, 3, 20, 5, 1, 4, 0, 7, 7, 8, 10].slice(-dataCount, undefined),
+            backgroundColor: 'rgb(54, 162, 235)',
+        },
+        {
+            label: 'Women Mentors',
+            data: [6, 2, 4, 6, 4, 2, 2, 4, 7, 5, 7, 7].slice(-dataCount, undefined),
+            backgroundColor: 'rgb(75, 192, 192)',
+        },
+    ],
+  }
 };
 
-export const SessionsLeftStackedData: DoughnutDataType = {
+export const UpcomingSessionsStackedData: DoughnutDataType = {
   labels: ["Youth Mentor", "Into School Mentor", "Women Mentor"],
   datasets: [
     {
-      label: 'Sessions Left',
+      label: 'Upcoming Sessions',
       data: [11, 15, 12],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(209, 214, 159, 0.5)',
-        'rgba(54, 162, 205, 0.5)',
+        'rgba(255, 99, 132, 0.8)',
+        'rgba(255, 241, 201, 0.8)',
+        'rgba(54, 162, 205, 0.8)',
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(54, 162, 205, 1)',
+        'rgba(255, 99, 132, 0.8)',
+        'rgba(255, 241, 201, 0.8)',
+        'rgba(54, 162, 205, 0.8)',
       ],
       borderWidth: 0,
     },
@@ -96,6 +99,48 @@ export const NonDeliveredTableData: tableDataType[] = [
     mentorRole: "Youth Mentor",
   },
 ];
+
+export const PendingQuestionnairesPiChart: PiChartDataType = {
+  labels: ["Youth Mentor", "Into School Mentor", "Women Mentor"],
+  datasets: [
+    {
+      label: 'NonDeliveredTableData',
+      data: [3, 5, 7],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.8)',
+        'rgba(255, 241, 201, 0.8)',
+        'rgba(54, 162, 205, 0.8)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 0.8)',
+        'rgba(255, 241, 201, 0.8)',
+        'rgba(54, 162, 205, 0.8)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
+
+export const NonDeliveredPiChart: PiChartDataType = {
+  labels: ["Youth Mentor", "Into School Mentor", "Women Mentor"],
+  datasets: [
+    {
+      label: 'NonDeliveredTableData',
+      data: [4, 5, 6],
+      backgroundColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(54, 162, 235, 1)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(54, 162, 235, 1)',
+      ],
+      borderWidth: 0,
+    },
+  ],
+};
 
 //------------------------------------------------------------------------//
 
