@@ -19,3 +19,8 @@
     background-color: #FF1E89;
     color: white
 }
+#date-dropdown{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
