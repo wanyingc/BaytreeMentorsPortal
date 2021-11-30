@@ -45,8 +45,7 @@
     font-size: 37px;
     font-weight: bold;
     color: white;
-    background-color: #48B030;
-
+    margin-left: 10px;
 }
 
 .list-group{
@@ -57,4 +56,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+.square{
+    background-color: #48B030;
 }

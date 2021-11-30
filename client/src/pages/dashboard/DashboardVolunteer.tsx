@@ -28,12 +28,16 @@ function DashboardVolunteer() {
 
             <div className="row justify-content-center">
                 <div className="col-lg-6 mb-4">
-                    <h2 className="dashboard-title">Sessions Statistics</h2>
+                    <div className="square square-lg">
+                        <h2 className="dashboard-title">Sessions Statistics</h2>
+                    </div>
                     <DashboardBarChart data={barChartData} />
                 </div>
                 
                 <div className="col-lg-6 mb-4">
-                    <h2 className="dashboard-title">Questionnaires</h2>
+                    <div className="square square-lg">
+                        <h2 className="dashboard-title">Questionnaires</h2>
+                    </div>
                     <DashboardDoughnut
                         data={doughnutChartData}
                         height={330}
@@ -45,7 +49,9 @@ function DashboardVolunteer() {
 
             <div className="row">
                 <div className="col-lg-4 mb-4">
-                    <h2 className="dashboard-title">Active Goals</h2>
+                    <div className="square square-lg">
+                        <h2 className="dashboard-title">Active Goals</h2>
+                    </div>
                     <ListGroup data-spy="scroll">
                         {goalsList.map(goals => (
                             <ListGroup.Item className="list-group" key={goals.id}>
@@ -61,7 +67,9 @@ function DashboardVolunteer() {
                 </div>
                 
                 <div className="col-lg-4 mb-4">
-                    <h2 className="dashboard-title"> Active Mentees</h2>
+                    <div className="square square-lg">
+                        <h2 className="dashboard-title"> Active Mentees</h2>
+                    </div>
                     <ListGroup data-spy="scroll">
                         {MyMentees.map(mentee => (
                             <ListGroup.Item className="list-group" key={mentee.name}>
@@ -79,7 +87,9 @@ function DashboardVolunteer() {
                 </div>
 
                 <div className="col-lg-4 mb-4">
-                    <h2 className="dashboard-title">Latest Notifications</h2>
+                    <div className="square square-lg">
+                        <h2 className="dashboard-title">Latest Notifications</h2>
+                    </div>
                     <ListGroup data-spy="scroll">
                         {notificationsList.map(notifs => (
                             <ListGroup.Item className="list-group" key={notifs.title}>
