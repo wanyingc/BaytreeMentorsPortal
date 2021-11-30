@@ -3,6 +3,7 @@ import { IoPersonOutline } from 'react-icons/io5';
 import { AiOutlineFolderView } from "react-icons/ai";
 import { FiBarChart2, FiBriefcase, FiGrid } from 'react-icons/fi';
 import * as BsIcons from 'react-icons/bs';
+import { GiStairsGoal } from 'react-icons/gi';
 
 export const volunteerItems1 = [
     {
@@ -14,6 +15,12 @@ export const volunteerItems1 = [
         title: 'Create-Session',
         to: "/create-session",
         icon: <BsIcons.BsCalendar2Check className="nav-icon"/>
+    },
+    {
+        title: 'Goals',
+        to: "/goals",
+        icon: <GiStairsGoal className="nav-icon" />
+
     },
     {
         title: 'Messages',
