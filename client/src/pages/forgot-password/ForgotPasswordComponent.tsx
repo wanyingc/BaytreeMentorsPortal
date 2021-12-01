@@ -17,7 +17,7 @@ const ForgotComponent = () => {
   const [email,setEmail] = useState("");
 
   const getLinkResponse= async() => {
-    const response = await Axios.post(`${BASE_API_URL}/auth/login`,{
+    const response = await Axios.post(`${BASE_API_URL}/forgot-password`,{
       email: email,
     })
     .then(response => {
@@ -25,16 +25,16 @@ const ForgotComponent = () => {
     })
     .catch(err => {
       console.log(err);
-      alert('Error retrieving data!');
+      alert('User not found! Please enter valid e-mail');
+      history.push("/forgot-password");
       return err;
     });
     return response;
   }
 
   const sendLink= ()=>{
-  //   getLinkResponse().then(response => {
-
-  // })
+    getLinkResponse().then(response => {
+  })
 }
 
 
