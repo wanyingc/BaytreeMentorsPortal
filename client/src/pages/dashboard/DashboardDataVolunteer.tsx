@@ -1,17 +1,22 @@
 import axios from "axios";
-import { getAccessToken } from "../../auth/Authenticator";
+import { getAccessToken, getPersonID } from "../../auth/Authenticator";
 import { BASE_API_URL } from "../../config/config";
 import { MenteesObject, goalsObject, notificationObject, DoughnutDataType, BarChartDataType } from "../../interfaces/DashboardInterfaces";
 
 export const getSessionStats = () => {
   console.log("inside getSessionStats");
   let accessToken = getAccessToken();
-  const resp =  axios.get(`${BASE_API_URL}/auth/mentor/mentorhome`,
-  {
-      headers: {
-          "X-access-token": accessToken
-      }
-  });
+  let personID = getPersonID();
+  const resp =  axios.post(`${BASE_API_URL}/auth/mentor/mentorhome`,
+    {
+      personID: personID
+    },
+    {
+        headers: {
+            "X-access-token": accessToken
+        }
+    }
+  );
   
   return resp;
 }
@@ -105,7 +110,7 @@ export const goalsList: goalsObject[] = [
 }
 
 export const barChartData: BarChartDataType = {
-  labels: ['Sessions Completed', 'Sessions Missed', 'Upcoming Sessions'],
+  labels: ['Sessions Completed', 'Sessions Cancelled', 'Upcoming Sessions'],
   datasets: [
       {
           label: 'Number of Sessions',

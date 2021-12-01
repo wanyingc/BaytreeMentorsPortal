@@ -13,7 +13,7 @@ mentorHomeRouter.use((req:Request, res:Response, next:NextFunction) => {
     );
     next();
 });
-mentorHomeRouter.get(
+mentorHomeRouter.post(
     '/auth/mentor/mentorhome', 
     [
         authMW.verifyJWT,
