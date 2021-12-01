@@ -2,5 +2,11 @@
     font-size: 50px;
     font-weight: bold;
     color: black;
-    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.list-group{
+    max-height: 800px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
