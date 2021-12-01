@@ -21,19 +21,15 @@ const questionlist = async (req:Request, res:Response) => {
 
         // Retrieves first layer of Key from the JSON: key: evidence...
         //keyVolCount[0] = "questionnaires count=x"
-        let keyVolCount = Object.keys(responseQuestionsList.data);
+        //let keyVolCount = Object.keys(responseQuestionsList.data);
 
-        console.log("keyVolCount = ",keyVolCount)
-        console.log("keyVolCOunt[0] = ", [keyVolCount[0]])
         let resQuestionsArray = getResponseArray(responseQuestionsList.data);
-        console.log("THE ARRAY", resQuestionsArray)
 
         res.status(200).send({
-            "questionnaireList": resQuestionsArray,
+            "questionsList": resQuestionsArray,
         });
     })).catch(err => {
         console.log(err)
-        console.log("ERRROEREOROEROEOROEOREROEREE")
         return res.status(500).send({
             error: err
         });

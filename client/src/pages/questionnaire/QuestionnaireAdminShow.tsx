@@ -8,14 +8,12 @@ import { getAccessToken} from "../../auth/Authenticator";
 
 const QuestionnaireAdminShow = (props:any) => {
     const [questionsList, setQuestionsList] = useState<any>(undefined);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         getQuestions();
       }, []);
     
       const getQuestions= ()=>{
-        setLoading(true);
         let accessToken = getAccessToken();
         Axios.get( `${BASE_API_URL}/auth/questionlist`, 
           {
@@ -24,32 +22,8 @@ const QuestionnaireAdminShow = (props:any) => {
             }
           }).then((d:any) => {
             setQuestionsList(d.data);
-        }).finally(() => {
-            setLoading(false);
-          });
+        });
       }
-
-    if (loading) {
-        return <p>Data is loading...</p>;
-    }
-
-    function test() {
-        return (
-            <Table responsive hover>
-            <tbody>
-                { 
-                questionsList?.questionsList.map((qInfo: any) => {
-                      return (
-                        <tr key={qInfo["QuestionID"]} >
-                          <td>{qInfo["Question"]}</td>
-                        </tr>
-                      )
-                    })
-                }
-            </tbody>
-        </Table>
-        )
-    }
 
     return (
             <div id="main_questionnaire">
@@ -61,32 +35,23 @@ const QuestionnaireAdminShow = (props:any) => {
                     </Spinner>
                     </div>
                 } 
-                <h5>Questionnaire Forms</h5>
+                <h5>Questions</h5>
                 <hr/>
                 <Table responsive hover>
                     <tbody>
-                        <tr>
-                        <td><Button variant="primary" onClick={() => console.log(questionsList)}>View</Button></td>
-                        </tr>
                         { 
-                        // questionsList?.questionsList.map((qInfo) => {
-                        //       return (
-                        //         <tr key={qInfo["QuestionID"]} >
-                        //           <td>{qInfo["Question"]}</td>
-                        //         </tr>
-                        //       )
-                        //     })
+                        questionsList?.questionsList.map((qInfo) => {
+                              return (
+                                <tr key={qInfo["QuestionID"]} >
+                                  <td>{qInfo["Question"]}</td>
+                                  <td>{qInfo["inputType"]}</td>
+                                  <td>{qInfo["validation"]}</td>
+                                </tr>
+                              )
+                            })
                         }
                     </tbody>
                 </Table>
-                </Row>
-                <Row>
-                    <Col>
-                        <h6>Pending Questionnaires</h6>
-                    </Col>
-                    <Col>
-                        <h6>Completed Questionnaires</h6>
-                    </Col>
                 </Row>
             </div>
         )
