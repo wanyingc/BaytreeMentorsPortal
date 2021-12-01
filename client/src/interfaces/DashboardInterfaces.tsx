@@ -10,13 +10,16 @@ export type MenteesObject ={
     age: number|string;
     dateStart: Date|string;
     dateEnd: Date|string;
+    mentorRole: string;
 }
 
 export type goalsObject = {
     id: number;
     mentee: string;
-    date: string;
+    date: Date|string;
+    reviewDate: Date|string;
     notes: string;
+    status: string;
 };
 
 export type tableDataType = {
@@ -60,4 +63,16 @@ export type notificationObject = {
     date: Date|string;
     time: string;
     message: string;
-}
+};
+
+export type BarChartDataType = {
+    labels: string[];
+    datasets: {
+        label: string;
+        data: number[];
+        backgroundColor: string[];
+        borderColor: string[];
+        borderWidth: number;
+    }[];
+    maintainAspectRatio: boolean;
+};

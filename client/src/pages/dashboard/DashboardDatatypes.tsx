@@ -80,7 +80,7 @@ export const columnsMyMentees = [
         text: 'Date Start'
     },
     {
-        dataField: 'dateEnd',
-        text: 'Date End'
+        dataField: 'mentorRole',
+        text: 'Mentor Role'
     }
 ];

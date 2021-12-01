@@ -19,8 +19,45 @@
     background-color: #FF1E89;
     color: white
 }
+
+.reviewDate{
+    color: black;
+    opacity: 0.7;
+    font-size: 15px;
+}
+
+.fw-bold{
+    color:#48B030;
+    font-size: large;
+}
+
+.item-listgroup{
+    color:#48B030;
+    font-weight: bold;
+    font-size: large;
+}
+
+.listgroup-info{
+    font-size: 14px;
+}
+
+.dashboard-title{
+    font-size: 37px;
+    font-weight: bold;
+    color: white;
+    margin-left: 10px;
+}
+
+.list-group{
+    background-color: #FAFAFA;
+}
+
 #date-dropdown{
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+.square{
+    background-color: #48B030;
 }
