@@ -31,7 +31,7 @@ function DashboardVolunteer() {
                     <div className="square square-lg">
                         <h2 className="dashboard-title">Sessions Statistics</h2>
                     </div>
-                    <DashboardBarChart data={barChartData} />
+                    <DashboardBarChart data={barChartData}/>
                 </div>
                 
                 <div className="col-lg-6 mb-4">

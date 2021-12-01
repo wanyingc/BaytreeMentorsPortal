@@ -3,6 +3,9 @@ import { FC } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { BarChartDataType } from '../../interfaces/DashboardInterfaces';
 
+const options = {
+    maintainAspectRatio:false
+  };
 
 type BarChartProps = {
     title?: string;
@@ -19,7 +22,10 @@ export const DashboardBarChart:FC<BarChartProps> = ({
                 {title}
             </div>
             <div className="row bt-h-300">
-                <Bar data={data} />
+                <Bar 
+                    data={data} 
+                    options={options}
+                />
             </div>
         </>
     )
