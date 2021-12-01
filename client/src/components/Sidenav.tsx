@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../assets/logo.svg';
 import '../styles/Sidenav.css';
-import { volunteerItems1, volunteerItems2, adminItems1 } from './SidenavItems';
+import { volunteerItems1, adminItems1 } from './SidenavItems';
 import { Link } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
 import { isAdmin } from '../auth/Authenticator';
@@ -9,7 +9,7 @@ import { CgLogOut } from 'react-icons/cg';
 
 
 function getScreenSize () {
-    if(window.innerWidth < 768) {
+    if(window.innerWidth < 1680) {
         return true;
     } else {
         return false;
@@ -32,6 +32,7 @@ export default function Sidenav() {
 
     let menus1;    
     let menus2;
+
 
     useEffect(() => {
         window.addEventListener("resize", manageResize);
@@ -66,8 +67,9 @@ export default function Sidenav() {
             menus1 = adminItems1.map((item, index) => {
                 return(
                     <li className="nav-item border-0" key={index}>
-                        <Link to={item.to} className="nav-link btn-lg text-center py-1 btn-font-color-secondary" aria-current="page" type="button">
+                        <Link to={item.to} className="nav-link btn-lg text-left px-3 py-1 fs-6" aria-current="page" type="button">
                             {item.icon}
+                            {item.title}
                         </Link>
                     </li>
                 );
@@ -77,17 +79,9 @@ export default function Sidenav() {
             menus1 = volunteerItems1.map((item, index) => {
                 return(
                     <li className="nav-item border-0" key={index}>
-                        <Link to={item.to} className="nav-link btn-lg text-center py-1 btn-font-color-secondary" aria-current="page" type="button">
+                        <Link to={item.to} className="nav-link btn-lg text-left px-3 py-1 fs-6" aria-current="page" type="button">
                             {item.icon}
-                        </Link>
-                    </li>
-                );
-            });
-            menus2 = volunteerItems2.map((item, index) => {
-                return(
-                    <li className="nav-item border-0" key={index}>
-                        <Link to={item.to} className="nav-link btn-lg text-center px-3 py-1 btn-font-color-secondary" aria-current="page" type="button">
-                            {item.icon}
+                            {item.title}
                         </Link>
                     </li>
                 );
@@ -104,8 +98,11 @@ export default function Sidenav() {
                 <div className="container nav-container">   
                     <div className="mt-2 nav-top-container">                
                         <Link to="/" className="navbar-brand">
-                            <img src={logo} alt="logo" />
+                            <img src={logo} alt="logo"/>
                         </Link>
+                        <div className="portal-name text-center">
+                            {isAdmin() ? <>ADMIN PORTAL </> : <>MENTOR PORTAL</>}
+                        </div>
                         <div className="mt-3">
                             <ul className='navbar-nav flex-column'>
                                 {menus1}
@@ -114,10 +111,10 @@ export default function Sidenav() {
                     </div>
                     <div className="mb-3">
                         <ul className='navbar-nav flex-column'>
-                            {menus2}
                             <li className="nav-item border-0" >
-                                <Link to="/login" className="nav-link btn-lg text-center px-3 py-1 btn-font-color-secondary" aria-current="page" type="button" onClick={reMoveData}>
+                                <Link to="/login" className="nav-link btn-lg text-left px-3 py-1 fs-6" aria-current="page" type="button" onClick={reMoveData}>
                                     <CgLogOut className="nav-icon"/>
+                                    <span>Sign Out</span>
                                 </Link>
                             </li>
                         </ul>

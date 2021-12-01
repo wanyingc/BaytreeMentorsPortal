@@ -13,8 +13,12 @@ import Axios from "axios";
 import'../records/Records.css';
 import { BASE_API_URL } from "../../config/config";
 
+// Img Source: https://pixabay.com/illustrations/profile-profile-pic-human-face-2398783/
+import defaultProfilePic from './default_profile_picture.webp';
+
 const DEFAULT_USER = {
-  profileImg: 'https://merodesk.com/wp-content/uploads/2021/05/user-4.png'
+  // profileImg: 'https://merodesk.com/wp-content/uploads/2021/05/user-4.png'
+  profileImg: defaultProfilePic
 };
 
 const ReduxFormSelect: any = (field: any) => (
@@ -140,39 +144,6 @@ function Profile(props: InjectedFormProps | any) {
                   placeHolder="Select mentor type"
                 />
 
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                    <h4 className="text-right">Mentee Information</h4>
-              </div>
-              <Table striped bordered hover>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Age</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Sally</td>
-                    <td>Otto</td>
-                    <td>15</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jass</td>
-                    <td>Thornton</td>
-                    <td>11</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Jen</td>
-                    <td>Thornton</td>
-                    <td>17</td>
-                  </tr>
-                </tbody>
-              </Table>
             </Row>
 
             <Button
