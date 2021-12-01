@@ -75,4 +75,9 @@ export const adminItems1 = [
         to: "/resources",
         icon: <AiOutlineFolderView className="nav-icon"/>
     },
+    {
+        title: 'Questions',
+        to: "/questions",
+        icon: <AiOutlineFolderView className="nav-icon"/>
+    },
 ];

@@ -5,7 +5,7 @@ import { VIEWS_PASSWORD, VIEWS_USERNAME } from '../../../config/config';
 
 const questionlist = async (req:Request, res:Response) => {
     await axios.all([
-        axios.get(`https://app.viewsapp.net/api/restful/evidence/questionnaires/27/questions`, 
+        axios.get(`https://app.viewsapp.net/api/restful/evidence/questionnaires/${req.body.questionnaireID}/questions`, 
             {
                 headers: {
                     "Content-Type": "application/json"

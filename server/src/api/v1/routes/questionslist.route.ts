@@ -14,7 +14,7 @@ questionsListRouter.use((req:Request, res:Response, next:NextFunction) => {
     next();
 });
 
-questionsListRouter.get(
+questionsListRouter.post(
     `/auth/questionlist/`, 
     [
        authMW.verifyJWT,

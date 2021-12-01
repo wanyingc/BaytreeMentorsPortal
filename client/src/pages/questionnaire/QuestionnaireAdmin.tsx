@@ -6,9 +6,11 @@ import Axios from "axios";
 import { BASE_API_URL } from "../../config/config";
 import React, { useState, useEffect  } from 'react';
 import { getAccessToken} from "../../auth/Authenticator";
+import { useHistory } from "react-router-dom";
 
 const QuestionnaireAdmin = (props:any) => {
     const [questionnaireList, setQuestionnaireList] = useState<any>(undefined);
+    const history = useHistory();
 
     useEffect(() => {
       getQuestionnaires();
@@ -45,7 +47,7 @@ const QuestionnaireAdmin = (props:any) => {
                           return (
                             <tr key={qInfo["QuestionnaireID"]} >
                               <td>{qInfo["Title"]}</td>
-                              <td><Button variant="primary" onClick={() => console.log(questionnaireList)} >View</Button></td>
+                              <td><Button variant="primary" onClick={()=> history.push("/questions/"+qInfo['QuestionnaireID'])} >View</Button></td>
                               <td><Button variant="success" >Send</Button></td>
                             </tr>
                           )
@@ -53,14 +55,6 @@ const QuestionnaireAdmin = (props:any) => {
                     }
                 </tbody>
             </Table>
-            </Row>
-            <Row>
-                <Col>
-                    <h6>Pending Questionnaires</h6>
-                </Col>
-                <Col>
-                    <h6>Completed Questionnaires</h6>
-                </Col>
             </Row>
         </div>
     )
