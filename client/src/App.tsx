@@ -61,7 +61,7 @@ const MainRoutes = () => (
     <Route exact path="/mentors-list" component={MentorsList}/>
     <Route exact path="/records" component={Records}/>
     <Route exact path="/records/:personID" component={AdminRecords}/>
-    <Route exact path="/questions" component={QuestionnaireAdmin}/>
+    <Route exact path="/questionnaires" component={QuestionnaireAdmin}/>
     <Route exact path="/questions/:questionnaireID" component={QuestionList}/>
 
   </div>
