@@ -34,9 +34,9 @@ const Goals = () => {
             <Col sm="8">
                 <Form.Control as="select" className="form-select">
                     <option>Select Mentee</option>
-                    <option value="1"> Mira Jane </option>
-                    <option value="2"> Oliva Lane </option>
-                    <option value="3"> Tina Hudson </option>
+                    {MyMentees.map(mentee => (
+                    <option key={mentee.name} value={mentee.name}> {mentee.name} </option>
+                        ))}
                 </Form.Control>
             </Col>
           </Form.Group>
