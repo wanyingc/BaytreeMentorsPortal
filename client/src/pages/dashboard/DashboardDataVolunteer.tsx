@@ -16,7 +16,11 @@ export const getSessionStats = () => {
             "X-access-token": accessToken
         }
     }
-  );
+  ).then(resp => {
+    return resp;
+  }).catch(error => {
+    return error.response;
+  });
   
   return resp;
 }
@@ -109,16 +113,18 @@ export const goalsList: goalsObject[] = [
    ],
 }
 
-export const barChartData: BarChartDataType = {
-  labels: ['Sessions Completed', 'Sessions Cancelled', 'Upcoming Sessions'],
-  datasets: [
-      {
-          label: 'Number of Sessions',
-          data: [10, 2, 8],
-          backgroundColor: ['rgba(255, 99, 132, 0.5)'],
-          borderColor: ['rgba(255, 99, 132, 1)'],
-          borderWidth: 0,
-      },
-  ],
-  maintainAspectRatio:false
-};
+export const barChartData = (attendedSession, missedSession, upcomingSession): BarChartDataType => {
+  return {
+    labels: ['Sessions Completed', 'Sessions Cancelled', 'Upcoming Sessions'],
+    datasets: [
+        {
+            label: 'Number of Sessions',
+            data: [attendedSession, missedSession, upcomingSession],
+            backgroundColor: ['rgba(255, 99, 132, 0.5)'],
+            borderColor: ['rgba(255, 99, 132, 1)'],
+            borderWidth: 0,
+        },
+    ],
+    maintainAspectRatio:false
+  };
+}

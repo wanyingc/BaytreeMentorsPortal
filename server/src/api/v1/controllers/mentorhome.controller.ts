@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Request, Response, NextFunction } from 'express';
 import { VIEWS_PASSWORD, VIEWS_USERNAME } from '../../../config/config';
-import { processDatesFromResponse } from '../services/mentorhome.service';
+import { getNumUpcomingSessions, processDatesFromResponse } from '../services/mentorhome.service';
 import { getResponseArray } from '../services/records.service';
 
     const mentorHomeController = async (req:Request, res:Response, next:NextFunction) => {
@@ -22,12 +22,14 @@ import { getResponseArray } from '../services/records.service';
             });
             let keySessionsRoot = Object.keys(resp.data);
             let resSessionsArray = getResponseArray(resp.data[keySessionsRoot[0]]);
-            let datesArray = processDatesFromResponse(resSessionsArray);
+            let numSessions = processDatesFromResponse(resSessionsArray);
 
 
             // start of academic year - september
             res.status(200).send({
-                result: datesArray
+                AttendedSessions: numSessions.numAttendedSessions,
+                MissedSessions: numSessions.numMissedSessions,
+                UpcomingSessions: getNumUpcomingSessions()
             });
         }
         catch {

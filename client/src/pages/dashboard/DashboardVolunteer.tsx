@@ -11,13 +11,20 @@ import { getAccessToken } from '../../auth/Authenticator';
 function DashboardVolunteer() {
 
     const [sessionRecords, setSessionRecords] = useState<any>(undefined);
+    const [attendedSession, setAttendedSession] = useState(0);
+    const [missedSession, setMissedSession] = useState(0);
+    const [upcomingSession, setUpcomingSession] = useState(0);
 
     useEffect(() => {
         console.log("inside useEffect volunteer");
         getSessionStats()
         .then(response => {
             setSessionRecords(response);
+            setAttendedSession(response.data.AttendedSessions);
+            setMissedSession(response.data.MissedSessions);
+            setUpcomingSession(response.data.UpcomingSessions);
             console.log(response.data);
+        
         })
         .catch(err => {
 
@@ -43,7 +50,7 @@ function DashboardVolunteer() {
                     <div className="square square-lg">
                         <h2 className="dashboard-title">Sessions Statistics</h2>
                     </div>
-                    <DashboardBarChart data={barChartData}/>
+                    <DashboardBarChart data={barChartData(attendedSession, missedSession, upcomingSession)}/>
                 </div>
                 
                 <div className="col-lg-6 mb-4">
