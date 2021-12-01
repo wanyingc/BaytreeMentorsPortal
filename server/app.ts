@@ -12,6 +12,7 @@ import recordsRouter from './src/api/v1/routes/records.route';
 import profileRouter from './src/api/v1/routes/profile.route';
 import { PORT } from './src/config/config';
 import createSessionRouter from './src/api/v1/routes/createsession.route';
+import mentorHomeRouter from './src/api/v1/routes/mentorhome.route';
 
 const app=express();
 
@@ -31,6 +32,7 @@ app.use("/api",mentorListRouter);
 app.use("/api", recordsRouter);
 app.use("/api", profileRouter);
 app.use("/api", createSessionRouter);
+app.use("/api", mentorHomeRouter);
 
 // This router is only for testing, and demonstrates example for authority based API requests
 app.use("/api", testRouter);

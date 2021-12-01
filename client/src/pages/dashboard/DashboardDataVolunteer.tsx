@@ -1,4 +1,20 @@
+import axios from "axios";
+import { getAccessToken } from "../../auth/Authenticator";
+import { BASE_API_URL } from "../../config/config";
 import { MenteesObject, goalsObject, notificationObject, DoughnutDataType, BarChartDataType } from "../../interfaces/DashboardInterfaces";
+
+const getSessionStats = async() => {
+    
+  let accessToken = getAccessToken();
+  const resp = await axios.get(`${BASE_API_URL}/auth/mentor/mentorhome`,
+  {
+      headers: {
+          "X-access-token": accessToken
+      }
+  });
+  
+  return resp;
+}
 
 export const MyMentees: MenteesObject[] = [
     {

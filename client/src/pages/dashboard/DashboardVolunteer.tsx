@@ -5,18 +5,6 @@ import { ListGroup }from 'react-bootstrap/';
 import DashboardDoughnut from '../../components/DashboardComponents/DashboardDoughnut';
 import { DashboardBarChart } from '../../components/DashboardComponents/DashboardBarChart';
 
-const tableOptions = {
-    sizePerPageList: [
-        {
-            text: '5', value: 5
-        }, 
-        {
-            text: '10', value: 10
-        }
-    ]
-    
-};
-
 
 function DashboardVolunteer() {
 
@@ -52,7 +40,7 @@ function DashboardVolunteer() {
                     <div className="square square-lg">
                         <h2 className="dashboard-title">Active Goals</h2>
                     </div>
-                    <ListGroup data-spy="scroll">
+                    <ListGroup id="dashboard-list-group">
                         {goalsList.map(goals => (
                             <ListGroup.Item className="list-group" key={goals.id}>
                                 <div className="ms-2 me-auto">
@@ -70,7 +58,7 @@ function DashboardVolunteer() {
                     <div className="square square-lg">
                         <h2 className="dashboard-title"> Active Mentees</h2>
                     </div>
-                    <ListGroup data-spy="scroll">
+                    <ListGroup id="dashboard-list-group">
                         {MyMentees.map(mentee => (
                             <ListGroup.Item className="list-group" key={mentee.name}>
                                 <div className="ms-2 me-auto">
@@ -90,7 +78,7 @@ function DashboardVolunteer() {
                     <div className="square square-lg">
                         <h2 className="dashboard-title">Latest Notifications</h2>
                     </div>
-                    <ListGroup data-spy="scroll">
+                    <ListGroup id="dashboard-list-group">
                         {notificationsList.map(notifs => (
                             <ListGroup.Item className="list-group" key={notifs.title}>
                                 <div className="item-listgroup">{notifs.title}</div>
