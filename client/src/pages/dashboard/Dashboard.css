@@ -48,10 +48,6 @@
     margin-left: 10px;
 }
 
-.list-group{
-    background-color: #FAFAFA;
-}
-
 #date-dropdown{
     display: flex;
     align-items: center;
@@ -60,4 +56,12 @@
 
 .square{
     background-color: #48B030;
+}
+
+#dashboard-list-group{
+    background-color: #FAFAFA;
+    max-height: 400px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    height: 400px;
 }

@@ -5,8 +5,10 @@
     margin-top: 20px;
 }
 
-.list-group{
-    max-height: 800px;
+#goals-list-group{
+    background-color: #FAFAFA;
+    max-height: 500px;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
+    height: 500px;
 }
