@@ -1,18 +1,42 @@
-import { MyMentees, goalsList, notificationsList, doughnutChartData, barChartData } from './DashboardDataVolunteer'
+import { MyMentees, goalsList, notificationsList, doughnutChartData, barChartData, getSessionStats } from './DashboardDataVolunteer'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
-import { ListGroup }from 'react-bootstrap/';
+import { ListGroup, Spinner }from 'react-bootstrap/';
 import DashboardDoughnut from '../../components/DashboardComponents/DashboardDoughnut';
 import { DashboardBarChart } from '../../components/DashboardComponents/DashboardBarChart';
+import { useEffect, useState } from 'react';
+import { getAccessToken } from '../../auth/Authenticator';
 
 
 function DashboardVolunteer() {
+
+    const [sessionRecords, setSessionRecords] = useState<any>(undefined);
+
+    useEffect(() => {
+        console.log("inside useEffect volunteer");
+        getSessionStats()
+        .then(response => {
+            setSessionRecords(response);
+            console.log(response.data);
+        })
+        .catch(err => {
+
+        });
+    }, []);
 
     return (
         <div className="container p-2 mt-5">
             <div className="row" id='dashboard-title'>
                 <h5 style={{fontSize: 65, color:'#FF1E89'}}>Welcome, <strong>Mentor</strong>!</h5>
             </div>
+
+            {!sessionRecords &&
+                <div className = "loading">
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+                </div>
+            } 
 
             <div className="row justify-content-center">
                 <div className="col-lg-6 mb-4">

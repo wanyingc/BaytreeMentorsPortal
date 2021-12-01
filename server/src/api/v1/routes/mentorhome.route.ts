@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import testController from '../controllers/test.controller';
+import mentorHomeController from '../controllers/mentorhome.controller';
 import authMW from '../middlewares/auth.middleware';
 
 const mentorHomeRouter = Router();
@@ -20,6 +20,6 @@ mentorHomeRouter.get(
         authMW.isUser,
         authMW.isMentor
     ],  
-    testController.testAuthMentorController);
+    mentorHomeController);
 
     export default mentorHomeRouter;

@@ -3,10 +3,10 @@ import { getAccessToken } from "../../auth/Authenticator";
 import { BASE_API_URL } from "../../config/config";
 import { MenteesObject, goalsObject, notificationObject, DoughnutDataType, BarChartDataType } from "../../interfaces/DashboardInterfaces";
 
-const getSessionStats = async() => {
-    
+export const getSessionStats = () => {
+  console.log("inside getSessionStats");
   let accessToken = getAccessToken();
-  const resp = await axios.get(`${BASE_API_URL}/auth/mentor/mentorhome`,
+  const resp =  axios.get(`${BASE_API_URL}/auth/mentor/mentorhome`,
   {
       headers: {
           "X-access-token": accessToken
