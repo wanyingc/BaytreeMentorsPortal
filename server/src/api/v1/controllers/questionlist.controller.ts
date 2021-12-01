@@ -19,10 +19,6 @@ const questionlist = async (req:Request, res:Response) => {
        
     ]).then(axios.spread((responseQuestionsList) => {
 
-        // Retrieves first layer of Key from the JSON: key: evidence...
-        //keyVolCount[0] = "questionnaires count=x"
-        //let keyVolCount = Object.keys(responseQuestionsList.data);
-
         let resQuestionsArray = getResponseArray(responseQuestionsList.data);
 
         res.status(200).send({

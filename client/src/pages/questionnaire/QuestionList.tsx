@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table'
-import {Button, Row, Col, Spinner} from 'react-bootstrap/'
+import {Button, Row, Spinner} from 'react-bootstrap/'
 import './QuestionnaireForm.css';
 import Axios from "axios";
 import { BASE_API_URL } from "../../config/config";
@@ -43,6 +43,7 @@ const QuestionnaireAdminShow = (props:any) => {
                 } 
                 <h5>Questions</h5>
                 <hr/>
+
                 <Table responsive hover>
                     <thead>
                       <th>Question</th>
@@ -55,7 +56,6 @@ const QuestionnaireAdminShow = (props:any) => {
                                 <tr key={qInfo["QuestionID"]} >
                                   <td>{qInfo["Question"]}</td>
                                   <td>{qInfo["inputType"]}</td>
-                                  {/* <td>{qInfo["validation"]}</td> */}
                                 </tr>
                               )
                             })
@@ -63,9 +63,9 @@ const QuestionnaireAdminShow = (props:any) => {
                     </tbody>
                 </Table>
                 </Row>
-                <Row>
-                <td><Button variant="success" onClick={()=>console.log(questionnaireID)} >Send</Button></td>
-                </Row>
+               {/* <Row>
+                <td><Button variant="success" onClick={()=>console.log(typeof(questionsList))} >Send</Button></td>
+                </Row> */}
             </div>
         )
     

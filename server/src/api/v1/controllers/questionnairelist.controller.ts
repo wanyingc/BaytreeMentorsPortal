@@ -32,7 +32,6 @@ const questionnairelist = async (req:Request, res:Response) => {
         });
     })).catch(err => {
         console.log(err)
-        console.log("ERRROEREOROEROEOROEOREROEREE")
         return res.status(500).send({
             error: err
         });

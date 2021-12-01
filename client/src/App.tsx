@@ -21,7 +21,7 @@ import editSessions from './pages/sessions/EditSessions';
 import allSession from './pages/sessions/AllSessions';
 import sessionNotes from './pages/sessions/SessionNotes';
 import QuestionnaireAdmin from './pages/questionnaire/QuestionnaireAdmin'
-import QuestionList from './pages/questionnaire/QuestionnaireAdminShow'
+import QuestionList from './pages/questionnaire/QuestionList'
 
 
 import Records from './pages/records/Records';
