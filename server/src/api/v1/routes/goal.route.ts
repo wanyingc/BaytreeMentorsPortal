@@ -47,7 +47,7 @@ goalRouter.get( // get all the active goals
 );
 
 goalRouter.put( // update goal by id
-    '/auth/mentor/goalUpdate/:id', 
+    '/auth/mentor/goalUpdate', 
     [
         authMW.verifyJWT,
         authMW.isUser,
