@@ -4,7 +4,7 @@ import IGoal from "../interfaces/goal.interface";
 
 const GoalSchema= new mongoose.Schema({ 
     mentorID: {
-        type: String,
+        type: Number,
         required: true
     },
     menteeName: {

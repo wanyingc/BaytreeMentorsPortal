@@ -4,9 +4,9 @@ import Goal from '../models/goal.model';
 import User from '../models/user.model';
 
 export const validateGoalRequestMW = async (req:Request, res:Response, next:NextFunction) => {
-    let user = await User.findOne({personID: req.body.personID});
+    let user = await User.findOne({personID: req.body.mentorID});
     if(user){
-        res.locals.mentorEmail = user.email;
+        res.locals.mentorID = user.personID;
     } else {
         return res.status(404).send({error: "Cannont add goals because User not found."});
     }
