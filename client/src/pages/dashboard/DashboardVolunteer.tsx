@@ -1,12 +1,9 @@
-import React, { useState } from 'react'
-import { MyMentees, goalsList, notificationsList } from './DashboardDataVolunteer'
-import { columnsMyMentees } from './DashboardDatatypes';
+import { MyMentees, goalsList, notificationsList, doughnutChartData, barChartData } from './DashboardDataVolunteer'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
-import paginationFactory from 'react-bootstrap-table2-paginator';
-import { Bar, Doughnut } from 'react-chartjs-2';
-import { Form, Button, Row, Col, ListGroup }from 'react-bootstrap/';
+import { ListGroup }from 'react-bootstrap/';
+import DashboardDoughnut from '../../components/DashboardComponents/DashboardDoughnut';
+import { DashboardBarChart } from '../../components/DashboardComponents/DashboardBarChart';
 
 const tableOptions = {
     sizePerPageList: [
@@ -20,132 +17,93 @@ const tableOptions = {
     
 };
 
-const barChartData = {
-    labels: ['Sessions Completed', 'Sessions Missed', 'Upcoming Sessions'],
-    datasets: [
-        {
-            label: '',
-            data: [10, 2, 8],
-            backgroundColor: ['#317821', '#4EB836', '#D5DF7C'],
-            borderColor: ['#317821', '#4EB836', '#D5DF7C'],
-            borderWidth: 1,
-        },
-    ],
-};
-
-const doughnutChartData = {
-   label: ['Completed', 'Incomplete'],
-   datasets: [
-       {
-            label: 'Monthly Form Progress',
-            data: [10,2],
-            backgroundColor: ['#48B030', '#FF1E89'],
-            borderColor: ['#48B030', '#FF1E89'],
-            borderWidth:1,
-       },
-   ],
-}
 
 function DashboardVolunteer() {
 
     return (
-        <><div className="container p-2 mt-5">
-            <div className="row">
-                <h5 style={{fontSize: 65, color:'#FF1E89'}}>Welcome, <strong>User</strong>!</h5>
+        <div className="container p-2 mt-5">
+            <div className="row" id='dashboard-title'>
+                <h5 style={{fontSize: 65, color:'#FF1E89'}}>Welcome, <strong>Mentor</strong>!</h5>
             </div>
 
             <div className="row justify-content-center">
-                <div className="col-lg-6 col-md-4 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Sessions Statistics</h2>
-                    <Bar data={barChartData} />
+                <div className="col-lg-6 mb-4">
+                    <div className="square square-lg">
+                        <h2 className="dashboard-title">Sessions Statistics</h2>
+                    </div>
+                    <DashboardBarChart data={barChartData}/>
+                </div>
+                
+                <div className="col-lg-6 mb-4">
+                    <div className="square square-lg">
+                        <h2 className="dashboard-title">Questionnaires</h2>
+                    </div>
+                    <DashboardDoughnut
+                        data={doughnutChartData}
+                        height={330}
+                        width={400}
+                    />
                 </div>
 
-                <div className="col-lg-3 col-md-3 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Monthly Progress Update</h2>
-                    <Doughnut data={doughnutChartData}/>
-                </div>
+            </div>
 
-                <div className="col-lg-3 col-md-3 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Notifications</h2>
+            <div className="row">
+                <div className="col-lg-4 mb-4">
+                    <div className="square square-lg">
+                        <h2 className="dashboard-title">Active Goals</h2>
+                    </div>
                     <ListGroup data-spy="scroll">
-                            {notificationsList.map(notifs => (
-                                <ListGroup.Item key={notifs.title}>
-                                    <text style={{fontSize: 17, fontWeight: 'bold'}}>{notifs.title}</text><br/>
-                                    <text style={{fontSize: 14}}> {notifs.date}, {notifs.time}</text><br/>
-                                    <text style={{fontSize: 14}}>{notifs.message}</text>
-                                </ListGroup.Item>
-                            ))}
-                        </ListGroup>
+                        {goalsList.map(goals => (
+                            <ListGroup.Item className="list-group" key={goals.id}>
+                                <div className="ms-2 me-auto">
+                                    <div className="fw-bold">{goals.mentee}, {goals.date}</div>
+                                    <div className="reviewDate">Review on {goals.reviewDate}</div>
+                                    <div className="listgroup-info">{goals.notes}</div>
+                                </div>
+                                
+                            </ListGroup.Item>
+                        ))}
+                    </ListGroup>
+                </div>
+                
+                <div className="col-lg-4 mb-4">
+                    <div className="square square-lg">
+                        <h2 className="dashboard-title"> Active Mentees</h2>
+                    </div>
+                    <ListGroup data-spy="scroll">
+                        {MyMentees.map(mentee => (
+                            <ListGroup.Item className="list-group" key={mentee.name}>
+                                <div className="ms-2 me-auto">
+                                    <div className="item-listgroup">{mentee.name}</div>
+                                    <div className="listgroup-info">D.O.B.: {mentee.dateOfBirth}</div>
+                                    <div className="listgroup-info">Age: {mentee.age}</div>
+                                    <div className="listgroup-info">Start Date: {mentee.dateStart}</div>
+                                    <div className="listgroup-info">Mentor Role: {mentee.mentorRole}</div>
+                                </div>
+                                
+                            </ListGroup.Item>
+                        ))}
+                    </ListGroup>
                 </div>
 
-                <div className="col-lg-12 col-md-12 mb-4">
-                    <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>My Mentees</h2>
-                    <BootstrapTable
-                        keyField='name'
-                        data={MyMentees}
-                        columns={columnsMyMentees}
-                        pagination={paginationFactory(tableOptions)} />
+                <div className="col-lg-4 mb-4">
+                    <div className="square square-lg">
+                        <h2 className="dashboard-title">Latest Notifications</h2>
+                    </div>
+                    <ListGroup data-spy="scroll">
+                        {notificationsList.map(notifs => (
+                            <ListGroup.Item className="list-group" key={notifs.title}>
+                                <div className="item-listgroup">{notifs.title}</div>
+                                <div className="listgroup-info">{notifs.date}, {notifs.time}</div>
+                                <div className="listgroup-info">{notifs.message}</div>
+                            </ListGroup.Item>
+                        ))}
+                    </ListGroup>
                 </div>
+
             </div>
         </div>
-            <div className="container p-2 mt-5">
-                <div className="row">
-                    <div className="col-lg-6 col-md-6 mb-4">
-                        <h2 style={{fontSize: 37, fontWeight: 'bold', color:'#48B030'}}>Goals</h2>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-lg-6 col-md-6 mb-4">
-                        <ListGroup data-spy="scroll">
-                            {goalsList.map(goals => (
-                                <ListGroup.Item key={goals.id}>
-                                    <p className="lead"><strong>{goals.mentee}, {goals.date}</strong></p>
-                                    <p>{goals.notes}</p>
-                                </ListGroup.Item>
-                            ))}
-                        </ListGroup>
-                    </div>
-
-                    <div id="create-goal-form" className="col-lg-6 col-md-6 mb-4">
-                        <p> </p>
-                        <Form>
-                            <Form.Group as={Row} className="mb-3" controlId="formMenteeName">
-                                <Form.Label column sm="4" style={{fontSize: 20, fontWeight: 'bold'}}>Mentee: </Form.Label>
-                                <Col sm="6">
-                                    <Form.Control as="select" className="form-select">
-                                        <option>Select Mentee</option>
-                                        <option value="1"> Mira Jane </option>
-                                        <option value="2"> Oliva Lane </option>
-                                        <option value="3"> Tina Hudson </option>
-                                    </Form.Control>
-                                </Col>
-                            </Form.Group>
-
-                            <Form.Group as={Row} className="mb-3" controlId="formEndDate">
-                                <Form.Label column sm="4" style={{fontSize: 20, fontWeight: 'bold'}}>End Date: </Form.Label>
-                                <Col sm="6">
-                                    <Form.Control type="date" />
-                                </Col>
-                            </Form.Group>
-
-                            <Form.Group as={Row} className="mb-3" controlId="formEndDate">
-                                <Col sm="10">
-                                    <Form.Control as="textarea" rows={5} placeholder="Type your goals here..." />
-                                </Col>
-                            </Form.Group>
-
-                            <Button variant="primary" className="btn btn-primary rounded-pill" type="button">
-                                Create Goal
-                            </Button>
-                        </Form>
-                    </div>
-                </div>
-            </div>
-
-        </>
-
-
-        
+            
     )
 }
 

@@ -1,3 +1,8 @@
 [type='radio'] {
     display: none; 
     }
+
+#main_questionnaire{
+     margin-left: 4%;
+     margin-top: 3rem;
+}
