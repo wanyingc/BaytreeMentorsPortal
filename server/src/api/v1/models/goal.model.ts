@@ -3,16 +3,11 @@ import mongoose from "mongoose";
 import IGoal from "../interfaces/goal.interface";
 
 const GoalSchema= new mongoose.Schema({ 
-    goalID: {
-        type: Number,
-        required: true,
-        unique: true
-    },
-    menteeName: {
+    mentorID: {
         type: String,
         required: true
     },
-    mentorEmail: {
+    menteeName: {
         type: String,
         required: true
     },
@@ -32,7 +27,7 @@ const GoalSchema= new mongoose.Schema({
         {
             type: String,
             default: "in_progress",
-            enum: ["achieved", "in_progress", "recalibrated"]
+            enum: ["achieved", "in_progress", "not_achieved"]
         }
     ]
 });
