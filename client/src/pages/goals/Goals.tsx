@@ -7,6 +7,35 @@ import { BASE_API_URL } from '../../config/config';
 import { useEffect, useState } from 'react';
 import getGoalsList from './GoalsListData';
 
+
+type goalsDataType ={
+  goals: goalDataType[];
+}
+
+type goalDataType = {
+    _id?: string;
+    mentorID: number;
+    menteeName: string;
+    date: Date|string;
+    reviewDate: Date|string;
+    notes: string;
+    status: string[];
+    "__v": number;
+};
+
+let sampleGoalArray: goalDataType[] = [
+  {
+    _id: "",
+    mentorID: 0,
+    menteeName: "",
+    date: "",
+    reviewDate: "",
+    notes: "",
+    status: [""],
+    __v: 0
+  }
+];
+
 const Goals = () => {
 
   const currDate = new Date();
@@ -21,7 +50,11 @@ const Goals = () => {
   const [notes, setNotes] = useState("");
   const [status, setStatus] = useState("in_progress");
   const [loading, setLoading] = useState(true);
-  const [goals, setGoals] = useState(undefined);
+  const [goalList, setGoalList] = useState<goalsDataType>(
+    {
+      goals: sampleGoalArray
+    });
+
 
   const changeStatusName = () => {
     if (status === "In Progress"){
@@ -32,6 +65,18 @@ const Goals = () => {
     }
     else if (status === "Not Achieved"){
       setStatus("not_achieved");
+    }
+  }
+
+  const changeStatusNameReverse = (statusToChange: string) => {
+    if (statusToChange === "in_progress"){
+      return "In Progress";
+    }
+    else if(statusToChange === "achieved"){
+      return "Achieved";
+    }
+    else if (statusToChange === "not_achieved"){
+      return "Not Achieved";
     }
   }
 
@@ -85,9 +130,9 @@ const Goals = () => {
             "x-access-token": accessToken
         }
     })
-    .then(response => {
+    .then((response:any) => {
         console.log(response.data);
-        
+        setGoalList(response.data);
     })
     .catch((err) => {
       
@@ -107,18 +152,18 @@ const Goals = () => {
           </div>
          
           <ListGroup id="goals-list-group">
-            {goalsList.map((goals,index) => (
+            {goalList?.goals.map((goal,index) => (
               <ListGroup.Item key={index}>
                 <Row>
                   <Col md="8">
-                    <div className="fw-bold">{goals.mentee}, {goals.date}</div>
-                    <div className="reviewDate">Review on {goals.reviewDate}</div>
-                    <div className="listgroup-info">{goals.notes}</div>
+                    <div className="fw-bold">{goal.menteeName}, {goal.date}</div>
+                    <div className="reviewDate">Review on {goal.reviewDate}</div>
+                    <div className="listgroup-info">{goal.notes}</div>
                   </Col>
                   <Col sm="4">
-                    <Form.Control as="select" className="changeStatusButton" onChange={e => {setStatus(e.target.value); console.log(e.target.value);}}>
+                    <Form.Control as="select" className="changeStatusButton" onChange={e => {setStatus(e.target.value);}}>
                       
-                      {goalsList.map((goals,index) => (
+                      {statusArray.map((option,index) => (
                         <option key={index} value={statusArray[index]}> {statusArray[index]} </option>
                       ))} 
                     </Form.Control>
