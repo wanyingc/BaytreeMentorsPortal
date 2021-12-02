@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import axios from 'axios';
-import { getResponseArray } from '../services/records.service';
+import { getResponseArray } from '../services/responseToArray.service';
 import { VIEWS_PASSWORD, VIEWS_USERNAME } from '../../../config/config';
 
 const logTitle = "Records Controller";
