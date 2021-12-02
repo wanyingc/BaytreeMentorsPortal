@@ -10,9 +10,10 @@ import { getAccessToken, isAdmin } from '../../auth/Authenticator';
 import { useHistory } from "react-router-dom";
 import { Redirect } from 'react-router';
 import {BASE_API_URL} from '../../config/config'; 
+import nodemailer from 'nodemailer';
+
 
 const ForgotComponent = () => {
-
   const history = useHistory(); 
   const [email,setEmail] = useState("");
 
@@ -35,6 +36,7 @@ const ForgotComponent = () => {
   const sendLink= ()=>{
     getLinkResponse().then(response => {
   })
+  
 }
 
 
@@ -56,7 +58,7 @@ const ForgotComponent = () => {
                 placeholder="Enter email"
               />
               </div>
-              <Link to="/reset-password">
+              <Link to="/login">
                 <button
                   type="submit"
                   className="sign-button btn btn-primary btn-block" id="login" 

@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import loginController from '../controllers/login.controller';
+import resetController from '../controllers/ResetPass.controller'
 
 
 const loginRouter = Router();
@@ -14,6 +14,6 @@ loginRouter.use((req:Request, res:Response, next:NextFunction) => {
     next();
 });
 
-loginRouter.post('/', loginController);
+loginRouter.post('/reset-password', resetController);
 
 export default loginRouter;

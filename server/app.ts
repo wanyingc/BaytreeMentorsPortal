@@ -12,7 +12,8 @@ import recordsRouter from './src/api/v1/routes/records.route';
 import profileRouter from './src/api/v1/routes/profile.route';
 import { PORT } from './src/config/config';
 import createSessionRouter from './src/api/v1/routes/createsession.route';
-import forgotController from './src/api/v1/controllers/forgotPass.controller';
+import forgotRoute from './src/api/v1/routes/forgotPass.route'
+import resetRoute from './src/api/v1/routes/resetPass.route'
 
 const app=express();
 
@@ -32,7 +33,8 @@ app.use("/api",mentorListRouter);
 app.use("/api", recordsRouter);
 app.use("/api", profileRouter);
 app.use("/api", createSessionRouter);
-app.use("/api", forgotController);
+app.use("/api", forgotRoute);
+app.use("/api", resetRoute);
 
 // This router is only for testing, and demonstrates example for authority based API requests
 app.use("/api", testRouter);
