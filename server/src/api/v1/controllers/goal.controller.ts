@@ -14,7 +14,6 @@ export const goalPostController = async (req:Request, res:Response, next:NextFun
         notes: req.body.notes,
         status: req.body.status,
     });
-
     
     newGoal = await newGoal.save();
 
@@ -24,3 +23,15 @@ export const goalPostController = async (req:Request, res:Response, next:NextFun
         goals: goals
     });
 };
+
+export const goalListController = async (req:Request, res:Response, next:NextFunction) => {
+
+}
+
+export const goalListActiveController = async (req:Request, res:Response, next:NextFunction) => {
+
+}
+
+export const goalUpdateController = async (req:Request, res:Response, next:NextFunction) => {
+    let id = req.params.id;
+}

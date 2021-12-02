@@ -10,4 +10,11 @@ export const validateGoalRequestMW = async (req:Request, res:Response, next:Next
     } else {
         return res.status(404).send({error: "Cannont add goals because User not found."});
     }
+    if(req.body.mentorID && req.body.menteeName && req.body.date && req.body.reviewDate && req.body.notes && req.body.status){
+        next();
+    } else {
+        return res.status(401).send({
+            error: "All fields are not provided. Please try again."
+        });
+    }
 }

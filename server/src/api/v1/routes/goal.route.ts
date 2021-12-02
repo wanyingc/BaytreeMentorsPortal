@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { goalPostController } from '../controllers/goal.controller';
+import {goalListActiveController, goalListController, goalPostController, goalUpdateController} from '../controllers/goal.controller';
 import authMW from '../middlewares/auth.middleware';
+import { validateGoalRequestMW } from '../middlewares/goal.middleware';
 
 const goalRouter = Router();
 
@@ -19,7 +20,8 @@ goalRouter.post( // create new goal
     [
         authMW.verifyJWT,
         authMW.isUser,
-        authMW.isMentor
+        authMW.isMentor,
+        validateGoalRequestMW
     ],  
     goalPostController
 );
@@ -31,7 +33,7 @@ goalRouter.get( // get all the goals (incl. id)
         authMW.isUser,
         authMW.isMentor
     ],  
-    goalPostController
+    goalListController
 );
 
 goalRouter.get( // get all the active goals
@@ -41,7 +43,7 @@ goalRouter.get( // get all the active goals
         authMW.isUser,
         authMW.isMentor
     ],  
-    goalPostController
+    goalListActiveController
 );
 
 goalRouter.put( // update goal by id
@@ -51,7 +53,7 @@ goalRouter.put( // update goal by id
         authMW.isUser,
         authMW.isMentor
     ],  
-    goalPostController
+    goalUpdateController
 );
 
 export default goalRouter;

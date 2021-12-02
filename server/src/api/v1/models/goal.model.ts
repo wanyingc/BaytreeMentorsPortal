@@ -27,6 +27,7 @@ const GoalSchema= new mongoose.Schema({
         {
             type: String,
             default: "in_progress",
+            required: true,
             enum: ["achieved", "in_progress", "not_achieved"]
         }
     ]
