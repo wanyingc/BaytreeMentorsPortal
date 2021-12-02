@@ -61,16 +61,20 @@ const QuestionnaireAdmin = (props:any) => {
       console.log(mentorID)
       console.log(typeof(mentorID))
 
-      // Axios.post( 
-      //   `${BASE_API_URL}/auth/questionnairelist`,
-      //   {
-      //     questionnaireID: questionnaireID,
-      //   },
-      //   {
-      //     headers: {
-      //       "X-access-token": accessToken
-      //     }
-      // });
+      Axios.post( 
+        `${BASE_API_URL}/auth/questionnairelist`,
+        {
+          questionnaireID: questionnaireID,
+          mentorID: mentorID
+        },
+        {
+          headers: {
+            "X-access-token": accessToken
+          }
+      }).then((response:any) => {
+        console.log("RESPONSE:", response.data)
+        setModalShow(false)
+    });
     }
   
     return (

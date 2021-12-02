@@ -24,8 +24,7 @@ const questionnairelist = async (req:Request, res:Response) => {
         let keyVolCount = Object.keys(responseQuestionnaireList.data);
 
         let resQuestionnaireArray = getResponseArray(responseQuestionnaireList.data[keyVolCount[0]]);
-        console.log(resQuestionnaireArray)
-
+       // console.log(resQuestionnaireArray)
 
         res.status(200).send({
             "questionnaireList": resQuestionnaireArray,
