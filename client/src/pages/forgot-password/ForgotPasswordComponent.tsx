@@ -35,6 +35,7 @@ const ForgotComponent = () => {
 
   const sendLink= ()=>{
     getLinkResponse().then(response => {
+      alert('Please check your e-mail for further instructions.');
   })
   
 }
@@ -58,7 +59,7 @@ const ForgotComponent = () => {
                 placeholder="Enter email"
               />
               </div>
-              <Link to="/login">
+              <Link to="/reset-password">
                 <button
                   type="submit"
                   className="sign-button btn btn-primary btn-block" id="login" 
