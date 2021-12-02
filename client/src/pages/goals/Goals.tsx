@@ -2,7 +2,7 @@ import './goals.css';
 import { Form, Row, Col, ListGroup, Button } from 'react-bootstrap/';
 import { goalsList, MyMentees } from '../dashboard/DashboardDataVolunteer';
 import Axios from 'axios';
-import { getAccessToken } from '../../auth/Authenticator';
+import { getAccessToken, getPersonID } from '../../auth/Authenticator';
 import { BASE_API_URL } from '../../config/config';
 import { useState } from 'react';
 
@@ -11,15 +11,29 @@ const Goals = () => {
   const currDate = new Date();
   const currDateString = `${currDate.getFullYear()}-${(currDate.getMonth() + 1) < 10 ? "0" : ""}${currDate.getMonth()+1}-${currDate.getDay() < 10 ? "0" : ""}${currDate.getDay()}`;
 
+
+  const statusArray = ["In Progress", "Achieved", "Not Achieved"];
+
   const [menteeName, setMenteeName] = useState("");
-  const [mentorEmail, setMentorEmail] = useState("");
   const [startingDate, setStartingDate] = useState("");
   const [reviewDate, setReviewDate] = useState("");
   const [notes, setNotes] = useState("");
   const [status, setStatus] = useState("in_progress");
 
+  const changeStatusName = () => {
+    if (status === "In Progress"){
+      setStatus("in_progress");
+    }
+    else if(status === "Achieved"){
+      setStatus("achieved");
+    }
+    else if (status === "Not Achieved"){
+      setStatus("not_achieved");
+    }
+  }
 
-  const statusArray = ["In Progress", "Achieved", "Not Achieved"];
+
+  const mentorID = getPersonID();
 
 
   console.log(currDateString, currDate.getDay());
@@ -32,8 +46,8 @@ const Goals = () => {
     let accessToken = getAccessToken();
     Axios.post(`${BASE_API_URL}/auth/mentor/goal`,
         {
+          "mentorID": mentorID,
           "menteeName": menteeName,
-          "mentorEmail": mentorEmail,
           "date": startingDate,
           "reviewDate": reviewDate,
           "notes": notes,
@@ -51,7 +65,7 @@ const Goals = () => {
     .catch((err) => {
       
     });   
-}
+  }
 
   return (
     <div className="container">
@@ -69,17 +83,17 @@ const Goals = () => {
             {goalsList.map((goals,index) => (
               <ListGroup.Item key={index}>
                 <Row>
-                  <Col md="9">
+                  <Col md="8">
                     <div className="fw-bold">{goals.mentee}, {goals.date}</div>
                     <div className="reviewDate">Review on {goals.reviewDate}</div>
                     <div className="listgroup-info">{goals.notes}</div>
                   </Col>
-                  <Col sm="3">
-                    <Form.Control as="select" className="form-select" onChange={e => {setStatus(e.target.value); console.log(status);}}>
+                  <Col sm="4">
+                    <Form.Control as="select" className="changeStatusButton" onChange={e => {setStatus(e.target.value); console.log(e.target.value);}}>
                       
                       {goalsList.map((goals,index) => (
                         <option key={index} value={statusArray[index]}> {statusArray[index]} </option>
-                      ))}
+                      ))} 
                     </Form.Control>
                   </Col>
                 </Row>
