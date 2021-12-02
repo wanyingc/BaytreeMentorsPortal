@@ -52,7 +52,7 @@ function DashboardVolunteer() {
                     <div className="square square-lg">
                         <h2 className="dashboard-title">Active Goals</h2>
                     </div>
-                    <ListGroup id="dashboard-list-group">
+                    {/* <ListGroup id="dashboard-list-group">
                         {goalsList.map(goals => (
                             <ListGroup.Item key={goals.id}>
                                 <div className="ms-2 me-auto">
@@ -63,7 +63,7 @@ function DashboardVolunteer() {
                                 
                             </ListGroup.Item>
                         ))}
-                    </ListGroup>
+                    </ListGroup> */}
                 </div>
                 
                 <div className="col-lg-4 mb-4">

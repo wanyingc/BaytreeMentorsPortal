@@ -26,7 +26,7 @@ goalRouter.post( // create new goal
     goalPostController
 );
 
-goalRouter.get( // get all the goals (incl. id)
+goalRouter.post( // get all the goals (incl. id)
     '/auth/mentor/goalList', 
     [
         authMW.verifyJWT,

@@ -4,7 +4,8 @@ import { goalsList, MyMentees } from '../dashboard/DashboardDataVolunteer';
 import Axios from 'axios';
 import { getAccessToken, getPersonID } from '../../auth/Authenticator';
 import { BASE_API_URL } from '../../config/config';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import getGoalsList from './GoalsListData';
 
 const Goals = () => {
 
@@ -19,6 +20,8 @@ const Goals = () => {
   const [reviewDate, setReviewDate] = useState("");
   const [notes, setNotes] = useState("");
   const [status, setStatus] = useState("in_progress");
+  const [loading, setLoading] = useState(true);
+  const [goals, setGoals] = useState(undefined);
 
   const changeStatusName = () => {
     if (status === "In Progress"){
@@ -52,6 +55,30 @@ const Goals = () => {
           "reviewDate": reviewDate,
           "notes": notes,
           "status": [status],
+        },
+        {
+            headers: {
+            "x-access-token": accessToken
+        }
+    })
+    .then(response => {
+        console.log(response.data);
+        
+    })
+    .catch((err) => {
+      
+    });   
+  }
+
+  useEffect(() => {
+    getGoalsList();
+  },[]);
+
+  const getGoalsList = () => {
+    let accessToken = getAccessToken();
+    Axios.post(`${BASE_API_URL}/auth/mentor/goalList`,
+        {
+          "mentorID": mentorID
         },
         {
             headers: {
