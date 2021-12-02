@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import resetController from '../controllers/ResetPass.controller'
+import resetController from '../controllers/resetPass.controller'
 
 
 const loginRouter = Router();
