@@ -11,4 +11,11 @@
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     height: 500px;
+
+}
+
+#create-goal-button{
+    background-color: #d63384;
+    border-color: #d63384;
+    
 }

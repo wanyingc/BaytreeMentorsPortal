@@ -19,7 +19,7 @@ const Goals = () => {
   const [status, setStatus] = useState("in_progress");
 
 
-  const statusArray = ["In Progress", "Achieved", "Recalibrated"];
+  const statusArray = ["In Progress", "Achieved", "Not Achieved"];
 
 
   console.log(currDateString, currDate.getDay());
@@ -60,8 +60,11 @@ const Goals = () => {
       </div>
       
       <div className="row">
-        <div className="col-lg-6 col-md-6 mb-4">
-          <h3>Goals History</h3>
+        <div className="col-lg-6 mb-4">
+          <div className="square square-lg">
+            <h3 className="dashboard-title">Goals History</h3>
+          </div>
+         
           <ListGroup id="goals-list-group">
             {goalsList.map((goals,index) => (
               <ListGroup.Item key={index}>
@@ -86,8 +89,11 @@ const Goals = () => {
           </ListGroup>
         </div>
 
-        <div className="col-lg-6 col-md-6 mb-4">
-          <h3>Create goal</h3>
+        <div className="col-lg-6 mb-4">
+          <div className="square square-lg">
+            <h3 className="dashboard-title">Create Goal</h3>
+          </div>
+          
           <Form>
           <Form.Group as={Row} className="mb-3" controlId="formMenteeName">
             <Form.Label column sm="6" style={{fontSize: 20}}>Mentee: </Form.Label>
@@ -129,7 +135,7 @@ const Goals = () => {
           </Form.Group>
           
           <div className="d-flex justify-content-end">
-            <Button variant="primary" className="btn btn-primary rounded-pill" type="button" onClick={createGoal}>
+            <Button id ="create-goal-button" variant="primary" className="btn btn-primary rounded-pill" type="button" onClick={createGoal}>
               Create Goal
             </Button>
           </div>
