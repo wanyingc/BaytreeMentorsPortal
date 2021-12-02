@@ -1,6 +1,6 @@
 import { CgLogOut } from 'react-icons/cg';
 import { IoPersonOutline } from 'react-icons/io5';
-import { AiOutlineFolderView } from "react-icons/ai";
+import { AiOutlineFolderView, AiOutlineForm } from "react-icons/ai";
 import { FiBarChart2, FiBriefcase, FiGrid } from 'react-icons/fi';
 import * as BsIcons from 'react-icons/bs';
 import { GiStairsGoal } from 'react-icons/gi';
@@ -77,8 +77,14 @@ export const adminItems1 = [
         icon: <BsIcons.BsPersonPlus className="nav-icon"/>
     },
     {
+
         title: 'Resources',
         to: "/resources",
         icon: <AiOutlineFolderView className="nav-icon"/>
+    },
+    {
+        title: 'Questionnaires',
+        to: "/questionnaires",
+        icon: <AiOutlineForm className="nav-icon"/>
     },
 ];

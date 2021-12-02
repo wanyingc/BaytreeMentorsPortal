@@ -20,6 +20,8 @@ import sessions from './pages/sessions/Sessions';
 import editSessions from './pages/sessions/EditSessions';
 import allSession from './pages/sessions/AllSessions';
 import sessionNotes from './pages/sessions/SessionNotes';
+import QuestionnaireAdmin from './pages/questionnaire/QuestionnaireAdmin'
+import QuestionList from './pages/questionnaire/QuestionList'
 
 
 import Records from './pages/records/Records';
@@ -61,6 +63,9 @@ const MainRoutes = () => (
     <Route exact path="/mentors-list" component={MentorsList}/>
     <Route exact path="/records" component={Records}/>
     <Route exact path="/records/:personID" component={AdminRecords}/>
+    <Route exact path="/questionnaires" component={QuestionnaireAdmin}/>
+    <Route exact path="/questions/:questionnaireID" component={QuestionList}/>
+
   </div>
 )
 
