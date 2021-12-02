@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Request, Response, NextFunction } from 'express';
 import { VIEWS_PASSWORD, VIEWS_USERNAME } from '../../../config/config';
 import { getNumUpcomingSessions, processDatesFromResponse } from '../services/mentorhome.service';
-import { getResponseArray } from '../services/records.service';
+import { getResponseArray } from '../services/responseToArray.service';
 
     const mentorHomeController = async (req:Request, res:Response, next:NextFunction) => {
 
