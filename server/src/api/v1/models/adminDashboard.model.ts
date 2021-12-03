@@ -30,7 +30,7 @@ const AdminDashboardSchema= new mongoose.Schema({
 });
 
 const AdminDashboard= mongoose.model<IAdminDashboard>(
-    "AdminDashboarad", AdminDashboardSchema
+    "AdminDashboard", AdminDashboardSchema
 );
 
 export default AdminDashboard;

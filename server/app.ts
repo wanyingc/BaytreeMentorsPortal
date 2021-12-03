@@ -18,6 +18,7 @@ import forgotRoute from './src/api/v1/routes/forgotPass.route'
 import resetRoute from './src/api/v1/routes/resetPass.route'
 import mentorHomeRouter from './src/api/v1/routes/mentorhome.route';
 import questionsListRouter from './src/api/v1/routes/questionslist.route'
+import adminDataRouter from './src/api/v1/routes/admindata.route'
 
 const app=express();
 
@@ -43,6 +44,7 @@ app.use("/api", forgotRoute);
 app.use("/api", resetRoute);
 app.use("/api", mentorHomeRouter);
 app.use("/api", questionsListRouter);
+app.use("/api", adminDataRouter);
 
 // This router is only for testing, and demonstrates example for authority based API requests
 app.use("/api", testRouter);
