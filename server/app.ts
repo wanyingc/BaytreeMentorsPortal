@@ -15,6 +15,7 @@ import questionnairelistRouter from './src/api/v1/routes/questionnairelist.route
 import createSessionRouter from './src/api/v1/routes/createsession.route';
 import mentorHomeRouter from './src/api/v1/routes/mentorhome.route';
 import questionsListRouter from './src/api/v1/routes/questionslist.route'
+import discussionRouter from './src/api/v1/routes/discussion.route';
 
 const app=express();
 
@@ -37,6 +38,7 @@ app.use("/api", questionnairelistRouter)
 app.use("/api", createSessionRouter);
 app.use("/api", mentorHomeRouter);
 app.use("/api", questionsListRouter);
+app.use("/api", discussionRouter);
 
 // This router is only for testing, and demonstrates example for authority based API requests
 app.use("/api", testRouter);
