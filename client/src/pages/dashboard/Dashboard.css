@@ -60,8 +60,7 @@
 
 #dashboard-list-group{
     background-color: #FAFAFA;
-    max-height: 400px;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
     height: 400px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }

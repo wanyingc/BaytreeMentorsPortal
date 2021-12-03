@@ -1,24 +1,35 @@
-import { MyMentees, goalsList, notificationsList, doughnutChartData, barChartData } from './DashboardDataVolunteer'
+import { MyMentees, goalsList, notificationsList, doughnutChartData, barChartData, getSessionStats } from './DashboardDataVolunteer'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
-import { ListGroup }from 'react-bootstrap/';
+import { ListGroup, Spinner }from 'react-bootstrap/';
 import DashboardDoughnut from '../../components/DashboardComponents/DashboardDoughnut';
 import { DashboardBarChart } from '../../components/DashboardComponents/DashboardBarChart';
-
-const tableOptions = {
-    sizePerPageList: [
-        {
-            text: '5', value: 5
-        }, 
-        {
-            text: '10', value: 10
-        }
-    ]
-    
-};
+import { useEffect, useState } from 'react';
+import { getAccessToken } from '../../auth/Authenticator';
 
 
 function DashboardVolunteer() {
+
+    const [sessionRecords, setSessionRecords] = useState<any>(undefined);
+    const [attendedSession, setAttendedSession] = useState(0);
+    const [missedSession, setMissedSession] = useState(0);
+    const [upcomingSession, setUpcomingSession] = useState(0);
+
+    useEffect(() => {
+        console.log("inside useEffect volunteer");
+        getSessionStats()
+        .then(response => {
+            setSessionRecords(response);
+            setAttendedSession(response.data.AttendedSessions);
+            setMissedSession(response.data.MissedSessions);
+            setUpcomingSession(response.data.UpcomingSessions);
+            console.log(response.data);
+        
+        })
+        .catch(err => {
+
+        });
+    }, []);
 
     return (
         <div className="container p-2 mt-5">
@@ -26,12 +37,20 @@ function DashboardVolunteer() {
                 <h5 style={{fontSize: 65, color:'#FF1E89'}}>Welcome, <strong>Mentor</strong>!</h5>
             </div>
 
+            {!sessionRecords &&
+                <div className = "loading">
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+                </div>
+            } 
+
             <div className="row justify-content-center">
                 <div className="col-lg-6 mb-4">
                     <div className="square square-lg">
                         <h2 className="dashboard-title">Sessions Statistics</h2>
                     </div>
-                    <DashboardBarChart data={barChartData}/>
+                    <DashboardBarChart data={barChartData(attendedSession, missedSession, upcomingSession)}/>
                 </div>
                 
                 <div className="col-lg-6 mb-4">
@@ -52,7 +71,7 @@ function DashboardVolunteer() {
                     <div className="square square-lg">
                         <h2 className="dashboard-title">Active Goals</h2>
                     </div>
-                    {/* <ListGroup id="dashboard-list-group">
+                    <ListGroup id="dashboard-list-group">
                         {goalsList.map(goals => (
                             <ListGroup.Item key={goals.id}>
                                 <div className="ms-2 me-auto">
@@ -63,7 +82,7 @@ function DashboardVolunteer() {
                                 
                             </ListGroup.Item>
                         ))}
-                    </ListGroup> */}
+                    </ListGroup> 
                 </div>
                 
                 <div className="col-lg-4 mb-4">
