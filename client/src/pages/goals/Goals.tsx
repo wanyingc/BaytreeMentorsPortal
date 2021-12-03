@@ -142,9 +142,10 @@ const Goals = () => {
     });   
   }
 
-  const pushStatusChanges = (id) => {
+  const pushStatusChanges = async () => {
     let accessToken = getAccessToken();
-    Axios.put(`${BASE_API_URL}/auth/mentor/goalUpdate`,
+    changeStatusName();
+    await Axios.put(`${BASE_API_URL}/auth/mentor/goalUpdate`,
         {
           "mentorID": mentorID,
           "id": id,
@@ -157,17 +158,18 @@ const Goals = () => {
     })
     .then((response:any) => {
         console.log(response.data);
-        
+        setGoalList(response.data);        
     })
     .catch((err) => {
       
     });   
   }
 
-  // useEffect(() => {
-  //   console.log("before")
-  //   // pushStatusChanges();
-  // }, [id]);
+  useEffect(() => {
+    console.log("from duo useEffect");
+    console.log(status, id);
+    pushStatusChanges();
+  }, [status, id]);
 
   return (
     <div className="container">
@@ -191,9 +193,9 @@ const Goals = () => {
                     <div className="listgroup-info">{goal.notes}</div>
                   </Col>
                   <Col sm="4">
-                    <div>Status Now: {goal.status}</div>
                     {statusArray.map((radio, index) => (
                       <ToggleButton
+                        className={`w-100`}
                         key={index}
                         id={`radio-${index}`}
                         type="radio"
@@ -202,8 +204,8 @@ const Goals = () => {
                         value={radio.value}
                         checked={changeStatusNameReverse(goal.status[0]) === radio.name}
                         onChange={(e) => {
-                          pushStatusChanges(e.currentTarget.value);
-                          console.log(statusArray);
+                          setStatus(radio.name);
+                          setId(goal._id);
                         }}
                       >
                         {radio.name}

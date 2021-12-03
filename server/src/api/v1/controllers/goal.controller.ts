@@ -56,19 +56,16 @@ export const goalUpdateController = async (req:Request, res:Response, next:NextF
         let statusArray = getRoles(req.body.status[0]);
         console.log(statusArray);
         const doc = { $set: {status: statusArray} };
-        // await Goal.findOneAndUpdate({"_id": req.body.id}, doc, {upsert: true}, async function(err, doc) {
-        //     if (err) return res.status(500).send({error: err});
-        //     let goals = await Goal.find({mentorID: req.body.mentorID});
-        //     return res.status(200).send({
-        //         goals: goals
-        //     });
-        // });
-
+        let goals = await Goal.find({mentorID: req.body.mentorID});
         Goal
         .findOneAndUpdate({ _id: req.body.id }, doc)
         .exec(function(err, product){
             if(err) return res.status(500).json({err: err.message});
-            res.json({product, message: 'Successfully updated'})
+            
+            res.json({
+                message: 'Successfully updated',
+                goals: goals
+            })
         });
 
     } else {
