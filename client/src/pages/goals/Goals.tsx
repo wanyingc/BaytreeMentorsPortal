@@ -1,5 +1,5 @@
 import './goals.css';
-import { Form, Row, Col, ListGroup, Button } from 'react-bootstrap/';
+import { Form, Row, Col, ListGroup, Button, ToggleButton } from 'react-bootstrap/';
 import { goalsList, MyMentees } from '../dashboard/DashboardDataVolunteer';
 import Axios from 'axios';
 import { getAccessToken, getPersonID } from '../../auth/Authenticator';
@@ -13,7 +13,7 @@ type goalsDataType ={
 }
 
 type goalDataType = {
-    _id?: string;
+    _id: string;
     mentorID: number;
     menteeName: string;
     date: Date|string;
@@ -42,7 +42,7 @@ const Goals = () => {
   const currDateString = `${currDate.getFullYear()}-${(currDate.getMonth() + 1) < 10 ? "0" : ""}${currDate.getMonth()+1}-${currDate.getDay() < 10 ? "0" : ""}${currDate.getDay()}`;
 
 
-  const statusArray = ["In Progress", "Achieved", "Not Achieved"];
+  const statusArray = [{name:"In Progress", value:'1'}, {name:"Achieved", value:'2'},{name:"Not Achieved", value:'3'},];
 
   const [menteeName, setMenteeName] = useState("");
   const [startingDate, setStartingDate] = useState("");
@@ -50,10 +50,13 @@ const Goals = () => {
   const [notes, setNotes] = useState("");
   const [status, setStatus] = useState("in_progress");
   const [loading, setLoading] = useState(true);
+  const [id, setId] = useState("");
   const [goalList, setGoalList] = useState<goalsDataType>(
     {
       goals: sampleGoalArray
     });
+
+  const [radioSelected, setRadioSelected] = useState("1");
 
 
   const changeStatusName = () => {
@@ -139,6 +142,33 @@ const Goals = () => {
     });   
   }
 
+  const pushStatusChanges = (id) => {
+    let accessToken = getAccessToken();
+    Axios.put(`${BASE_API_URL}/auth/mentor/goalUpdate`,
+        {
+          "mentorID": mentorID,
+          "id": id,
+          "status": [status]
+        },
+        {
+            headers: {
+            "x-access-token": accessToken
+        }
+    })
+    .then((response:any) => {
+        console.log(response.data);
+        
+    })
+    .catch((err) => {
+      
+    });   
+  }
+
+  // useEffect(() => {
+  //   console.log("before")
+  //   // pushStatusChanges();
+  // }, [id]);
+
   return (
     <div className="container">
       <div className="row">
@@ -152,7 +182,7 @@ const Goals = () => {
           </div>
          
           <ListGroup id="goals-list-group">
-            {goalList?.goals.map((goal,index) => (
+            {goalList.goals.map((goal,index) => (
               <ListGroup.Item key={index}>
                 <Row>
                   <Col md="8">
@@ -161,12 +191,24 @@ const Goals = () => {
                     <div className="listgroup-info">{goal.notes}</div>
                   </Col>
                   <Col sm="4">
-                    <Form.Control as="select" className="changeStatusButton" onChange={e => {setStatus(e.target.value);}}>
-                      
-                      {statusArray.map((option,index) => (
-                        <option key={index} value={statusArray[index]}> {statusArray[index]} </option>
-                      ))} 
-                    </Form.Control>
+                    <div>Status Now: {goal.status}</div>
+                    {statusArray.map((radio, index) => (
+                      <ToggleButton
+                        key={index}
+                        id={`radio-${index}`}
+                        type="radio"
+                        variant={index % 2 ? 'outline-success': 'outline-warning'}
+                        name="radio"
+                        value={radio.value}
+                        checked={changeStatusNameReverse(goal.status[0]) === radio.name}
+                        onChange={(e) => {
+                          pushStatusChanges(e.currentTarget.value);
+                          console.log(statusArray);
+                        }}
+                      >
+                        {radio.name}
+                      </ToggleButton>
+                    ))}
                   </Col>
                 </Row>
             
