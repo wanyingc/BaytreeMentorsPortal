@@ -48,7 +48,9 @@ const Goals = () => {
   const [startingDate, setStartingDate] = useState("");
   const [reviewDate, setReviewDate] = useState("");
   const [notes, setNotes] = useState("");
-  const [status, setStatus] = useState("in_progress");
+  const initialStatus = "in_progress";
+  const [status, setStatus] = useState(initialStatus);
+  // const [statusInput, setStatusInput] = useState(initialStatus);
   const [loading, setLoading] = useState(true);
   const [id, setId] = useState("");
   const [goalList, setGoalList] = useState<goalsDataType>(
@@ -102,15 +104,16 @@ const Goals = () => {
           "date": startingDate,
           "reviewDate": reviewDate,
           "notes": notes,
-          "status": [status],
+          "status": [initialStatus],
         },
         {
             headers: {
             "x-access-token": accessToken
         }
     })
-    .then(response => {
+    .then((response:any) => {
         console.log(response.data);
+        setGoalList(response.data);
         
     })
     .catch((err) => {
@@ -199,10 +202,11 @@ const Goals = () => {
                         key={index}
                         id={`radio-${index}`}
                         type="radio"
-                        variant={index % 2 ? 'outline-success': 'outline-warning'}
+                        variant={index === 0 ? 'outline-warning' : index === 1 ? 'outline-success' : 'outline-danger'}
                         name="radio"
                         value={radio.value}
                         checked={changeStatusNameReverse(goal.status[0]) === radio.name}
+                        // disabled={(((goal.status[0] === statusArray[1].name) || (goal.status[0] === statusArray[2].name)) && (changeStatusNameReverse(goal.status[0]) === "In Progress")) ? true : false}
                         onChange={(e) => {
                           setStatus(radio.name);
                           setId(goal._id);
