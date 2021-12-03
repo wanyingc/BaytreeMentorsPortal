@@ -61,3 +61,10 @@
 .square{
     background-color: #48B030;
 }
+
+#dashboard-list-group{
+    background-color: #FAFAFA;
+    height: 400px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
