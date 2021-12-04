@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './timecard.css'
 import { Container, Col, Row, ListGroup, Form, Button, ToggleButton, Spinner } from "react-bootstrap/";
-import { mentees, radiosAttended } from './CreateSessionData';
+import { mentees, radiosAttended, sessionGroupIDs } from './CreateSessionData';
 import Axios from 'axios';
 import { getAccessToken, getPersonID } from '../../auth/Authenticator';
 import { BASE_API_URL } from '../../config/config';
@@ -15,6 +15,7 @@ const toprightColNum = 12 - topLeftColNum;
 const CreateSession = () => {
 
   const [mentee, setMentee] = useState(mentees[0].name);
+  const [sessionGroupID, setSessionGroupID] = useState(sessionGroupIDs[0].id)
   const [radioAttended, setRadioAttended] = useState("1");
   const [date, setDate] = useState("");
   const [start, setStart] = useState("");
@@ -23,6 +24,8 @@ const CreateSession = () => {
   const [sessionResponse, setSessionResponse] = useState<any>(undefined);
   const [submit, setSubmit] = useState(false);
 
+  //////////////////////////// needs to get the data from backend upon page load
+  const venueID = 3; //////////////////////////// needs to get the data from backend upon page load 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmit(true);
@@ -36,6 +39,8 @@ const CreateSession = () => {
       `${BASE_API_URL}/auth/create-session`, // TODO: change to appropriate endpoint -----------------------------------
       {
         personID: personID,
+        sgid: sessionGroupID,
+        venueID: venueID,
         mentee: mentee,
         date: date,
         start: start,
@@ -53,13 +58,19 @@ const CreateSession = () => {
         setSubmit(false);
       }).catch(err => {
       setSubmit(false);
-      window.alert("Session couldn't be create, please try again");
+      window.alert(err.response.data.error);
     });
   }
 
   const selectMentee = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setMentee(value);
+  }
+  
+  const selectSGID = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
+    const valueNumber = parseInt(value);
+    setSessionGroupID(valueNumber);
   }
   return (
     <div className="container-lg mt-5">
@@ -85,6 +96,21 @@ const CreateSession = () => {
                 onChange={selectMentee}>
                 {mentees.map(mentee => (
                   <option key={mentee.id} value={mentee.name}> {mentee.name} </option>
+                ))}
+              </select>
+            </Col>
+          </Row>
+          <Row as={Row} className="mb-3">
+            <Col md={topLeftColNum}>
+              <label>Session Groups:</label>
+            </Col>
+            <Col md={toprightColNum}>
+              <select id="selectSGID" 
+                className="form-select" 
+                aria-label="Default select example"
+                onChange={selectSGID}>
+                {sessionGroupIDs.map(sessionGroup => (
+                  <option key={sessionGroup.id} value={sessionGroup.id}> {sessionGroup.name} </option>
                 ))}
               </select>
             </Col>
