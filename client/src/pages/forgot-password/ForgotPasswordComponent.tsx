@@ -12,7 +12,6 @@ import { Redirect } from 'react-router';
 import {BASE_API_URL} from '../../config/config'; 
 import nodemailer from 'nodemailer';
 
-
 const ForgotComponent = () => {
   const history = useHistory(); 
   const [email,setEmail] = useState("");
@@ -25,22 +24,18 @@ const ForgotComponent = () => {
       return response;
     })
     .catch(err => {
-      console.log(err);
       alert('User not found! Please enter valid e-mail');
       history.push("/forgot-password");
       return err;
     });
     return response;
   }
-
   const sendLink= ()=>{
     getLinkResponse().then(response => {
       alert('Please check your e-mail for further instructions.');
   })
   
 }
-
-
   return (    
     <div className="container ">
       <div className="row border-0 d-flex align-items-center ">

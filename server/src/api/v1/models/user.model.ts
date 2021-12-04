@@ -30,9 +30,8 @@ const UserSchema= new mongoose.Schema({
     updated_at: {
         type: Date,
     },
-    token:{
+    forget_password_token:{
         type:String,
-        required:false
     }
 });
 

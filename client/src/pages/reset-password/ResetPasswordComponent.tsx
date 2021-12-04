@@ -13,49 +13,32 @@ import {BASE_API_URL} from '../../config/config';
 import { Col, Row, Form, Container, Button, Spinner } from 'react-bootstrap'
 
 const ResetComponent = () => {
-  
-  // Alert
   const [showAlert, setShowAlert] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
-
-  // Form hooks
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [confirmPassValMsg, setConfirmPassValMsg] = useState("");
-  
-  // Validation boolean hooks
   const [lowerValidate, setlowerValidate] = useState(false);
   const [upperValidate, setUpperValidate] = useState(false);
   const [lenValidate, setLenValidate] = useState(false);
   const [numValidate, setNumValidate] = useState(false);
   const [confirmPwValidate, setConfirmPwValidate] = useState(false);
-
-
-  const [token,setToken]=useState("")
-
-  // Password validation message parts
+  const [forget_password_token,setToken]=useState("")
   const passwordValMsgLength = "8 or more characters";
   const passwordValMsgNum = "numbers";
   const passwordValMsgUpper = "uppercase";
   const passwordValMsgLower = "lowercase letters";    
-
   const ResetLink = async () => {
-  
       const response = await Axios.post(`${BASE_API_URL}/reset-password`,{  
-        token: token,
+        forget_password_token: forget_password_token,
         password:password,
-        
       })
       .then(response => {
-
         alert('Password Successfully Changed');
-        // eslint-disable-next-line no-restricted-globals
         return response;
       })
       .catch(err => {
         console.log(err);
-
         alert('Token Expired! Please try again');
         return err;
       });
@@ -101,9 +84,7 @@ const ResetComponent = () => {
           setConfirmPwValidate(false);
       }
   }
-  // password validation functions end ---------
-
-  const passwordValidate = (): boolean => { // checks for all the validations
+  const passwordValidate = (): boolean => { 
       if(lenValidate && numValidate && lowerValidate && upperValidate && confirmPwValidate){
           return true;
       }
@@ -111,35 +92,24 @@ const ResetComponent = () => {
           return false;
       }        
   }
-
-  useEffect(() => { // if the values of "password" or "confirmPassword" change, this block will call all types of password validation functions
+  useEffect(() => {
       validateLowercase();
       validateLen();
       validateNum();
       validateUppercase();
       validateConfirmPassword();
   }, [password, confirmPassword])
-  
-  // Password Validation ends ------------------------------------------------------------
-
   const Resetpswd = () => {        
           if(!confirmPwValidate){ 
               setConfirmPassValMsg("Passwords do not match");
           }
       }
-  
-
   return (
     <Container>
         <Row className="justify-content-center align-items-center mt-5">
-        <img src={logo}  alt="logo" width="auto" height="175" className="image mt-3"/>
-           
+        <img src={logo}  alt="logo" width="auto" height="175" className="image mt-3"/>  
             <Col md={9}>
-
-
-            
                 <Form>
-                    
                     <Form.Group className="mb-3">
                     <Row className="justify-content-center">
                             <Col md={6} className="mb-3 mt-5">
@@ -150,7 +120,6 @@ const ResetComponent = () => {
                                         }}></input>
                             </Col>
                             </Row>
-               
                         <Row className="justify-content-center">
                             <Col md={6} className="mb-3">
                                 <label className="form-label">Password</label>
@@ -191,7 +160,6 @@ const ResetComponent = () => {
                             </Col>
                         </Row>
                     </Form.Group>
-
                 </Form>
             </Col>
         </Row>

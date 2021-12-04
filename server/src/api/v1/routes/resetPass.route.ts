@@ -2,9 +2,8 @@ import { Router, Request, Response, NextFunction } from 'express';
 import resetController from '../controllers/resetPass.controller'
 
 
-const loginRouter = Router();
-
-loginRouter.use((req:Request, res:Response, next:NextFunction) => {
+const resetRoute = Router();
+resetRoute.use((req:Request, res:Response, next:NextFunction) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.header(
@@ -13,7 +12,6 @@ loginRouter.use((req:Request, res:Response, next:NextFunction) => {
     );
     next();
 });
+resetRoute.post('/reset-password', resetController);
 
-loginRouter.post('/reset-password', resetController);
-
-export default loginRouter;
+export default resetRoute;

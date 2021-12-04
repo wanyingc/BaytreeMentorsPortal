@@ -2,9 +2,9 @@ import { Router, Request, Response, NextFunction } from 'express';
 import forgotController from '../controllers/forgotPass.controller'
 
 
-const loginRouter = Router();
+const forgotRoute = Router();
 
-loginRouter.use((req:Request, res:Response, next:NextFunction) => {
+forgotRoute.use((req:Request, res:Response, next:NextFunction) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.header(
@@ -13,7 +13,6 @@ loginRouter.use((req:Request, res:Response, next:NextFunction) => {
     );
     next();
 });
+forgotRoute.post('/forgot-password', forgotController);
 
-loginRouter.post('/forgot-password', forgotController);
-
-export default loginRouter;
+export default forgotRoute;
