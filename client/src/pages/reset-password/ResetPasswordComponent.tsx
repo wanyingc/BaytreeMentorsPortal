@@ -38,7 +38,6 @@ const ResetComponent = () => {
         return response;
       })
       .catch(err => {
-        console.log(err);
         alert('Token Expired! Please try again');
         return err;
       });

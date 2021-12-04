@@ -26,7 +26,6 @@ const ResetController = async (req:Request, res:Response, next:NextFunction) => 
             res.status(200).send();
         })
         .catch(err => {
-            
             res.status(404).json({
                 message: "User not found!"
             })

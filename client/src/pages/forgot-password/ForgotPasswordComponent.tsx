@@ -15,7 +15,6 @@ import nodemailer from 'nodemailer';
 const ForgotComponent = () => {
   const history = useHistory(); 
   const [email,setEmail] = useState("");
-
   const getLinkResponse= async() => {
     const response = await Axios.post(`${BASE_API_URL}/forgot-password`,{
       email: email,
@@ -34,7 +33,6 @@ const ForgotComponent = () => {
     getLinkResponse().then(response => {
       alert('Please check your e-mail for further instructions.');
   })
-  
 }
   return (    
     <div className="container ">
