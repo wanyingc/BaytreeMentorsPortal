@@ -1,8 +1,11 @@
 import { Document } from "mongoose";
 
 interface Message extends Document {
+    firstName:string,
+    lastName:string,
     email: string;
-    text: string;
+    header:string;
+    message: string;
     date: Date|string;
 };
 
