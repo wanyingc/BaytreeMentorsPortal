@@ -37,12 +37,9 @@ app.use("/api", recordsRouter);
 app.use("/api", profileRouter);
 app.use("/api", questionnairelistRouter)
 app.use("/api", createSessionRouter);
-<<<<<<< HEAD
 app.use("/api", forgotRoute);
 app.use("/api", resetRoute);
-=======
 app.use("/api", mentorHomeRouter);
->>>>>>> master
 app.use("/api", questionsListRouter);
 
 // This router is only for testing, and demonstrates example for authority based API requests
