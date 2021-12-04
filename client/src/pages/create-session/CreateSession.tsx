@@ -24,7 +24,7 @@ const CreateSession = () => {
   const [sessionResponse, setSessionResponse] = useState<any>(undefined);
   const [submit, setSubmit] = useState(false);
 
-  //////////////////////////// needs to get the data from backend upon page load
+  //////////////////////////// needs to get the data from backend upon page load //// session group id
   const venueID = 3; //////////////////////////// needs to get the data from backend upon page load 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,7 +58,7 @@ const CreateSession = () => {
         setSubmit(false);
       }).catch(err => {
       setSubmit(false);
-      window.alert(err.response.data.error);
+      window.alert("Error occured, please try again");
     });
   }
 
@@ -155,7 +155,7 @@ const CreateSession = () => {
               Start Time:
               </Form.Label>
               <Col sm={toprightColNum}> 
-                <Form.Control type="time" onChange={(event) => setStart(event.target.value)}/>
+                <Form.Control type="time" onChange={(event) => {setStart(event.target.value); console.log(event.target.value)}}/>
               </Col>
             </Form.Group>
 
