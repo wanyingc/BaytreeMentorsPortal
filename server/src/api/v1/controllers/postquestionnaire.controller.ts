@@ -11,10 +11,6 @@ const postquestionnaire = async (req:Request, res:Response) => {
                 headers: {
                     'Authorization': `Basic ${token}`
                 },
-                // auth: {
-                //     username: VIEWS_USERNAME,
-                //     password: VIEWS_PASSWORD
-                // }
             }
         ),
     ])

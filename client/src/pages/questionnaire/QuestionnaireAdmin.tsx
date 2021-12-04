@@ -58,9 +58,6 @@ const QuestionnaireAdmin = (props:any) => {
       
       const mentorID = formDataObj["names"]
         
-      console.log(mentorID)
-      console.log(typeof(mentorID))
-
       Axios.post( 
         `${BASE_API_URL}/auth/questionnairelist`,
         {
