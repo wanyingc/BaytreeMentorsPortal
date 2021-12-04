@@ -1,4 +1,4 @@
-import { MyMentees, goalsList, notificationsList, doughnutChartData, barChartData, getSessionStats } from './DashboardDataVolunteer'
+import { MyMentees, goalsList, notificationsList, doughnutChartData, barChartData, getSessionStats, getActiveGoalsList } from './DashboardDataVolunteer'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import { ListGroup, Spinner }from 'react-bootstrap/';
@@ -11,6 +11,7 @@ import { getAccessToken } from '../../auth/Authenticator';
 function DashboardVolunteer() {
 
     const [sessionRecords, setSessionRecords] = useState<any>(undefined);
+    const [activeGoalsList, setActiveGoalsList] = useState<any>(undefined);
     const [attendedSession, setAttendedSession] = useState(0);
     const [missedSession, setMissedSession] = useState(0);
     const [upcomingSession, setUpcomingSession] = useState(0);
@@ -27,7 +28,16 @@ function DashboardVolunteer() {
         
         })
         .catch(err => {
+            console.log(err);
+        });
 
+        getActiveGoalsList()
+        .then(response => {
+            console.log(response.data);
+            setActiveGoalsList(response.data);
+        })
+        .catch(err => {
+            console.log(err);
         });
     }, []);
 
@@ -37,7 +47,7 @@ function DashboardVolunteer() {
                 <h5 style={{fontSize: 65, color:'#FF1E89'}}>Welcome, <strong>Mentor</strong>!</h5>
             </div>
 
-            {!sessionRecords &&
+            {!sessionRecords && !activeGoalsList &&
                 <div className = "loading">
                 <Spinner animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>

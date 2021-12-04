@@ -45,7 +45,7 @@ export const getNumUpcomingSessions = () => {
             else{ // in current month
                 let numDaysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
                 let numWeeksInMonth = Math.round(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate() / 7); // 4 or 5
-                let numWeeksLeftInMonth = Math.round(Math.abs(numDaysInMonth - currentDate.getDay()) / 7); // eg. on 15th, we have 2 weeks left
+                let numWeeksLeftInMonth = Math.round(Math.abs(numDaysInMonth - currentDate.getDate()) / 7); // eg. on 15th, we have 2 weeks left
                 let ratioWeeksLeftVSTotal = numWeeksLeftInMonth / numWeeksInMonth; // weeks left : total weeks
                 let weeksToSubtract = Math.round(monthObj[1] * ratioWeeksLeftVSTotal);
                 diffWeeks -= weeksToSubtract;

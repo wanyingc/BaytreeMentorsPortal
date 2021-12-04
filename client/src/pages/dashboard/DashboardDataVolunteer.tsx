@@ -3,11 +3,10 @@ import { getAccessToken, getPersonID } from "../../auth/Authenticator";
 import { BASE_API_URL } from "../../config/config";
 import { MenteesObject, goalsObject, notificationObject, DoughnutDataType, BarChartDataType } from "../../interfaces/DashboardInterfaces";
 
-export const getSessionStats = () => {
-  console.log("inside getSessionStats");
+export const getSessionStats = async () => {
   let accessToken = getAccessToken();
   let personID = getPersonID();
-  const resp =  axios.post(`${BASE_API_URL}/auth/mentor/mentorhome`,
+  const resp =  await axios.post(`${BASE_API_URL}/auth/mentor/mentorhome`,
     {
       personID: personID
     },
@@ -22,6 +21,27 @@ export const getSessionStats = () => {
     return error.response;
   });
   
+  return resp;
+}
+
+export const getActiveGoalsList = async () => {
+  let accessToken = getAccessToken();  
+  let personID = getPersonID();
+  const resp = await axios.post(`${BASE_API_URL}/auth/mentor/goalListActive`,
+      {
+        "mentorID": personID
+      },
+      {
+          headers: {
+          "x-access-token": accessToken
+      }
+  })
+  .then((resp:any) => {
+      return resp;
+  })
+  .catch((err) => {
+    return err.response;
+  });   
   return resp;
 }
 
