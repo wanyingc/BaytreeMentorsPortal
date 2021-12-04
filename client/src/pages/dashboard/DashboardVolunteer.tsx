@@ -5,16 +5,45 @@ import { ListGroup, Spinner }from 'react-bootstrap/';
 import DashboardDoughnut from '../../components/DashboardComponents/DashboardDoughnut';
 import { DashboardBarChart } from '../../components/DashboardComponents/DashboardBarChart';
 import { useEffect, useState } from 'react';
-import { getAccessToken } from '../../auth/Authenticator';
 
+type goalsDataType ={
+    goals: goalDataType[];
+}
+
+type goalDataType = {
+    _id: string;
+    mentorID: number;
+    menteeName: string;
+    date: string;
+    reviewDate: string;
+    notes: string;
+    status: string[];
+    "__v": number;
+};
+
+let sampleActiveGoalArray: goalDataType[] = [
+    {
+      _id: "",
+      mentorID: 0,
+      menteeName: "",
+      date: "",
+      reviewDate: "",
+      notes: "",
+      status: [""],
+      __v: 0
+    }
+  ];
 
 function DashboardVolunteer() {
 
     const [sessionRecords, setSessionRecords] = useState<any>(undefined);
-    const [activeGoalsList, setActiveGoalsList] = useState<any>(undefined);
     const [attendedSession, setAttendedSession] = useState(0);
     const [missedSession, setMissedSession] = useState(0);
     const [upcomingSession, setUpcomingSession] = useState(0);
+    const [activeGoalsList, setActiveGoalsList] = useState<goalsDataType>(
+        {
+            goals:sampleActiveGoalArray
+    });
 
     useEffect(() => {
         console.log("inside useEffect volunteer");
@@ -82,10 +111,10 @@ function DashboardVolunteer() {
                         <h2 className="dashboard-title">Active Goals</h2>
                     </div>
                     <ListGroup id="dashboard-list-group">
-                        {goalsList.map(goals => (
-                            <ListGroup.Item key={goals.id}>
+                        {activeGoalsList.goals.map((goals, index) => (
+                            <ListGroup.Item key={index}>
                                 <div className="ms-2 me-auto">
-                                    <div className="fw-bold">{goals.mentee}, {goals.date}</div>
+                                    <div className="fw-bold">{goals.menteeName}, {goals.date}</div>
                                     <div className="reviewDate">Review on {goals.reviewDate}</div>
                                     <div className="listgroup-info">{goals.notes}</div>
                                 </div>
