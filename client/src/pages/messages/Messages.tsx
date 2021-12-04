@@ -7,7 +7,10 @@ import logo from '../../assets/logo192.png';
 function message() {
   return (
   <div id="boxes">
-	  <h1 id="title">Messages</h1>
+    <div className="row">
+      <h1 id="title" className="col-md-10">Discussion</h1>
+      <button className="post col-md-1 btn btn-primary">New Post</button>
+    </div>
 	  <hr id="line"/>
     <div id="message-list">
       <button id="message">

@@ -6,7 +6,7 @@ import crypto from 'crypto';
 
 const DiscussionController = async (req:Request, res:Response, next:NextFunction) => {
     await User.find({
-            token: req.body.token
+            email: req.body.email
         })
         .exec()
         .then((users) => {      
