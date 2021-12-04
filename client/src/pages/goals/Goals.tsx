@@ -39,7 +39,7 @@ let sampleGoalArray: goalDataType[] = [
 const Goals = () => {
 
   const currDate = new Date();
-  const currDateString = `${currDate.getFullYear()}-${(currDate.getMonth() + 1) < 10 ? "0" : ""}${currDate.getMonth()+1}-${currDate.getDay() < 10 ? "0" : ""}${currDate.getDay()}`;
+  const currDateString = `${currDate.getFullYear()}-${(currDate.getMonth() + 1) < 10 ? "0" : ""}${currDate.getMonth()+1}-${currDate.getDate() < 10 ? "0" : ""}${currDate.getDate()}`;
 
 
   const statusArray = [{name:"In Progress", value:'1'}, {name:"Achieved", value:'2'},{name:"Not Achieved", value:'3'},];
