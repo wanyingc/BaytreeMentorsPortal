@@ -1,7 +1,7 @@
 import axios from "axios";
 import { VIEWS_USERNAME, VIEWS_PASSWORD } from "../../../config/config";
 import User from "../models/user.model";
-import { processDatesFromResponse } from "../services/mentorhome.service";
+import { processDatesFromResponse, processQuestionnairesFromResponse } from "../services/mentorhome.service";
 import { getResponseArray } from "../services/responseToArray.service";
 import moment from 'moment';
 import AdminDashboard from "../models/adminDashboard.model";
@@ -31,6 +31,7 @@ async function getAdminData() {
 
         if (user.roles.indexOf("women_mentor") >= 0) {
             finalData.nonDeliveredSessions[2] += mentorDataFromViews?.numMissedSessions || 0;
+            finalData.pendingQuestionnaires[2] += mentorDataFromViews?.pendingQuestionnaires || 0;
             for (let i = 0; i < finalData.sessionsCompletedWomenMentors.length; ++i) {
                 finalData.sessionsCompletedWomenMentors[i] += mentorDataFromViews.sessionsCompletedPerMonth[i];
             }
@@ -38,6 +39,7 @@ async function getAdminData() {
 
         if (user.roles.indexOf("into_school_mentor") >= 0) {
             finalData.nonDeliveredSessions[1] += mentorDataFromViews?.numMissedSessions || 0;
+            finalData.pendingQuestionnaires[1] += mentorDataFromViews?.pendingQuestionnaires || 0;
             for (let i = 0; i < finalData.sessionsCompletedIntoSchoolMentors.length; ++i) {
                 finalData.sessionsCompletedIntoSchoolMentors[i] += mentorDataFromViews.sessionsCompletedPerMonth[i];
             }
@@ -45,6 +47,7 @@ async function getAdminData() {
 
         if (user.roles.indexOf("youth_mentor") >= 0) {
             finalData.nonDeliveredSessions[0] += mentorDataFromViews?.numMissedSessions || 0;
+            finalData.pendingQuestionnaires[0] += mentorDataFromViews?.pendingQuestionnaires || 0;
             for (let i = 0; i < finalData.sessionsCompletedYouthMentors.length; ++i) {
                 finalData.sessionsCompletedYouthMentors[i] += mentorDataFromViews.sessionsCompletedPerMonth[i];
             }
@@ -81,12 +84,14 @@ async function getDataFromViews(personID: number) {
             let resSessionsArray = getResponseArray(responseSessions.data[keySessionsRoot[0]]);
 
             let numSessions = processDatesFromResponse(resSessionsArray);
-            numSessions.sessionsCompletedPerMonth = getSessionsCompletedPerMonth(resSessionsArray);
+            let sessionsCompletedPerMonth = getSessionsCompletedPerMonth(resSessionsArray);
+            let resQuestionnaireArray = processQuestionnairesFromResponse(getResponseArray(responseQuestionnaires.data));
 
-            // let resQuestionnaireArray = getResponseArray(responseQuestionnaires.data);
-            // numSessions.pendingQuestionnaires = processQuestionnairesFromResponse(resQuestionnaireArray);
-
-            return numSessions;
+            return {
+                ...numSessions,
+                sessionsCompletedPerMonth: sessionsCompletedPerMonth,
+                pendingQuestionnaires: resQuestionnaireArray.numQuestionnaresIncomplete,
+            };
         }));
     }
     catch {
