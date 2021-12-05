@@ -8,7 +8,6 @@ import { BASE_API_URL } from '../../config/config';
 
 import { useHistory } from "react-router-dom";
 import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
-// import DataTable from '../../components/DashboardComponents/DataTable';
 
 
 const RecordsComponent = (props:any) => {
@@ -48,7 +47,10 @@ const RecordsComponent = (props:any) => {
                 <span className="visually-hidden">Loading...</span>
               </Spinner>
             </div>
-          }   
+          }  
+
+
+
             <div>
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h4 className="text-center">{props.sessionsTitle}</h4>
@@ -68,7 +70,7 @@ const RecordsComponent = (props:any) => {
                         mentorRecords?.sessions.map((sessionInfo: any) => {
                           return (
                             <tr key={sessionInfo["SessionID"]}
-                                onClick={(e) => {
+                                onClick={() => {
                                   history.push(`/sessions/` + props.personID + `/` + sessionInfo["SessionID"]); 
                                 }}>
                               <td>{sessionInfo["SessionID"]}</td>
@@ -82,8 +84,6 @@ const RecordsComponent = (props:any) => {
                       }
                     </tbody>
                   </Table>
-
-
 
 
 

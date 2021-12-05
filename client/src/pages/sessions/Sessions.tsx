@@ -11,60 +11,48 @@ import { Field, reduxForm, FormErrors, InjectedFormProps } from 'redux-form'
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 
-const secondNov = {
-    Date: '02 / 11 / 2021',
-    Time: '12:00',
-    Duration: '01:00 (End Time 13:00)',
-    Cancelled: 'No',
-    Venue: 'Mars',
-    Activity: 'Advocating on beneficiary behalf',
-    Staff: 'Joanna Ten',
 
-  };
-  const thirdNov = {
-    Date: '03 / 11 / 2021',
-    Time: '14:00',
-    Duration: '01:00 (End Time 13:00)',
-    Cancelled: 'No',
-    Venue: 'Mars',
-    Activity: 'Advocating on beneficiary behalf',
-    Staff: 'Joanna Ten',
+// type sessionDataType = {
+//   result: sessionListObjectType[];
+// }
 
-  };
-  const fourthNov = {
-    Date: '04 / 11 / 2021',
-    Time: '05:00',
-    Duration: '01:00 (End Time 13:00)',
-    Cancelled: 'No',
-    Venue: 'Mars',
-    Activity: 'Advocating on beneficiary behalf',
-    Staff: 'Joanna Ten',
+// type sessionListObjectType = {
+//   Duration: string,
+//   ParticipantID: number,
+//   SessionGroupID: string,
+//   SessionID: string,
+//   StartDate: Date|string,
+//   Status: string,
+//   Title: string,
+//   Type: string
+// }
 
-  };
-  const sessionList=[secondNov,thirdNov,fourthNov];
+// let sampleSession: sessionListObjectType[] = [
+//   {
+//     Duration: "",
+//     ParticipantID: 0,
+//     SessionGroupID: "",
+//     SessionID: "",
+//     StartDate: "",
+//     Status: "",
+//     Title: "",
+//     Type: ""
+//   }
+// ];
 
 
-  const ReduxFormInput: any = (field: any) => (
-    <Form.Group>
-        <Form.Label>{field.label}</Form.Label>
-        <Form.Control 
-          {...field.input}
-          type="Text" 
-          readOnly={field.readOnly}
-          placeholder={field.placeholder}
-          isInvalid={field.meta.touched && field.meta.error}
-          isValid={field.meta.touched && !field.meta.error} />
-    </Form.Group>
-  );
 
-
- const Session = ()  => {
+const Session = ()  => {
 
   const personObject = useParams<any>();
-  const personID = parseInt(personObject.personID);
-  const sessionID = parseInt(personObject.sessionID);
 
-  const [sessionRecords, setSessionRecords] = useState<any>(undefined);
+  const personID = parseInt(personObject.personID);
+  const sessionID = personObject.SessionID
+
+  const [sessionRecords, setSessionRecords] = useState<any>([]);
+
+  console.log(typeof personObject.SessionID)
+  console.log(personObject);
 
   useEffect(() => {
     getSessionRecords();
@@ -83,19 +71,32 @@ const secondNov = {
         }
       }).then((d:any) => {
         setSessionRecords(d.data.sessions);
-        // setMentorSessionRecords(d.data.sessions);
-        // setMentorQuestionnaireRecords(d.data.questionnaires);
     });
   }
+  console.log("below me is sessionRecords");
   console.log(sessionRecords);
 
-  
+
+
+  let sessionFromID = sessionRecords.find(obj => obj.SessionID === sessionID);
+  console.log(sessionFromID);
   return(
     <Container>
       <Form>
-        <h4></h4>
+        <h4>Sessions Report</h4>
+        <Form.Group>
+          <Form.Label>Email address</Form.Label>
+          <Form.Control readOnly type="Date" placeholder="" />
+        </Form.Group>
       </Form>
     </Container>
+
+
+
+
+
+
+
           // <Form>
           // <Container>
           // <div className="Header_main_session_page">
@@ -130,29 +131,6 @@ const secondNov = {
           // </Form>
     
   );
-
 }
-const mapStateToProps = (state: { form: any, profile: any; }) => {
-    return {
-      apiForm: state.form,
-      initialValues: secondNov
-    };
-};
+export default Session;
 
-const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators(
-    {
-    },
-    dispatch
-  );
-};
-  
-  const form = reduxForm<{}, any>({
-    form: 'SessionForm',
-  })(Session);
-  
-  export default form
-  // connect(
-  //   mapStateToProps,
-  //   mapDispatchToProps
-  // )(form);
