@@ -119,48 +119,62 @@ const Session = ()  => {
           </Spinner>
         </div>
       }
-
+      <h2>Session Report</h2>
+      <hr />  
       <Form>
+        <Row>
 
-        <h2>Sessions Report</h2>
-        <hr />
-
+        <Col lg="6">
         <Form.Group className="mb-3">
-          <Form.Label>Title</Form.Label>
-          <Form.Control readOnly type="text" defaultValue={session.Title}/>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Title</Form.Label>
+            <Form.Control readOnly type="text" defaultValue={session.Title}/>
+          </Form.Group>
+          
+          <Form.Group className="mb-3">
+            <Form.Label>Start Date</Form.Label>
+            <Form.Control readOnly type="text" defaultValue={(session.StartDate).substring(0,10)}/>
+          </Form.Group>
+
+          <Form.Group as={Row}>
+            <Col md="4">
+              <Form.Label >Start Time</Form.Label>
+              <Form.Control readOnly type="text" defaultValue={(session.StartDate).substring(11,)}/>
+            </Col>
+            <Col md="4">
+              <Form.Label>Duration</Form.Label>
+              <Form.Control readOnly type="text" defaultValue={session.Duration}/>
+            </Col>
+            <Col md="4">
+              <Form.Label >End Time</Form.Label>
+              <Form.Control readOnly type="text" defaultValue={endTime}/>
+            </Col>
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Status</Form.Label>
+            <Form.Control readOnly type="text" defaultValue={session.Status}/>
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Type</Form.Label>
+            <Form.Control readOnly type="text" defaultValue={session.Type}/>
+          </Form.Group>
+
         </Form.Group>
-        
+        </Col>
+
+        <Col lg="6">
         <Form.Group className="mb-3">
-          <Form.Label>Start Date</Form.Label>
-          <Form.Control readOnly type="text" defaultValue={(session.StartDate).substring(0,10)}/>
-        </Form.Group>
+            <Form.Label>Session Notes</Form.Label>
+            <Form.Control readOnly as="textarea" rows={15} defaultValue="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."/>
+          </Form.Group>
+        </Col>
 
-        <Form.Group as={Row}>
-          <Form.Label column>Start Time</Form.Label>
-          <Form.Label column>Duration</Form.Label>
-          <Form.Label column>End Time</Form.Label>
-        </Form.Group>
-        <Form.Group className="mb-3" as={Row}>
-          <Col><Form.Control readOnly type="text" defaultValue={(session.StartDate).substring(11,)}/></Col>
-          <Col><Form.Control readOnly type="text" defaultValue={session.Duration}/></Col>
-          <Col><Form.Control readOnly type="text" defaultValue={endTime}/></Col>
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Status</Form.Label>
-          <Form.Control readOnly type="text" defaultValue={session.Status}/>
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Type</Form.Label>
-          <Form.Control readOnly type="text" defaultValue={session.Type}/>
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-        
+        </Row>
       </Form>
+      
     </Container>
 
 
