@@ -10,7 +10,7 @@ import Form from "react-bootstrap/Form";
 import { Field, reduxForm, FormErrors, InjectedFormProps } from 'redux-form'
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
-import { Spinner, Row, Col } from 'react-bootstrap';
+import { Spinner, Row, Col, Button } from 'react-bootstrap';
 
 
 type sessionType = {
@@ -151,6 +151,15 @@ const Session = ()  => {
           <Form.Control readOnly type="text" defaultValue={session.Status}/>
         </Form.Group>
 
+        <Form.Group className="mb-3">
+          <Form.Label>Type</Form.Label>
+          <Form.Control readOnly type="text" defaultValue={session.Type}/>
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+        
       </Form>
     </Container>
 
