@@ -73,7 +73,7 @@ function DashboardVolunteer() {
                     </div>
                     <ListGroup id="dashboard-list-group">
                         {goalsList.map(goals => (
-                            <ListGroup.Item className="list-group" key={goals.id}>
+                            <ListGroup.Item key={goals.id}>
                                 <div className="ms-2 me-auto">
                                     <div className="fw-bold">{goals.mentee}, {goals.date}</div>
                                     <div className="reviewDate">Review on {goals.reviewDate}</div>
@@ -82,7 +82,7 @@ function DashboardVolunteer() {
                                 
                             </ListGroup.Item>
                         ))}
-                    </ListGroup>
+                    </ListGroup> 
                 </div>
                 
                 <div className="col-lg-4 mb-4">
@@ -91,7 +91,7 @@ function DashboardVolunteer() {
                     </div>
                     <ListGroup id="dashboard-list-group">
                         {MyMentees.map(mentee => (
-                            <ListGroup.Item className="list-group" key={mentee.name}>
+                            <ListGroup.Item key={mentee.name}>
                                 <div className="ms-2 me-auto">
                                     <div className="item-listgroup">{mentee.name}</div>
                                     <div className="listgroup-info">D.O.B.: {mentee.dateOfBirth}</div>
@@ -111,7 +111,7 @@ function DashboardVolunteer() {
                     </div>
                     <ListGroup id="dashboard-list-group">
                         {notificationsList.map(notifs => (
-                            <ListGroup.Item className="list-group" key={notifs.title}>
+                            <ListGroup.Item key={notifs.title}>
                                 <div className="item-listgroup">{notifs.title}</div>
                                 <div className="listgroup-info">{notifs.date}, {notifs.time}</div>
                                 <div className="listgroup-info">{notifs.message}</div>

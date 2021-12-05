@@ -1,3 +1,4 @@
+import { timeStamp } from "console";
 import mongoose from "mongoose";
 import IUser from "../interfaces/user.interface";
 
@@ -28,6 +29,9 @@ const UserSchema= new mongoose.Schema({
     },
     updated_at: {
         type: Date,
+    },
+    forget_password_token:{
+        type:String,
     }
 });
 

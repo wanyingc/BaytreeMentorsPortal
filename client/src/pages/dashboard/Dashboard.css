@@ -48,10 +48,6 @@
     margin-left: 10px;
 }
 
-.list-group{
-    background-color: #FAFAFA;
-}
-
 #date-dropdown{
     display: flex;
     align-items: center;

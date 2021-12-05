@@ -12,3 +12,5 @@ export const AUTH_CONFIG = {
     secret: "cmpt373-team-mars-2021"
 };
 export const TOKEN_EXPIRE_DURATION = 3600;
+export const EMAIL_TRANS=""
+export const PASS_TRANS=""

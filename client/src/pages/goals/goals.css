@@ -1,0 +1,21 @@
+.page-title{
+    font-size: 50px;
+    font-weight: bold;
+    color: black;
+    margin-top: 20px;
+}
+
+#goals-list-group{
+    background-color: #FAFAFA;
+    max-height: 500px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    height: 500px;
+
+}
+
+#create-goal-button{
+    background-color: #d63384;
+    border-color: #d63384;
+    
+}
