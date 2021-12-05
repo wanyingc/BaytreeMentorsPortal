@@ -54,5 +54,5 @@ export const getAccessToken = () =>{
 
 export const getPersonID = () =>{
     let personID = localStorage.getItem('personID');
-    return personID == null ? "" : personID.toString();
+    return personID == null ? "" : parseInt(personID.toString());
 }
