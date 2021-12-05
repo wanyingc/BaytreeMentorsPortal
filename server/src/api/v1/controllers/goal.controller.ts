@@ -9,12 +9,14 @@ const logTitle = "Goal Controller";
 export const goalPostController = async (req:Request, res:Response, next:NextFunction) => {
     // let convertedDate = new Date(req.body.date);
     // let convertedReviewDate = new Date(req.body.reviewDate);
-    
+    let dateDB = new Date(req.body.date).toLocaleDateString();
+    let reviewDateDB = new Date(req.body.reviewDate).toLocaleDateString();
+
     let newGoal = new Goal({
         mentorID: req.body.mentorID,
         menteeName: req.body.menteeName,
-        date: req.body.date,
-        reviewDate: req.body.reviewDate,
+        date: dateDB,
+        reviewDate: reviewDateDB,
         notes: req.body.notes,
         status: req.body.status,
     });
@@ -40,11 +42,17 @@ export const goalListController = async (req:Request, res:Response, next:NextFun
 }
 
 export const goalListActiveController = async (req:Request, res:Response, next:NextFunction) => {
-    try{
-        let goalsActive = Goal.find({mentorID: req.body.mentorID, status: "in_progress"});
-        res.status(200).send({goals: goalsActive});
+    if (req.body.mentorID){
+        await Goal.find({mentorID: req.body.mentorID, status: "in_progress"})
+            .exec()
+            .then(goals => {
+                return res.status(200).send({goals: goals});
+            })
+            .catch(err => {
+                return res.status(200).send({goals: []});            
+            });
     } 
-    catch{
+    else {
         return res.status(201).send({
             goals: []
         });

@@ -36,7 +36,7 @@ goalRouter.post( // get all the goals (incl. id)
     goalListController
 );
 
-goalRouter.get( // get all the active goals
+goalRouter.post( // get all the active goals
     '/auth/mentor/goalListActive', 
     [
         authMW.verifyJWT,
