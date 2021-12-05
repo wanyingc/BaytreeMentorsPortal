@@ -1,12 +1,10 @@
 import './goals.css';
 import { Form, Row, Col, ListGroup, Button, ToggleButton } from 'react-bootstrap/';
-import { goalsList, MyMentees } from '../dashboard/DashboardDataVolunteer';
+import { MyMentees } from '../dashboard/DashboardDataVolunteer';
 import Axios from 'axios';
 import { getAccessToken, getPersonID } from '../../auth/Authenticator';
 import { BASE_API_URL } from '../../config/config';
 import { useEffect, useState } from 'react';
-import getGoalsList from './GoalsListData';
-
 
 type goalsDataType ={
   goals: goalDataType[];
@@ -16,8 +14,8 @@ type goalDataType = {
     _id: string;
     mentorID: number;
     menteeName: string;
-    date: Date|string;
-    reviewDate: Date|string;
+    date: string;
+    reviewDate: string;
     notes: string;
     status: string[];
     "__v": number;
@@ -50,7 +48,6 @@ const Goals = () => {
   const [notes, setNotes] = useState("");
   const initialStatus = "in_progress";
   const [status, setStatus] = useState(initialStatus);
-  // const [statusInput, setStatusInput] = useState(initialStatus);
   const [loading, setLoading] = useState(true);
   const [id, setId] = useState("");
   const [goalList, setGoalList] = useState<goalsDataType>(
@@ -58,7 +55,6 @@ const Goals = () => {
       goals: sampleGoalArray
     });
 
-  const [radioSelected, setRadioSelected] = useState("1");
 
 
   const changeStatusName = () => {
@@ -191,8 +187,8 @@ const Goals = () => {
               <ListGroup.Item key={index}>
                 <Row>
                   <Col md="8">
-                    <div className="fw-bold">{goal.menteeName}, {goal.date}</div>
-                    <div className="reviewDate">Review on {goal.reviewDate}</div>
+                    <div className="fw-bold">{goal.menteeName}, {goal.date.substring(0,10)}</div>
+                    <div className="reviewDate">Review on {goal.reviewDate.substring(0,10)}</div>
                     <div className="listgroup-info">{goal.notes}</div>
                   </Col>
                   <Col sm="4">
@@ -206,7 +202,6 @@ const Goals = () => {
                         name="radio"
                         value={radio.value}
                         checked={changeStatusNameReverse(goal.status[0]) === radio.name}
-                        // disabled={(((goal.status[0] === statusArray[1].name) || (goal.status[0] === statusArray[2].name)) && (changeStatusNameReverse(goal.status[0]) === "In Progress")) ? true : false}
                         onChange={(e) => {
                           setStatus(radio.name);
                           setId(goal._id);
