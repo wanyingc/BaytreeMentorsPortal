@@ -9,12 +9,14 @@ const logTitle = "Goal Controller";
 export const goalPostController = async (req:Request, res:Response, next:NextFunction) => {
     // let convertedDate = new Date(req.body.date);
     // let convertedReviewDate = new Date(req.body.reviewDate);
-    
+    let dateDB = new Date(req.body.date).toLocaleDateString();
+    let reviewDateDB = new Date(req.body.reviewDate).toLocaleDateString();
+
     let newGoal = new Goal({
         mentorID: req.body.mentorID,
         menteeName: req.body.menteeName,
-        date: req.body.date,
-        reviewDate: req.body.reviewDate,
+        date: dateDB,
+        reviewDate: reviewDateDB,
         notes: req.body.notes,
         status: req.body.status,
     });
