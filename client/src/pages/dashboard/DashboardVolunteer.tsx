@@ -1,4 +1,4 @@
-import { MyMentees, goalsList, notificationsList, doughnutChartData, barChartData, getSessionStats, getActiveGoalsList } from './DashboardDataVolunteer'
+import { MyMentees, notificationsList, doughnutChartData, barChartData, getSessionStats, getActiveGoalsList } from './DashboardDataVolunteer'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import { ListGroup, Spinner }from 'react-bootstrap/';
@@ -40,6 +40,8 @@ function DashboardVolunteer() {
     const [attendedSession, setAttendedSession] = useState(0);
     const [missedSession, setMissedSession] = useState(0);
     const [upcomingSession, setUpcomingSession] = useState(0);
+    const [questionnaireCompleted, setQuestionnaireCompleted] = useState(0);
+    const [questionnaireIncompleted, setQuestionnaireIncompleted] = useState(0);
     const [activeGoalsList, setActiveGoalsList] = useState<goalsDataType>(
         {
             goals:sampleActiveGoalArray
@@ -53,6 +55,8 @@ function DashboardVolunteer() {
             setAttendedSession(response.data.AttendedSessions);
             setMissedSession(response.data.MissedSessions);
             setUpcomingSession(response.data.UpcomingSessions);
+            setQuestionnaireCompleted(response.data. CompletedQuestionnaires);
+            setQuestionnaireIncompleted(response.data.IncompleteQuestionnaires);
             console.log(response.data);
         
         })
@@ -97,7 +101,7 @@ function DashboardVolunteer() {
                         <h2 className="dashboard-title">Questionnaires</h2>
                     </div>
                     <DashboardDoughnut
-                        data={doughnutChartData}
+                        data={doughnutChartData(questionnaireIncompleted,questionnaireCompleted)}
                         height={330}
                         width={400}
                     />

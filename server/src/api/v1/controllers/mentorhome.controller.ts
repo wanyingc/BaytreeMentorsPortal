@@ -42,7 +42,6 @@ import { getResponseArray } from '../services/responseToArray.service';
                     AttendedSessions: numSessions.numAttendedSessions,
                     MissedSessions: numSessions.numMissedSessions,
                     UpcomingSessions: getNumUpcomingSessions(),
-                    Q: resQuestionnaireArray,
                     CompletedQuestionnaires: numQuestionnaires.numQuestionnairesCompleted,
                     IncompleteQuestionnaires: numQuestionnaires.numQuestionnaresIncomplete
                 });
