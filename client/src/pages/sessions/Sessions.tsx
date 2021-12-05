@@ -10,49 +10,44 @@ import Form from "react-bootstrap/Form";
 import { Field, reduxForm, FormErrors, InjectedFormProps } from 'redux-form'
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
+import { Spinner, Row, Col } from 'react-bootstrap';
 
 
-// type sessionDataType = {
-//   result: sessionListObjectType[];
-// }
+type sessionType = {
+    Duration: string;
+    ParticipantID: number;
+    SessionGroupID: string;
+    SessionID: string;
+    StartDate: string,
+    Status: string;
+    Title: string;
+    Type: string;
+};
 
-// type sessionListObjectType = {
-//   Duration: string,
-//   ParticipantID: number,
-//   SessionGroupID: string,
-//   SessionID: string,
-//   StartDate: Date|string,
-//   Status: string,
-//   Title: string,
-//   Type: string
-// }
-
-// let sampleSession: sessionListObjectType[] = [
-//   {
-//     Duration: "",
-//     ParticipantID: 0,
-//     SessionGroupID: "",
-//     SessionID: "",
-//     StartDate: "",
-//     Status: "",
-//     Title: "",
-//     Type: ""
-//   }
-// ];
-
+let sampleSession: sessionType = {
+    Duration: "",
+    ParticipantID: 0,
+    SessionGroupID: "",
+    SessionID: "",
+    StartDate: "",
+    Status: "",
+    Title: "",
+    Type: ""
+  };
 
 
 const Session = ()  => {
 
+  //Retrieve personID and sessionID from RecordsBase 
   const personObject = useParams<any>();
-
   const personID = parseInt(personObject.personID);
-  const sessionID = personObject.SessionID
+  const sessionID = personObject.SessionID;
 
-  const [sessionRecords, setSessionRecords] = useState<any>([]);
-
-  console.log(typeof personObject.SessionID)
-  console.log(personObject);
+  //sessionRecords = array of session objects
+  //session = a session object.
+  const [sessionRecords, setSessionRecords] = useState<sessionType[]>([]);
+  const [session, setSession]= useState<sessionType>(sampleSession);
+  const [endTime, setEndTime] = useState<any>();
 
   useEffect(() => {
     getSessionRecords();
@@ -73,20 +68,83 @@ const Session = ()  => {
         setSessionRecords(d.data.sessions);
     });
   }
-  console.log("below me is sessionRecords");
+
+  // [sessionRecords] is for whenever sessionRecords changes, then this useEffect will run getSessionFromList();
+  useEffect(() => {
+    getSessionFromList();
+  }, [sessionRecords]);
+
+  const getSessionFromList = () => {
+    if(sessionRecords.find(obj => obj.SessionID === sessionID)){
+      setSession(sessionRecords.find(obj => obj.SessionID === sessionID)!);
+      setEndTime(addTimes(session.Duration, (session.StartDate).substring(11,)));
+    }
+  }
+
   console.log(sessionRecords);
 
+  //https://stackoverflow.com/questions/25764553/add-2-times-together-javascript
+  function timeInMinutes(time):number {
+    var splitHrMins = time.split(':');
+    var mins = splitHrMins[0]*60 + +splitHrMins[1];
+    return mins;
+  }
+  function timeFromMinutes(mins:number):string {
+    var hours = Math.floor(mins/60) % 24;
+    var minutes = mins % 60;
+    return zeroPadding(hours) + ':' + zeroPadding(minutes);
+  }
+  function zeroPadding(val):string {
+    if(val < 10) {
+      return '0' + val;
+    }
+    return '' + val;
+  }
+  function addTimes(time1, time2):string {
+    return timeFromMinutes(timeInMinutes(time1) + timeInMinutes(time2));
+  }
 
-
-  let sessionFromID = sessionRecords.find(obj => obj.SessionID === sessionID);
-  console.log(sessionFromID);
+   
   return(
     <Container>
+
+      {/* Spinner for loading */}
+      {!sessionRecords && !endTime &&
+        <div className = "loading">
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      }
+
       <Form>
+
         <h4>Sessions Report</h4>
-        <Form.Group>
-          <Form.Label>Email address</Form.Label>
-          <Form.Control readOnly type="Date" placeholder="" />
+        <hr />
+        <Form.Group className="mb-3">
+          <Form.Label>Start Date</Form.Label>
+          <Form.Control readOnly type="text" defaultValue={(session.StartDate).substring(0,10)}/>
+        </Form.Group>
+
+        <Form.Group as={Row}>
+          <Form.Label column>Start Time</Form.Label>
+          <Form.Label column>Duration</Form.Label>
+          <Form.Label column>End Time</Form.Label>
+        </Form.Group>
+        <Form.Group className="mb-3" as={Row}>
+          <Col><Form.Control readOnly type="text" defaultValue={(session.StartDate).substring(11,)}/></Col>
+          <Col><Form.Control readOnly type="text" defaultValue={session.Duration}/></Col>
+          <Col><Form.Control readOnly type="text" defaultValue={endTime}/></Col>
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Status</Form.Label>
+          <Form.Control readOnly type="text" defaultValue={session.Status}/>
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Status</Form.Label>
+          <Form.Control readOnly type="text" defaultValue={session.Status}/>
         </Form.Group>
       </Form>
     </Container>
