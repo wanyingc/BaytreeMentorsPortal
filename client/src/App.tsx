@@ -22,9 +22,9 @@ import allSession from './pages/sessions/AllSessions';
 import sessionNotes from './pages/sessions/SessionNotes';
 import QuestionnaireAdmin from './pages/questionnaire/QuestionnaireAdmin'
 import QuestionList from './pages/questionnaire/QuestionList'
-
-
 import Records from './pages/records/Records';
+import Forgot from './pages/forgot-password/ForgotPassword';
+import Reset from './pages/reset-password/ResetPassword';
 import DashboardAdmin from './pages/dashboard/DashboardAdmin';
 import DashboardVolunteer from './pages/dashboard/DashboardVolunteer';
 import Resources from './pages/resources/Resources';
@@ -75,6 +75,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={LoginRoute}/>
           <Route exact path="/login" component={LoginRoute}/>
+          <Route exact path="/forgot-password" component={Forgot}/>
+          <Route exact path="/reset-password" component={Reset}/>
           <Route component={MainRoutes}/>      
         </Switch>
       </Router>
