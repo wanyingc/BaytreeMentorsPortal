@@ -19,6 +19,7 @@ export type questionnaireType = {
 export type returnSessionDateResponseType = {
     numAttendedSessions: number;
     numMissedSessions: number;
+    sessionsCompletedPerMonth: number[];
 }
 
 export type returnQuestionnaireResponseType = {

@@ -83,7 +83,8 @@ export const processDatesFromResponse = (res: sessionType[]): returnSessionDateR
     });
     return { 
         numAttendedSessions: getNumPrevSessions(datesArrayAttended), 
-        numMissedSessions: getNumPrevSessions(datesArrayCancelled)
+        numMissedSessions: getNumPrevSessions(datesArrayCancelled),
+        sessionsCompletedPerMonth: []
     };
 }
 

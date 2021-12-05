@@ -17,8 +17,10 @@ import goalRouter from './src/api/v1/routes/goal.route';
 import forgotRoute from './src/api/v1/routes/forgotPass.route'
 import resetRoute from './src/api/v1/routes/resetPass.route'
 import mentorHomeRouter from './src/api/v1/routes/mentorhome.route';
-import questionsListRouter from './src/api/v1/routes/questionslist.route'
-import adminDataRouter from './src/api/v1/routes/admindata.route'
+import questionsListRouter from './src/api/v1/routes/questionslist.route';
+import adminDataRouter from './src/api/v1/routes/admindata.route';
+
+require("./src/api/v1/periodicals")
 
 const app=express();
 
