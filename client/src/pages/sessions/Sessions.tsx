@@ -33,7 +33,7 @@ let sampleSession: sessionType = {
     Status: "",
     Title: "",
     Type: ""
-  };
+};
 
 
 const Session = ()  => {
@@ -47,7 +47,7 @@ const Session = ()  => {
   //session = a session object.
   const [sessionRecords, setSessionRecords] = useState<sessionType[]>([]);
   const [session, setSession]= useState<sessionType>(sampleSession);
-  const [endTime, setEndTime] = useState<any>();
+  const [endTime, setEndTime] = useState<any>(undefined);
 
   useEffect(() => {
     getSessionRecords();
@@ -76,17 +76,20 @@ const Session = ()  => {
 
   const getSessionFromList = () => {
     if(sessionRecords.find(obj => obj.SessionID === sessionID)){
-      setSession(sessionRecords.find(obj => obj.SessionID === sessionID)!);
-      setEndTime(addTimes(session.Duration, (session.StartDate).substring(11,)));
+      let tempSession = sessionRecords.find(obj => obj.SessionID === sessionID)!;
+      setSession(tempSession);
+      
+      //To prevent further re-rendering, we have the setEndTime function here.
+      setEndTime(addTimes(tempSession.Duration, (tempSession.StartDate).substring(11,)));
     }
   }
 
-  console.log(sessionRecords);
+  // console.log(endTime);
 
   //https://stackoverflow.com/questions/25764553/add-2-times-together-javascript
   function timeInMinutes(time):number {
     var splitHrMins = time.split(':');
-    var mins = splitHrMins[0]*60 + +splitHrMins[1];
+    var mins = parseInt(splitHrMins[0])*60 + +splitHrMins[1];
     return mins;
   }
   function timeFromMinutes(mins:number):string {
@@ -119,8 +122,14 @@ const Session = ()  => {
 
       <Form>
 
-        <h4>Sessions Report</h4>
+        <h2>Sessions Report</h2>
         <hr />
+
+        <Form.Group className="mb-3">
+          <Form.Label>Title</Form.Label>
+          <Form.Control readOnly type="text" defaultValue={session.Title}/>
+        </Form.Group>
+        
         <Form.Group className="mb-3">
           <Form.Label>Start Date</Form.Label>
           <Form.Control readOnly type="text" defaultValue={(session.StartDate).substring(0,10)}/>
@@ -142,10 +151,6 @@ const Session = ()  => {
           <Form.Control readOnly type="text" defaultValue={session.Status}/>
         </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Status</Form.Label>
-          <Form.Control readOnly type="text" defaultValue={session.Status}/>
-        </Form.Group>
       </Form>
     </Container>
 
