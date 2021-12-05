@@ -1,5 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import questionnairelistcontroller from '../controllers/questionnairelist.controller';
+import postquestionnaire from '../controllers/postquestionnaire.controller';
 import authMW from '../middlewares/auth.middleware';
 
 const questionnairelistRouter = Router();
@@ -22,5 +23,15 @@ questionnairelistRouter.get(
         authMW.isAdmin
     ],  
     questionnairelistcontroller);
+
+questionnairelistRouter.post(
+    `/auth/questionnairelist/`, 
+    [
+        authMW.verifyJWT,
+        authMW.isUser,
+        authMW.isAdmin
+    ],  
+    postquestionnaire
+);
 
 export default questionnairelistRouter;
