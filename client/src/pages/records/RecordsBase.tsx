@@ -2,14 +2,19 @@ import React, { useState, useEffect  } from 'react';
 import Axios from 'axios';
 import'../records/Records.css';
 import { Col, Container, Row, Spinner, Table } from 'react-bootstrap';
-import { getAccessToken} from "../../auth/Authenticator";
-import {
-  useParams
-} from "react-router-dom";
+import BootstrapTable from 'react-bootstrap-table-next';
+import { getAccessToken } from "../../auth/Authenticator";
 import { BASE_API_URL } from '../../config/config';
+
+import { useHistory } from "react-router-dom";
+import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
+// import DataTable from '../../components/DashboardComponents/DataTable';
+
+
 const RecordsComponent = (props:any) => {
 
   const [mentorRecords, setMentorRecords] = useState<any>(undefined);
+  const history = useHistory(); 
 
   useEffect(() => {
     getMentorRecords();
@@ -31,8 +36,8 @@ const RecordsComponent = (props:any) => {
     });
   }
 
-  return (    
-    <Container>  
+  return (  
+    <Container>
       <Row> 
         <Col md={1}></Col>
         <Col md={10} lg={10}>
@@ -48,7 +53,7 @@ const RecordsComponent = (props:any) => {
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h4 className="text-center">{props.sessionsTitle}</h4>
               </div>
-                <Table striped bordered hover>
+                <Table striped bordered hover >
                     <thead>
                       <tr>
                         <th>Session ID</th>
@@ -62,18 +67,25 @@ const RecordsComponent = (props:any) => {
                       { 
                         mentorRecords?.sessions.map((sessionInfo: any) => {
                           return (
-                            <tr key={sessionInfo["SessionID"]} >
+                            <tr key={sessionInfo["SessionID"]}
+                                onClick={(e) => {
+                                  history.push(`/sessions/` + props.personID + `/` + sessionInfo["SessionID"]); 
+                                }}>
                               <td>{sessionInfo["SessionID"]}</td>
                               <td>{sessionInfo["StartDate"]} / {sessionInfo["Duration"]}</td>
                               <td>{sessionInfo["Title"]}</td>
                               <td>{sessionInfo["Type"]}</td>
                               <td>{sessionInfo["Status"]}</td>
                             </tr>
-                          )
+                          );
                         })
                       }
                     </tbody>
                   </Table>
+
+
+
+
 
                   <div className="d-flex justify-content-between align-items-center mb-3">
                     <h4 className="text-center">{props.questionnaireTitle}</h4>

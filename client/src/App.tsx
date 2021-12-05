@@ -49,7 +49,8 @@ const MainRoutes = () => (
     <ProtectedRoute isUser={isUser()} path="/dashboard" component={Dashboard} />
     <Route exact path="/messages" component={Messages}/>
     <Route exact path ="/signup" component={SignUp}/>
-    <Route path="/sessions" component={sessions}/>
+    {/* <Route path="/sessions" component={sessions}/> */}
+    <Route path="/sessions/:personID/:SessionID" component={sessions}/>
     <Route path="/editSessions" component={editSessions}/>
     <Route path="/allSessions" component={allSession}/>
     <Route path="/notes" component={sessionNotes}/>
