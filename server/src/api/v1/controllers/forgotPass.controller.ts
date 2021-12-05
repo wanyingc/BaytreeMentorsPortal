@@ -32,7 +32,7 @@ const forgotController = async (req:Request, res:Response, next:NextFunction) =>
                 });
                 const mailOptions={
                     from:EMAIL_TRANS,
-                    to:'dhairyakalra@icloud.com',
+                    to:req.body.email,
                     subject:'Link to reset Pass',
                     text:
                     'Hey '+User.name+', \n'+ 
