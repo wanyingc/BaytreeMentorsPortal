@@ -114,8 +114,8 @@ function DashboardVolunteer() {
                         {activeGoalsList.goals.map((goals, index) => (
                             <ListGroup.Item key={index}>
                                 <div className="ms-2 me-auto">
-                                    <div className="fw-bold">{goals.menteeName}, {goals.date}</div>
-                                    <div className="reviewDate">Review on {goals.reviewDate}</div>
+                                    <div className="fw-bold">{goals.menteeName}, {goals.date.substring(0,10)}</div>
+                                    <div className="reviewDate">Review on {goals.reviewDate.substring(0,10)}</div>
                                     <div className="listgroup-info">{goals.notes}</div>
                                 </div>
                                 
