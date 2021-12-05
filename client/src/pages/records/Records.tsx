@@ -10,7 +10,7 @@ const RecordsComponent = () => {
   const personID = getPersonID();
 
   return (    
-    <RecordsBase personID={personID} questionnaireTitle = {"My Questionnaire Details"} sessionsTitle={"My Session Details"}/>  
+    <RecordsBase personID={personID} questionnaireTitle = {"My Questionnaire Details"} sessionTitle={"My Session Details"}/>  
   );
 }
 export default RecordsComponent;

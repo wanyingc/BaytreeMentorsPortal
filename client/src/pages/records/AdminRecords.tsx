@@ -10,7 +10,7 @@ const RecordsComponent = () => {
   const { personID } = useParams<any>();
 
   return (    
-    <RecordsBase personID={personID} questionnaireTitle = {"Mentor's Questionnaire Details"} sessionsTitle={"Mentor's Session Details"} />  
+    <RecordsBase personID={personID} questionnaireTitle = {"Mentor's Questionnaire Details"} sessionTitle={"Mentor's Session Details"} />  
   );
 }
 export default RecordsComponent;

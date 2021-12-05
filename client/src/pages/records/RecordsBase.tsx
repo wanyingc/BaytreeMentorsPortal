@@ -53,7 +53,7 @@ const RecordsComponent = (props:any) => {
 
             <div>
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <h4 className="text-center">{props.sessionsTitle}</h4>
+                <h4 className="text-center">{props.sessionTitle}</h4>
               </div>
                 <Table striped bordered hover >
                     <thead>
@@ -71,7 +71,7 @@ const RecordsComponent = (props:any) => {
                           return (
                             <tr key={sessionInfo["SessionID"]}
                                 onClick={() => {
-                                  history.push(`/sessions/` + props.personID + `/` + sessionInfo["SessionID"]); 
+                                  history.push(`/session/` + props.personID + `/` + sessionInfo["SessionID"]); 
                                 }}>
                               <td>{sessionInfo["SessionID"]}</td>
                               <td>{sessionInfo["StartDate"]} / {sessionInfo["Duration"]}</td>
