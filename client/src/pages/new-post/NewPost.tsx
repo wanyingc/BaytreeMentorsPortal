@@ -16,7 +16,7 @@ const NewPost = () => {
 
 
   const postMessage= async() => {
-    const response = await Axios.post(`${BASE_API_URL}/auth/post`,{
+    const response = await Axios.post(`${BASE_API_URL}/discussion`,{
       email: email,
       title: title,
       text: text,

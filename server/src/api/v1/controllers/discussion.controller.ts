@@ -5,13 +5,14 @@ import userInfo from "../models/userinfo.model";
 import crypto from 'crypto';
 import Discussion from '../models/discussion.model';
 
+
 const DiscussionController = async (req:Request, res:Response, next:NextFunction) => {
     await userInfo.find({
             email: req.body.email
         })
         .exec()
         .then((users) => {
-            if(users.length<1){
+            if(users.length!==1){
 
                 res.status(404).send({
                     message: "User does not exist!",
@@ -27,10 +28,10 @@ const DiscussionController = async (req:Request, res:Response, next:NextFunction
                     message:req.body.message,
                     firstName:firstName_dis,
                     lastName:lastName_dis,
+                    date:req.body.postDate,
 
                 });
                 newDiscussion.save();
-                res.status(200).send({});
 
             }    
         })

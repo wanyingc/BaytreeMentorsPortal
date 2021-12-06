@@ -31,7 +31,6 @@ import Resources from './pages/resources/Resources';
 import AdminRecords from './pages/records/AdminRecords';
 import Goals from './pages/goals/Goals';
 import NewPost from './pages/new-post/NewPost'
-import createDiscussion from './pages/create-discussion/CreateDiscussion';
 
 // cite: https://stackoverflow.com/questions/47281850/how-to-hide-navbar-in-login-page-in-react-router
 const LoginRoute = () => (
@@ -57,7 +56,6 @@ const MainRoutes = () => (
     <Route path="/editSessions" component={editSessions}/>
     <Route path="/allSessions" component={allSession}/>
     <Route path="/notes" component={sessionNotes}/>
-    <Route path="/creatediscussion" component={createDiscussion}/>
     {/* <ProtectedRoute isUser={isAdmin()} path="/signup" component={SignUp} /> */}
     {/* <Route path="/report" component={Report}/> */}
     <Route exact path="/questionnaire" component={QuestionnaireForm}/>
