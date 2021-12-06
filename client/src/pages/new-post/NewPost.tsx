@@ -1,6 +1,5 @@
-import { Form, Row, Col, ListGroup, Button, ToggleButton } from 'react-bootstrap/';
+import { Form, Row, Col, Button} from 'react-bootstrap/';
 import Axios from 'axios';
-import { getAccessToken, getPersonID } from '../../auth/Authenticator';
 import { BASE_API_URL } from '../../config/config';
 import { useEffect, useState } from 'react';
 import './NewPost.css'
@@ -14,9 +13,9 @@ const NewPost = () => {
     const email = getEmail();
     const postDate = new Date();
 
+    console.log(email);
 
-
-  const postMessage= async() => {
+    const postMessage= async() => {
     const response = await Axios.post(`${BASE_API_URL}/discussion`,{
       email: email,
       title: title,
