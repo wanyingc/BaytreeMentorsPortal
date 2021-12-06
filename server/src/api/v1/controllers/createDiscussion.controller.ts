@@ -7,9 +7,9 @@ import Discussion from '../models/discussion.model';
        await Discussion.find({})
         .exec()
         .then((discussions) => {
-            // let discArr = Object.values(discussions);
+            let discArr = Object.values(discussions);
             
-            res.status(200).send(discussions);
+            res.status(200).send({result:discArr})
         })
         .catch(err => {
             return res.status(404).send({
