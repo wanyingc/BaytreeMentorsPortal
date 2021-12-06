@@ -13,18 +13,11 @@ export const mentees = [
     },
 ];
 
-export const sessionGroupIDs = [
-  {
+export const sampleSessionGroupID = {
     id: 17,
-    name: '17',
-    venueID: 3
-  },
-  {
-    id: 3,
-    name: '3',
-    venueID: 2
-  },
-];
+    name: '',
+    venueID: '3'
+}
 
 export const radiosAttended = [
     { name: 'Attended', value: '1' },

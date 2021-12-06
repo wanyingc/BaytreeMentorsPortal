@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './timecard.css'
 import { Container, Col, Row, ListGroup, Form, Button, ToggleButton, Spinner } from "react-bootstrap/";
-import { mentees, radiosAttended, sessionGroupIDs } from './CreateSessionData';
+import { mentees, radiosAttended, sampleSessionGroupID } from './CreateSessionData';
 import Axios from 'axios';
 import { getAccessToken, getPersonID } from '../../auth/Authenticator';
 import { BASE_API_URL } from '../../config/config';
+import { sessionGroupIDDataType } from '../../interfaces/CreateSessionInterfaces';
 
 // Event Calendar imported from https://www.npmjs.com/package/react-big-calendar
 // Cite: useRef from https://stackoverflow.com/questions/55075604/react-hooks-useeffect-only-on-update?rq=1
@@ -13,25 +14,37 @@ const topLeftColNum = 4;
 const toprightColNum = 12 - topLeftColNum;
 
 const CreateSession = () => {
-
+  
   const [mentee, setMentee] = useState(mentees[0].name);
-  const [sessionGroupID, setSessionGroupID] = useState(sessionGroupIDs[0].id)
+  const [sessionGroupIDObjects, setSessionGroupIDObjects] = useState<sessionGroupIDDataType[]>([]) // array of {id: number; name: string; venueID: string;}
+  const [sessionGroupID, setSessionGroupID] = useState(0); // set value after resonse
+  const [venueID, setVenueID] = useState('0'); // set value after response
   const [radioAttended, setRadioAttended] = useState("1");
   const [date, setDate] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [note, setNote] = useState("");
   const [sessionResponse, setSessionResponse] = useState<any>(undefined);
+  const [sessionGroupIDResponse, setSessionGroupIDResponse] = useState<any>(undefined);
   const [submit, setSubmit] = useState(false);
-  // const [sessionGroupIDs, setSessionGroupIDs] = useState<number[]>([])
-
-  //////////////////////////// needs to get the data from backend upon page load //// session group id
-  const venueID = 3; //////////////////////////// needs to get the data from backend upon page load 
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmit(true);
     getSessionConfirmation();
   }
+  const getVenueID = (id) => {
+    sessionGroupIDObjects.forEach(sessionGroupIDObject => {
+      if(sessionGroupIDObject.id.toString() === id) {
+        return sessionGroupIDObject.venueID;
+      }
+    });
+    return '2';
+  }
+
+  useEffect(() => {
+    getSessionGroupIDs();
+  }, []);
 
   const getSessionGroupIDs = () => {
     let accessToken = getAccessToken();
@@ -44,7 +57,10 @@ const CreateSession = () => {
         }
       }
     ).then((d:any) => {
-        setSessionResponse(d.data);
+        setSessionGroupIDResponse(d.data);
+        setSessionGroupIDObjects(d.data.sgids);
+        setSessionGroupID(d.data.sgids[0].id);
+        setVenueID(d.data.sgids[0].venueID);
       }).catch(err => {
       window.alert("Error occured, please try again");
     });
@@ -54,7 +70,7 @@ const CreateSession = () => {
     let accessToken = getAccessToken();
     let personID = getPersonID();
     Axios.post(
-      `${BASE_API_URL}/auth/create-session`, // TODO: change to appropriate endpoint -----------------------------------
+      `${BASE_API_URL}/auth/create-session`,
       {
         personID: personID,
         sgid: sessionGroupID,
@@ -89,6 +105,7 @@ const CreateSession = () => {
     const value = event.target.value;
     const valueNumber = parseInt(value);
     setSessionGroupID(valueNumber);
+    setVenueID(getVenueID(value));
   }
   return (
     <div className="container-lg mt-5">
@@ -127,7 +144,7 @@ const CreateSession = () => {
                 className="form-select" 
                 aria-label="Default select example"
                 onChange={selectSGID}>
-                {sessionGroupIDs.map(sessionGroup => (
+                {sessionGroupIDObjects.map(sessionGroup => (
                   <option key={sessionGroup.id} value={sessionGroup.id}> {sessionGroup.name} </option>
                 ))}
               </select>
@@ -150,7 +167,6 @@ const CreateSession = () => {
                     checked={radioAttended === radio.value}
                     onChange={(e) => {
                       setRadioAttended(e.currentTarget.value);
-                      console.log(radioAttended);
                     }}
                   >
                     {radio.name}
