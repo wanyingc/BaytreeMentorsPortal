@@ -9,6 +9,7 @@ import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import React, { useEffect, useState } from 'react';
 import getMentorList from './MentorsListData';
 import { useHistory } from "react-router-dom";
+import './mentorsList.css'
 
 const columns = [
     {
@@ -102,33 +103,42 @@ const MentorsList = () => {
     }
 
     return (
-        <div className="container">
-            <h2>Mentors List</h2>
-            <ToolkitProvider
-                keyField={columns[0].dataField}
-                data={mentors}
-                columns={columns}
-                search 
-            >
-            {
-                props => (
-                    <React.Fragment>
-                    <div>
-                        <SearchBar { ...props.searchProps } />
-                        <hr />
-                        <BootstrapTable
-                            bootstrap4
-                            hover
-                            pagination={paginationFactory(paginationOptions)}
-                            rowEvents = {options}
-                            { ...props.baseProps }
-                        />
-                    </div>
-                    </React.Fragment>
-                )
-            }
-            </ToolkitProvider>
-      </div>
+        <>
+            <div className="container-fluid header-image-mentorsList">
+            <div className="container p-2">
+                <div className="row justify-content-center mt-5" style={{backgroundColor:'#FF1E89', width:'fit-content'}}>
+                    <h5 className="page-title">Mentors List</h5>
+                </div>    
+            </div>
+        </div>
+            <div className="container">
+                <h2></h2>
+                <ToolkitProvider
+                    keyField={columns[0].dataField}
+                    data={mentors}
+                    columns={columns}
+                    search 
+                >
+                {
+                    props => (
+                        <React.Fragment>
+                        <div>
+                            <SearchBar { ...props.searchProps } />
+                            <hr />
+                            <BootstrapTable
+                                bootstrap4
+                                hover
+                                pagination={paginationFactory(paginationOptions)}
+                                rowEvents = {options}
+                                { ...props.baseProps }
+                            />
+                        </div>
+                        </React.Fragment>
+                    )
+                }
+                </ToolkitProvider>
+        </div>
+      </>
     );
 }
 

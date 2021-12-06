@@ -82,6 +82,13 @@ export default function DashboardAdmin() {
     
     return (
         <>
+            <div className="container-fluid header-image-dashboard">
+                <div className="container p-2">
+                    <div className="row justify-content-center mt-5" style={{backgroundColor:'#FF1E89', width:'fit-content'}}>
+                        <h5 className='' style={{fontSize: 65, color:'white'}}>Welcome, <strong>Admin</strong>!</h5>
+                    </div>    
+                </div>
+            </div>
             {adminData == undefined &&
                 <div className = "loading">
                 <Spinner animation="border" role="status">
@@ -93,7 +100,7 @@ export default function DashboardAdmin() {
                 <div className="container p-2 mt-5">
                     <div className="row">
                         <div className="col-md-6 col-sm-12 mb-4">
-                            <h5 className="fs-3">Welcome, <strong>Admin</strong>!</h5>
+                            
                         </div>
                         <div  id={"date-dropdown"} className="col-md-6 col-sm-12 mb-4">
                             <DropdownButton

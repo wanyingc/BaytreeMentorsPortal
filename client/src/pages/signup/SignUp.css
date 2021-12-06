@@ -6,3 +6,19 @@
 .warnText {
     font-size: small;
 }
+
+.header-image-signup {
+    /* padding: 25px; */
+    background: url("https://www.baytreecentre.org/wp-content/uploads/2021/05/accreditation.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 380px;
+    position: relative;
+    min-width: 100vw;
+    background-position: center;
+    /* margin-right: 100vh; */
+    height: 100%;
+    background-blend-mode: overlay;
+
+}

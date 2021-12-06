@@ -8,6 +8,7 @@ import { getAccessToken} from "../../auth/Authenticator";
 import { useHistory } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form'
+import './questionnaire.css'
 
 const QuestionnaireAdmin = (props:any) => {
     const [questionnaireList, setQuestionnaireList] = useState<any>(undefined);
@@ -75,6 +76,15 @@ const QuestionnaireAdmin = (props:any) => {
     }
   
     return (
+      <>
+        <div className="container-fluid header-image-questionnaire">
+          <div className="container p-2">
+              <div className="row justify-content-center mt-5" style={{backgroundColor:'#FF1E89', width:'fit-content'}}>
+                  <h5 className="page-title">Questionnaire Forms</h5>
+              </div>    
+          </div>
+        </div>
+        <div className="container">
         <div id="main_questionnaire">
             <Row>
             {!questionnaireList &&
@@ -84,7 +94,7 @@ const QuestionnaireAdmin = (props:any) => {
                 </Spinner>
                 </div>
             } 
-            <h5>Questionnaire Forms</h5>
+            
             <hr/>
             <Table responsive hover>
                 <tbody>
@@ -127,6 +137,8 @@ const QuestionnaireAdmin = (props:any) => {
                 </Modal.Body>
             </Modal>
         </div>
+      </div>
+      </>
     )
 
 }

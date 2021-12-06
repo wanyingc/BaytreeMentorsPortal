@@ -34,6 +34,14 @@ const MentorQuestionnaires = (props:any) => {
   }
 
   return (
+    <>
+    <div className="container-fluid header-image-questionnaire">
+      <div className="container p-2">
+          <div className="row justify-content-center mt-5" style={{backgroundColor:'#FF1E89', width:'fit-content'}}>
+              <h5 className="page-title">Questionnaire Forms</h5>
+          </div>    
+      </div>
+    </div>
     <Container>
 
       {!mentorRecords &&
@@ -74,6 +82,7 @@ const MentorQuestionnaires = (props:any) => {
         </tbody>
       </Table>
     </Container>
+    </>
   );
 }
 export default MentorQuestionnaires;
