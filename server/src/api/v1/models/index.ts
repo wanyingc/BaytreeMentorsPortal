@@ -2,6 +2,7 @@ import mongoose, { ConnectOptions, Error, Mongoose, Number } from "mongoose";
 import { DB, DB_PORT, DB_URL } from "../../../config/config";
 import User from "./user.model";
 import AdminDashboard from "./adminDashboard.model";
+import UserInfo from "./userinfo.model";
 
 const connectDB = async () => {
     await mongoose
@@ -29,6 +30,17 @@ const initial = async () => {
             roles: ["user", "admin"],
         });
         newAdmin = await newAdmin.save();
+    } 
+
+    let userinfo = await UserInfo.findOne({email: "admin@bt.com"});
+    if (!userinfo) {
+        let newAdminUserInfo = new UserInfo({
+            email: "admin@bt.com",
+            firstName:"Admin",
+            lastName:"Baytree",
+            personID: 0,
+        });
+        newAdminUserInfo = await newAdminUserInfo.save();
     } 
     
     // populate the admin dashboard data for the first time
