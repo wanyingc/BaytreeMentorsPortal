@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import createiscussionController from '../controllers/createDiscussion.controller';
+import createDiscussionController from '../controllers/createDiscussion.controller';
 
 
 const createDiscussionRouter = Router();
@@ -14,6 +14,6 @@ createDiscussionRouter.use((req:Request, res:Response, next:NextFunction) => {
     next();
 });
 
-createDiscussionRouter.post('/creatediscussion', createiscussionController);
+createDiscussionRouter.get('/creatediscussion', createDiscussionController);
 
 export default createDiscussionRouter;

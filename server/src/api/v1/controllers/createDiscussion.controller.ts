@@ -1,14 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
+import Message from '../interfaces/discussion.interface';
 import Discussion from '../models/discussion.model';
 
     const createDiscussionController = async (req:Request, res:Response, next:NextFunction) => {
        
-        Discussion.find({})
+       await Discussion.find({})
         .exec()
         .then((discussions) => {
-            res.status(200).send({
-                result: discussions
-            });
+            // let discArr = Object.values(discussions);
+            
+            res.status(200).send(discussions);
         })
         .catch(err => {
             return res.status(404).send({

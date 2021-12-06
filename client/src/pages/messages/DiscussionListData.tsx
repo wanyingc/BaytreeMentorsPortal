@@ -4,15 +4,15 @@ import { getAccessToken } from "../../auth/Authenticator";
 
     
 const getDiscussionList = async() => {
-    
     let accessToken = getAccessToken();
     const resp = await axios.get(`${BASE_API_URL}/creatediscussion`,
     {
         headers: {
             "X-access-token": accessToken
         }
-    });
-    
+    }) 
+
+    console.log("Hello")
     return resp;
 }
 
