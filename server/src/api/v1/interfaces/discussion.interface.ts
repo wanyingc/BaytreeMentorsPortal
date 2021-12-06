@@ -6,7 +6,7 @@ interface Message extends Document {
     email: string;
     header:string;
     message: string;
-    date: Date|string;
+    postDate: Date|string;
 };
 
 export default Message;

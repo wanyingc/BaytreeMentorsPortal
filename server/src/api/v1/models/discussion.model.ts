@@ -20,7 +20,7 @@ const DiscussionSchema= new mongoose.Schema({
         type: String,
         required: true,
     },
-    date: {
+    postDate: {
         type: Date,
         default: new Date()
     },
