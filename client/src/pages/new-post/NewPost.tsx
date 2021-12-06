@@ -13,7 +13,6 @@ const NewPost = () => {
     const email = getEmail();
     const postDate = new Date();
 
-    console.log(email);
 
     const postMessage= async() => {
     const response = await Axios.post(`${BASE_API_URL}/discussion`,{

@@ -28,7 +28,6 @@ const DiscussionController = async (req:Request, res:Response, next:NextFunction
                     firstName:firstName_dis,
                     lastName:lastName_dis,
                     postdate:req.body.postDate,
-
                 });
                 newDiscussion.save();
                 res.send({

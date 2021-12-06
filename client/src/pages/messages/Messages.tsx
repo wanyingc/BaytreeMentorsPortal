@@ -29,29 +29,6 @@ const columns = [
   }
 ];
 
-// const myMentees: DiscussionListObjectType[] = [
-//   {
-//     header: "Hello",
-//     firstName: "Mira",
-//     lastName: "Jane",
-//     message: "Hello World",
-//     postDate: "today"
-//   },
-//   {
-//     header: "Oliva",
-//     firstName: "Lane",
-//     lastName: "Jane",
-//     message: "Nice to Meet You",
-//     postDate: "today"
-//   },
-//   {
-//     header: "TinaHudson",
-//     firstName: "Tina",
-//     lastName: "Hudson",
-//     message: "Tina Tina Tina",
-//     postDate: "today"
-//   }
-// ]
 
 type DiscussionDataType = {
   result: DiscussionListObjectType[];
@@ -84,11 +61,9 @@ const Message = () => {
   useEffect(() => {
     if(loading) {
       getDiscussionList().then(res => {
-            setDiscussionData(res.data);      
-            // console.log(discussionData);
-            // console.log(discussionData.result[0].message);
+            setDiscussionData(res.data);  
+            console.log(res.data);   
             setDiscussions(discussionData.result);
-            // console.log(discussions);
         });
     }
 
