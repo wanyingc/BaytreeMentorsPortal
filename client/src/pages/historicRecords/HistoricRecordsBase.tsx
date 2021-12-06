@@ -1,6 +1,6 @@
 import React, { useState, useEffect  } from 'react';
 import Axios from 'axios';
-import'../records/Records.css';
+import'./HistoricRecords.css';
 import { Col, Container, Row, Spinner, Table } from 'react-bootstrap';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { getAccessToken } from "../../auth/Authenticator";
@@ -49,7 +49,8 @@ const RecordsComponent = (props:any) => {
             </div>
           }  
 
-
+            <h2>Historic Records</h2>
+            <hr />
 
             <div>
               <div className="d-flex justify-content-between align-items-center mb-3">
