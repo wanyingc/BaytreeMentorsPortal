@@ -13,7 +13,7 @@ const DiscussionController = async (req:Request, res:Response, next:NextFunction
         .then((users) => {
             if(users.length<1){
 
-                res.status(200).send({
+                res.status(404).send({
                     message: "User does not exist!",
                 });
             }
@@ -30,24 +30,14 @@ const DiscussionController = async (req:Request, res:Response, next:NextFunction
 
                 });
                 newDiscussion.save();
+                res.status(200).send({});
+
             }    
         })
         .catch(err => {
             res.status(404).json({
                 message: "User and Text not found!"
             })
-        });
-        Discussion.find({})
-        .exec()
-        .then((discussions) => {
-            res.status(200).send({
-                result: discussions
-            });
-        })
-        .catch(err => {
-            return res.status(404).send({
-                error: err
-            });
         });
 };
 export default DiscussionController;
