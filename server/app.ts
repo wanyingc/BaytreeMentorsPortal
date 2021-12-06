@@ -13,6 +13,9 @@ import profileRouter from './src/api/v1/routes/profile.route';
 import { PORT } from './src/config/config';
 import questionnairelistRouter from './src/api/v1/routes/questionnairelist.route';
 import createSessionRouter from './src/api/v1/routes/createsession.route';
+import goalRouter from './src/api/v1/routes/goal.route';
+import forgotRoute from './src/api/v1/routes/forgotPass.route'
+import resetRoute from './src/api/v1/routes/resetPass.route'
 import mentorHomeRouter from './src/api/v1/routes/mentorhome.route';
 import questionsListRouter from './src/api/v1/routes/questionslist.route'
 import discussionRouter from './src/api/v1/routes/discussion.route';
@@ -36,6 +39,9 @@ app.use("/api", recordsRouter);
 app.use("/api", profileRouter);
 app.use("/api", questionnairelistRouter)
 app.use("/api", createSessionRouter);
+app.use("/api", goalRouter);
+app.use("/api", forgotRoute);
+app.use("/api", resetRoute);
 app.use("/api", mentorHomeRouter);
 app.use("/api", questionsListRouter);
 app.use("/api", discussionRouter);
