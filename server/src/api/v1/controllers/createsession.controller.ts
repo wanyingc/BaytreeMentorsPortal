@@ -5,3 +5,9 @@ export const createSessionController = async (req:Request, res:Response, next:Ne
     
     res.status(200).json({response: res.locals.response});
 }
+
+export const getSessionGroupIDsController = async (req:Request, res:Response, next:NextFunction) => {    
+    return res.status(200).send({
+        sgids: res.locals.SessionGroupIDs
+    });
+}

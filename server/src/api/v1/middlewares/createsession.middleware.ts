@@ -1,8 +1,16 @@
 import axios from 'axios';
 import { Request, Response, NextFunction } from 'express';
+import { number, string } from 'joi';
 import { VIEWS_PASSWORD, VIEWS_USERNAME } from '../../../config/config';
+import { getResponseArray } from '../services/responseToArray.service';
 
 const logTitle = "Create Session MW";
+const token = Buffer.from(`${VIEWS_USERNAME}:${VIEWS_PASSWORD}`, 'utf8').toString('base64');
+type sessionGroupIDType = {
+    id: number;
+    name: string;
+    venueID: string;
+}
 
 const milliToHourMinute = (milli: number) => {
     let minutes = Math.floor((milli / (1000 * 60)) % 60);
@@ -11,6 +19,54 @@ const milliToHourMinute = (milli: number) => {
     let hoursString = hours < 10 ? '0'+ hours : hours;
 
     return hoursString + ":" + minutesString;
+}
+
+export const getSessionGroupIDsViewsMW = async (req:Request, res:Response, next:NextFunction) => {
+    if(req.params.personid){
+        await axios.all([
+            axios.get(`https://app.viewsapp.net/api/restful/work/sessiongroups/search`,
+                {
+                    headers: {
+                        'Authorization': `Basic ${token}`,
+                        'Content-Type': 'text/xml',
+                    },
+                }
+            ),
+        ])
+        .then(axios.spread((response) => {
+            let keyMainResponse = Object.keys(response.data);
+            let arraySessionGroups = getResponseArray(response.data[keyMainResponse[0]])
+            let arraySgids: sessionGroupIDType[] = [];
+            arraySessionGroups.forEach(sessionGroup => {
+                let staffArray: string[] = sessionGroup['OtherStaff'].split("|");
+                staffArray.push(sessionGroup['LeadStaff']);
+                if(staffArray.includes(req.params.personid)){
+                    res.locals.VenueID = sessionGroup['VenueID'];
+                    arraySgids.push({
+                        id: parseInt(sessionGroup['SessionGroupID']),
+                        name: sessionGroup['SessionGroupID'],
+                        venueID: sessionGroup['VenueID']
+                    })
+                }
+            });
+            const sessionGroupIDs = [
+                {
+                  id: 17,
+                  name: '17',
+                  venueID: '2'
+                },
+            ];
+            if(arraySgids.length === 0){
+                arraySgids = sessionGroupIDs
+            }
+            res.locals.SessionGroupIDs = arraySgids;
+            next();
+        })).catch(err => {
+            return res.status(401).send({
+                error: "Could not add the session to Views, please try again."
+            });
+        });
+    }
 }
 
 export const postSessionToViewsMW = async (req:Request, res:Response, next:NextFunction) => {
@@ -30,7 +86,7 @@ export const postSessionToViewsMW = async (req:Request, res:Response, next:NextF
             durationString = milliToHourMinute(duration);
             console.log(duration);
         }
-        const token = Buffer.from(`${VIEWS_USERNAME}:${VIEWS_PASSWORD}`, 'utf8').toString('base64');
+        
         const requestBody = `<?xml version="1.0" encoding="utf-8"?>
                             <request>
                                 <StartDate>${req.body.date}</StartDate>

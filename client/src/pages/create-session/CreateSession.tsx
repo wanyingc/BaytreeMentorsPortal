@@ -23,6 +23,7 @@ const CreateSession = () => {
   const [note, setNote] = useState("");
   const [sessionResponse, setSessionResponse] = useState<any>(undefined);
   const [submit, setSubmit] = useState(false);
+  // const [sessionGroupIDs, setSessionGroupIDs] = useState<number[]>([])
 
   //////////////////////////// needs to get the data from backend upon page load //// session group id
   const venueID = 3; //////////////////////////// needs to get the data from backend upon page load 
@@ -30,6 +31,23 @@ const CreateSession = () => {
     e.preventDefault();
     setSubmit(true);
     getSessionConfirmation();
+  }
+
+  const getSessionGroupIDs = () => {
+    let accessToken = getAccessToken();
+    let personID = getPersonID();
+    Axios.get(
+      `${BASE_API_URL}/auth/session-groupids/${personID}`,
+      {
+        headers: {
+          "X-access-token": accessToken
+        }
+      }
+    ).then((d:any) => {
+        setSessionResponse(d.data);
+      }).catch(err => {
+      window.alert("Error occured, please try again");
+    });
   }
 
   const getSessionConfirmation = () =>{

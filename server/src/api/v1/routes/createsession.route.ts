@@ -1,8 +1,8 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { createSessionController } from '../controllers/createsession.controller';
+import { createSessionController, getSessionGroupIDsController } from '../controllers/createsession.controller';
 import testController from '../controllers/test.controller';
 import authmw from '../middlewares/auth.middleware';
-import { postSessionToViewsMW } from '../middlewares/createsession.middleware';
+import { getSessionGroupIDsViewsMW, postSessionToViewsMW } from '../middlewares/createsession.middleware';
 
 const createSessionRouter = Router();
 
@@ -25,6 +25,17 @@ createSessionRouter.post(
         postSessionToViewsMW
     ],
     createSessionController
+    );
+
+createSessionRouter.get(
+    '/auth/session-groupids/:personid',
+    [ 
+        authmw.verifyJWT, 
+        authmw.isUser,
+        authmw.isMentor,
+        getSessionGroupIDsViewsMW
+    ],
+    getSessionGroupIDsController
     );
 
 export default createSessionRouter;

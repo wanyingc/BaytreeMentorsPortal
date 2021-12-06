@@ -16,11 +16,13 @@ export const mentees = [
 export const sessionGroupIDs = [
   {
     id: 17,
-    name: '17'
+    name: '17',
+    venueID: 3
   },
   {
     id: 3,
-    name: '3'
+    name: '3',
+    venueID: 2
   },
 ];
 
