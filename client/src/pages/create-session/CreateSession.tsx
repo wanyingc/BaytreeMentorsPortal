@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './timecard.css'
-import { Container, Col, Row, ListGroup, Form, Button, ToggleButton, Spinner } from "react-bootstrap/";
-import { mentees, radiosAttended, sampleSessionGroupID } from './CreateSessionData';
+import { Col, Row, ListGroup, Form, Button, ToggleButton, Spinner } from "react-bootstrap/";
+import { mentees, radiosAttended } from './CreateSessionData';
 import Axios from 'axios';
 import { getAccessToken, getPersonID } from '../../auth/Authenticator';
 import { BASE_API_URL } from '../../config/config';
@@ -90,6 +90,8 @@ const CreateSession = () => {
     ).then((d:any) => {
         setSessionResponse(d.data);
         setSubmit(false);
+        alert("Session Creation Completed!");
+        window.location.reload();
       }).catch(err => {
       setSubmit(false);
       window.alert("Error occured, please try again");

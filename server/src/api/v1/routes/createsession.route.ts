@@ -2,7 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { createSessionController, getSessionGroupIDsController } from '../controllers/createsession.controller';
 import testController from '../controllers/test.controller';
 import authmw from '../middlewares/auth.middleware';
-import { getSessionGroupIDsViewsMW, postSessionToViewsMW } from '../middlewares/createsession.middleware';
+import { getSessionGroupIDsViewsMW, postSessionToViewsMW, updateAttendanceAndNoteMW } from '../middlewares/createsession.middleware';
 
 const createSessionRouter = Router();
 
@@ -22,7 +22,8 @@ createSessionRouter.post(
         authmw.verifyJWT, 
         authmw.isUser,
         authmw.isMentor,
-        postSessionToViewsMW
+        postSessionToViewsMW,
+        updateAttendanceAndNoteMW
     ],
     createSessionController
     );

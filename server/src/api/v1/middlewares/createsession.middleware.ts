@@ -84,7 +84,6 @@ export const postSessionToViewsMW = async (req:Request, res:Response, next:NextF
 
             duration = timeEnd.getMilliseconds() - timeStart.getMilliseconds();
             durationString = milliToHourMinute(duration);
-            console.log(duration);
         }
         
         const requestBody = `<?xml version="1.0" encoding="utf-8"?>
@@ -96,7 +95,8 @@ export const postSessionToViewsMW = async (req:Request, res:Response, next:NextF
                                 <VenueID>${req.body.venueID}</VenueID>
                                 <Status>${req.body.attended ? '1' : '0'}</Status>
                             </request>`;
-        await axios.all([
+
+        await axios.all([ // First request goes to create the session
             axios.post(`https://app.viewsapp.net/api/restful/work/sessiongroups/${req.body.sgid}/sessions`, requestBody,
                 {
                     headers: {
@@ -104,10 +104,10 @@ export const postSessionToViewsMW = async (req:Request, res:Response, next:NextF
                         'Content-Type': 'text/xml',
                     },
                 }
-            ),
+            ),            
         ])
-        .then(axios.spread((response) => {
-            res.locals.response = "Session Creation Successful!";
+        .then(axios.spread( (response) => {
+            req.body.SessionID = response.data.SessionID;
             next();
         })).catch(err => {
             return res.status(401).send({
@@ -121,3 +121,47 @@ export const postSessionToViewsMW = async (req:Request, res:Response, next:NextF
     }
 
 };
+
+export const updateAttendanceAndNoteMW = async (req:Request, res:Response, next:NextFunction) => {
+    // console.log(req.body.attended);
+    const attendanceString = req.body.attended ? 'Attended' : 'Did not attend';
+    console.log(attendanceString);
+    let attendanceReqBody = `<staff>
+                                <ContactID>${req.body.personID}</ContactID>
+                                <Attended>${attendanceString}</Attended>
+                            </staff>`;
+    let noteReqBody = `<note>
+                            <Note>
+                                ${ attendanceString + " - "+ req.body.note}
+                            </Note>
+                        </note>`;
+
+    await axios.all([ // 2nd and 3rd request goes to update session attendance and session notes to specific session // attendance does not work
+        axios.put(`https://app.viewsapp.net/api/restful/work/sessiongroups/${req.body.sgid}/sessions/${req.body.SessionID}/staff`, attendanceReqBody, 
+            {
+                headers: {
+                    'Authorization': `Basic ${token}`,
+                    'Content-Type': 'text/xml',
+                },
+            }
+        ),
+        axios.post(`https://app.viewsapp.net/api/restful/work/sessiongroups/sessions/${req.body.SessionID}/notes`, noteReqBody,
+            {
+                headers: {
+                    'Authorization': `Basic ${token}`,
+                    'Content-Type': 'text/xml',
+                },
+            }
+        ),
+    ])
+    .then(axios.spread(async (responseAttendance, responseNote) => {
+        console.log(responseAttendance.data, responseNote.data);
+        next();
+        // res.locals.attendance = "Attendance updated";
+        // res.locals.note = "note created";
+    })).catch(err => {
+        return res.status(401).send({
+            error: "Could not add the session to Views because Attendance or notes updates did not work, please try again."
+        });
+    });
+}
