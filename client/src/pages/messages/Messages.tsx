@@ -2,6 +2,7 @@ import React from 'react';
 import './Messages.css';
 import logo from '../../assets/logo192.png';
 import { Link } from 'react-router-dom';
+import getDiscussionList from './DiscussionListData';
 
 
 
