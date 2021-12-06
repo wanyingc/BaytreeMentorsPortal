@@ -1,6 +1,7 @@
 import mongoose, { ConnectOptions, Error, Mongoose, Number } from "mongoose";
 import { DB, DB_PORT, DB_URL } from "../../../config/config";
 import User from "./user.model";
+import AdminDashboard from "./adminDashboard.model";
 
 const connectDB = async () => {
     await mongoose
@@ -14,8 +15,11 @@ const connectDB = async () => {
         });
 };
 
-const initial = async () => {
-    // if some values are required to initialize 
+const initial = async () => { 
+    // when connecting to the database, they will be here
+    console.log("initial is being called");
+
+    // create an admin user if it doesn't exist
     let user = await User.findOne({email: "admin@bt.com"});
     if (!user) {
         let newAdmin = new User({
@@ -26,8 +30,22 @@ const initial = async () => {
         });
         newAdmin = await newAdmin.save();
     } 
-    // when connecting to the database, they will be here
-    console.log("initial is being called");
+    
+    // populate the admin dashboard data for the first time
+    let data = await AdminDashboard.findOne({});
+    if(!data) {
+        console.log("populating the admin dashboard..");
+        let newData = new AdminDashboard({
+            upcomingSessions: [11, 15, 12],
+            nonDeliveredSessions: [4, 5, 6],
+            pendingQuestionnaires: [3, 5, 7],
+            sessionsCompletedYouthMentors: [10, 12, 19, 3, 5, 2, 3, 22, 11, 4, 8, 9],
+            sessionsCompletedIntoSchoolMentors: [10, 12, 19, 3, 5, 2, 3, 22, 11, 4, 8, 9],
+            sessionsCompletedWomenMentors: [10, 12, 19, 3, 5, 2, 3, 22, 11, 4, 8, 9],
+        })
+        newData = await newData.save();
+    }
+    
 };
 
 export default connectDB;

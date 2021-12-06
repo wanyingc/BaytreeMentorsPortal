@@ -1,12 +1,38 @@
-import { MyMentees, goalsList, notificationsList, doughnutChartData, barChartData, getSessionStats } from './DashboardDataVolunteer'
+import { MyMentees, notificationsList, doughnutChartData, barChartData, getSessionStats, getActiveGoalsList } from './DashboardDataVolunteer'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import { ListGroup, Spinner }from 'react-bootstrap/';
 import DashboardDoughnut from '../../components/DashboardComponents/DashboardDoughnut';
 import { DashboardBarChart } from '../../components/DashboardComponents/DashboardBarChart';
 import { useEffect, useState } from 'react';
-import { getAccessToken } from '../../auth/Authenticator';
 
+type goalsDataType ={
+    goals: goalDataType[];
+}
+
+type goalDataType = {
+    _id: string;
+    mentorID: number;
+    menteeName: string;
+    date: string;
+    reviewDate: string;
+    notes: string;
+    status: string[];
+    "__v": number;
+};
+
+let sampleActiveGoalArray: goalDataType[] = [
+    {
+      _id: "",
+      mentorID: 0,
+      menteeName: "",
+      date: "",
+      reviewDate: "",
+      notes: "",
+      status: [""],
+      __v: 0
+    }
+  ];
 
 function DashboardVolunteer() {
 
@@ -14,6 +40,12 @@ function DashboardVolunteer() {
     const [attendedSession, setAttendedSession] = useState(0);
     const [missedSession, setMissedSession] = useState(0);
     const [upcomingSession, setUpcomingSession] = useState(0);
+    const [questionnaireCompleted, setQuestionnaireCompleted] = useState(0);
+    const [questionnaireIncompleted, setQuestionnaireIncompleted] = useState(0);
+    const [activeGoalsList, setActiveGoalsList] = useState<goalsDataType>(
+        {
+            goals:sampleActiveGoalArray
+    });
 
     useEffect(() => {
         console.log("inside useEffect volunteer");
@@ -23,11 +55,22 @@ function DashboardVolunteer() {
             setAttendedSession(response.data.AttendedSessions);
             setMissedSession(response.data.MissedSessions);
             setUpcomingSession(response.data.UpcomingSessions);
+            setQuestionnaireCompleted(response.data. CompletedQuestionnaires);
+            setQuestionnaireIncompleted(response.data.IncompleteQuestionnaires);
             console.log(response.data);
         
         })
         .catch(err => {
+            console.log(err);
+        });
 
+        getActiveGoalsList()
+        .then(response => {
+            console.log(response.data);
+            setActiveGoalsList(response.data);
+        })
+        .catch(err => {
+            console.log(err);
         });
     }, []);
 
@@ -37,7 +80,7 @@ function DashboardVolunteer() {
                 <h5 style={{fontSize: 65, color:'#FF1E89'}}>Welcome, <strong>Mentor</strong>!</h5>
             </div>
 
-            {!sessionRecords &&
+            {!sessionRecords && !activeGoalsList &&
                 <div className = "loading">
                 <Spinner animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
@@ -58,7 +101,7 @@ function DashboardVolunteer() {
                         <h2 className="dashboard-title">Questionnaires</h2>
                     </div>
                     <DashboardDoughnut
-                        data={doughnutChartData}
+                        data={doughnutChartData(questionnaireIncompleted,questionnaireCompleted)}
                         height={330}
                         width={400}
                     />
@@ -72,11 +115,11 @@ function DashboardVolunteer() {
                         <h2 className="dashboard-title">Active Goals</h2>
                     </div>
                     <ListGroup id="dashboard-list-group">
-                        {goalsList.map(goals => (
-                            <ListGroup.Item key={goals.id}>
+                        {activeGoalsList.goals.map((goals, index) => (
+                            <ListGroup.Item key={index}>
                                 <div className="ms-2 me-auto">
-                                    <div className="fw-bold">{goals.mentee}, {goals.date}</div>
-                                    <div className="reviewDate">Review on {goals.reviewDate}</div>
+                                    <div className="fw-bold">{goals.menteeName}, {goals.date.substring(0,10)}</div>
+                                    <div className="reviewDate">Review on {goals.reviewDate.substring(0,10)}</div>
                                     <div className="listgroup-info">{goals.notes}</div>
                                 </div>
                                 
