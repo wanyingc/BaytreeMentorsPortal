@@ -23,15 +23,16 @@ const DiscussionController = async (req:Request, res:Response, next:NextFunction
                 let firstName_dis=users[0].firstName;
                 let lastName_dis=users[0].lastName;
                 let newDiscussion = new Discussion({
-                    email: req.body.email,
                     header:req.body.header,
                     message:req.body.message,
                     firstName:firstName_dis,
                     lastName:lastName_dis,
-                    postDate:req.body.postDate,
+                    postdate:req.body.postDate,
 
                 });
                 newDiscussion.save();
+                res.send({
+                });
 
             }    
         })

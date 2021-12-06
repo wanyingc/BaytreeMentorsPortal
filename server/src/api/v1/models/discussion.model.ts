@@ -8,11 +8,6 @@ const DiscussionSchema= new mongoose.Schema({
     lastName:{
         type:String
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
     header:{
         type:String
     },

@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 
 const NewPost = () => {
 
-    const [title,setTitle] = useState("");
-    const [text,setText] = useState("");
+    const [header,setTitle] = useState("");
+    const [message,setText] = useState("");
     const email = getEmail();
     const postDate = new Date();
 
@@ -18,8 +18,8 @@ const NewPost = () => {
     const postMessage= async() => {
     const response = await Axios.post(`${BASE_API_URL}/discussion`,{
       email: email,
-      title: title,
-      text: text,
+      header: header,
+      message: message,
       postDate: postDate
     })
     .then(response => {
