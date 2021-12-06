@@ -144,85 +144,95 @@ const Signup = () => {
     }
 
     return (
-        <Container>
-            <Row className="justify-content-center align-items-center mt-5">
-                {
-                    !signupResponse && submit &&
-                    <div className = "loading">
-                        <Spinner animation="border" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </Spinner>
-                    </div>
-                }
-                <Col md={9}>
-                    {   showAlert ?
-                        <div className={`alert ${signupResponse ? 'alert-success' : 'alert-danger'}  alert-dismissible fade show`} role="alert">
-                            {alertMsg}
-                            <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={()=>setShowAlert(false)}></button>
+        <>
+            <div className="container-fluid header-image-signup">
+                <div className="container p-2">
+                    <div className="row justify-content-center mt-5" style={{backgroundColor:'#FF1E89', width:'fit-content'}}>
+                        <h5 className="page-title">Sign Up Mentors</h5>
+                    </div>    
+                </div>
+            </div>
+            <Container>
+                <Row className="justify-content-center align-items-center mt-5">
+                    {
+                        !signupResponse && submit &&
+                        <div className = "loading">
+                            <Spinner animation="border" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
                         </div>
-                        : <></>
                     }
-                    <Form>
-                        
-                        <Form.Group className="mb-3">
-                            <Row className="justify-content-center">
-                                <Col md={12}>
-                                    <label className="form-label">Email</label>                                    
-                                    <input className="form-control" type="email" placeholder="example@email.com" 
-                                        onChange={(event)=>{
-                                                setEmail(event.target.value);
-                                                setConfirmPassValMsg("");
-                                            }}>                
-                                    </input>                                    
-                                    <div className="warnText text-danger">{emailValMsg}</div>
-                                </Col>
-                            </Row>
-                        </Form.Group>
-
-                        <Form.Group>
-                            <Row className="justify-content-center">
-                                <Col md={6} className="mb-3">
-                                    <label className="form-label">Password</label>
-                                    <input className="form-control" type="password" placeholder="" 
-                                        autoComplete="new-password"
-                                        onChange={(event)=>{
-                                                setPassword(event.target.value);
-                                                setConfirmPassValMsg("");
-                                            }}></input>
-                                </Col>
-                                <Col md={6} className="mb-3">
-                                    <label className="form-label">Confirm Password</label>
-                                    <input className="form-control" 
-                                        type="password" placeholder="" 
-                                        onChange={(event)=>{
-                                                setConfirmPassword(event.target.value);
-                                                setConfirmPassValMsg("");
-                                            }}></input>
-                                </Col>
-                            </Row>
-                            <div className="warnTextGreen">
-                                <span className={`${lenValidate ? '' : 'text-danger'}`}>{passwordValMsgLength}</span>, including
-                                <span className={`${numValidate ? '' : 'text-danger'}`}> {passwordValMsgNum}</span>,
-                                <span className={`${upperValidate ? '' : 'text-danger'}`}> {passwordValMsgUpper}</span> and
-                                <span className={`${lowerValidate ? '' : 'text-danger'}`}> {passwordValMsgLower}</span>
+                    <Col md={9}>
+                        {   showAlert ?
+                            <div className={`alert ${signupResponse ? 'alert-success' : 'alert-danger'}  alert-dismissible fade show`} role="alert">
+                                {alertMsg}
+                                <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={()=>setShowAlert(false)}></button>
                             </div>
-                            <div className="warnText text-danger">{confirmPassValMsg}</div>
-                        </Form.Group>
-                        
-                        <Form.Group>
-                            <Row className="justify-content-center">
-                                <Col md={12}>
-                                    <Button className="mt-3 mb-3" variant="primary" onClick={addMentor}>
-                                        Create Account
-                                    </Button>
-                                </Col>
-                            </Row>
-                        </Form.Group>
+                            : <></>
+                        }
+                        <Form>
+                            
+                            <Form.Group className="mb-3">
+                                <Row className="justify-content-center">
+                                    <Col md={12}>
+                                        <label className="form-label">Email</label>                                    
+                                        <input className="form-control" type="email" placeholder="example@email.com" 
+                                            onChange={(event)=>{
+                                                    setEmail(event.target.value);
+                                                    setConfirmPassValMsg("");
+                                                }}>                
+                                        </input>                                    
+                                        <div className="warnText text-danger">{emailValMsg}</div>
+                                    </Col>
+                                </Row>
+                            </Form.Group>
 
-                    </Form>
-                </Col>
-            </Row>
-        </Container>
+                            <Form.Group>
+                                <Row className="justify-content-center">
+                                    <Col md={6} className="mb-3">
+                                        <label className="form-label">Password</label>
+                                        <input className="form-control" type="password" placeholder="" 
+                                            autoComplete="new-password"
+                                            onChange={(event)=>{
+                                                    setPassword(event.target.value);
+                                                    setConfirmPassValMsg("");
+                                                }}></input>
+                                    </Col>
+                                    <Col md={6} className="mb-3">
+                                        <label className="form-label">Confirm Password</label>
+                                        <input className="form-control" 
+                                            type="password" placeholder="" 
+                                            onChange={(event)=>{
+                                                    setConfirmPassword(event.target.value);
+                                                    setConfirmPassValMsg("");
+                                                }}></input>
+                                    </Col>
+                                </Row>
+                                <div className="warnTextGreen">
+                                    <span className={`${lenValidate ? '' : 'text-danger'}`}>{passwordValMsgLength}</span>, including
+                                    <span className={`${numValidate ? '' : 'text-danger'}`}> {passwordValMsgNum}</span>,
+                                    <span className={`${upperValidate ? '' : 'text-danger'}`}> {passwordValMsgUpper}</span> and
+                                    <span className={`${lowerValidate ? '' : 'text-danger'}`}> {passwordValMsgLower}</span>
+                                </div>
+                                <div className="warnText text-danger">{confirmPassValMsg}</div>
+                            </Form.Group>
+                            
+                            <Form.Group>
+                                <Row className="justify-content-center">
+                                    <Col md={12}>
+                                        <Button className="mt-3 mb-3" variant="primary" onClick={addMentor}>
+                                            Create Account
+                                        </Button>
+                                    </Col>
+                                </Row>
+                            </Form.Group>
+
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
+        </>
+    
     )
 }
 export default Signup;

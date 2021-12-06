@@ -1,15 +1,6 @@
-.warnTextGreen {
-    font-size: small;
-    color: green;
-}
-
-.warnText {
-    font-size: small;
-}
-
-.header-image-signup {
+.header-image-questionnaire {
     /* padding: 25px; */
-    background: url("https://www.baytreecentre.org/wp-content/uploads/2015/12/vol2.jpg");
+    background: url("https://www.baytreecentre.org/wp-content/uploads/2021/05/young-volunteering.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
