@@ -6,3 +6,9 @@ export type SessionObject = {
     end: string;
     notes: string;
   };
+
+  export type sessionGroupIDDataType = {
+      id: number;
+      name: string;
+      venueID: string;
+    };

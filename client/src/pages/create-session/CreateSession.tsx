@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './timecard.css'
-import { Container, Col, Row, ListGroup, Form, Button, ToggleButton, Spinner } from "react-bootstrap/";
+import { Col, Row, ListGroup, Form, Button, ToggleButton, Spinner } from "react-bootstrap/";
 import { mentees, radiosAttended } from './CreateSessionData';
 import Axios from 'axios';
 import { getAccessToken, getPersonID } from '../../auth/Authenticator';
 import { BASE_API_URL } from '../../config/config';
+import { sessionGroupIDDataType } from '../../interfaces/CreateSessionInterfaces';
 
 // Event Calendar imported from https://www.npmjs.com/package/react-big-calendar
 // Cite: useRef from https://stackoverflow.com/questions/55075604/react-hooks-useeffect-only-on-update?rq=1
@@ -13,29 +14,67 @@ const topLeftColNum = 4;
 const toprightColNum = 12 - topLeftColNum;
 
 const CreateSession = () => {
-
+  
   const [mentee, setMentee] = useState(mentees[0].name);
+  const [sessionGroupIDObjects, setSessionGroupIDObjects] = useState<sessionGroupIDDataType[]>([]) // array of {id: number; name: string; venueID: string;}
+  const [sessionGroupID, setSessionGroupID] = useState(0); // set value after resonse
+  const [venueID, setVenueID] = useState('0'); // set value after response
   const [radioAttended, setRadioAttended] = useState("1");
   const [date, setDate] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [note, setNote] = useState("");
   const [sessionResponse, setSessionResponse] = useState<any>(undefined);
+  const [sessionGroupIDResponse, setSessionGroupIDResponse] = useState<any>(undefined);
   const [submit, setSubmit] = useState(false);
-
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmit(true);
     getSessionConfirmation();
+  }
+  const getVenueID = (id) => {
+    sessionGroupIDObjects.forEach(sessionGroupIDObject => {
+      if(sessionGroupIDObject.id.toString() === id) {
+        return sessionGroupIDObject.venueID;
+      }
+    });
+    return '2';
+  }
+
+  useEffect(() => {
+    getSessionGroupIDs();
+  }, []);
+
+  const getSessionGroupIDs = () => {
+    let accessToken = getAccessToken();
+    let personID = getPersonID();
+    Axios.get(
+      `${BASE_API_URL}/auth/session-groupids/${personID}`,
+      {
+        headers: {
+          "X-access-token": accessToken
+        }
+      }
+    ).then((d:any) => {
+        setSessionGroupIDResponse(d.data);
+        setSessionGroupIDObjects(d.data.sgids);
+        setSessionGroupID(d.data.sgids[0].id);
+        setVenueID(d.data.sgids[0].venueID);
+      }).catch(err => {
+      window.alert("Error occured, please try again");
+    });
   }
 
   const getSessionConfirmation = () =>{
     let accessToken = getAccessToken();
     let personID = getPersonID();
     Axios.post(
-      `${BASE_API_URL}/auth/create-session`, // TODO: change to appropriate endpoint -----------------------------------
+      `${BASE_API_URL}/auth/create-session`,
       {
         personID: personID,
+        sgid: sessionGroupID,
+        venueID: venueID,
         mentee: mentee,
         date: date,
         start: start,
@@ -51,15 +90,24 @@ const CreateSession = () => {
     ).then((d:any) => {
         setSessionResponse(d.data);
         setSubmit(false);
+        alert("Session Creation Completed!");
+        window.location.reload();
       }).catch(err => {
       setSubmit(false);
-      window.alert("Session couldn't be create, please try again");
+      window.alert("Error occured, please try again");
     });
   }
 
   const selectMentee = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setMentee(value);
+  }
+  
+  const selectSGID = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
+    const valueNumber = parseInt(value);
+    setSessionGroupID(valueNumber);
+    setVenueID(getVenueID(value));
   }
   return (
     <div className="container-lg mt-5">
@@ -89,6 +137,21 @@ const CreateSession = () => {
               </select>
             </Col>
           </Row>
+          <Row as={Row} className="mb-3">
+            <Col md={topLeftColNum}>
+              <label>Session Groups:</label>
+            </Col>
+            <Col md={toprightColNum}>
+              <select id="selectSGID" 
+                className="form-select" 
+                aria-label="Default select example"
+                onChange={selectSGID}>
+                {sessionGroupIDObjects.map(sessionGroup => (
+                  <option key={sessionGroup.id} value={sessionGroup.id}> {sessionGroup.name} </option>
+                ))}
+              </select>
+            </Col>
+          </Row>
           <form onSubmit={handleSubmit}>
             <Form.Group as={Row} className="mb-3">
               <Form.Label column sm={`${topLeftColNum}`}>
@@ -106,7 +169,6 @@ const CreateSession = () => {
                     checked={radioAttended === radio.value}
                     onChange={(e) => {
                       setRadioAttended(e.currentTarget.value);
-                      console.log(radioAttended);
                     }}
                   >
                     {radio.name}
@@ -129,7 +191,7 @@ const CreateSession = () => {
               Start Time:
               </Form.Label>
               <Col sm={toprightColNum}> 
-                <Form.Control type="time" onChange={(event) => setStart(event.target.value)}/>
+                <Form.Control type="time" onChange={(event) => {setStart(event.target.value); console.log(event.target.value)}}/>
               </Col>
             </Form.Group>
 
