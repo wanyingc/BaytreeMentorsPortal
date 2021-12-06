@@ -14,7 +14,7 @@ sessionRouter.use((req:Request, res:Response, next:NextFunction) => {
     next();
 });
 
-sessionRouter.get(
+sessionRouter.post(
     `/auth/session-notes/`, 
     [
         authMW.verifyJWT,

@@ -5,6 +5,20 @@ import { VIEWS_PASSWORD, VIEWS_USERNAME } from '../../../config/config';
 
 const logTitle = "Session Controller";
 
+type sessionNoteType = {
+    Created: string;
+    CreatedBy: string;
+    Date: string;
+    Note: string;
+    NoteID: number;
+    Private: string;
+    Snippet: string;
+    Type: string;
+    TypeID: string;
+    Updated: string;
+    UpdatedBy: string;
+  };
+
 const sessionController = async (req:Request, res:Response) => {
     await axios.all([
         axios.get(`https://app.viewsapp.net/api/restful/work/sessiongroups/sessions/${req.body.sessionID}/notes`, 
@@ -21,12 +35,18 @@ const sessionController = async (req:Request, res:Response) => {
     ]).then(axios.spread((responseSessionNotes) => {
 
         let resSessionNotesArray = getResponseArray(responseSessionNotes.data);
-        // let resSessionArray = getResponseArray(responseSessions.data['sessions']);
-        // let resQuestionnaireArray = getResponseArray(responseQuestionnaires.data);
+        
+        let processedResponseNotes: sessionNoteType[] = [];
+        resSessionNotesArray.forEach((noteObj, index) => {
+            let keys = Object.keys(noteObj);
+            keys.forEach(key => {
+                processedResponseNotes.push(noteObj[key]);
+            })
+        })
         
         res.status(200).send({
             message: "session Notes (list?)",
-            "sessionNotes": resSessionNotesArray,
+            "sessionNotes": processedResponseNotes
         });
     })).catch(err => {
         // console.log(logTitle + ": Error:\n" + err);

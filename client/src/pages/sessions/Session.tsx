@@ -12,6 +12,33 @@ import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { Spinner, Row, Col, Button } from 'react-bootstrap';
 
+type sessionNoteType = {
+  Created: string;
+  CreatedBy: string;
+  Date: string;
+  Note: string;
+  NoteID: number;
+  Private: string;
+  Snippet: string;
+  Type: string;
+  TypeID: string;
+  Updated: string;
+  UpdatedBy: string;
+};
+
+let sampleSessionNote:sessionNoteType = {
+  Created: "",
+  CreatedBy: "",
+  Date: "",
+  Note: "",
+  NoteID: 0,
+  Private: "",
+  Snippet: "",
+  Type: "",
+  TypeID: "",
+  Updated: "",
+  UpdatedBy: ""
+};
 
 type sessionType = {
     Duration: string;
@@ -49,11 +76,13 @@ const Session = ()  => {
   const [session, setSession]= useState<sessionType>(sampleSession);
   const [endTime, setEndTime] = useState<any>(undefined);
 
-  const [sessionNotesArray, setSessionNotesArray] = useState<any>(undefined);
+  const [sessionNotesArray, setSessionNotesArray] = useState<sessionNoteType[]>([]);
+  let notesArray: string[] = [];
+
 
   useEffect(() => {
     getSessionRecords();
-    getSessionNotes();
+    getSessionNotesObject();
   }, []);
 
   const getSessionRecords = () => {
@@ -72,7 +101,7 @@ const Session = ()  => {
     });
   }
 
-  const getSessionNotes = () => {
+  const getSessionNotesObject = () => {
     let accessToken = getAccessToken();
     Axios.post(
       `${BASE_API_URL}/auth/session-notes`, 
@@ -88,7 +117,12 @@ const Session = ()  => {
     });
   }
 
-  console.log(sessionNotesArray);
+  if(sessionNotesArray) {
+    sessionNotesArray.map(sessionNote => {
+      notesArray.push(sessionNote.Note);
+    })
+  }
+  let str = notesArray.join("\n");
 
   // [sessionRecords] is for whenever sessionRecords changes, then this useEffect will run getSessionFromList();
   useEffect(() => {
@@ -105,7 +139,6 @@ const Session = ()  => {
     }
   }
 
-  // console.log(endTime);
 
   //https://stackoverflow.com/questions/25764553/add-2-times-together-javascript
   function timeInMinutes(time):number {
@@ -127,13 +160,13 @@ const Session = ()  => {
   function addTimes(time1, time2):string {
     return timeFromMinutes(timeInMinutes(time1) + timeInMinutes(time2));
   }
-
    
+
   return(
     <Container>
 
       {/* Spinner for loading */}
-      {!sessionRecords && !endTime &&
+      {!sessionRecords && !endTime && !sessionNotesArray &&
         <div className = "loading">
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
@@ -189,10 +222,13 @@ const Session = ()  => {
         <Col lg="6">
         <Form.Group className="mb-3">
             <Form.Label>Session Notes</Form.Label>
-            <Form.Control readOnly as="textarea" rows={15} defaultValue="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."/>
+            <Form.Control 
+              readOnly 
+              as="textarea" 
+              rows={15} 
+              defaultValue={str}/>
           </Form.Group>
         </Col>
-
         </Row>
       </Form>
       
@@ -200,4 +236,8 @@ const Session = ()  => {
   );
 }
 export default Session;
+
+
+
+
 
