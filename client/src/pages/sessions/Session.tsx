@@ -166,7 +166,7 @@ const Session = ()  => {
     <Container>
 
       {/* Spinner for loading */}
-      {!sessionRecords && !endTime && !sessionNotesArray &&
+      {!endTime &&
         <div className = "loading">
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
