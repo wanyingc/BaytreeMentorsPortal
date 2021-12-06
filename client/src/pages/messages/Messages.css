@@ -51,3 +51,18 @@
     height: 10%;
     float: left;
 }
+
+.post{
+    color: white;
+    background-color: #d63384;
+    margin-bottom: 3%;
+}
+
+.post:hover{
+    color: #d63384;
+    background-color: transparent;
+}
+
+.messageItem{
+    margin-top: 1%;
+}
