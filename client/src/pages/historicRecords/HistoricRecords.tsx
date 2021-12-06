@@ -1,16 +1,16 @@
 import React, { useState, useEffect  } from 'react';
 import Axios from 'axios';
-import'./Records.css';
+import'./HistoricRecords.css';
 import { Col, Container, Row, Spinner, Table } from 'react-bootstrap';
 import { getAccessToken, getPersonID} from "../../auth/Authenticator";
-import RecordsBase from './RecordsBase';
+import RecordsBase from './HistoricRecordsBase';
 
 const RecordsComponent = () => {
 
   const personID = getPersonID();
 
   return (    
-    <RecordsBase personID={personID} questionnaireTitle = {"My Questionnaire Details"} sessionsTitle={"My Session Details"}/>  
+    <RecordsBase personID={personID} questionnaireTitle = {"My Questionnaire Details"} sessionTitle={"My Session Details"}/>  
   );
 }
 export default RecordsComponent;

@@ -1,52 +1,55 @@
+import { AnyARecord } from "dns";
 import { LineChartDataProps } from "../../components/DashboardComponents/DashboardLineChart";
 import { DoughnutDataType, PiChartDataType, StackedChartDataType, tableDataType } from "../../interfaces/DashboardInterfaces";
 
 export const sampleDate = new Date('October 7, 2021 13:24:00');
 
 //---------------------------- New Data -----------------------------------//
-export function SessionsDoneStackedData(dataCount:number): StackedChartDataType {
+export function SessionsDoneStackedData(dataCount:number, adminData: any): StackedChartDataType {
   let months=['January', 'February', 'March', 'April', 'May','June', 'July', 'August', 'September', 'October', 'November', 'December']
   return {
     labels: months.slice(-dataCount, undefined),
     datasets: [
         {
             label: 'Youth Mentors',
-            data: [10, 12, 19, 3, 5, 2, 3, 22, 11, 4, 8, 9].slice(-dataCount, undefined),
+            data: adminData.sessionsCompletedYouthMentors.slice(-dataCount, undefined),
             backgroundColor: 'rgb(255, 99, 132)',
         },
         {
             label: 'Into School Mentors',
-            data: [11, 2, 3, 20, 5, 1, 4, 0, 7, 7, 8, 10].slice(-dataCount, undefined),
+            data: adminData.sessionsCompletedIntoSchoolMentors.slice(-dataCount, undefined),
             backgroundColor: 'rgb(54, 162, 235)',
         },
         {
             label: 'Women Mentors',
-            data: [6, 2, 4, 6, 4, 2, 2, 4, 7, 5, 7, 7].slice(-dataCount, undefined),
+            data: adminData.sessionsCompletedWomenMentors.slice(-dataCount, undefined),
             backgroundColor: 'rgb(75, 192, 192)',
         },
     ],
   }
 };
 
-export const UpcomingSessionsStackedData: DoughnutDataType = {
-  labels: ["Youth Mentor", "Into School Mentor", "Women Mentor"],
-  datasets: [
-    {
-      label: 'Upcoming Sessions',
-      data: [11, 15, 12],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.8)',
-        'rgba(255, 241, 201, 0.8)',
-        'rgba(54, 162, 205, 0.8)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 0.8)',
-        'rgba(255, 241, 201, 0.8)',
-        'rgba(54, 162, 205, 0.8)',
-      ],
-      borderWidth: 0,
-    },
-  ],
+export function UpcomingSessionsStackedData(adminData: any): DoughnutDataType {
+  return {
+    labels: ["Youth Mentor", "Into School Mentor", "Women Mentor"],
+    datasets: [
+      {
+        label: 'Upcoming Sessions',
+        data: adminData.upcomingSessions,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.8)',
+          'rgba(255, 241, 201, 0.8)',
+          'rgba(54, 162, 205, 0.8)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 0.8)',
+          'rgba(255, 241, 201, 0.8)',
+          'rgba(54, 162, 205, 0.8)',
+        ],
+        borderWidth: 0,
+      },
+    ],
+  }
 };
 
 export const PendingTableData: tableDataType[] = [
@@ -100,12 +103,13 @@ export const NonDeliveredTableData: tableDataType[] = [
   },
 ];
 
-export const PendingQuestionnairesPiChart: PiChartDataType = {
+export function PendingQuestionnairesPiChart(adminData: any): PiChartDataType {
+  return{
   labels: ["Youth Mentor", "Into School Mentor", "Women Mentor"],
   datasets: [
     {
       label: 'NonDeliveredTableData',
-      data: [3, 5, 7],
+      data: adminData.pendingQuestionnaires,
       backgroundColor: [
         'rgba(255, 99, 132, 0.8)',
         'rgba(255, 241, 201, 0.8)',
@@ -119,6 +123,7 @@ export const PendingQuestionnairesPiChart: PiChartDataType = {
       borderWidth: 1,
     },
   ],
+  } 
 };
 
 export const NonDeliveredPiChart: PiChartDataType = {

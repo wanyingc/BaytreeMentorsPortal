@@ -55,7 +55,7 @@ function DashboardVolunteer() {
             setAttendedSession(response.data.AttendedSessions);
             setMissedSession(response.data.MissedSessions);
             setUpcomingSession(response.data.UpcomingSessions);
-            setQuestionnaireCompleted(response.data. CompletedQuestionnaires);
+            setQuestionnaireCompleted(response.data.CompletedQuestionnaires);
             setQuestionnaireIncompleted(response.data.IncompleteQuestionnaires);
             console.log(response.data);
         
@@ -80,7 +80,7 @@ function DashboardVolunteer() {
                 <h5 style={{fontSize: 65, color:'#FF1E89'}}>Welcome, <strong>Mentor</strong>!</h5>
             </div>
 
-            {!sessionRecords && !activeGoalsList &&
+            {!sessionRecords && 
                 <div className = "loading">
                 <Spinner animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
