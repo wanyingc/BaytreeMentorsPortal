@@ -110,7 +110,7 @@ const LoginComponent = () => {
               <Link to="/dashboard">
                 <button
                   type="submit"
-                  className="sign-button btn btn-primary btn-block" id="login" 
+                  className="sign-button btn btn-primary btn-block w-100" id="login" 
                   onClick={(userLogin)}
                 >
                   Sign in
