@@ -1,6 +1,7 @@
 import React from 'react';
 import './Messages.css';
 import logo from '../../assets/logo192.png';
+import { Link } from 'react-router-dom';
 
 
 
@@ -9,7 +10,9 @@ function message() {
   <div id="boxes">
     <div className="row">
       <h1 id="title" className="col-md-10">Discussion</h1>
-      <button className="post col-md-1 btn btn-primary">New Post</button>
+      <Link to="/new-post" className="col-md-1">
+        <button className="post btn btn-primary">New Post</button>
+      </Link>
     </div>
 	  <hr id="line"/>
     <div id="message-list">
