@@ -8,7 +8,6 @@ import { BASE_API_URL } from '../../config/config';
 import { useHistory } from "react-router-dom";
 import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
 
-
 const MentorQuestionnaires = (props:any) => {
   const personID = getPersonID();
   const [mentorRecords, setMentorRecords] = useState<any>(undefined);
@@ -30,7 +29,6 @@ const MentorQuestionnaires = (props:any) => {
           "X-access-token": accessToken
         }
       }).then((d:any) => {
-        console.log(d.data)
         setMentorRecords(d.data);
     });
   }
