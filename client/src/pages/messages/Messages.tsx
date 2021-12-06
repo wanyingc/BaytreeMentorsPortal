@@ -1,12 +1,72 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Messages.css';
 import logo from '../../assets/logo192.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import getDiscussionList from './DiscussionListData';
 
+const columns = [
+  {
+      dataField: 'header',
+      text: 'Header',
+      sort: true
+  }, {
+      dataField: 'firstName',
+      text: 'First Name',
+      sort: true
+  }, {
+      dataField: 'lastName',
+      text: 'Last Name',
+      sort: true
+  }, {
+      dataField: 'message',
+      text: 'Message',
+      sort: true
+  }, {
+      dataField: 'postDate',
+      text: 'postDate',
+      sort: true
+  }
+];
 
+type DiscussionDataType = {
+  result: DiscussionListObjectType[];
+}
 
-function message() {
+type DiscussionListObjectType = {
+  header:string;
+  firstName:string;
+  lastName:string;
+  message:string;
+  postDate:Date|string;
+}
+
+let sampleList: DiscussionListObjectType[] = [
+  {
+      header: "",
+      firstName: "",
+      lastName: "",
+      message: "",
+      postDate: ""
+  }
+];
+
+const Message = () => {
+  const [discussionData, setDiscussionData] = useState<DiscussionDataType>({ result: sampleList});
+  const [discussion, setDiscussion] = useState<Object[]>([]);
+  const [loading, setLoading] = useState(true);
+  const history = useHistory();
+
+  useEffect(() => {
+    if(loading) {
+      getDiscussionList().then(res => {
+            setDiscussionData(res.data);        
+            setDiscussion(discussionData.result);
+        });
+    }
+
+    return () => { setLoading(false)};
+});
+
   return (
   <div id="boxes">
     <div className="row">
@@ -16,6 +76,8 @@ function message() {
       </Link>
     </div>
 	  <hr id="line"/>
+
+
     <div id="message-list">
       <button id="message">
         <div>
@@ -38,4 +100,4 @@ function message() {
   );
 }
 
-export default message;
+export default Message;
