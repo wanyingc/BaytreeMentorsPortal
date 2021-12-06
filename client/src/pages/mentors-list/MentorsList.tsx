@@ -102,14 +102,14 @@ const MentorsList = () => {
     }
 
     return (
-      <div className="container">
-          <h2>Mentors List</h2>
-          <ToolkitProvider
-            keyField={columns[0].dataField}
-            data={mentors}
-            columns={columns}
-            search 
-        >
+        <div className="container">
+            <h2>Mentors List</h2>
+            <ToolkitProvider
+                keyField={columns[0].dataField}
+                data={mentors}
+                columns={columns}
+                search 
+            >
             {
                 props => (
                     <React.Fragment>
@@ -118,6 +118,7 @@ const MentorsList = () => {
                         <hr />
                         <BootstrapTable
                             bootstrap4
+                            hover
                             pagination={paginationFactory(paginationOptions)}
                             rowEvents = {options}
                             { ...props.baseProps }
@@ -126,7 +127,7 @@ const MentorsList = () => {
                     </React.Fragment>
                 )
             }
-        </ToolkitProvider>
+            </ToolkitProvider>
       </div>
     );
 }

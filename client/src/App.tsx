@@ -16,9 +16,7 @@ import SignUp from './pages/signup/SignUp';
 import ProtectedRoute from './pages/login/ProtectedRoute';
 import { isAdmin, isUser } from './auth/Authenticator';
 import MentorsList from './pages/mentors-list/MentorsList';
-import sessions from './pages/sessions/Sessions';
-import editSessions from './pages/sessions/EditSessions';
-import allSession from './pages/sessions/AllSessions';
+import sessions from './pages/sessions/Session';
 import sessionNotes from './pages/sessions/SessionNotes';
 import QuestionnaireAdmin from './pages/questionnaire/QuestionnaireAdmin'
 import QuestionList from './pages/questionnaire/QuestionList'
@@ -51,9 +49,8 @@ const MainRoutes = () => (
     <ProtectedRoute isUser={isUser()} path="/dashboard" component={Dashboard} />
     <Route exact path="/messages" component={Messages}/>
     <Route exact path ="/signup" component={SignUp}/>
-    <Route path="/sessions" component={sessions}/>
-    <Route path="/editSessions" component={editSessions}/>
-    <Route path="/allSessions" component={allSession}/>
+    {/* <Route path="/sessions" component={sessions}/> */}
+    <Route path="/session/:personID/:SessionID" component={sessions}/>
     <Route path="/notes" component={sessionNotes}/>
     {/* <ProtectedRoute isUser={isAdmin()} path="/signup" component={SignUp} /> */}
     {/* <Route path="/report" component={Report}/> */}

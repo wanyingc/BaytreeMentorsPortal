@@ -17,7 +17,6 @@ import { BASE_API_URL } from "../../config/config";
 import defaultProfilePic from './default_profile_picture.webp';
 
 const DEFAULT_USER = {
-  // profileImg: 'https://merodesk.com/wp-content/uploads/2021/05/user-4.png'
   profileImg: defaultProfilePic
 };
 
