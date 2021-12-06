@@ -66,12 +66,24 @@ export default function Sidenav() {
         if(isAdmin()) {
             menus1 = adminItems1.map((item, index) => {
                 return(
+                    item.to === "/resources" ?
+                    (
+                        <li className="nav-item border-0" key={index}>
+                            <Link className="nav-link btn-lg text-left px-3 py-1 fs-6" aria-current="page" type="button" to={{ pathname: "https://thebaytreecentre.sharepoint.com/Shared%20Documents/Forms/AllItems.aspx?id=%2FShared%20Documents%2FYouth%20Service%2FMentoring%20Resources&p=true" }} target="_blank">
+                                {item.icon}
+                                {item.title}
+                            </Link>
+                        </li>
+                    )
+                    :
+                    (
                     <li className="nav-item border-0" key={index}>
                         <Link to={item.to} className="nav-link btn-lg text-left px-3 py-1 fs-6" aria-current="page" type="button">
                             {item.icon}
                             {item.title}
                         </Link>
                     </li>
+                    )                   
                 );
             });
             menus2 = <></>;
@@ -79,20 +91,24 @@ export default function Sidenav() {
             menus1 = volunteerItems1.map((item, index) => {
                 return(
 
-                    item.to === "/resources" ? (
-                    <li className="nav-item border-0" key={index}>
-                        <Link className="nav-link btn-lg text-left px-3 py-1 fs-6" aria-current="page" type="button" to={{ pathname: "https://thebaytreecentre.sharepoint.com/Shared%20Documents/Forms/AllItems.aspx?id=%2FShared%20Documents%2FYouth%20Service%2FMentoring%20Resources&p=true" }} target="_blank">
+                    item.to === "/resources" ? 
+                    (
+                        <li className="nav-item border-0" key={index}>
+                            <Link className="nav-link btn-lg text-left px-3 py-1 fs-6" aria-current="page" type="button" to={{ pathname: "https://thebaytreecentre.sharepoint.com/Shared%20Documents/Forms/AllItems.aspx?id=%2FShared%20Documents%2FYouth%20Service%2FMentoring%20Resources&p=true" }} target="_blank">
+                                {item.icon}
+                                {item.title}
+                            </Link>
+                        </li>
+                    )
+                    :
+                    (
+                        <li className="nav-item border-0" key={index}>
+                        <Link to={item.to} className="nav-link btn-lg text-left px-3 py-1 fs-6" aria-current="page" type="button">
                             {item.icon}
                             {item.title}
                         </Link>
-                    </li> )
-                    :
-                    (<li className="nav-item border-0" key={index}>
-                    <Link to={item.to} className="nav-link btn-lg text-left px-3 py-1 fs-6" aria-current="page" type="button">
-                        {item.icon}
-                        {item.title}
-                    </Link>
-                    </li>)
+                        </li>
+                    )
 
                 );
             });
