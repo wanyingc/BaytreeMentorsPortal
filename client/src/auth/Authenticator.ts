@@ -56,3 +56,9 @@ export const getPersonID = () =>{
     let personID = localStorage.getItem('personID');
     return personID == null ? "" : parseInt(personID.toString());
 }
+
+export const getEmail = () =>{
+    let email = localStorage.getItem('email');
+    // return email == null ? "" : parseInt(email.toString());
+    return email;
+}

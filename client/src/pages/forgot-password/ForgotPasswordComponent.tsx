@@ -13,6 +13,7 @@ import {BASE_API_URL} from '../../config/config';
 import nodemailer from 'nodemailer';
 
 const ForgotComponent = () => {
+  
   const history = useHistory(); 
   const [email,setEmail] = useState("");
   const getLinkResponse= async() => {
