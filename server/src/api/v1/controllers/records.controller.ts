@@ -40,7 +40,6 @@ const recordsController = async (req:Request, res:Response) => {
             "questionnaires": resQuestionnaireArray,
         });
     })).catch(err => {
-        // console.log(logTitle + ": Error:\n" + err);
         return res.status(500).send({
             error: err
         });

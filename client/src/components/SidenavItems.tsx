@@ -3,6 +3,7 @@ import { IoPersonOutline } from 'react-icons/io5';
 import { AiOutlineFolderView, AiOutlineForm } from "react-icons/ai";
 import { FiBarChart2, FiBriefcase, FiGrid } from 'react-icons/fi';
 import * as BsIcons from 'react-icons/bs';
+import { GiStairsGoal } from 'react-icons/gi';
 
 export const volunteerItems1 = [
     {
@@ -16,6 +17,12 @@ export const volunteerItems1 = [
         icon: <BsIcons.BsCalendar2Check className="nav-icon"/>
     },
     {
+        title: 'Goals',
+        to: "/goals",
+        icon: <GiStairsGoal className="nav-icon" />
+
+    },
+    {
         title: 'Messages',
         to: "/messages",
         icon: <BsIcons.BsChatLeft className="nav-icon"/>
@@ -24,11 +31,6 @@ export const volunteerItems1 = [
         title: 'Questionnaire',
         to: "/questionnaire",
         icon: <FiBriefcase className="nav-icon"/>
-    },
-    {
-        title: 'Sessions',
-        to: "/sessions",
-        icon: <FiBarChart2 className="nav-icon"/>
     },
     {
         title: 'Records',

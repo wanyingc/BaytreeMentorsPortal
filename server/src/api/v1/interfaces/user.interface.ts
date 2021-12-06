@@ -5,6 +5,7 @@ interface IUser extends Document {
     personID: number;
     password: string;
     roles: string[];
+    forget_password_token:string;
 };
 
 export default IUser;

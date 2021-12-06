@@ -76,3 +76,12 @@ export type BarChartDataType = {
     }[];
     maintainAspectRatio: boolean;
 };
+
+export type goalListObject = {
+    mentorID: number;
+    menteeName: string;
+    startingDate: Date | string;
+    reviewDate: Date | string;
+    notes: string;
+    status: string;
+};
