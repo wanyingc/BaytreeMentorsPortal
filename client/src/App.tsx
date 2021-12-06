@@ -16,8 +16,7 @@ import SignUp from './pages/signup/SignUp';
 import ProtectedRoute from './pages/login/ProtectedRoute';
 import { isAdmin, isUser } from './auth/Authenticator';
 import MentorsList from './pages/mentors-list/MentorsList';
-import sessions from './pages/sessions/Session';
-import sessionNotes from './pages/sessions/SessionNotes';
+import session from './pages/sessions/Session';
 import QuestionnaireAdmin from './pages/questionnaire/QuestionnaireAdmin'
 import QuestionList from './pages/questionnaire/QuestionList'
 import Records from './pages/historicRecords/HistoricRecords';
@@ -28,7 +27,10 @@ import DashboardVolunteer from './pages/dashboard/DashboardVolunteer';
 import Resources from './pages/resources/Resources';
 import AdminRecords from './pages/historicRecords/HistoricRecordsAdmin';
 import Goals from './pages/goals/Goals';
+
+import MentorQuestionnaires from './pages/questionnaire/Mentor-Questionnaires';
 import NewPost from './pages/new-post/NewPost'
+
 
 // cite: https://stackoverflow.com/questions/47281850/how-to-hide-navbar-in-login-page-in-react-router
 const LoginRoute = () => (
@@ -51,11 +53,11 @@ const MainRoutes = () => (
     <Route exact path="/messages" component={Messages}/>
     <Route exact path ="/signup" component={SignUp}/>
     {/* <Route path="/sessions" component={sessions}/> */}
-    <Route path="/session/:personID/:SessionID" component={sessions}/>
-    <Route path="/notes" component={sessionNotes}/>
+    <Route path="/session/:personID/:SessionID" component={session}/>
     {/* <ProtectedRoute isUser={isAdmin()} path="/signup" component={SignUp} /> */}
     {/* <Route path="/report" component={Report}/> */}
-    <Route exact path="/questionnaire" component={QuestionnaireForm}/>
+    <Route exact path="/questionnaire" component={MentorQuestionnaires}/>
+    <Route exact path="/questionnaire-form" component={QuestionnaireForm}/>
     {/* <Route path="/settings" component={Settings}/> */}
     <Route exact path="/resources" component={Resources}/>
     <Route exact path="/mentors-list" component={MentorsList}/>
