@@ -15,6 +15,7 @@ const NewPost = () => {
     const postDate = new Date();
 
 
+
   const postMessage= async() => {
     const response = await Axios.post(`${BASE_API_URL}/discussion`,{
       email: email,

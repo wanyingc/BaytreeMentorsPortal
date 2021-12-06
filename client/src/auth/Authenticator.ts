@@ -59,5 +59,6 @@ export const getPersonID = () =>{
 
 export const getEmail = () =>{
     let email = localStorage.getItem('email');
-    return email == null ? "" : parseInt(email.toString());
+    // return email == null ? "" : parseInt(email.toString());
+    return email;
 }
