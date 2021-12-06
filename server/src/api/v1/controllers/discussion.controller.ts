@@ -12,7 +12,7 @@ const DiscussionController = async (req:Request, res:Response, next:NextFunction
         })
         .exec()
         .then((users) => {
-            if(users.length!==1){
+            if(users.length<1){
 
                 res.status(404).send({
                     message: "User does not exist!",
@@ -23,13 +23,15 @@ const DiscussionController = async (req:Request, res:Response, next:NextFunction
                 let firstName_dis=users[0].firstName;
                 let lastName_dis=users[0].lastName;
                 let newDiscussion = new Discussion({
+                    email:req.body.email,
                     header:req.body.header,
                     message:req.body.message,
                     firstName:firstName_dis,
                     lastName:lastName_dis,
-                    postdate:req.body.postDate,
+                    
 
                 });
+                newDiscussion.postDate=req.body.postDate;
                 newDiscussion.save();
                 res.send({
                 });
