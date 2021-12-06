@@ -176,46 +176,6 @@ const Session = ()  => {
       </Form>
       
     </Container>
-
-
-
-
-
-
-
-          // <Form>
-          // <Container>
-          // <div className="Header_main_session_page">
-          // <div className="sessionsText">
-          //     <text className="HeaderText_main_session_page">Sessions Report</text>
-          // </div>
-          // </div>
-          // <Form.Group controlId="session-name"> 
-
-          //     <div className="d-flex justify-content-between align-items-center mb-3">
-          //         <h4 className="text-right">Session Information</h4>
-          //     </div>
-
-  
-          //       <Field name="Date" readOnly type="text" component={ReduxFormInput} label="Date of session" placeHolder="Enter Date" />
-     
-          
-          //       <Field name="Time" readOnly type="text" component={ReduxFormInput} label="Time" placeHolder="Enter Time" />
-            
-          //     <Field name="Duration" readOnly type="text" component={ReduxFormInput} label="Duration" placeHolder="Enter Duration" />
-          //     <Field name="Cancelled" readOnly type="text" component={ReduxFormInput} label="Cancelled" placeHolder="Cancelled?" />
-          //     <Field name="Venue" readOnly type="text" component={ReduxFormInput} label="Venue" placeHolder="Enter venue" />
-          //     <Field name="Activity" readOnly type="text" component={ReduxFormInput} label="Acitvity" placeHolder="Enter activity" />
-          //     <Field name="Staff" readOnly type="text" component={ReduxFormInput} label="Staff Incharge" placeHolder="Enter occupation" />
-          //     <Link to="/editSessions" className="btn btn-primary" style={{width: '500px', margin:"10px", alignItems:"center"}} >Edit Sessions</Link>
-          //     <Link to="/notes" className="btn btn-primary" style={{width: '500px', margin:"10px", alignItems:"end"}} >View Sessions Notes</Link>
-    
-  
-          // </Form.Group>
-
-          // </Container>
-          // </Form>
-    
   );
 }
 export default Session;
