@@ -1,0 +1,50 @@
+.mainComponent{
+    margin-top: 20%;
+}
+
+.text{
+    margin-top: 5%;
+}
+
+.buttons{
+    margin-top: 20%;
+}
+
+.post-button{
+    width: 20%;
+    color: white;
+    background-color: #d63384;
+}
+
+.post-button:hover{
+    color: #d63384;
+    background-color: blue;
+}
+
+.cancel-button{
+    width: 20%;
+    color: white;
+    background-color: #d63384;
+}
+
+.cancel-button:hover{
+    color: #d63384;
+    background-color: blue;
+}
+
+@media screen and (max-width: 1680px) {
+    .post-button{
+        width: 40%;
+        color: white;
+        background-color: #d63384;
+    }
+    .cancel-button{
+        margin-top: 5%;
+        width: 40%;
+        color: white;
+        background-color: #d63384;
+    }
+    .mainComponent{
+        margin-top: 40%;
+    }
+}
