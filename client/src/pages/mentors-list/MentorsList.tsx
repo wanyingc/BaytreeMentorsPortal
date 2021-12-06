@@ -112,7 +112,7 @@ const MentorsList = () => {
             </div>
         </div>
             <div className="container">
-                <h2>Mentors List</h2>
+                <h2></h2>
                 <ToolkitProvider
                     keyField={columns[0].dataField}
                     data={mentors}
