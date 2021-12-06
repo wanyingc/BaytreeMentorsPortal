@@ -54,7 +54,7 @@ async function getAdminData() {
         }
     }
 
-    let newData = await AdminDashboard.findOneAndUpdate({}, finalData, { upsert: true });
+    await AdminDashboard.findOneAndUpdate({}, finalData, { upsert: true });
 }
 
 async function getDataFromViews(personID: number) {
@@ -94,7 +94,8 @@ async function getDataFromViews(personID: number) {
             };
         }));
     }
-    catch {
+    catch(e) {
+        console.log(e);
         return undefined;
     }
 }
