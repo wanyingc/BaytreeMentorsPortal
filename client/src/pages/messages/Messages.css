@@ -66,3 +66,19 @@
 .messageItem{
     margin-top: 1%;
 }
+
+.header-image-discussions {
+    /* padding: 25px; */
+    background: url("https://www.baytreecentre.org/wp-content/uploads/2015/12/vol2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 380px;
+    position: relative;
+    min-width: 100vw;
+    background-position: center;
+    /* margin-right: 100vh; */
+    height: 100%;
+    background-blend-mode: overlay;
+
+}
