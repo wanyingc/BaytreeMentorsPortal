@@ -49,8 +49,11 @@ const Session = ()  => {
   const [session, setSession]= useState<sessionType>(sampleSession);
   const [endTime, setEndTime] = useState<any>(undefined);
 
+  const [sessionNotesArray, setSessionNotesArray] = useState<any>(undefined);
+
   useEffect(() => {
     getSessionRecords();
+    getSessionNotes();
   }, []);
 
   const getSessionRecords = () => {
@@ -68,6 +71,24 @@ const Session = ()  => {
         setSessionRecords(d.data.sessions);
     });
   }
+
+  const getSessionNotes = () => {
+    let accessToken = getAccessToken();
+    Axios.post(
+      `${BASE_API_URL}/auth/session-notes`, 
+      {
+        sessionID: sessionID
+      },
+      {
+        headers: {
+          "X-access-token": accessToken
+        }
+      }).then((d:any) => {
+        setSessionNotesArray(d.data.sessionNotes);
+    });
+  }
+
+  console.log(sessionNotesArray);
 
   // [sessionRecords] is for whenever sessionRecords changes, then this useEffect will run getSessionFromList();
   useEffect(() => {
