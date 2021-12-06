@@ -32,6 +32,7 @@ const QuestionnaireAdminShow = (props:any) => {
       }
 
     return (
+      <div className="container">
             <div id="main_questionnaire">
                 <Row>
                 {!questionsList &&
@@ -67,6 +68,7 @@ const QuestionnaireAdminShow = (props:any) => {
                 <td><Button variant="success" onClick={()=>console.log(typeof(questionsList))} >Send</Button></td>
                 </Row> */}
             </div>
+          </div>
         )
     
 

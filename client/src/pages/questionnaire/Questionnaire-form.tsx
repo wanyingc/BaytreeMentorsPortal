@@ -35,8 +35,9 @@ const QuestionnaireForm = () => {
     return (
     <Container>
     <Form onSubmit={onFormSubmit}>
-    <h3>Monthly Progress Update</h3>
-    <hr />
+    <div className="square square-lg">  
+      <h2 className="dashboard-title">Monthly Progress Update</h2>
+    </div>
 
     <Form.Group controlId="mentee-name"> 
         <Row>

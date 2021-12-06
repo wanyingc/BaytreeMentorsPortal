@@ -173,8 +173,11 @@ const Session = ()  => {
           </Spinner>
         </div>
       }
-      <h2>Session Report</h2>
-      <hr />  
+      <div className="square square-lg">  
+        <h2 className="dashboard-title">Session Report</h2>
+      </div>
+      
+   
       <Form>
         <Row>
 
