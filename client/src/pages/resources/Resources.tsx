@@ -24,12 +24,11 @@ function MyApp() {
     const [m3Show, setM3Show] = useState(false)
 
   return (
-      
+    <div className="container">
         <div id="boxes">
             <div className="row">
                 <h2 className="page-title">Resources</h2>
             </div>
-            
             <Card>
                 <Card.Header>
                     Last updated: {new Date().toLocaleDateString()}
@@ -108,7 +107,7 @@ function MyApp() {
             </Modal>
 
         </div>
-
+    </div>
   );
 }
 

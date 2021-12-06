@@ -38,7 +38,7 @@ const LoginRoute = () => (
 )
 
 const MainRoutes = () => (
-  <div className="container">
+  <div className="">
     <Sidenav/> 
     <Route exact path="/profile" component={Profile}/>
 

@@ -75,10 +75,14 @@ function DashboardVolunteer() {
     }, []);
 
     return (
+        <>
+        <div className="container-fluid header-image-title" id='da-title'>
+            <h5 style={{fontSize: 65, color:'#FF1E89'}}>Welcome, <strong>Mentor</strong>!</h5>
+        </div>
         <div className="container p-2 mt-5">
-            <div className="row header-image-title" id='dashboard-title'>
+            {/* <div className="row " id='dashboard-title'>
                 <h5 style={{fontSize: 65, color:'#FF1E89'}}>Welcome, <strong>Mentor</strong>!</h5>
-            </div>
+            </div> */}
 
             {!sessionRecords && 
                 <div className = "loading">
@@ -165,7 +169,7 @@ function DashboardVolunteer() {
 
             </div>
         </div>
-  
+    </>
             
     )
 }

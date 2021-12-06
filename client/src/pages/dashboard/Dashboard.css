@@ -66,11 +66,18 @@
 }
 
 .header-image-title {
-    /* background-image: url(path/to/img.jpg); */
-    background-attachment: fixed;
-    background-position: center;
+    /* padding: 25px; */
+    background: url("https://www.baytreecentre.org/wp-content/uploads/2015/12/dancebanner.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    width: 100%;
+    min-height: 380px;
+    position: relative;
+    min-width: 100vw;
+    background-position: center;
+    margin-left: 0%;
+    /* margin-right: 100vh; */
+    height: 100%;
 }
 
 .container-xxl {
