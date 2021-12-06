@@ -29,29 +29,29 @@ const columns = [
   }
 ];
 
-const myMentees: DiscussionListObjectType[] = [
-  {
-    header: "Hello",
-    firstName: "Mira",
-    lastName: "Jane",
-    message: "Hello World",
-    postDate: "today"
-  },
-  {
-    header: "Oliva",
-    firstName: "Lane",
-    lastName: "Jane",
-    message: "Nice to Meet You",
-    postDate: "today"
-  },
-  {
-    header: "TinaHudson",
-    firstName: "Tina",
-    lastName: "Hudson",
-    message: "Tina Tina Tina",
-    postDate: "today"
-  }
-]
+// const myMentees: DiscussionListObjectType[] = [
+//   {
+//     header: "Hello",
+//     firstName: "Mira",
+//     lastName: "Jane",
+//     message: "Hello World",
+//     postDate: "today"
+//   },
+//   {
+//     header: "Oliva",
+//     firstName: "Lane",
+//     lastName: "Jane",
+//     message: "Nice to Meet You",
+//     postDate: "today"
+//   },
+//   {
+//     header: "TinaHudson",
+//     firstName: "Tina",
+//     lastName: "Hudson",
+//     message: "Tina Tina Tina",
+//     postDate: "today"
+//   }
+// ]
 
 type DiscussionDataType = {
   result: DiscussionListObjectType[];
@@ -62,7 +62,7 @@ type DiscussionListObjectType = {
   firstName:string;
   lastName:string;
   message:string;
-  postDate:Date|string;
+  postDate:string;
 }
 
 let sampleList: DiscussionListObjectType[] = [
@@ -78,19 +78,22 @@ let sampleList: DiscussionListObjectType[] = [
 const Message = () => {
   const [discussionData, setDiscussionData] = useState<DiscussionDataType>({ result: sampleList});
   const [discussions, setDiscussions] = useState<Object[]>([]);
-//   const [loading, setLoading] = useState(true);
-//   const history = useHistory();
+  const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
-//   useEffect(() => {
-//     if(loading) {
-//       getDiscussionList().then(res => {
-//             setDiscussionData(res.data);        
-//             setDiscussion(discussionData.result);
-//         });
-//     }
+  useEffect(() => {
+    if(loading) {
+      getDiscussionList().then(res => {
+            setDiscussionData(res.data);      
+            // console.log(discussionData);
+            // console.log(discussionData.result[0].message);
+            setDiscussions(discussionData.result);
+            // console.log(discussions);
+        });
+    }
 
-//     return () => { setLoading(false)};
-// });
+    return () => { setLoading(false)};
+})
 
 
   return (
@@ -106,7 +109,7 @@ const Message = () => {
 
     <div id="message-list">
     <ListGroup id="message-list-group">
-    {myMentees.map((discussion,index) => (
+    {discussionData.result.map((discussion,index) => (
       <ListGroup.Item key={index} className="messageItem border-3">
         <div>
           <div>
@@ -117,7 +120,7 @@ const Message = () => {
             <p id="messageBody">{discussion.message}</p>
           </div>
           <div>
-            <h2 id="time">{new Date().toLocaleDateString()}</h2>
+            <h2 id="time">{discussion.postDate.substring(0,10)} {discussion.postDate.substring(11,16)}</h2>
             <p id="name">by {discussion.firstName} {discussion.lastName}</p>
           </div>
         </div>
@@ -126,7 +129,7 @@ const Message = () => {
     </ListGroup>
     </div>
   </div>
-  );
-}
+  )
+};
 
 export default Message;
