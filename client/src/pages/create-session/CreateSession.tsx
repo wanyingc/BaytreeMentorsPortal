@@ -123,6 +123,9 @@ const CreateSession = () => {
           }
         
           <Row as={Row} className="mb-3">
+            <div className="row">
+              <h2 className="page-title">Create Session</h2>
+            </div>
             <Col md={topLeftColNum}>
               <label>Mentee:</label>
             </Col>

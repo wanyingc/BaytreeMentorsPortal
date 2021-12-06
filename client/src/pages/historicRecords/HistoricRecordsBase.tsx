@@ -48,13 +48,16 @@ const RecordsComponent = (props:any) => {
               </Spinner>
             </div>
           }  
-
-          <h2>Historic Records</h2>
-          <hr />
-
+        
+          <div className="row">
+            <h2 className="page-title">Historic Records</h2>
+          </div>
+          
           <div>
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <h4 className="text-center">{props.sessionTitle}</h4>
+            <div className="square square-lg">
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <div className="dashboard-title">{props.sessionTitle}</div>
+              </div>
             </div>
             <Table striped bordered hover >
               <thead>
@@ -88,12 +91,11 @@ const RecordsComponent = (props:any) => {
             <div className="text font-weight-light">
                 * To edit sessions, please contact the administrator.
             </div>
-          
-                
 
-
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <h4 className="text-center">{props.questionnaireTitle}</h4>
+            <div className="square square-lg">
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <div className="dashboard-title">{props.questionnaireTitle}</div>
+              </div>
             </div>
 
             <Table striped bordered hover>

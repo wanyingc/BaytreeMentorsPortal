@@ -114,7 +114,7 @@ function Profile(props: InjectedFormProps | any) {
         <Col md={9} lg={6}>
             <Row>
               <div className="d-flex justify-content-between align-items-center mb-3">
-                  <h4 className="text-right">Profile Settings</h4>
+                  <h2 className="page-title text-right">Profile Settings</h2>
               </div>
 
               <Col md={6}>

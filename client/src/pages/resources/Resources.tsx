@@ -26,8 +26,10 @@ function MyApp() {
   return (
       
         <div id="boxes">
-            <h1 id="title">Resources</h1>
-            <hr id="line" />
+            <div className="row">
+                <h2 className="page-title">Resources</h2>
+            </div>
+            
             <Card>
                 <Card.Header>
                     Last updated: {new Date().toLocaleDateString()}
