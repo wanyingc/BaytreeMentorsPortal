@@ -110,119 +110,125 @@ const CreateSession = () => {
     setVenueID(getVenueID(value));
   }
   return (
-    <div className="container-lg mt-5">
-
-      <Row className="justify-content-md-center">
-        <Col md={8}>
-          {submit &&
-            <div className = "loading">
-              <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
+    <>
+      <div className="container-fluid header-image-createSession">
+            <div className="container p-2">
+                <div className="row justify-content-center mt-5" style={{backgroundColor:'#FF1E89', width:'fit-content'}}>
+                    <h5 className="page-title">Create Session</h5>
+                </div>    
             </div>
-          }
-        
-          <Row as={Row} className="mb-3">
-            <div className="row">
-              <h2 className="page-title">Create Session</h2>
-            </div>
-            <Col md={topLeftColNum}>
-              <label>Mentee:</label>
-            </Col>
-            <Col md={toprightColNum}>
-              <select id="selectMentee" 
-                className="form-select" 
-                aria-label="Default select example"
-                onChange={selectMentee}>
-                {mentees.map(mentee => (
-                  <option key={mentee.id} value={mentee.name}> {mentee.name} </option>
-                ))}
-              </select>
-            </Col>
-          </Row>
-          <Row as={Row} className="mb-3">
-            <Col md={topLeftColNum}>
-              <label>Session Groups:</label>
-            </Col>
-            <Col md={toprightColNum}>
-              <select id="selectSGID" 
-                className="form-select" 
-                aria-label="Default select example"
-                onChange={selectSGID}>
-                {sessionGroupIDObjects.map(sessionGroup => (
-                  <option key={sessionGroup.id} value={sessionGroup.id}> {sessionGroup.name} </option>
-                ))}
-              </select>
-            </Col>
-          </Row>
-          <form onSubmit={handleSubmit}>
-            <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm={`${topLeftColNum}`}>
-                Session:
-              </Form.Label>
-              <Col sm={toprightColNum}> 
-                {radiosAttended.map((radio, index) => (
-                  <ToggleButton
-                    key={index}
-                    id={`radio-${index}`}
-                    type="radio"
-                    variant={index % 2 ? 'outline-warning' : 'outline-success'}
-                    name="radio"
-                    value={radio.value}
-                    checked={radioAttended === radio.value}
-                    onChange={(e) => {
-                      setRadioAttended(e.currentTarget.value);
-                    }}
-                  >
-                    {radio.name}
-                  </ToggleButton>
-                ))}
+        </div>
+      <div className="container-lg mt-5">
+        <Row className="justify-content-md-center">
+          <Col md={8}>
+            {submit &&
+              <div className = "loading">
+                <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
+            }
+          
+            <Row as={Row} className="mb-3">
+              
+              <Col md={topLeftColNum}>
+                <label>Mentee:</label>
               </Col>
-            </Form.Group>
-            
-            <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm={`${topLeftColNum}`}>
-                Date:
-              </Form.Label>
-              <Col sm={toprightColNum}> 
-                <Form.Control type="date" onChange={(event) => setDate(event.target.value)}/>
+              <Col md={toprightColNum}>
+                <select id="selectMentee" 
+                  className="form-select" 
+                  aria-label="Default select example"
+                  onChange={selectMentee}>
+                  {mentees.map(mentee => (
+                    <option key={mentee.id} value={mentee.name}> {mentee.name} </option>
+                  ))}
+                </select>
               </Col>
-            </Form.Group>
-            
-            <Form.Group as={Row} className="mb-3" disabled={radioAttended === "1" ? false : true} style={radioAttended === "1" ? {} : { pointerEvents: 'none' }}>
-              <Form.Label column sm={`${topLeftColNum}`}>
-              Start Time:
-              </Form.Label>
-              <Col sm={toprightColNum}> 
-                <Form.Control type="time" onChange={(event) => {setStart(event.target.value); console.log(event.target.value)}}/>
+            </Row>
+            <Row as={Row} className="mb-3">
+              <Col md={topLeftColNum}>
+                <label>Session Groups:</label>
               </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3" disabled={radioAttended === "1" ? false : true} style={radioAttended === "1" ? {} : { pointerEvents: 'none' }}>
-              <Form.Label column sm={`${topLeftColNum}`}>
-                End Time:
-              </Form.Label>
-              <Col sm={toprightColNum}> 
-                <Form.Control type="time" onChange={(event) => setEnd(event.target.value)}/>
+              <Col md={toprightColNum}>
+                <select id="selectSGID" 
+                  className="form-select" 
+                  aria-label="Default select example"
+                  onChange={selectSGID}>
+                  {sessionGroupIDObjects.map(sessionGroup => (
+                    <option key={sessionGroup.id} value={sessionGroup.id}> {sessionGroup.name} </option>
+                  ))}
+                </select>
               </Col>
-            </Form.Group>
+            </Row>
+            <form onSubmit={handleSubmit}>
+              <Form.Group as={Row} className="mb-3">
+                <Form.Label column sm={`${topLeftColNum}`}>
+                  Session:
+                </Form.Label>
+                <Col sm={toprightColNum}> 
+                  {radiosAttended.map((radio, index) => (
+                    <ToggleButton
+                      key={index}
+                      id={`radio-${index}`}
+                      type="radio"
+                      variant={index % 2 ? 'outline-warning' : 'outline-success'}
+                      name="radio"
+                      value={radio.value}
+                      checked={radioAttended === radio.value}
+                      onChange={(e) => {
+                        setRadioAttended(e.currentTarget.value);
+                      }}
+                    >
+                      {radio.name}
+                    </ToggleButton>
+                  ))}
+                </Col>
+              </Form.Group>
+              
+              <Form.Group as={Row} className="mb-3">
+                <Form.Label column sm={`${topLeftColNum}`}>
+                  Date:
+                </Form.Label>
+                <Col sm={toprightColNum}> 
+                  <Form.Control type="date" onChange={(event) => setDate(event.target.value)}/>
+                </Col>
+              </Form.Group>
+              
+              <Form.Group as={Row} className="mb-3" disabled={radioAttended === "1" ? false : true} style={radioAttended === "1" ? {} : { pointerEvents: 'none' }}>
+                <Form.Label column sm={`${topLeftColNum}`}>
+                Start Time:
+                </Form.Label>
+                <Col sm={toprightColNum}> 
+                  <Form.Control type="time" onChange={(event) => {setStart(event.target.value); console.log(event.target.value)}}/>
+                </Col>
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              {radioAttended === "1" ? <Form.Label>Session Notes</Form.Label> : <Form.Label>Reason why session did not occur</Form.Label>}
-              <Form.Control as="textarea" rows={12} onChange={(event) => setNote(event.target.value)}/>
-            </Form.Group>
+              <Form.Group as={Row} className="mb-3" disabled={radioAttended === "1" ? false : true} style={radioAttended === "1" ? {} : { pointerEvents: 'none' }}>
+                <Form.Label column sm={`${topLeftColNum}`}>
+                  End Time:
+                </Form.Label>
+                <Col sm={toprightColNum}> 
+                  <Form.Control type="time" onChange={(event) => setEnd(event.target.value)}/>
+                </Col>
+              </Form.Group>
 
-            <Button
-              className="mb-3"
-              type="submit"
-            >
-              Add Session
-            </Button>
-          </form>
-        </Col>
+              <Form.Group className="mb-3">
+                {radioAttended === "1" ? <Form.Label>Session Notes</Form.Label> : <Form.Label>Reason why session did not occur</Form.Label>}
+                <Form.Control as="textarea" rows={12} onChange={(event) => setNote(event.target.value)}/>
+              </Form.Group>
 
-      </Row>
-    </div>
+              <Button
+                className="mb-3"
+                type="submit"
+              >
+                Add Session
+              </Button>
+            </form>
+          </Col>
+
+        </Row>
+      </div>
+    </>
   );
 }
 

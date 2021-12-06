@@ -12,6 +12,7 @@ import { getAccessToken, isAdmin, getPersonID} from "../../auth/Authenticator";
 import Axios from "axios";
 import'../historicRecords/HistoricRecords.css';
 import { BASE_API_URL } from "../../config/config";
+import './profile.css'
 
 // Img Source: https://pixabay.com/illustrations/profile-profile-pic-human-face-2398783/
 import defaultProfilePic from './default_profile_picture.webp';
@@ -93,71 +94,81 @@ function Profile(props: InjectedFormProps | any) {
   }
 
   return (
-    <Form>
-    <Container>
-      <Row>
-      {!dataLoaded &&
-            <div className = "loading">
-              <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
-            </div>
-          } 
-        <Col md={3}>
-            <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img className="rounded-circle mt-5" width="150px" src={DEFAULT_USER.profileImg} alt="Profile"/>
-                <span className="font-weight-bold">{userInfo && userInfo.fname}</span>
-                <span className="text-black-50">{userInfo && userInfo.email}</span>
-                <span> </span>
-            </div>
-        </Col>
-        <Col md={9} lg={6}>
-            <Row>
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                  <h2 className="page-title text-right">Profile Settings</h2>
+    <>
+      <div className="container-fluid header-image-profile">
+        <div className="container p-2">
+          <div className="row justify-content-center mt-5" style={{backgroundColor:'#FF1E89', width:'fit-content'}}>
+              <h5 className="page-title">Profile Settings</h5>
+          </div>    
+        </div>
+      </div>
+      <Form>
+      <Container>
+        <Row>
+        {!dataLoaded &&
+              <div className = "loading">
+                <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
               </div>
+            } 
+          <Col md={3}>
+              <div className="d-flex flex-column align-items-center text-center p-3 py-5">
+                  <img className="rounded-circle mt-5" width="150px" src={DEFAULT_USER.profileImg} alt="Profile"/>
+                  <span className="font-weight-bold">{userInfo && userInfo.fname}</span>
+                  <span className="text-black-50">{userInfo && userInfo.email}</span>
+                  <span> </span>
+              </div>
+          </Col>
+          <Col md={9} lg={6}>
+              <Row>
+                
+                <div>
+                  <br/><br/>
+                </div>
 
-              <Col md={6}>
-                <Field name="fname" type="text" component={ReduxFormInput} label="First Name" placeHolder="Enter first name" />
-              </Col>
-              <Col md={6}>
-                <Field name="lname" type="text" component={ReduxFormInput} label="Last Name" placeHolder="Enter last name" />
-              </Col>
+                <Col md={6}>
+                  <Field name="fname" type="text" component={ReduxFormInput} label="First Name" placeHolder="Enter first name" />
+                </Col>
+                <Col md={6}>
+                  <Field name="lname" type="text" component={ReduxFormInput} label="Last Name" placeHolder="Enter last name" />
+                </Col>
 
-              <Field name="phone" readOnly type="text" component={ReduxFormInput} label="Phone Number" placeHolder="Enter phone number" />
-              <Field name="email" readOnly type="text" component={ReduxFormInput} label="Email" placeHolder="Enter email" />
-              <Field name="occupation" type="text" component={ReduxFormInput} label="Occupation" placeHolder="Enter occupation" />
+                <Field name="phone" readOnly type="text" component={ReduxFormInput} label="Phone Number" placeHolder="Enter phone number" />
+                <Field name="email" readOnly type="text" component={ReduxFormInput} label="Email" placeHolder="Enter email" />
+                <Field name="occupation" type="text" component={ReduxFormInput} label="Occupation" placeHolder="Enter occupation" />
 
-              {/* <Field name="mentorType" type="text" component={ReduxFormInput} label="Mentor Type" placeHolder="enter mentor type" /> */}
-              <Field
-                  name="mentorType"
-                  type="text"
-                  disabled
-                  options={[
-                    { label: 'Youth Mentor', value: 'Youth Mentor' },
-                    { label: 'Into School Mentor', value: 'Into School Mentor' },
-                    { label: 'Women Mentor', value: 'Women Mentor' },
-                  ]}
-                  component={ReduxFormSelect}
-                  label="Mentor Type"
-                  placeHolder="Select mentor type"
-                />
+                {/* <Field name="mentorType" type="text" component={ReduxFormInput} label="Mentor Type" placeHolder="enter mentor type" /> */}
+                <Field
+                    name="mentorType"
+                    type="text"
+                    disabled
+                    options={[
+                      { label: 'Youth Mentor', value: 'Youth Mentor' },
+                      { label: 'Into School Mentor', value: 'Into School Mentor' },
+                      { label: 'Women Mentor', value: 'Women Mentor' },
+                    ]}
+                    component={ReduxFormSelect}
+                    label="Mentor Type"
+                    placeHolder="Select mentor type"
+                  />
 
-            </Row>
+              </Row>
 
-            <Button
-              variant="primary"
-              type="submit"
-              style={{ marginRight: '20px', marginTop:'48px', marginBottom:'48px', float: "right" }}
-              //will be changed after confirming saving options(Views app) or will make all the fieds readonly
-              disabled= {true}//props.pristine || props.submitting}
-            >
-              Save Profile
-            </Button>
-        </Col>
-      </Row>
-    </Container>
-    </Form>
+              <Button
+                variant="primary"
+                type="submit"
+                style={{ marginRight: '20px', marginTop:'48px', marginBottom:'48px', float: "right" }}
+                //will be changed after confirming saving options(Views app) or will make all the fieds readonly
+                disabled= {true}//props.pristine || props.submitting}
+              >
+                Save Profile
+              </Button>
+          </Col>
+        </Row>
+      </Container>
+      </Form>
+    </>
   );
 }
 
