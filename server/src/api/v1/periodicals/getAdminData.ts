@@ -130,4 +130,4 @@ function getSessionsCompletedPerMonth(sessions :any): number[] {
     return res;
 }
 
-setInterval(getAdminData, 1000*60*60); // every 1hour
+setInterval(getAdminData, 1000*5*60 ); // every 1hour
