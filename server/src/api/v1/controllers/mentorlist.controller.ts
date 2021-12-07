@@ -3,9 +3,7 @@ import UserInfo from '../models/userinfo.model';
 
     const mentorListController = async (req:Request, res:Response, next:NextFunction) => {
        
-        UserInfo.find({$ne: [
-                    {email: "admin@bt.com"}
-        ]})
+        UserInfo.find({ email: { $ne: "admin@bt.com"}})
             .exec()
             .then((users) => {
                 users.pop()
